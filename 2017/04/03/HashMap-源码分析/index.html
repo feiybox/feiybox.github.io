@@ -97,7 +97,9 @@
       </header>
     
     <div class="article-entry" itemprop="articleBody">
-      
+      <span id="busuanzi_container_page_pv">
+        Views: <span id="busuanzi_value_page_pv"></span>
+      </span>
         <p>HashMap是非常常用的键值对类型。本文主要讲述了HashMap的思维以及其重要或者常用的put，get，remove以及resize函数。</p>
 <p>首先Java定义了java.util.Map的接口，而常用的实现类型主要有HashMap、ConcurrentHashMap、LinkedHashMap和TreeMap。对于原来常用HashTable在不强调线程安全性时可以用HashMap替代（也就是说HashMap是线程不安全的），而在线程安全的情况下用ConcurrentHashMap替代。</p>
 <p>####总体结构</p>
