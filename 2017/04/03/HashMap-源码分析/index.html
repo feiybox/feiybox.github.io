@@ -8,7 +8,7 @@
   <title>HashMap 源码分析 | feiybox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="HashMap是非常常用的键值对类型。本文主要讲述了HashMap的思维以及其重要或者常用的put，get，remove以及resize函数。 首先Java定义了java.util.Map的接口，而常用的实现类型主要有HashMap、ConcurrentHashMap、LinkedHashMap和TreeMap。对于原来常用HashTable在不强调线程安全性时可以用HashMap替代（也就是说H">
-<meta name="keywords" content="java map">
+<meta name="keywords" content="Java,map">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HashMap 源码分析">
 <meta property="og:url" content="https://feiybox.github.io/2017/04/03/HashMap-源码分析/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://feiybox.github.io/2017/04/03/HashMap-源码分析/HashMap大概结构示意图.png">
 <meta property="og:image" content="https://feiybox.github.io/2017/04/03/HashMap-源码分析/resize.png">
-<meta property="og:updated_time" content="2019-02-23T07:47:13.575Z">
+<meta property="og:updated_time" content="2019-02-23T09:10:48.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap 源码分析">
 <meta name="twitter:description" content="HashMap是非常常用的键值对类型。本文主要讲述了HashMap的思维以及其重要或者常用的put，get，remove以及resize函数。 首先Java定义了java.util.Map的接口，而常用的实现类型主要有HashMap、ConcurrentHashMap、LinkedHashMap和TreeMap。对于原来常用HashTable在不强调线程安全性时可以用HashMap替代（也就是说H">
@@ -78,6 +78,10 @@
   <time datetime="2017-04-03T12:08:00.000Z" itemprop="datePublished">2017-04-03</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/tech/">tech</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -147,15 +151,29 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://feiybox.github.io/2017/04/03/HashMap-源码分析/" data-id="cjsh888d800006qvpibfs4ru8" class="article-share-link">Share</a>
+      <a data-url="https://feiybox.github.io/2017/04/03/HashMap-源码分析/" data-id="cjsh9work0007v3vpdfo5n077" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-map/">java map</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/map/">map</a></li></ul>
 
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2017/04/24/对于基础排序算法的简要总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          对于基础排序算法的简要总结
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
   
 </article>
 
@@ -164,13 +182,20 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">tech</a></li></ul>
+    </div>
+  </div>
+
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-map/">java map</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algo/">Algo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/">map</a></li></ul>
     </div>
   </div>
 
@@ -180,7 +205,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/java-map/" style="font-size: 10px;">java map</a>
+      <a href="/tags/Algo/" style="font-size: 10px;">Algo</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/map/" style="font-size: 10px;">map</a>
     </div>
   </div>
 
@@ -200,6 +225,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/04/24/对于基础排序算法的简要总结/">对于基础排序算法的简要总结</a>
+          </li>
         
           <li>
             <a href="/2017/04/03/HashMap-源码分析/">HashMap 源码分析</a>
