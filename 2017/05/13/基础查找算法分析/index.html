@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Maven,">
+  <meta name="keywords" content="Algo,Java,">
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="鉴于最近基本看完《Maven实战》这本书，对于我自己的所看的结果作一下总结，理清自己的思路，并复习书中的知识。当然有时间会继续学习一下Gradle，似乎是一个更好的工具。 我原来对于Maven的印象就是依赖管理的工具，但是在认真学习之后，认识到Maven可以实现挺多实用功能。  自动化构建 依赖管理（提供中央仓库，能够帮我们自动下载构建） 项目信息管理  在Maven中最重要的思维莫过于约定优于配">
-<meta name="keywords" content="Maven">
+<meta name="description" content="在之前学习了一些排序算法，得出了基础排序算法的总结。之后学习了一些查找算法，今天来对于基础的一些查找算法进行总结。 排序与查找是我们一般开发中最常用的算法。例如在开发中需要找出某个人的个人信息，就需要根据某个关键信息去查找。 顺序查找顺序查找是按照我们思维最通俗易懂的算法，就是依次去对比，得到相等的则查找成功。当然这种算法是十分低效的，但是它对于我们需要查找的数据源，没有任何要求，就如数组中数据是">
+<meta name="keywords" content="Algo,Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Maven基础总结">
-<meta property="og:url" content="https://feiybox.github.io/2017/05/03/Maven基础总结/index.html">
+<meta property="og:title" content="基础查找算法分析">
+<meta property="og:url" content="https://feiybox.github.io/2017/05/13/基础查找算法分析/index.html">
 <meta property="og:site_name" content="feiybox">
-<meta property="og:description" content="鉴于最近基本看完《Maven实战》这本书，对于我自己的所看的结果作一下总结，理清自己的思路，并复习书中的知识。当然有时间会继续学习一下Gradle，似乎是一个更好的工具。 我原来对于Maven的印象就是依赖管理的工具，但是在认真学习之后，认识到Maven可以实现挺多实用功能。  自动化构建 依赖管理（提供中央仓库，能够帮我们自动下载构建） 项目信息管理  在Maven中最重要的思维莫过于约定优于配">
+<meta property="og:description" content="在之前学习了一些排序算法，得出了基础排序算法的总结。之后学习了一些查找算法，今天来对于基础的一些查找算法进行总结。 排序与查找是我们一般开发中最常用的算法。例如在开发中需要找出某个人的个人信息，就需要根据某个关键信息去查找。 顺序查找顺序查找是按照我们思维最通俗易懂的算法，就是依次去对比，得到相等的则查找成功。当然这种算法是十分低效的，但是它对于我们需要查找的数据源，没有任何要求，就如数组中数据是">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://feiybox.github.io/Maven基础总结/Maven仓库分类.png">
-<meta property="og:image" content="https://feiybox.github.io/Maven基础总结/m2-repository.png">
-<meta property="og:updated_time" content="2019-02-23T12:00:01.521Z">
+<meta property="og:updated_time" content="2019-02-23T12:29:48.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Maven基础总结">
-<meta name="twitter:description" content="鉴于最近基本看完《Maven实战》这本书，对于我自己的所看的结果作一下总结，理清自己的思路，并复习书中的知识。当然有时间会继续学习一下Gradle，似乎是一个更好的工具。 我原来对于Maven的印象就是依赖管理的工具，但是在认真学习之后，认识到Maven可以实现挺多实用功能。  自动化构建 依赖管理（提供中央仓库，能够帮我们自动下载构建） 项目信息管理  在Maven中最重要的思维莫过于约定优于配">
-<meta name="twitter:image" content="https://feiybox.github.io/Maven基础总结/Maven仓库分类.png">
+<meta name="twitter:title" content="基础查找算法分析">
+<meta name="twitter:description" content="在之前学习了一些排序算法，得出了基础排序算法的总结。之后学习了一些查找算法，今天来对于基础的一些查找算法进行总结。 排序与查找是我们一般开发中最常用的算法。例如在开发中需要找出某个人的个人信息，就需要根据某个关键信息去查找。 顺序查找顺序查找是按照我们思维最通俗易懂的算法，就是依次去对比，得到相等的则查找成功。当然这种算法是十分低效的，但是它对于我们需要查找的数据源，没有任何要求，就如数组中数据是">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://feiybox.github.io/2017/05/03/Maven基础总结/">
+  <link rel="canonical" href="https://feiybox.github.io/2017/05/13/基础查找算法分析/">
 
 
 
 
 
-  <title>Maven基础总结 | feiybox</title>
+  <title>基础查找算法分析 | feiybox</title>
   
 
 
@@ -278,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://feiybox.github.io/2017/05/03/Maven基础总结/">
+    <link itemprop="mainEntityOfPage" href="https://feiybox.github.io/2017/05/13/基础查找算法分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="feiybox">
@@ -295,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Maven基础总结</h1>
+          <h1 class="post-title" itemprop="name headline">基础查找算法分析</h1>
         
 
         <div class="post-meta">
@@ -307,8 +304,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-03T11:47:00+08:00">
-                2017-05-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-13T20:43:00+08:00">
+                2017-05-13
               </time>
             
 
@@ -372,132 +369,23 @@
       
 
       
-        <p>鉴于最近基本看完《Maven实战》这本书，对于我自己的所看的结果作一下总结，理清自己的思路，并复习书中的知识。当然有时间会继续学习一下Gradle，似乎是一个更好的工具。</p>
-<p>我原来对于Maven的印象就是依赖管理的工具，但是在认真学习之后，认识到Maven可以实现挺多实用功能。</p>
-<ul>
-<li>自动化构建</li>
-<li>依赖管理（提供中央仓库，能够帮我们自动下载构建）</li>
-<li>项目信息管理</li>
-</ul>
-<p>在Maven中最重要的思维莫过于约定优于配置。虽然在Maven中没有确定的文件定义一些要求，但是大家约定的一些写法等，保证了项目的移植性，当然也可以自定义，但是不推荐（因为你写了可能就自己看得懂了，别人都看不懂）。在Maven项目中默认的主代码目录为<code>src/test/java</code>，默认的测试代码目录为<code>src/test/java</code>。</p>
-<h4 id="Pom文件"><a href="#Pom文件" class="headerlink" title="Pom文件"></a>Pom文件</h4><p>在平时开发中，感觉到pom.xml文件是Maven项目中最重要的一环，它提供了项目信息与依赖管理等。</p>
-<p>首先，pom.xml文件中，包含一般XML文件头，指定xml文件版本以及编码方式等；接下来是project元素，包含相关的命名空间以及xsd元素等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">    &lt;groupId&gt;com.fei&lt;/groupId&gt; </span><br><span class="line">    &lt;artifactId&gt;fei.empty.spring.web&lt;/artifactId&gt;</span><br><span class="line">    &lt;packaging&gt;war&lt;/packaging&gt;</span><br><span class="line">    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;jetty.port&gt;8417&lt;/jetty.port&gt;</span><br><span class="line">        &lt;spring.version&gt;4.2.0.RELEASE&lt;/spring.version&gt;</span><br><span class="line">        &lt;mybatis.version&gt;3.3.1&lt;/mybatis.version&gt;</span><br><span class="line">        &lt;slf4j.version&gt;2.6.2&lt;/slf4j.version&gt;</span><br><span class="line">        &lt;log4j2.version&gt;2.6.2&lt;/log4j2.version&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line">    &lt;dependencyManagement&gt;</span><br><span class="line">    &lt;/dependencyManagement&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.1.0&lt;/version&gt;</span><br><span class="line">            &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
-<h6 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h6><p>接下来重要的是<code>groupId</code>、<code>artifactId</code>、<code>version</code>元素，分别表示组（当前Maven项目隶属的实际项目）、唯一ID、版本。这个是Maven的坐标元素，基本可以确定一个项目，当然这三项是必须的，不管是在项目信息还是在依赖管理中，还有<code>packaging</code>、<code>classifier</code>分别表示打包方式和帮助定义构建输出的一些附属构建（ <code>classifier</code>是不能直接定义的，附属构建不是项目直接默认生成的，而是由附加的插件帮助生成）。例如在本例中因为是Javaweb项目，所以使用war的打包方式，在项目中如果不做声明，默认的是jar打包方式。这5个元素可以唯一的确定项目。</p>
-<h6 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h6><p>关于版本，分为发布版本和快照版本，在本例中的<code>1.0-SNAPSHOT</code>就是快照版本，快照版本是不稳定的。在Maven中版本号的约定是&lt;主版本&gt;.&lt;次版本&gt;.&lt;增量版本&gt;-&lt;里程碑版本&gt;。关于版本管理的一些本文不会涉及。</p>
-<p>在配置的pom文件中提供了properties标签自定义。利用这个我们将所有的版本号集中在一起，方便更新、引用，以及减少一些版本号重复性。</p>
-<h6 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h6><p>除了在项目信息中使用到了这些元素标签，还在依赖管理中使用，这是很必要的，需要用它们去确定一个Maven项目。在 <code>dependencies</code>里会有许多<code>dependency</code>来确定每个依赖。例如spring项目中一般会包含<code>spring-core</code>、<code>spring-context</code>、<code>spring-context-support</code>等都是Spring Framework实现依赖注入等功能必要的构建，都需要在项目中依赖。</p>
-<p>在依赖的<code>servlet</code>中定义了scop标签，表示定义依赖的范围，那么provided是什么意思呢？在一般情况中，我们有6种依赖范围：1、compile：编译依赖范围，一般在缺省默认情况下也使用这个默认范围；2、test：测试依赖范围；3、provided：已提供依赖范围，表示对于编译和测试classpath有效，但是在运行的时候无效；4、runtime：运行时依赖范围，即测试和运行classpath有效；5、system：系统依赖范围，该依赖范围与三种classpath的关系与provided相同，但是在使用这个依赖范围时，必须通过systemPath元素显式地指定依赖文件的路径，在使用时会造成不可移植性；6、import：导入依赖范围，其实是继承父模版的依赖配置，继承依赖范围。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">依赖范围（scop）</th>
-<th style="text-align:center">对于编译classpath有效</th>
-<th style="text-align:center">对于测试classpath有效</th>
-<th style="text-align:center">对于运行classpath有效</th>
-<th style="text-align:center">示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">compile</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">spring-core</td>
-</tr>
-<tr>
-<td style="text-align:center">test</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">JUnit</td>
-</tr>
-<tr>
-<td style="text-align:center">provided</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">servlet-api</td>
-</tr>
-<tr>
-<td style="text-align:center">runtime</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">JDBC驱动实现</td>
-</tr>
-<tr>
-<td style="text-align:center">system</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">-</td>
-</tr>
-</tbody>
-</table>
-<p>类似于java的属性继承一样，Maven也具有传递性依赖，继承依赖范围关系如下，左一列为直接依赖，横一栏为间接依赖，内容表示最终依赖范围。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">compile</th>
-<th style="text-align:center">test</th>
-<th style="text-align:center">provided</th>
-<th style="text-align:center">runtime</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">compile</td>
-<td style="text-align:center">compile</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">runtime</td>
-</tr>
-<tr>
-<td style="text-align:center">test</td>
-<td style="text-align:center">test</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">test</td>
-</tr>
-<tr>
-<td style="text-align:center">provided</td>
-<td style="text-align:center">provided</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">provided</td>
-<td style="text-align:center">provided</td>
-</tr>
-<tr>
-<td style="text-align:center">runtime</td>
-<td style="text-align:center">runtime</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">runtime</td>
-</tr>
-</tbody>
-</table>
-<p>这儿其实有一些规律：在间接依赖为compile时其他两者一致；当间接依赖为test时，不具有传递性；当间接依赖为provided时，只有provided才能传递，且最终依赖为provided；当间接依赖为runtime时，一般情况时直接依赖与最终依赖一致，除了直接依赖为compile时最终依赖为runtime。</p>
-<p>既然有传递性依赖，以及继承等机制（这些会在后续讲到），并没有像Java一样限制只能单继承，那么必会出现像C++一样通过不同路径继承同意文件而产生冲突的情况，那么如何解决？Mave这儿需要依赖调解。第一原则是路径最近者优先；第二原则是第一声明者优先。</p>
-<p>当然在依赖的时候，提供了optional标签来表示可选。可选依赖是不会传递的。也提供exclusions标签来排除继承时的某些依赖，可以解决在继承时快照版本依赖的不稳定性问题。</p>
-<h4 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h4><p>在上文中讲到依赖，那么依赖后引入的包相对于其对应仓库中的路径应该是多少呢？在路径与坐标的大致对应关系为<code>groupId/artifactId/version/artifactId-version.packaging</code>。</p>
-<p>对于Maven来说，仓库只分为两种：本地仓库和远程仓库。</p>
-<p><img src="/Maven基础总结/Maven仓库分类.png" alt="Maven仓库分类"></p>
-<p>一般情况是当我们使用依赖去引入一种构建，当Maven根据坐标寻找构建时，先会去本地查找此构建，如果本地没有这个构建，去远程仓库查找，发现则下载到本地使用（当然本地构建需要查看更新时也是需要去远程仓库查找）。</p>
-<h6 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h6><p>一般在用户中本机中，默认情况下都有一个<code>.m2/repository/</code>的仓库目录。</p>
-<p><img src="/Maven基础总结/m2-repository.png" alt></p>
-<h6 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h6><p>远程仓库分为中央仓库以及自己建立的私服等。一般情况下，基本每个公司都是有自己的Maven仓库的，在开发之前的环境配置时会加上一个自己公司的setting.xml文件的配置。</p>
-<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><p>Maven拥有三套独立的生命周期，分别为clean、default、site。clean生命周期目标是清理项目；default是构建项目；而site生命周期目的是建立项目站点。</p>
-<p>clean生命周期包括pre-clean、clean、post-clean。一般调用clean时会依次执行pre-clean、clean。一般命令都是执行到指定的阶段截止。</p>
-<p>default是所有生命周期中最核心的部分。包括了许多阶段：calidate、initialize、generate-sources、process-sources、generate-resources、process-resources、compile、process-classes、generate-test-sources、process-test-sources、generate-test-resources、process-test-resources、test-compile、process-test-clasess、test、prepare-package、package、pre-integration-test、integration-test、post-integration-test、verify、install、deploy。在这个生命周期中可以看到有许多编译、测试等阶段。</p>
-<p>而site生命周期有pre-site、site、post-site、site-deploy四个阶段。</p>
-<h4 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h4><p>个人觉得Maven中插件是非常重要的一环，可以帮助我们完成一些任务，并且与生命周期中的某个阶段绑定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.3&lt;/version&gt;</span><br><span class="line">        &lt;configuration&gt;</span><br><span class="line">            &lt;source&gt;1.8&lt;/source&gt;</span><br><span class="line">            &lt;target&gt;1.8&lt;/target&gt;</span><br><span class="line">            &lt;encoding&gt;UTF-8&lt;/encoding&gt;</span><br><span class="line">        &lt;/configuration&gt;</span><br><span class="line">    &lt;/plugin&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.2&lt;/version&gt;</span><br><span class="line">        &lt;configuration&gt;</span><br><span class="line">            &lt;port&gt;$&#123;web.port&#125;&lt;/port&gt;</span><br><span class="line">            &lt;path&gt;/$&#123;project.artifactId&#125;&lt;/path&gt;</span><br><span class="line">            &lt;uriEncoding&gt;UTF-8&lt;/uriEncoding&gt;</span><br><span class="line">        &lt;/configuration&gt;</span><br><span class="line">    &lt;/plugin&gt;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-<p>在这段代码中使用plugin标签加入了maven-compiler-plugin以及tomcat插件，可以使得项目可编译以及不用本地的tomcat服务器。compiler的插件是内置绑定的compile阶段，不用显式申明。当然也可以自定义绑定，在配置中加入executions、execution标签配置 执行一个任务，并用phase绑定生命周期。</p>
-<h6 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h6><p>讲到插件，就不能跳过Maven的测试。测试也是使用插件来实现的，如maven-surefire-plugin插件。可以帮助我们单元测试、集成测试等。</p>
-<h4 id="聚合与继承"><a href="#聚合与继承" class="headerlink" title="聚合与继承"></a>聚合与继承</h4><p>聚合特性能把项目的各个模块聚合在一起构建，而继承特性能帮助抽取各模块相同的依赖和插件等配置。</p>
-<p>所有模块组成的一个构建结构就是反应堆。单模块项目就是这个模块本身；而多模块项目则包含了各模块之间的继承和依赖关系、计算合理构建顺序。</p>
-<h4 id="附"><a href="#附" class="headerlink" title="附"></a>附</h4><p>本文中对于许多详细知识没有作总结，只是对于常用的一些部分作了浅入的涉及。如测试、聚合与继承、以及Nexus建私服、profile、站点等知识没有解释，需要学习的可以仔细看一下《Maven实战》。</p>
+        <p>在之前学习了一些排序算法，得出了<a href="https://feiybox.github.io/2017/04/24/%E5%AF%B9%E4%BA%8E%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%80%E8%A6%81%E6%80%BB%E7%BB%93/">基础排序算法的总结</a>。之后学习了一些查找算法，今天来对于基础的一些查找算法进行总结。</p>
+<p>排序与查找是我们一般开发中最常用的算法。例如在开发中需要找出某个人的个人信息，就需要根据某个关键信息去查找。</p>
+<h4 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h4><p>顺序查找是按照我们思维最通俗易懂的算法，就是依次去对比，得到相等的则查找成功。当然这种算法是十分低效的，但是它对于我们需要查找的数据源，没有任何要求，就如数组中数据是可以乱序的。</p>
+<h4 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h4><p>相似与之前排序算法的分治的思想，但是这种类似于分治的思想确实不同于分治。与分治得到有序结果相对应的是我们在查找的时候需要查找的数据源是有序的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public int halfFind(Key key) &#123;</span><br><span class="line">    int lo = 0, hi = N - 1;</span><br><span class="line">    while (lo &lt;= hi) &#123;</span><br><span class="line">        int mid = (lo + hi) / 2;</span><br><span class="line">        int cmp = key.compareTo(keys[mid]);</span><br><span class="line">        if (cmp &lt; 0) &#123;</span><br><span class="line">            hi = mid - 1;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (cmp &gt; 0) &#123;</span><br><span class="line">            lo = mid + 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return lo;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码是基于有序数组的二分查找算法简单实现，可以极大的减少比较次数，但是无法改变减少运行所需的时间，因为在查找源是无序的情况，将其排序成有序的情况也是需要一定运行时间的。二分查找的思想在很多查找算法里面都有体现，如插值查找、切波那锲查找、二叉查找数等都体现了这种思想。</p>
+<h4 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h4><p>二叉查找树也是使用了二分的思想，只是在数据存储时使用二叉树的存储方式，也是链表的方式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public Value halfTreeFind(Key key) &#123;</span><br><span class="line">	return get(root, key);</span><br><span class="line">&#125;</span><br><span class="line">private Value get(Node x, Key key) &#123;</span><br><span class="line">	if (x == null) return null;</span><br><span class="line">	int cmp = key.compareTo(x.key);</span><br><span class="line">	if (cmp &lt; 0) return get(x.left, key);</span><br><span class="line">	else if (cmp &gt; 0) return get(x.right, key);</span><br><span class="line">	else return x.val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在二叉查找树中，插入难度和查找是差不多的，运行时间主要取决于树的形状。而删除一个结点，是将其右子树中最小的结点上浮来替代。当然从其运行时间与树的形状相关，因此我们需要想办法使得树的形状基本趋于平衡，而使得效率最高。即平衡查找树。</p>
+<h5 id="平衡查找树"><a href="#平衡查找树" class="headerlink" title="平衡查找树"></a>平衡查找树</h5><p>由二叉查找树的缺点而推出平衡查找树，其中包括2-3查找树、红黑树等。</p>
+<p>在一棵完美的2-3查找树中、所有空链接到根结点的距离都是相同的。其有两种结点、具有1个数和2个数的结点、即有2个子分支和3个子分支。在查找与插入的时候都需要分别考虑，虽然情况是有限的几种，但是我还是觉得有点繁琐。</p>
+<p>而红黑树相比较像是对于2-3树的一种升级，用红的连接来替代3结点。但是我还是比较喜欢是结点标红的意思。对于红黑树的定义在之前的文章中体现过。红黑树在于查找、插入和删除上都是十分好的，所以在java1.8的HashMap中，满足某个特定条件时会将链表转化为红黑树。</p>
+<p>对于红黑树，所有基于红黑树的符号表实现都能保证操作的运行时间为对数级别，当然范围查找除外。</p>
+<h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h4><p>我第一次听说散列表的时候，对于散列的意思有点迷糊，搞不懂其与哈希表的关系。后来才明白散列表就是哈希表。</p>
+<p>哈希表中，首先需要的是一个哈希算法，最常见的就是%，除留余数法。第二点是解决冲突，一般就是拉链法与线性探测法。对于开发地址散列表中，最简单的方法就是线性探测法。</p>
+<p>至于对于散列表，我就不详解了，<a href="https://feiybox.github.io/2017/04/03/HashMap-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">HashMap源码分析</a>看完后都能基本明白。</p>
+<h4 id="附"><a href="#附" class="headerlink" title="附"></a>附</h4><p>在查找算法中，普遍都是基于二分的思想进行优化的。类似于排序算法中基于分治的思想一样。虽然本文总结不够完善，但也基本理清我的思维。</p>
 
       
     </div>
@@ -515,7 +403,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Maven/" rel="tag"># Maven</a>
+            <a href="/tags/Algo/" rel="tag"># Algo</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -528,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/24/对于基础排序算法的简要总结/" rel="next" title="对于基础排序算法的简要总结">
-                <i class="fa fa-chevron-left"></i> 对于基础排序算法的简要总结
+              <a href="/2017/05/04/洗牌算法/" rel="next" title="洗牌算法">
+                <i class="fa fa-chevron-left"></i> 洗牌算法
               </a>
             
           </div>
@@ -538,8 +428,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/04/洗牌算法/" rel="prev" title="洗牌算法">
-                洗牌算法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/19/SCC算法初解/" rel="prev" title="SCC算法初解">
+                SCC算法初解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -674,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pom文件"><span class="nav-text">Pom文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#元素"><span class="nav-text">元素</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#版本"><span class="nav-text">版本</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#依赖"><span class="nav-text">依赖</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#仓库"><span class="nav-text">仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#本地仓库"><span class="nav-text">本地仓库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#远程仓库"><span class="nav-text">远程仓库</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期"><span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件"><span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#测试"><span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚合与继承"><span class="nav-text">聚合与继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附"><span class="nav-text">附</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序查找"><span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二分查找"><span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉查找树"><span class="nav-text">二叉查找树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#平衡查找树"><span class="nav-text">平衡查找树</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-text">散列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附"><span class="nav-text">附</span></a></li></ol></div>
             
 
           </div>
