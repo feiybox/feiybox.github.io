@@ -1,4 +1,3 @@
-https://feiybox.com/2019/03/16/巴霍巴利：历史是重复的/
 https://feiybox.com/2019/03/14/翻译-When-nil-Isn-t-Equal-to-nil/
 https://feiybox.com/2019/02/24/基于github与hexo的博客搭建/
 https://feiybox.com/2019/01/31/读《傲慢与偏见》/
@@ -14,6 +13,7 @@ https://feiybox.com/2018/07/29/时间简史：读完了多少，读懂了多少/
 https://feiybox.com/2018/07/15/白说：并不白说/
 https://feiybox.com/2018/07/07/SpringBoot解决返回体content-type非json/
 https://feiybox.com/2018/06/27/边城：性格使然的悲剧/
+https://feiybox.com/2018/06/05/巴霍巴利：历史是重复的/
 https://feiybox.com/2018/06/03/类图中的关系/
 https://feiybox.com/2018/05/30/读《机器崛起》/
 https://feiybox.com/2018/03/19/读罢此书/
