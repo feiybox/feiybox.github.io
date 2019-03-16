@@ -1,5 +1,6 @@
 https://feiybox.com/2019/03/14/翻译-When-nil-Isn-t-Equal-to-nil/
 https://feiybox.com/2019/02/24/基于github与hexo的博客搭建/
+https://feiybox.com/2019/02/11/北上征程之巧合版/
 https://feiybox.com/2019/01/31/读《傲慢与偏见》/
 https://feiybox.com/2018/12/30/例行总结——2018版/
 https://feiybox.com/2018/12/16/做出改变——读《谁动了我的奶酪》/
@@ -12,6 +13,7 @@ https://feiybox.com/2018/08/14/这是一只不正经的猫：读《我是猫》/
 https://feiybox.com/2018/07/29/时间简史：读完了多少，读懂了多少/
 https://feiybox.com/2018/07/15/白说：并不白说/
 https://feiybox.com/2018/07/07/SpringBoot解决返回体content-type非json/
+https://feiybox.com/2018/06/30/那些年的室友，祝安好/
 https://feiybox.com/2018/06/27/边城：性格使然的悲剧/
 https://feiybox.com/2018/06/05/巴霍巴利：历史是重复的/
 https://feiybox.com/2018/06/03/类图中的关系/
@@ -24,6 +26,7 @@ https://feiybox.com/2018/01/17/Mac下Java开发环境配置/
 https://feiybox.com/2018/01/08/解决Java-API-since-版本错误问题/
 https://feiybox.com/2017/12/30/17曲终，18伊始/
 https://feiybox.com/2017/11/09/关于HLS直播流HTML页面播放解决/
+https://feiybox.com/2017/09/01/我所遇，皆为我一生/
 https://feiybox.com/2017/07/21/Mac上VPN-连接不上常用解决方案/
 https://feiybox.com/2017/06/09/MyBatis初解/
 https://feiybox.com/2017/05/19/SCC算法初解/
