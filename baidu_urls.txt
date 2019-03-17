@@ -1,3 +1,4 @@
+https://feiybox.com/2019/03/18/翻译-在Golang中使用高阶函数实现依赖注入/
 https://feiybox.com/2019/03/14/翻译-When-nil-Isn-t-Equal-to-nil/
 https://feiybox.com/2019/02/24/基于github与hexo的博客搭建/
 https://feiybox.com/2019/02/11/北上征程之巧合版/
