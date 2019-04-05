@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Golang下int系列和String之间的转换]]></title>
+    <url>%2F2019%2F04%2F05%2FGolang%E4%B8%8Bint%E7%B3%BB%E5%88%97%E5%92%8CString%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[int =&gt; string1string := strconv.Itoa(int)其原理是FormatInt(int64(i), 10)。string =&gt; int1int, err := strconv.Atoi(string)int64,int32,int16,int8 =&gt; string1string := strconv.FormatInt(int64,10)string =&gt; int系列1int, err := strconv.ParseInt(string, 10, 64) // 64,32,16,8分别对应int系列然后将结果强转成对应的类型。附使用fmt.Sprintf(&quot;%d&quot;, int)来转换int成string时，相对于使用strconv.FormatInt，性能差了很多。]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Golang</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[产品体验——今日头条]]></title>
     <url>%2F2019%2F03%2F30%2F%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1%2F</url>
     <content type="text"><![CDATA[产品介绍头条开屏的标志下有一行小字——“信息创造价值”。头条是一个信息内容创作与分享平台，其中包括文章、视频等多种内容分享方式。今日头条有两个版本——今日头条（以下称头条）、今日头条（极速版）（下称头条极速版）。功能头条的功能很丰富发布文章、视频、直播等阅读文章、观看视频等个人中心功能第三方功能接入等（包括小程序）用户头条用户群体喜欢新闻阅读的人群喜欢通过视频观看身边发生的事的人群喜欢分享身边发生的事的人群区别头条极速版和头条的区别首先，头条极速版，是对于头条的用户群体进行分流与精简提炼。截掉了发布文章、视频等功能，减少了个人设置与小程序入口。并且在极速版中，通过增加任务奖励等功能刺激用户阅读。通过对比，可以明显看出，头条的文章页广告推送数比头条极速版更多。内容上，两个平台的对比都比较相似。对比其他平台对于头条来说，有两个对比对象，一个是新闻资讯平台，另一个个人创作分享平台。类似新浪新闻、网易新闻、简书等。对于新闻类平台来说，头条的优势是资讯的及时性与创作性。还有推荐准确率，这点可以提高用户点击率，更够更加吸引用户阅读。对于创作分享平台，其中比较相似点在于创作性，都是创作类软件，能给予用户较高的创作度，但内容相关度不大。使用感受优点整体来说，头条的内容推荐丰富，内容推荐与用户喜好度相关性大。头条极速版的任务可以更好的刺激用户，能够吸引用户阅读。不足资讯同质性严重资讯数量大，质量没那么高建议对于头条来说，已经比较繁重，要求主要是功能齐全，因此目前要求的是稳定与老用户不流失，并且在这个的基础上增加商业化运转。而对于头条极速版来说，可以增加一个高质量的频道，这个频道每天推送的一定数量的高质量资讯，来增加资讯的质量。]]></content>
