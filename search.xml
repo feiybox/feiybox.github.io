@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[为什么欧洲对现代文明影响这么深--读极简欧洲史]]></title>
+    <url>%2F2019%2F04%2F24%2F%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AC%A7%E6%B4%B2%E5%AF%B9%E7%8E%B0%E4%BB%A3%E6%96%87%E6%98%8E%E5%BD%B1%E5%93%8D%E8%BF%99%E4%B9%88%E6%B7%B1-%E8%AF%BB%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2%2F</url>
+    <content type="text"><![CDATA[极简欧洲史]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[产品体验——新草]]></title>
     <url>%2F2019%2F04%2F08%2F%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E6%96%B0%E8%8D%89%2F</url>
     <content type="text"><![CDATA[版本：v0.9.1产品介绍新草是一个好物分享平台，分别有数码、小物、书影、家居、个护、美食、旅行等分类等。功能新草的功能很简单浏览别人的分享分享自己的好物区别谈到好物分享，当然最先想到的是小红书了。小红书（版本：v5.45.0.6ba2027）主要功能模块：首页分享商场（与其他购物app相似）个人中心功能等新草对比的是首页分享。目前主要的功能也是分享类。相对来说，小红书主要是一个购物app，而分享只是对于其功能的一个扩充，增加用户活跃、交互、留存等用户粘度，并在这个分享中有一定的转换率，来吸引用户购物。而新草，主要的是分享，提供用户浏览别人的分享，支持图片与视频的方式。使用感受优点界面设计简洁，满足我的简约偏好风格好物分享浏览容分类清晰不足内容不够丰富，或者混排不够，比如我关注的数码类，重复产品概率很高缺少一些分类，比如没有分类衣服类，会流失很多用户商业化不成熟建议每个产品很重要的有两点：用户留存活跃度与商业化。增加更多的好物分类推荐内容可以根据用户偏好进行推荐增加商业化，将更多的商品能够与用户分享能够关联起来]]></content>
@@ -281,8 +289,8 @@
         <category>tool</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>Java</tag>
+        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
@@ -332,8 +340,8 @@
         <category>tool</category>
       </categories>
       <tags>
-        <tag>VPN</tag>
         <tag>macOS</tag>
+        <tag>VPN</tag>
       </tags>
   </entry>
   <entry>
