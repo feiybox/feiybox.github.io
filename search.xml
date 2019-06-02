@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Redis总结]]></title>
+    <url>%2F2019%2F06%2F03%2FRedis%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[背景为什么我会学习Redis？原因很简单，因为工作上需要使用。因此在不懂其原理以及其特性的情况下使用，会在一些情况下使用错误，以及造成一些错误的影响。理解工具的原理才能更好的使用工具。基础Redis中主要提供5种数据结构：string（字符串）、hash（哈希）、list（列表）、set（集合）、zset（有序集合）。然后在基于字符串的基础上演变出了Bitmaps（位图）、HyperLogLog。并随着LBS（基于位置服务）发展，在Redis3.2中加入了CEO（地理信息定位）。同时，Redis支持键过期、发布订阅、Lua脚本、简单事物、流水线（Pipeline）功能。Redis为什么速度快？1、Redis中所有的数据都是存储在内存中的；2、Redis是使用C语言实现的；3、Redis使用了单线程架构，预防了多线程可能产生的竞争问题。通过object ebcoding命令查询内部编码。Redis中对每个数据结构，在内部根据不同的情况，使用不同的内部编码实现，可以在不同情况下发挥自己各自的优势。string（字符串）常用命令设置值：set key value [ex seconds] [px millesenconds] [nx|xx]（nx：键必须不存在才能设置成功，xx反之）。setex = set ex，setnx = set nx。批量设置值：mset key value [key value ...].获取值: get key。批量获取值：mget key [key ...]。注意：每次批量操作所发送的命令数不是无节制的，如果数量过多可能造成Redis阻塞或者网络拥塞。自增: incr key。内部编码int 8个字符的长整型embstr 小于等于39个字节的字符串raw 大于39个字节的字符串hash（哈希）常用命令设置值：hset key field value。批量设置值：hmset key field value [field value...]。获取值：hget key field。批量获取值：hmget key field [field ...]。内部编码ziplist（压缩列表）hashtable（哈希表）当field个数较少且没有大value时，内部编码为ziplist；当value大于64字节，转变为hashtable；当field个数超过512，内部编码变为hashtable。list（列表）列表中的元素时有序的；列表中的元素可以是重复的。常用命令设置值：rpush key value [value ...]; lpush key value [value ...]。插入元素：linsert key before|after pivot value。顺序找到第一个等于该值的元素，在前面或者后面插入元素。获取值：lrange key start end: 获取key对应value内指定范围的元素列表（左右都取闭区间）。修改值：lset key index rewValue，修改指定索引下标的元素。删除元素：lrem key count value，从列表中找到等于value的元素进行删除。count &gt; 0，从左到右，删除最多count个元素；count &lt; 0，从右到左，删除最多count绝对值个元素；count = 0，删除所有。lpop key; rpop key.blpop key [key ...] timeout; brpop key [key ...] timeout。如果存在则之间返回，如果不存在则等待timout时间，timeout为0则代表一直阻塞。内部编码ziplist（列表元素个数小于512，同时值都小于64字节）linkedlistquicklist（Redis 3.2版本提供。简单说是一个以ziplist为节点的linkedlist，结合了两者的优势）set（集合）常用命令增加值：sadd key element [element ...]删除值：srem key element [element ...]随机弹出元素：spop key，需要注意这个并不删除元素。集合操作：求交集：sinter key [key ...]求并集：sunion key [key ...]求差集：sdiff key [key ...]（相当于并集减交集）使用sinterstore destination key [key ...]、sunionstore ...、sdiffstore ...运算交集、并集、差集的结果并保存。（集合间操作在元素比较多的情况下会比较耗时，因此Redis提供计算并存储命令，计算结果保存到destination key中）。内部编码intset（整数集合），当集合元素是整数且元素个数小区512时hashtablezset（有序集合）常用命令增加值：zadd key score member [score member ...]，集合通过score排序。注意：Redis 3.2中添加了nx（不存在才能设置成功）、xx（与nx相反）、ch（返回此次操作后集合中的元素和分数发生变化的个数）、incr（对score增加，相当于zincry）选项。返回指定排名范围的成员：zrange key start end [withscores]，按照分数从低到高返回; zrevrange key start end [withscores]，按照分数从高到低返回。start和end都是闭区间。返回指定分数范围的成员：zrangebyscore key min max [withscores] [limit offset count]，按照分数从低到高返回；zrevrangebyscore反之。[limit offset count]可以限制输出的起始位置和个数。min和max支持开区间（小括号）和闭区间（中括号），-inf和+inf分别代表无限小和无限大。集合操作：交集：zinstore destination numkeys key [key ...] [wights weight [weight ...]] [aggregate sum|min|max]。numkeys：需要做交集计算键的个数；key [key ...]：需要做交集计算的键；wights weight [weight ...]：每个键的权重，在做交集计算时，每个键中的每个member会将自己的分数乘以这个权重，每个键的权重默认时1。aggregate sum|min|max：计算成员交集后，分值按照sum、min、max做汇总，默认值是sum。并集：zunionstore destination numkeys keu [key ...] [weights weight [weight ...]] [aggregate sum|min|max]。内部编码ziplist，有序集合元素个数小于128，且每个元素的值都小于64自己skiplist其他键重命名rename key newkey、renamenx ...由于重命名健期间会del命令删除旧的键，如果键对应的值比较大，会存在阻塞Redis的可能。继续更新中。。。]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[为什么欧洲对现代文明影响这么深--读极简欧洲史]]></title>
     <url>%2F2019%2F04%2F24%2F%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AC%A7%E6%B4%B2%E5%AF%B9%E7%8E%B0%E4%BB%A3%E6%96%87%E6%98%8E%E5%BD%B1%E5%93%8D%E8%BF%99%E4%B9%88%E6%B7%B1-%E8%AF%BB%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2%2F</url>
     <content type="text"><![CDATA[为什么欧洲发展了理论科学，而我们的先辈却只有文学和实用科学？为什么我们现在所奉行的制度基本都源于欧洲，相比较而言，优势是什么？首先，必须说，我是一个对于欧洲哲学十分喜欢的人，在欧洲所发展起来的哲学正是目前社会科学的开端。我喜欢其中对于一些幸福、人性的探讨。第一处惊讶之处在于——古典时期到中世纪的欧洲，“并非所有东西都属于国王所有”，是欧洲政府思维的基石。因此，国王、政府的权利都是有限的，国王以及政府都不能完全地为所欲为。第二处惊讶是，欧洲脱离宗教的控制是缓慢的，并且存在一段宗教控制的时候，在宗教控制时期，并没有出现对于文化、学识等的打量打压，反而古代的知识等都靠宗教留存下来。不得不承认，在欧洲在发展中，除了中间一段时间的统一，一直都存在于多元化的发展中，各个国家都在不停的竞争，文化、经济上的竞争。而在中国古时候，主要人力思维，都主要奉献在了四书五经，达到一种极高的思维认同，这种认同的遗留依然存在于现在。在我看来，正是这种原因，因此欧洲和中国的发展思路是不同的。而经过全球化后，国家之间的关系相比较原来，更加紧密，因此对于原来的对于中国的以自己为中心的发展方式现实出来了明显的缺点。并且对于欧洲所证明的那套政治、经济发展可行性。因此世界都在学习这种成功的经验。我一直在想，我们相比较来说，优势是什么？相比较西方的文化等，我们的优势是什么？我一直没想通，这个待提醒。注：本文并非妄自菲薄，只是单纯的思考。]]></content>
@@ -289,8 +300,8 @@
         <category>tool</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>Java</tag>
+        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
@@ -340,8 +351,8 @@
         <category>tool</category>
       </categories>
       <tags>
-        <tag>VPN</tag>
         <tag>macOS</tag>
+        <tag>VPN</tag>
       </tags>
   </entry>
   <entry>
