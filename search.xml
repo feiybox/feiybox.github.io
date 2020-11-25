@@ -7,6 +7,9 @@
       <categories>
         <category>read</category>
       </categories>
+      <tags>
+        <tag>DB</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[【笔记】领导力21法则]]></title>
@@ -25,7 +28,6 @@
       </categories>
       <tags>
         <tag>Golang</tag>
-        <tag>G-P-M</tag>
       </tags>
   </entry>
   <entry>
