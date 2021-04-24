@@ -7,6 +7,10 @@
       <categories>
         <category>tech</category>
       </categories>
+      <tags>
+        <tag>Golang</tag>
+        <tag>Goroutine</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[什么是技术？]]></title>
@@ -503,8 +507,8 @@
         <category>tool</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>macOS</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -554,8 +558,8 @@
         <category>tool</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>VPN</tag>
+        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
