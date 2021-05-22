@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[“欲穷千里目，更上一层楼”，现在几楼？]]></title>
+    <url>%2F2021%2F05%2F22%2F%E2%80%9C%E6%AC%B2%E7%A9%B7%E5%8D%83%E9%87%8C%E7%9B%AE%EF%BC%8C%E6%9B%B4%E4%B8%8A%E4%B8%80%E5%B1%82%E6%A5%BC%E2%80%9D%EF%BC%8C%E7%8E%B0%E5%9C%A8%E5%87%A0%E6%A5%BC%EF%BC%9F%2F</url>
+    <content type="text"><![CDATA[白日依山尽，黄河入海流；欲穷千里目，更上一层楼。王之涣的《登鹳雀楼》只有二十个字，却表达出磅礴万里之气势。其写于鹳雀楼，今山西永济市内。其中一点，“欲穷千里目，更上一层楼”，那么诗人现在在几楼？先抛出答案：不存在这么高的楼，因此诗人看不到这么远。那么接下来，我们证明一下这个问题。首先我们要提出几个假设：假设地球是一个标准的球体，不是非规则的椭球假设光线在在地球上呈现直线传播，忽略由于地球引力导致的光偏折问题假设光线可达的具体为可见距离，实际的可视距离远远小于该距离我们设当时作者的所在地方离地心的距离为R（R大于海平线到地心的距离）；设x为能看到千里目的位置的高度。一千里等于500km。其中 R = 地球海平线半径 + 海拔，其中地球海平线半径约为6371.393千米，山西永济平均海拔在400左右，因此R约为6372千米。那么根据上述公式进行计算，x约为19千米，而世界上最高的楼为828米（哈利法塔，原名迪拜塔），喜马拉雅高度为8844.43米，而民航一般不会超过12600千米。因此我们常人是无法穷千里目的。当然，上火星看地球是可以的当然是可以的。]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[协程里的通信]]></title>
     <url>%2F2021%2F04%2F24%2F%E5%8D%8F%E7%A8%8B%E9%87%8C%E7%9A%84%E9%80%9A%E4%BF%A1%2F</url>
     <content type="text"><![CDATA[在我们项目中经常遇到一些生产者-消费者问题，比如在我们提出的kafka组件，就是面对生产者与消费者的中间通信组件。我们在开发中常提到线程，常常通过线程来做并发处理。任何一个函数，或者任何一个组件，实际都是存在输入、输出。从其中将问题归纳，也是生产者-消费者。在Golang中存在协程，在协程中怎么解决并发的问题。1234567891011121314151617181920212223242526272829errChan := make(chan error, 10)// 生产者go func() &#123; defer close(errChan) conCu := 10 wg := new(sync.WaitGroup) wg.Add(conCu) for i := 0; i &lt; conCu; i++ &#123; go func(flag int) &#123; defer wg.Done() println(flag) if flag % 3 == 0 &#123; errChan &lt;- fmt.Errorf(&quot;3, i=%d&quot;, flag) &#125; &#125;(i) &#125; wg.Wait()&#125;()// 消费者for true &#123; err, ok := &lt;- errChan if !ok &#123; break &#125; fmt.Printf(&quot;err=%s\n&quot;, err)&#125;println(&quot;done&quot;)代码中使用的并发方案，使用sync.WaitGroup与chan来进行协程间通信。协程是什么协程是一种比线程更加轻量级的存在，又言用户级协程。其对内核透明，系统并不知道协程存在，由用户程序进行调度控制，协程上下文切换也是完全由用户自己控制。「Golang-协程调度原理」协程间通信常用的协程间通信方式由多种：共享内存WaitGroupchannel 通道在Golang中推荐通过通道通信，而不推荐通过共享内存的方案进行通信。在上述三者中，WaitGroup是基于CAS来实现，为什么使用CAS以及CAS解决了什么问题，这个我们后面再讲讲，这次中就不提及了。channel使用要注意什么（内部原理）channel底层数据结构中，有几个重要的点：buf：数据缓存，指向一个环形缓冲区recvq：接收者列表sendq：发送者列表lock：互斥锁，每次写入与消费数据都需要加索从channel的语法中分为两种：有缓冲的channel与没有缓冲的channel，我个人理解是认为他们是相同的，唯一的区别缓冲buf为0，不能缓冲任何结果。从上述描述中可以看出，在使用channel中需要注意些什么？当channel中buf不够时，再向channel写入的时候，回阻塞协程channel使用完成后，需要close掉，否则消费channel的协程最后不会被销毁、回收channel在close之后，如果其中数据存在，依然可以从其中读取数据，直到最终监听到channel close的消息后死锁在使用channel的时候，需要避免的事死锁，什么时候会发生死锁的情况呢？其中channel中的缓冲区被消费完成后，如果再向channel中写入的时候，会阻塞当前协程，如果在阻塞之后没有协程会消费channel中的数据，则会发生死锁，协程也是因此阻塞。]]></content>
