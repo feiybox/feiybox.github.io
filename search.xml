@@ -453,6 +453,28 @@
       </tags>
   </entry>
   <entry>
+    <title>IDEA无限Indexing</title>
+    <url>/2018/03/01/IDEA%E6%97%A0%E9%99%90Indexing/</url>
+    <content><![CDATA[<p>虽然无限Indexing并非错误，但消耗性能，并扰乱我们的开发进度。</p>
+<p>我此处遇到的异常情况是，IDEA一加载某个Js就会一直出现无限Indexing，然后关掉，或者鼠标控制其他文件就不会出现这种情况。后来发现只是我电脑会有这种情况。因此猜测是因为我IDEA主题的问题。</p>
+<p>我通过网上下载了一个名为Python的主题，并通过导入设置修改了IDEA主题。</p>
+<p>然而通过查询资料没有找到卸载主题的办法，最终选择了暴力的解决方案，卸载重装IDEA。最终解决了该问题。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><p>问题<br>由于IDEA主题导致某个文件加载出现无限Indexing情况。</p>
+</li>
+<li><p>解决方案<br>卸载IDEA重装。</p>
+</li>
+</ul>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>推荐<a href="http://www.cnblogs.com/jun1019/p/7210503.html">如何使用IDEA开发工具中右键中的Git图形化工具</a>。</p>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>Idea</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mac上VPN 连接不上常用解决方案</title>
     <url>/2017/07/21/Mac%E4%B8%8AVPN-%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<blockquote>
@@ -485,95 +507,6 @@
       </categories>
       <tags>
         <tag>VPN</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA无限Indexing</title>
-    <url>/2018/03/01/IDEA%E6%97%A0%E9%99%90Indexing/</url>
-    <content><![CDATA[<p>虽然无限Indexing并非错误，但消耗性能，并扰乱我们的开发进度。</p>
-<p>我此处遇到的异常情况是，IDEA一加载某个Js就会一直出现无限Indexing，然后关掉，或者鼠标控制其他文件就不会出现这种情况。后来发现只是我电脑会有这种情况。因此猜测是因为我IDEA主题的问题。</p>
-<p>我通过网上下载了一个名为Python的主题，并通过导入设置修改了IDEA主题。</p>
-<p>然而通过查询资料没有找到卸载主题的办法，最终选择了暴力的解决方案，卸载重装IDEA。最终解决了该问题。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><p>问题<br>由于IDEA主题导致某个文件加载出现无限Indexing情况。</p>
-</li>
-<li><p>解决方案<br>卸载IDEA重装。</p>
-</li>
-</ul>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>推荐<a href="http://www.cnblogs.com/jun1019/p/7210503.html">如何使用IDEA开发工具中右键中的Git图形化工具</a>。</p>
-]]></content>
-      <categories>
-        <category>tool</category>
-      </categories>
-      <tags>
-        <tag>Idea</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mac下Java开发环境配置</title>
-    <url>/2018/01/17/Mac%E4%B8%8BJava%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>作为一名程序员，每次换了电脑，都需要重新配置一次所有的环境，有时候会突然忘了一些设置以及一些软件的破解等。</p>
-<ul>
-<li><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3></li>
-</ul>
-<p>第一点是配置Java环境，下载地址<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a>，目前是Jdk8，下载安装即可。</p>
-<p>同时，需要设置JAVA_HOME，可以在 <code>～</code>目录下建立一个.bash_profile的文件，使用<code>vim .bash_profile</code>新建并打开文件，在文件中写入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home </span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br></pre></td></tr></table></figure>
-
-<p>然后<code>esc</code>后输入<code>:wq</code>保存并退出，之后执行<code>source .bash_profile</code>即可。</p>
-<p>在命令行输入 <code>java -version</code>测试是否成功。</p>
-<p><img src="/2018/01/17/Mac%E4%B8%8BJava%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/JavaVersion.png" alt="java版本"></p>
-<ul>
-<li><h3 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h3></li>
-</ul>
-<p>第二点就是IDE了，我开始使用idea后就完全抛弃了Eclipse，当然用不起正版，这是一个不能买断的软件，当然社区版是免费的。下载地址<a href="https://www.jetbrains.com/idea/">https://www.jetbrains.com/idea/</a>。</p>
-<p>一般下载Ultimate版本，进行破解：1、使用<code>http://idea.iteblog.com/key.php</code>注册，但是在最新的版本里似乎开始行不通了。2、使用该方法注册<a href="http://idea.lanyus.com/">http://idea.lanyus.com/</a>，windows与mac都可行。</p>
-<p>对于每个项目配置时，可以尝试使用lombok，使用<code>@Slf4j</code>使用日志，减少我们所写的重复代码。附上<a href="http://blog.csdn.net/hinstenyhisoka/article/details/50468271">IDEA里面添加lombok插件,编写简略风格Java代码http://blog.csdn.net/hinstenyhisoka/article/details/50468271</a>。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.16.18<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>每次开始项目开发时，最好将配置java导入包优化以及去掉无用包开启，可以让IDEA优化我们导入的包。</p>
-<p><img src="/Mac%E4%B8%8BJava%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/1.png" alt="Preferences -&gt; Editor -&gt; General -&gt; Auto Import 设置"></p>
-<ul>
-<li><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3></li>
-</ul>
-<p>git很重要，能够支持多程序员合作的版本控制，以及远程办公等多功能。git教程里推荐<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰的git教程</a>。</p>
-<p><a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">安装指南</a>有许多种安装方法供选择。</p>
-<ul>
-<li><h3 id="Chrome-以及postman"><a href="#Chrome-以及postman" class="headerlink" title="Chrome 以及postman"></a>Chrome 以及postman</h3></li>
-</ul>
-<p>作为一名程序员，怎么可以不用Chrome呢？下载安装都极其简单。</p>
-<p>postman用于发送各种请求测试接口。有Chrome插件版本和桌面版本。</p>
-<p>在扩展程序里可以搜索postman，当然国内在这之前需要翻墙，突破The Great Wall，下载启用就行，他会自动创建快捷的启动软件入口。推荐下载桌面版本。</p>
-<ul>
-<li><h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3></li>
-</ul>
-<p>并不一定是Mysql、还有其他数据库等，看目前的需求。</p>
-<p>在mysql下载安装后，容易出现密码忘记连接不上的情况，因此这儿需要处理。</p>
-<p>1、系统偏好设置 入口进入mysql关闭mysql<br>2、进入终端输入：cd /usr/local/mysql/bin/<br>登录管理员权限 sudo su<br>输入以下命令来禁止mysql验证功能 ./mysqld_safe –skip-grant-tables &amp;<br>运行后mysql会自动重启（偏好设置中mysql的状态会变成running）<br>3、输入命令 ./mysql<br>输入命令 FLUSH PRIVILEGES;<br>输入命令 SET PASSWORD FOR ‘root‘@’localhost’ = PASSWORD(‘你的新密码’);</p>
-<p>这样后mysql会重新设置成你设置的密码。</p>
-<ul>
-<li><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3></li>
-</ul>
-<p>maven并不是所有的都会用到，但是个人觉得用Maven会方便许多，但是在maven里会常常遇到包冲突问题，给人以想不到的惊喜。关于maven的基础知识，请参照<a href="https://www.jianshu.com/p/92fcc535b999">《Maven基础总结》</a>。</p>
-<p>对于Maven的安装配置参照<a href="https://www.jianshu.com/p/191685a33786">https://www.jianshu.com/p/191685a33786</a></p>
-<p>对于某些公司有自己的Maven镜像库，因此会在<code>.m2</code>文件路径下建立一个<code>setting.xml</code>的文件配置自己公司的Maven镜像映射。</p>
-<p>当然有时候你需要自己手动将包加入自己的Maven仓库，使用<code>mvn install:install-file -Dfile=../a.jar -DgroupId=a.groupId -DartifactId=a.artifactId -Dversion=a.version -Dpackaging=jar</code>命令，其中a代表jar包名，当然groupId、artifactId和version等需要根据现场修改。</p>
-<ul>
-<li><h3 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h3></li>
-</ul>
-<p>tomcat可以下载一个tomcat8，对于7，在某些环境情况下会出现错误、而换用8就ok。</p>
-<p>当然也可以将tomcat的命令设置成全局，我个人偏好不设置而已。</p>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>对于还有一些我个人喜欢的软件，如前端编译器Hbuilder、做手机端页面时需要的Charles等，当然对我来说，有道词典是必须的。</p>
-<p>本文仅总结一些个人Java基础开发的环境配置，带有个人偏好色彩。</p>
-<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p><em>2020/3/14更新</em></p>
-<p>新注册码：<a href="https://www.jianshu.com/p/fe9de4ed9e96">idea系列激活2020年</a></p>
-]]></content>
-      <categories>
-        <category>tool</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
         <tag>macOS</tag>
       </tags>
   </entry>
@@ -726,6 +659,73 @@
       </tags>
   </entry>
   <entry>
+    <title>Mac下Java开发环境配置</title>
+    <url>/2018/01/17/Mac%E4%B8%8BJava%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>作为一名程序员，每次换了电脑，都需要重新配置一次所有的环境，有时候会突然忘了一些设置以及一些软件的破解等。</p>
+<ul>
+<li><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3></li>
+</ul>
+<p>第一点是配置Java环境，下载地址<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a>，目前是Jdk8，下载安装即可。</p>
+<p>同时，需要设置JAVA_HOME，可以在 <code>～</code>目录下建立一个.bash_profile的文件，使用<code>vim .bash_profile</code>新建并打开文件，在文件中写入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home </span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br></pre></td></tr></table></figure>
+
+<p>然后<code>esc</code>后输入<code>:wq</code>保存并退出，之后执行<code>source .bash_profile</code>即可。</p>
+<p>在命令行输入 <code>java -version</code>测试是否成功。</p>
+<p><img src="/2018/01/17/Mac%E4%B8%8BJava%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/JavaVersion.png" alt="java版本"></p>
+<ul>
+<li><h3 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h3></li>
+</ul>
+<p>第二点就是IDE了，我开始使用idea后就完全抛弃了Eclipse，当然用不起正版，这是一个不能买断的软件，当然社区版是免费的。下载地址<a href="https://www.jetbrains.com/idea/">https://www.jetbrains.com/idea/</a>。</p>
+<p>一般下载Ultimate版本，进行破解：1、使用<code>http://idea.iteblog.com/key.php</code>注册，但是在最新的版本里似乎开始行不通了。2、使用该方法注册<a href="http://idea.lanyus.com/">http://idea.lanyus.com/</a>，windows与mac都可行。</p>
+<p>对于每个项目配置时，可以尝试使用lombok，使用<code>@Slf4j</code>使用日志，减少我们所写的重复代码。附上<a href="http://blog.csdn.net/hinstenyhisoka/article/details/50468271">IDEA里面添加lombok插件,编写简略风格Java代码http://blog.csdn.net/hinstenyhisoka/article/details/50468271</a>。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.16.18<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>每次开始项目开发时，最好将配置java导入包优化以及去掉无用包开启，可以让IDEA优化我们导入的包。</p>
+<p><img src="/Mac%E4%B8%8BJava%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/1.png" alt="Preferences -&gt; Editor -&gt; General -&gt; Auto Import 设置"></p>
+<ul>
+<li><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3></li>
+</ul>
+<p>git很重要，能够支持多程序员合作的版本控制，以及远程办公等多功能。git教程里推荐<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰的git教程</a>。</p>
+<p><a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">安装指南</a>有许多种安装方法供选择。</p>
+<ul>
+<li><h3 id="Chrome-以及postman"><a href="#Chrome-以及postman" class="headerlink" title="Chrome 以及postman"></a>Chrome 以及postman</h3></li>
+</ul>
+<p>作为一名程序员，怎么可以不用Chrome呢？下载安装都极其简单。</p>
+<p>postman用于发送各种请求测试接口。有Chrome插件版本和桌面版本。</p>
+<p>在扩展程序里可以搜索postman，当然国内在这之前需要翻墙，突破The Great Wall，下载启用就行，他会自动创建快捷的启动软件入口。推荐下载桌面版本。</p>
+<ul>
+<li><h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3></li>
+</ul>
+<p>并不一定是Mysql、还有其他数据库等，看目前的需求。</p>
+<p>在mysql下载安装后，容易出现密码忘记连接不上的情况，因此这儿需要处理。</p>
+<p>1、系统偏好设置 入口进入mysql关闭mysql<br>2、进入终端输入：cd /usr/local/mysql/bin/<br>登录管理员权限 sudo su<br>输入以下命令来禁止mysql验证功能 ./mysqld_safe –skip-grant-tables &amp;<br>运行后mysql会自动重启（偏好设置中mysql的状态会变成running）<br>3、输入命令 ./mysql<br>输入命令 FLUSH PRIVILEGES;<br>输入命令 SET PASSWORD FOR ‘root‘@’localhost’ = PASSWORD(‘你的新密码’);</p>
+<p>这样后mysql会重新设置成你设置的密码。</p>
+<ul>
+<li><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3></li>
+</ul>
+<p>maven并不是所有的都会用到，但是个人觉得用Maven会方便许多，但是在maven里会常常遇到包冲突问题，给人以想不到的惊喜。关于maven的基础知识，请参照<a href="https://www.jianshu.com/p/92fcc535b999">《Maven基础总结》</a>。</p>
+<p>对于Maven的安装配置参照<a href="https://www.jianshu.com/p/191685a33786">https://www.jianshu.com/p/191685a33786</a></p>
+<p>对于某些公司有自己的Maven镜像库，因此会在<code>.m2</code>文件路径下建立一个<code>setting.xml</code>的文件配置自己公司的Maven镜像映射。</p>
+<p>当然有时候你需要自己手动将包加入自己的Maven仓库，使用<code>mvn install:install-file -Dfile=../a.jar -DgroupId=a.groupId -DartifactId=a.artifactId -Dversion=a.version -Dpackaging=jar</code>命令，其中a代表jar包名，当然groupId、artifactId和version等需要根据现场修改。</p>
+<ul>
+<li><h3 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h3></li>
+</ul>
+<p>tomcat可以下载一个tomcat8，对于7，在某些环境情况下会出现错误、而换用8就ok。</p>
+<p>当然也可以将tomcat的命令设置成全局，我个人偏好不设置而已。</p>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>对于还有一些我个人喜欢的软件，如前端编译器Hbuilder、做手机端页面时需要的Charles等，当然对我来说，有道词典是必须的。</p>
+<p>本文仅总结一些个人Java基础开发的环境配置，带有个人偏好色彩。</p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p><em>2020/3/14更新</em></p>
+<p>新注册码：<a href="https://www.jianshu.com/p/fe9de4ed9e96">idea系列激活2020年</a></p>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MyBatis初解</title>
     <url>/2017/06/09/MyBatis%E5%88%9D%E8%A7%A3/</url>
     <content><![CDATA[<p>MyBatis是一种半自动映射的框架。是目前较为流行的Java ORM框架。（ORM模型是指数据库的表与Java的POJO的映射关系模型，解决之间的相互映射。）本文主要是我在学习了《深入浅出MyBatis技术原理与实战》后的自我总结。</p>
@@ -769,88 +769,6 @@
       </categories>
       <tags>
         <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SCC算法初解</title>
-    <url>/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/</url>
-    <content><![CDATA[<p>在算法学习之路上漂泊，遇见了图，而分无向与有向。在本文中主要讲解关于有向图中的求极大连通分量的算法，主要是Kasaraju算法、Tarjan算法以及Gabow算法。</p>
-<p>三种算法都是基于深度优先搜索算法（DFS）而实现的，实际上后两种算法是对于Kasaraju算法的改进，减少了一次深度优先搜索（DFS），因此在性能上相比较而言要好一些。</p>
-<h3 id="初识强连通分量"><a href="#初识强连通分量" class="headerlink" title="初识强连通分量"></a>初识强连通分量</h3><p>首先，连通分量是无向图G的一个极大连通子图称为G的一个连通分量（或连通分支）。连通图只有一个连通分量，即其自身；非连通的无向图有多个连通分量。</p>
-<p>强连通图指每一个顶点皆可以经由该图上的边抵达其他的每一个点的有向图。意即对于此图上每一个点对(Va,Vb)，皆存在路径Va→Vb以及Vb→Va。强连通分量则是指一张有向图G的极大强连通子图G’。如果将每一个强连通分量缩成一个点，则原图G将会变成一张有向无环图。一张图被称为有向无环图当且仅当此图不具有点集合数量大于一的强连通分量，因为有向环即是一个强连通分量，而且任何的强连通分量皆具有至少一个有向环。（摘自维基百科）</p>
-<p>对于无向图，求连通分量的问题就等价于求是否连通的问题，使用深度优先、广度优先搜索的算法的到的树都能求出最大连通分量。</p>
-<h3 id="Kasaraju算法"><a href="#Kasaraju算法" class="headerlink" title="Kasaraju算法"></a>Kasaraju算法</h3><p>Kasaraju算法在我第一次接触时，感觉确实有点难理解，虽然现在也还是有点难理解。本文中不会去证明算法，只是讲解算法的一些实现等。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KosarajuSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    List&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    KosarajuSCC(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.adj = <span class="keyword">new</span> ArrayList[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.adj[i] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adj[v].add(w);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正向遍历，以后根序压栈，保证根先出栈</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fillorder</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited, Stack&lt;Integer&gt; s)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer i : <span class="keyword">this</span>.adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//reverse 得到反向图</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KosarajuSCC <span class="title">getTranspose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        KosarajuSCC gv = <span class="keyword">new</span> KosarajuSCC(<span class="keyword">this</span>.n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer j : <span class="keyword">this</span>.adj[i]) &#123;</span><br><span class="line">                gv.adj[j].add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> gv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//DFS打印连通分支</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFSUtil</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        System.out.print(v + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer i : adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                DFSUtil(i, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按照Kosaraju算法的步骤执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printSCCs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="keyword">this</span>.n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//逆后序压栈</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//得到反向图</span></span><br><span class="line">        KosarajuSCC gr = <span class="keyword">this</span>.getTranspose();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//依据反向图算可达性</span></span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = s.pop();</span><br><span class="line">            <span class="keyword">if</span> (visited[v] == <span class="keyword">false</span>) &#123;</span><br><span class="line">                gr.DFSUtil(v, visited);</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>先理解一下Karasaju算法的思路。</p>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Kasaraju%E7%AE%97%E6%B3%95.png" alt="Kasaraju算法"></p>
-<ul>
-<li>对图G求其逆后序，即在深度优先遍历（DFS）中在递归调用之后压入栈中；</li>
-<li>对G进行转置，在代码中即得到反图；</li>
-<li>按照第一步中得到的栈的出栈的顶点顺序，对于G<sup>R</sup>图进行DFS可以得到若干搜索树。每棵搜索树都代表一个强连通分量。</li>
-</ul>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/%E7%A4%BA%E4%BE%8B%E5%9B%BEG.png" alt="示例图G"></p>
-<p>如上图示例的有向图，先求逆后序排序，得到<code>&#123;7, 8, 6, 9, 11, 10, 12, 0, 5, 4, 2, 3, 1&#125;</code>，然后按照这个图的转置图G<sup>R</sup>进行DFS，最终可以得到极大强连通分量5个：<code>&#123;7, 8&#125;, &#123;6&#125;, &#123;9, 11, 10, 12&#125;, &#123;0, 5, 4, 2, 3&#125;, &#123;1&#125;</code>。</p>
-<p>在Karasaju算法中使用了两次DFS，第一次是得到节点的逆后序排序（有的算法书将逆后序排序合并在拓扑排序里面）；第二次是对于转置图DFS得到最终的强连通分量。我们当然想要对于算法进行优化，减少DFS的次数也是一种极好的优化方式，想想如果一次DFS就可以得出强连通分量岂不是很好。</p>
-<h3 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h3><p>Tarjan算法是对于Kasaraju算法的改进。其基本代码实现思维如下：</p>
-<ul>
-<li>遍历一个点，指定唯一时间戳<code>DFN[i]</code>；指定改点向前追溯可追溯到最老时间戳<code>LOW[i]</code>；</li>
-<li>枚举当前点的所有边，若<code>DFN[j]=0</code>表明未被搜索过（这儿0、-1等都是可以的，只要是自我约定好的，正常不使用的就可以，如下面算法中使用的<code>NO_VISIT</code>），递归搜索；</li>
-<li>当<code>DFN[i]</code>不为0，则j被搜索过，这时判断是否在我们存储新建的栈中，且j的时间戳<code>DFN[j]</code>小于当前时间戳<code>DFN[i]</code>，可判定成环，将<code>LOW[i]</code>设定为<code>DFN[j]</code>；</li>
-<li>若这个点<code>LOW[i]</code>和<code>DFN[i]</code>相等，则这个点是目前强连通分量的元素中在栈中的最早的节点；</li>
-<li>出栈，将这个强连通分量全部弹出，保存。</li>
-</ul>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Tarjan%E7%AE%97%E6%B3%95.png" alt="Tarjan算法"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TarjanSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] inStack;<span class="comment">//标记节点是否在栈内</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dfn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] low;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TarjanSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.inStack = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfNode];</span><br><span class="line">        <span class="keyword">this</span>.stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        dfn = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        low = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(dfn, NO_VISIT);<span class="comment">//将dfn所有元素都置为0，代表i还有没被访问过。</span></span><br><span class="line">        Arrays.fill(low, NO_VISIT);</span><br><span class="line">        result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取强连通分量</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;ArrayList&lt;Integer&gt;&gt; tarjanResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dfn[i] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//算法核心</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> current)</span> </span>&#123;</span><br><span class="line">        dfn[current] = low[current] = time++;</span><br><span class="line">        inStack[current] = <span class="keyword">true</span>;</span><br><span class="line">        stack.push(current);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(current).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(current).get(i);</span><br><span class="line">            <span class="keyword">if</span> (dfn[next] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(next);</span><br><span class="line">                low[current] = Math.min(low[current], low[next]);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inStack[next]) &#123;</span><br><span class="line">                low[current] = Math.min(low[current], dfn[next]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (low[current] == dfn[current]) &#123;</span><br><span class="line">            ArrayList&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (current != j) &#123;</span><br><span class="line">                j = stack.pop();</span><br><span class="line">                inStack[j] = <span class="keyword">false</span>;</span><br><span class="line">                temp.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是在算法中的时间戳这个标记，并不是代表真正的时间戳，而是对于每个节点不同的一种标记，在本文算法中都是用一个递增数组来表示，即访问每个节点时，将该时间戳变量自增赋值给该节点的时间戳<code>DFN[i]</code>。</p>
-<h3 id="Gabow算法"><a href="#Gabow算法" class="headerlink" title="Gabow算法"></a>Gabow算法</h3><p>Gabow算法在基础上与Tarjan算法相似，都是利用一次DFS算法实现。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GabowSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; path;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; root;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] order;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] part; <span class="comment">// 连通变量的标号；</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> partNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GabowSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.path = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        order = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        part = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(order, NO_VISIT);</span><br><span class="line">        Arrays.fill(part, NO_VISIT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] gabowResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (order[i] == NO_VISIT) &#123;</span><br><span class="line">                gabow(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> part;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gabow</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        order[v] = ++time;</span><br><span class="line">        path.push(v);</span><br><span class="line">        root.push(v);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(v).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(v).get(i);</span><br><span class="line">            <span class="keyword">if</span> (order[next] == NO_VISIT) &#123;</span><br><span class="line">                gabow(next);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (part[next] == NO_VISIT) &#123;</span><br><span class="line">                <span class="keyword">while</span> (order[root.peek()] &gt; order[next]) &#123;</span><br><span class="line">                    root.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (v == root.peek()) &#123;</span><br><span class="line">            root.pop();</span><br><span class="line">            partNum++;</span><br><span class="line">            <span class="keyword">int</span> top;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                top = path.peek();</span><br><span class="line">                part[top] = partNum;</span><br><span class="line">                path.pop();</span><br><span class="line">            &#125; <span class="keyword">while</span> (top != v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其算法基本思路是：</p>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Gabow%E7%AE%97%E6%B3%95.png" alt="Gabow算法"></p>
-<ul>
-<li>在所有顶点中，找一个没有被访问的节点v，如果没有则完成；</li>
-<li>记录v的访问顺序；<br>将v压入堆栈path和root；<br>如果v指向的邻接点，对应每个邻接点next：<br>1、如果没有访问过，则以next为参数，递归到第二步；<br>2、如果访问过，且没有确定它属于哪个强连通分量，弹出root栈中next之后（即之上）的所有顶点；<br>3、如果root栈中的元素等于v，那么在part中记录顶点对应的强连通分量</li>
-<li>递归返回</li>
-</ul>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文只涉及算法的实现，没有设计算法的证明等，如有想法，请分享。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Algo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot解决返回体content-type非json</title>
-    <url>/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/</url>
-    <content><![CDATA[<p>最佳解决方案为自定义消息转换器。</p>
-<p>首先，为什么要自定义消息转换器？所见即所得，原本的消息转换器并不能满足我们目前的需求。</p>
-<p>在最近的项目中，使用了SpringBoot与FastJson构建项目，在我们返回时，使用 <code>@ResponseBody</code>的方法里，采用了fastjson里的<code>JSON.toJSONString()</code>方法返回我们需要的Json数据，而这种返回中，会有一个问题，在返回中<code>@ResponseBody</code>注解中的消息转换器会默认理解为String解析，在返回体中如下图，<code>content-type</code>为<code>text/html</code>。</p>
-<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/1.jpg"></p>
-<p>因此我们解决想让我们的返回体中<code>content-type</code>为<code>application/json</code>。</p>
-<p>针对于这个问题，有一种最暴力的解决方案，直接在<code>@RequestMapping</code>中添加<code>produces</code>属性，设置<code>produces=&quot;application/json&quot;</code>直接使得返回体设置为json格式。</p>
-<p>当然对于这种每个接口暴力解决的方案来说，对于每写一个接口都需要设置，因此增加我们写代码的重复性工作，因此需要一个一劳永逸的方式。</p>
-<p>在<code>@ResponseBody</code>里默认有消息转换器，一般json转换使用的是JackJson进行转换的，而我们在项目中配置使用fastjson，因此需要修改消息转化器。</p>
-<p>首先消息转化器中不只有json转换器，还有字符转换器等。</p>
-<p>在我们的项目中可以自定义一个配置类，标注有<code>@Configuration</code>或者在<code>@SpringBootApplication</code>的启动配置类中添加下面代码，就增加了fastjson的消息转换器注入。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * fastjson消息转换器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpMessageConverters <span class="title">httpMessageConverters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FastJsonHttpMessageConverter fastJsonHttpMessageConverter = <span class="keyword">new</span> FastJsonHttpMessageConverter();</span><br><span class="line">    <span class="comment">//添加fastJson的配置信息</span></span><br><span class="line">    FastJsonConfig fastJsonConfig = <span class="keyword">new</span> FastJsonConfig();</span><br><span class="line">    fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);</span><br><span class="line">    <span class="comment">//处理中文乱码问题</span></span><br><span class="line">    List&lt;MediaType&gt; fastMediaTypes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);</span><br><span class="line">    <span class="comment">//在convert中添加配置信息.	 </span></span><br><span class="line">    fastJsonHttpMessageConverter.setSupportedMediaTypes(fastMediaTypes);</span><br><span class="line">    fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);</span><br><span class="line">    HttpMessageConverter&lt;?&gt; converter = fastJsonHttpMessageConverter;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HttpMessageConverters(converter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当然需要注意，这种配置的方式必须在<code>fastjson 1.2.44</code>版本及之后才支持。在我们使用Maven构建项目是，需要添加fastjson的依赖。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.44<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>使用这种配置后，可以在返回中去掉我们的json转化，并直接返回我们需要转化的实体，在消息转换器中会自动调用fastjson进行转json。</p>
-<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/%E8%A7%A3%E5%86%B3%E5%90%8E%E7%BB%93%E6%9E%9C.png" alt="解决后结果"></p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
@@ -1328,6 +1246,88 @@
       </tags>
   </entry>
   <entry>
+    <title>SCC算法初解</title>
+    <url>/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/</url>
+    <content><![CDATA[<p>在算法学习之路上漂泊，遇见了图，而分无向与有向。在本文中主要讲解关于有向图中的求极大连通分量的算法，主要是Kasaraju算法、Tarjan算法以及Gabow算法。</p>
+<p>三种算法都是基于深度优先搜索算法（DFS）而实现的，实际上后两种算法是对于Kasaraju算法的改进，减少了一次深度优先搜索（DFS），因此在性能上相比较而言要好一些。</p>
+<h3 id="初识强连通分量"><a href="#初识强连通分量" class="headerlink" title="初识强连通分量"></a>初识强连通分量</h3><p>首先，连通分量是无向图G的一个极大连通子图称为G的一个连通分量（或连通分支）。连通图只有一个连通分量，即其自身；非连通的无向图有多个连通分量。</p>
+<p>强连通图指每一个顶点皆可以经由该图上的边抵达其他的每一个点的有向图。意即对于此图上每一个点对(Va,Vb)，皆存在路径Va→Vb以及Vb→Va。强连通分量则是指一张有向图G的极大强连通子图G’。如果将每一个强连通分量缩成一个点，则原图G将会变成一张有向无环图。一张图被称为有向无环图当且仅当此图不具有点集合数量大于一的强连通分量，因为有向环即是一个强连通分量，而且任何的强连通分量皆具有至少一个有向环。（摘自维基百科）</p>
+<p>对于无向图，求连通分量的问题就等价于求是否连通的问题，使用深度优先、广度优先搜索的算法的到的树都能求出最大连通分量。</p>
+<h3 id="Kasaraju算法"><a href="#Kasaraju算法" class="headerlink" title="Kasaraju算法"></a>Kasaraju算法</h3><p>Kasaraju算法在我第一次接触时，感觉确实有点难理解，虽然现在也还是有点难理解。本文中不会去证明算法，只是讲解算法的一些实现等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KosarajuSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    List&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    KosarajuSCC(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.adj = <span class="keyword">new</span> ArrayList[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.adj[i] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adj[v].add(w);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正向遍历，以后根序压栈，保证根先出栈</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fillorder</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited, Stack&lt;Integer&gt; s)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer i : <span class="keyword">this</span>.adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//reverse 得到反向图</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KosarajuSCC <span class="title">getTranspose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        KosarajuSCC gv = <span class="keyword">new</span> KosarajuSCC(<span class="keyword">this</span>.n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer j : <span class="keyword">this</span>.adj[i]) &#123;</span><br><span class="line">                gv.adj[j].add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> gv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//DFS打印连通分支</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFSUtil</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        System.out.print(v + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer i : adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                DFSUtil(i, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按照Kosaraju算法的步骤执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printSCCs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="keyword">this</span>.n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//逆后序压栈</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//得到反向图</span></span><br><span class="line">        KosarajuSCC gr = <span class="keyword">this</span>.getTranspose();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//依据反向图算可达性</span></span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = s.pop();</span><br><span class="line">            <span class="keyword">if</span> (visited[v] == <span class="keyword">false</span>) &#123;</span><br><span class="line">                gr.DFSUtil(v, visited);</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先理解一下Karasaju算法的思路。</p>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Kasaraju%E7%AE%97%E6%B3%95.png" alt="Kasaraju算法"></p>
+<ul>
+<li>对图G求其逆后序，即在深度优先遍历（DFS）中在递归调用之后压入栈中；</li>
+<li>对G进行转置，在代码中即得到反图；</li>
+<li>按照第一步中得到的栈的出栈的顶点顺序，对于G<sup>R</sup>图进行DFS可以得到若干搜索树。每棵搜索树都代表一个强连通分量。</li>
+</ul>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/%E7%A4%BA%E4%BE%8B%E5%9B%BEG.png" alt="示例图G"></p>
+<p>如上图示例的有向图，先求逆后序排序，得到<code>&#123;7, 8, 6, 9, 11, 10, 12, 0, 5, 4, 2, 3, 1&#125;</code>，然后按照这个图的转置图G<sup>R</sup>进行DFS，最终可以得到极大强连通分量5个：<code>&#123;7, 8&#125;, &#123;6&#125;, &#123;9, 11, 10, 12&#125;, &#123;0, 5, 4, 2, 3&#125;, &#123;1&#125;</code>。</p>
+<p>在Karasaju算法中使用了两次DFS，第一次是得到节点的逆后序排序（有的算法书将逆后序排序合并在拓扑排序里面）；第二次是对于转置图DFS得到最终的强连通分量。我们当然想要对于算法进行优化，减少DFS的次数也是一种极好的优化方式，想想如果一次DFS就可以得出强连通分量岂不是很好。</p>
+<h3 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h3><p>Tarjan算法是对于Kasaraju算法的改进。其基本代码实现思维如下：</p>
+<ul>
+<li>遍历一个点，指定唯一时间戳<code>DFN[i]</code>；指定改点向前追溯可追溯到最老时间戳<code>LOW[i]</code>；</li>
+<li>枚举当前点的所有边，若<code>DFN[j]=0</code>表明未被搜索过（这儿0、-1等都是可以的，只要是自我约定好的，正常不使用的就可以，如下面算法中使用的<code>NO_VISIT</code>），递归搜索；</li>
+<li>当<code>DFN[i]</code>不为0，则j被搜索过，这时判断是否在我们存储新建的栈中，且j的时间戳<code>DFN[j]</code>小于当前时间戳<code>DFN[i]</code>，可判定成环，将<code>LOW[i]</code>设定为<code>DFN[j]</code>；</li>
+<li>若这个点<code>LOW[i]</code>和<code>DFN[i]</code>相等，则这个点是目前强连通分量的元素中在栈中的最早的节点；</li>
+<li>出栈，将这个强连通分量全部弹出，保存。</li>
+</ul>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Tarjan%E7%AE%97%E6%B3%95.png" alt="Tarjan算法"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TarjanSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] inStack;<span class="comment">//标记节点是否在栈内</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dfn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] low;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TarjanSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.inStack = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfNode];</span><br><span class="line">        <span class="keyword">this</span>.stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        dfn = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        low = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(dfn, NO_VISIT);<span class="comment">//将dfn所有元素都置为0，代表i还有没被访问过。</span></span><br><span class="line">        Arrays.fill(low, NO_VISIT);</span><br><span class="line">        result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取强连通分量</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;ArrayList&lt;Integer&gt;&gt; tarjanResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dfn[i] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//算法核心</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> current)</span> </span>&#123;</span><br><span class="line">        dfn[current] = low[current] = time++;</span><br><span class="line">        inStack[current] = <span class="keyword">true</span>;</span><br><span class="line">        stack.push(current);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(current).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(current).get(i);</span><br><span class="line">            <span class="keyword">if</span> (dfn[next] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(next);</span><br><span class="line">                low[current] = Math.min(low[current], low[next]);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inStack[next]) &#123;</span><br><span class="line">                low[current] = Math.min(low[current], dfn[next]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (low[current] == dfn[current]) &#123;</span><br><span class="line">            ArrayList&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (current != j) &#123;</span><br><span class="line">                j = stack.pop();</span><br><span class="line">                inStack[j] = <span class="keyword">false</span>;</span><br><span class="line">                temp.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是在算法中的时间戳这个标记，并不是代表真正的时间戳，而是对于每个节点不同的一种标记，在本文算法中都是用一个递增数组来表示，即访问每个节点时，将该时间戳变量自增赋值给该节点的时间戳<code>DFN[i]</code>。</p>
+<h3 id="Gabow算法"><a href="#Gabow算法" class="headerlink" title="Gabow算法"></a>Gabow算法</h3><p>Gabow算法在基础上与Tarjan算法相似，都是利用一次DFS算法实现。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GabowSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; path;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; root;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] order;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] part; <span class="comment">// 连通变量的标号；</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> partNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GabowSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.path = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        order = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        part = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(order, NO_VISIT);</span><br><span class="line">        Arrays.fill(part, NO_VISIT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] gabowResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (order[i] == NO_VISIT) &#123;</span><br><span class="line">                gabow(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> part;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gabow</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        order[v] = ++time;</span><br><span class="line">        path.push(v);</span><br><span class="line">        root.push(v);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(v).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(v).get(i);</span><br><span class="line">            <span class="keyword">if</span> (order[next] == NO_VISIT) &#123;</span><br><span class="line">                gabow(next);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (part[next] == NO_VISIT) &#123;</span><br><span class="line">                <span class="keyword">while</span> (order[root.peek()] &gt; order[next]) &#123;</span><br><span class="line">                    root.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (v == root.peek()) &#123;</span><br><span class="line">            root.pop();</span><br><span class="line">            partNum++;</span><br><span class="line">            <span class="keyword">int</span> top;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                top = path.peek();</span><br><span class="line">                part[top] = partNum;</span><br><span class="line">                path.pop();</span><br><span class="line">            &#125; <span class="keyword">while</span> (top != v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其算法基本思路是：</p>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Gabow%E7%AE%97%E6%B3%95.png" alt="Gabow算法"></p>
+<ul>
+<li>在所有顶点中，找一个没有被访问的节点v，如果没有则完成；</li>
+<li>记录v的访问顺序；<br>将v压入堆栈path和root；<br>如果v指向的邻接点，对应每个邻接点next：<br>1、如果没有访问过，则以next为参数，递归到第二步；<br>2、如果访问过，且没有确定它属于哪个强连通分量，弹出root栈中next之后（即之上）的所有顶点；<br>3、如果root栈中的元素等于v，那么在part中记录顶点对应的强连通分量</li>
+<li>递归返回</li>
+</ul>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文只涉及算法的实现，没有设计算法的证明等，如有想法，请分享。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Algo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot解决返回体content-type非json</title>
+    <url>/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/</url>
+    <content><![CDATA[<p>最佳解决方案为自定义消息转换器。</p>
+<p>首先，为什么要自定义消息转换器？所见即所得，原本的消息转换器并不能满足我们目前的需求。</p>
+<p>在最近的项目中，使用了SpringBoot与FastJson构建项目，在我们返回时，使用 <code>@ResponseBody</code>的方法里，采用了fastjson里的<code>JSON.toJSONString()</code>方法返回我们需要的Json数据，而这种返回中，会有一个问题，在返回中<code>@ResponseBody</code>注解中的消息转换器会默认理解为String解析，在返回体中如下图，<code>content-type</code>为<code>text/html</code>。</p>
+<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/1.jpg"></p>
+<p>因此我们解决想让我们的返回体中<code>content-type</code>为<code>application/json</code>。</p>
+<p>针对于这个问题，有一种最暴力的解决方案，直接在<code>@RequestMapping</code>中添加<code>produces</code>属性，设置<code>produces=&quot;application/json&quot;</code>直接使得返回体设置为json格式。</p>
+<p>当然对于这种每个接口暴力解决的方案来说，对于每写一个接口都需要设置，因此增加我们写代码的重复性工作，因此需要一个一劳永逸的方式。</p>
+<p>在<code>@ResponseBody</code>里默认有消息转换器，一般json转换使用的是JackJson进行转换的，而我们在项目中配置使用fastjson，因此需要修改消息转化器。</p>
+<p>首先消息转化器中不只有json转换器，还有字符转换器等。</p>
+<p>在我们的项目中可以自定义一个配置类，标注有<code>@Configuration</code>或者在<code>@SpringBootApplication</code>的启动配置类中添加下面代码，就增加了fastjson的消息转换器注入。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * fastjson消息转换器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpMessageConverters <span class="title">httpMessageConverters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FastJsonHttpMessageConverter fastJsonHttpMessageConverter = <span class="keyword">new</span> FastJsonHttpMessageConverter();</span><br><span class="line">    <span class="comment">//添加fastJson的配置信息</span></span><br><span class="line">    FastJsonConfig fastJsonConfig = <span class="keyword">new</span> FastJsonConfig();</span><br><span class="line">    fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);</span><br><span class="line">    <span class="comment">//处理中文乱码问题</span></span><br><span class="line">    List&lt;MediaType&gt; fastMediaTypes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);</span><br><span class="line">    <span class="comment">//在convert中添加配置信息.	 </span></span><br><span class="line">    fastJsonHttpMessageConverter.setSupportedMediaTypes(fastMediaTypes);</span><br><span class="line">    fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);</span><br><span class="line">    HttpMessageConverter&lt;?&gt; converter = fastJsonHttpMessageConverter;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HttpMessageConverters(converter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然需要注意，这种配置的方式必须在<code>fastjson 1.2.44</code>版本及之后才支持。在我们使用Maven构建项目是，需要添加fastjson的依赖。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.44<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用这种配置后，可以在返回中去掉我们的json转化，并直接返回我们需要转化的实体，在消息转换器中会自动调用fastjson进行转json。</p>
+<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/%E8%A7%A3%E5%86%B3%E5%90%8E%E7%BB%93%E6%9E%9C.png" alt="解决后结果"></p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ThreadPoolExecutor源码分析</title>
     <url>/2018/11/18/ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<p>首先，为什么需要读这段源码呢？其实主要就一点，“知其然，知其所以然”。当理解其中的实现方式，就更加明白该如何去使用。</p>
@@ -1420,407 +1420,6 @@
 ]]></content>
       <categories>
         <category>other</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>【笔记】读《王慧文清华产品课》</title>
-    <url>/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/</url>
-    <content><![CDATA[<p><img src="/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE.png"></p>
-<p>一个领域里一个产品的成功对应着无数的产品的失败，比例大约在1:30。</p>
-<p>产品经理是CEO的学前班，不管是否是专业出身，都要有做创业产品经理的心态和思维。</p>
-<h3 id="战略"><a href="#战略" class="headerlink" title="战略"></a>战略</h3><p><strong>战略是指不同时空中ROI最高的Strategy。</strong>空间有多个含义，不同的地区是空间，不同的业务也是空间。</p>
-<h4 id="市场体量"><a href="#市场体量" class="headerlink" title="市场体量"></a>市场体量</h4><p>投入的合理性取决于对市场体量的判断，需要判断两点：市场足够大、时机合适。</p>
-<h4 id="规模效应"><a href="#规模效应" class="headerlink" title="规模效应"></a>规模效应</h4><p>交易额/客户使用量足够大之后所产生的客户体验优势或成本优势，具体是成本优势还是客户体验优势取决于具体的生意模式。不同的生意具有不同的规模效应。</p>
-<p>企业发展的过程中，越早抓住那些有规模效应的要素，越会因为规模效应起作用（成本低或用户体验好）。所以规模效应是决定企业发展速度成败的高权重要素。</p>
-<p>1、规模效应曲线</p>
-<ul>
-<li>指数形：网络效应</li>
-<li>线性形：规模性越强，则价值越高</li>
-<li>对数形：规模上升，到一个水平后规模效应的增长变缓了，常常有一些负作用，常常有一些负作用出现。一般具有“双边网络具有同边负效应”。</li>
-</ul>
-<p>2、规模效应的范围</p>
-<p>全球型/全国型/城市型/蜂窝型</p>
-<p>规模效应的曲线形状和起作用的范围决定了很多生意的市场格局。</p>
-<p>3、规模效应曲线的参数</p>
-<p>比如斜率的大小。</p>
-<p>4、要素的规模应用</p>
-<p>业务选定下，哪些是有规模效应的，哪些是没有的，哪些要素是反规模效应的，而这些要素里你的经营取舍，商业模式设计，管理取舍就非常重要了。（管理是反规模效应的）</p>
-<h4 id="马太效应"><a href="#马太效应" class="headerlink" title="马太效应"></a>马太效应</h4><blockquote>
-<p>凡有的，还要加倍给他叫他多余；没有的，连他所有的也要夺过来。</p>
-</blockquote>
-<p>快速做大（做出名）——利用马太效应。</p>
-<h4 id="市场集中度"><a href="#市场集中度" class="headerlink" title="市场集中度"></a>市场集中度</h4><p>市场中排名前几名对市场的占有率。</p>
-<h4 id="产业链"><a href="#产业链" class="headerlink" title="产业链"></a>产业链</h4><p>每个产业链都有链主，链主才是这个行业里生存最好的角色，也是产业变革中更有主权的一方。在一个产业里面生存最好的是处于最上游接近核心供应资源和最下游接近消费者的企业。总的来说：对产业链的控制。</p>
-<p>波特五力模型：综合起来影响着产业的吸引力以及现有企业的竞争战争策略。</p>
-<ul>
-<li>同行业内现有竞争者的竞争能力</li>
-<li>潜在竞争者进入能力</li>
-<li>替代品的替代能力</li>
-<li>供应商的讨价还价能力</li>
-<li>购买者的议价能力</li>
-</ul>
-<h4 id="先发与后发"><a href="#先发与后发" class="headerlink" title="先发与后发"></a>先发与后发</h4><ol>
-<li>先发优势</li>
-<li>后发优势</li>
-</ol>
-<p>不需要说服其他人；知道这个事情一定能实现了；后发者通常是比较常规的商业思维模式，而创新者通常思维是很独特的，但也带来了认知盲区。</p>
-<p>创新者和后发者的根本差别是创新者通常是有思维盲区，而后者思维盲区会小些。</p>
-<h4 id="存量与增量"><a href="#存量与增量" class="headerlink" title="存量与增量"></a>存量与增量</h4><p>任何一个时间点要知道我们在做增量还是存量的市场。存量市场的发展实在是太难了。对组织的要求也很高，所以还是在增量市场去发展。</p>
-<p>衡量增量存量的一个标准就是渗透率。</p>
-<h4 id="高频低频"><a href="#高频低频" class="headerlink" title="高频低频"></a>高频低频</h4><p>高频打低频APP就具备优势。</p>
-<h4 id="入场时机"><a href="#入场时机" class="headerlink" title="入场时机"></a>入场时机</h4><p>天时大于地利，地利大于人和。</p>
-<p>“如果你相信一件事早晚会发生，就每三年试一次”。只要你没有倒闭，就是早入场比晚入场好，但怎么扛住别倒闭这件事对大公司和小公司都很难。</p>
-<h4 id="麦克波特三战略"><a href="#麦克波特三战略" class="headerlink" title="麦克波特三战略"></a>麦克波特三战略</h4><p>成本领先，差异化，聚焦。（只是商业中竞争的一部分）</p>
-<h4 id="标准化战略和有效战略"><a href="#标准化战略和有效战略" class="headerlink" title="标准化战略和有效战略"></a>标准化战略和有效战略</h4><h3 id="Strategy-for-Product"><a href="#Strategy-for-Product" class="headerlink" title="Strategy for Product"></a>Strategy for Product</h3><h4 id="PMF（Product-Market-Fit）"><a href="#PMF（Product-Market-Fit）" class="headerlink" title="PMF（Product Market Fit）"></a>PMF（Product Market Fit）</h4><p><strong>为市场匹配一个产品。</strong></p>
-<p>无论是要做一个多大的市场，最开始都需要找一个更锐利的切入点切入市场，这个PMF选择越犀利，早期ROI就高，成功的概率就越高。</p>
-<p>创新的扩散、STP、4P帮助找到PMF。</p>
-<h4 id="创新的扩散"><a href="#创新的扩散" class="headerlink" title="创新的扩散"></a>创新的扩散</h4><p>在产品设计和市场推广的过程中能分清扩散的阶段和匹配扩散阶段设计产品会极大的提高ROI，当资金、组织能力、研发能力都上来之后再扩展新的人群，提供更好的产品。</p>
-<p>创新的扩散里第一阶段是创新Innovator，第二阶段是Early Adopter。需要正确地找到自己的Innovator或Early Adopter。</p>
-<h4 id="STP"><a href="#STP" class="headerlink" title="STP"></a>STP</h4><p>S是市场做划分，分成很多块，T是划分完的市场里选一块作为目标市场，P是市场和产品（供给端）的认知连接。</p>
-<p>1、Segmenting</p>
-<p>选择正确的选择系来划分市场。</p>
-<p>坐标系的划分可以有非常多的维度，把哪些要素选入坐标系中，是非常根本性地影响你对这个行业和生意和产品的看法的。</p>
-<p>如果你要做一个很艰难的决策，那可能是你分析不够好，你没有选择正确的维度和颗粒度去分析，所以怎么做都很艰难。</p>
-<p>2、Targeting</p>
-<p>警惕市场空间选得太大了。</p>
-<p>3、Positioning</p>
-<p>对用户来说，你的产品是什么，用户为什么要选你的产品。T偏向需求和客户，而P更偏供给和产品。</p>
-<p>高效的营销是能快速把T和P关联起来营销。要用最低的成本去建立用户认知。</p>
-<h4 id="4P理论"><a href="#4P理论" class="headerlink" title="4P理论"></a>4P理论</h4><p><strong>价格、产品、渠道、推广</strong></p>
-<p>定价决定产品，定价影响需求，而产品是供给。</p>
-<p>用STP选完选择之后再分别应用4P。</p>
-<h4 id="互联网时代的4P理论"><a href="#互联网时代的4P理论" class="headerlink" title="互联网时代的4P理论"></a>互联网时代的4P理论</h4><p>4P理论一方面是我们做商业模式设计的框架，另一方面是定义产业链的利益分配。</p>
-<h3 id="Strategy-for-Operation"><a href="#Strategy-for-Operation" class="headerlink" title="Strategy for Operation"></a>Strategy for Operation</h3><h4 id="分层经营"><a href="#分层经营" class="headerlink" title="分层经营"></a>分层经营</h4><p>没有一个产品可以满足其所在领域的所有需求，也没有一个经营分层可以解决所有需求，不同的经营分层的差别是很大的。（分层经营的挑战在认知和组织局面都很大）</p>
-<ul>
-<li>不同产品的经营分层</li>
-<li>同一种产品的经营分层</li>
-</ul>
-<h4 id="分类经营"><a href="#分类经营" class="headerlink" title="分类经营"></a>分类经营</h4><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h4 id="需求的不可满足性"><a href="#需求的不可满足性" class="headerlink" title="需求的不可满足性"></a>需求的不可满足性</h4><p>能满足的需求远远少于不能满足的需求。</p>
-<h4 id="需求的永恒性和变化性"><a href="#需求的永恒性和变化性" class="headerlink" title="需求的永恒性和变化性"></a>需求的永恒性和变化性</h4><p>需求分为两种：1、一直很强烈，一直很广泛但实现很难；2、虽然一直存在但最近一段时间强烈度和广泛程度变大。</p>
-<p>所有伟大的需求都有两个很重要的特征：1、人们会说这是一个伟大的需求但不可能实现；2、人们会说没有这个需求。</p>
-<h4 id="如何识别需求"><a href="#如何识别需求" class="headerlink" title="如何识别需求"></a>如何识别需求</h4><p>搞清楚过去那些人为什么没有成功（尤其要研究那些挺成功的失败）。</p>
-<h4 id="微观层面的需求"><a href="#微观层面的需求" class="headerlink" title="微观层面的需求"></a>微观层面的需求</h4><p>基本没有用户会直接说出自己的需求，大部分人提的是Demand或者Requirement，极少有人提的是Needs。</p>
-<h3 id="供需关系"><a href="#供需关系" class="headerlink" title="供需关系"></a>供需关系</h3><ol>
-<li>供需关系的重要性</li>
-<li>空间要素</li>
-<li>时间要素</li>
-<li>分层</li>
-<li>非市场要素</li>
-<li>线上与线下</li>
-</ol>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
-      <tags>
-        <tag>pro</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【笔记】领导力21法则</title>
-    <url>/2020/04/20/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E9%A2%86%E5%AF%BC%E5%8A%9B21%E6%B3%95%E5%88%99/</url>
-    <content><![CDATA[<h3 id="盖子法则：领导力决定一个人或一个组织的办事效率"><a href="#盖子法则：领导力决定一个人或一个组织的办事效率" class="headerlink" title="盖子法则：领导力决定一个人或一个组织的办事效率"></a>盖子法则：领导力决定一个人或一个组织的办事效率</h3><p>领导力决定了成就的高度。</p>
-<p>相对外界施加更大的影响，就必须具备更大的影响力。</p>
-<p>要想改变一个组织的发展方向，那就换一个领导人。</p>
-<p>个人和组织的办事效力与领导力成正比。</p>
-<p>领导力主要体现在：人际交往能力；规划能力和战略思维；远见卓识；业绩。</p>
-<h3 id="影响力法则：衡量领导力的真正尺度是影响力"><a href="#影响力法则：衡量领导力的真正尺度是影响力" class="headerlink" title="影响力法则：衡量领导力的真正尺度是影响力"></a>影响力法则：衡量领导力的真正尺度是影响力</h3><p>领导力的本质恰恰就是影响力。</p>
-<p>真正的领导力来自一个人的影响力，而影响力是无法被委任的。</p>
-<p><strong>管理者不是领导者。领导是指影响他人，让他人追随自己，而管理关注的焦点是维持既定系统和流程。管理者把握既定的前进方向，无法改变这个方向。领导者负责带领方向。</strong></p>
-<p>要成为领导者，一个人不仅要走在前面，还要有人愿意跟着他走，愿意服从他的领导，并且愿意采取行动去实现他描绘的愿景。</p>
-<p>不是职位造就了领导者，而是领导者造就了职位。</p>
-<p>衡量领导力的真正尺度只能是影响力，不可能是其他任何因素。</p>
-<p>所有影响力的本质都在于让别人参与其中。</p>
-<h3 id="过程法则：领导力的提升是日积月累的结果，而非一日之功"><a href="#过程法则：领导力的提升是日积月累的结果，而非一日之功" class="headerlink" title="过程法则：领导力的提升是日积月累的结果，而非一日之功"></a>过程法则：领导力的提升是日积月累的结果，而非一日之功</h3><p>领导者都是善于学习的人。自我发展和不断提升自身的技能水平，这正是领导者和其追随者的最本质的区别。</p>
-<p>领导力提升的几个阶段：</p>
-<ol>
-<li>不知道你不知道（不知道领导力的价值与重要性）；</li>
-<li>知道自己需要知道；</li>
-<li>知道自己不知道；</li>
-<li>我知道，我成长，我发现（努力成长）；</li>
-<li>因为我知道（时刻做好准备，等待机会的到来）。</li>
-</ol>
-<h3 id="导航法则：谁都可以掌舵，唯有领导者才能设定航线"><a href="#导航法则：谁都可以掌舵，唯有领导者才能设定航线" class="headerlink" title="导航法则：谁都可以掌舵，唯有领导者才能设定航线"></a>导航法则：谁都可以掌舵，唯有领导者才能设定航线</h3><p>领导者就是看得比别人过，看得比别人远，在别人看到之前看到的人。导航者会依靠过去的经验；导航者在作出承诺前会考察各种情况；导航者会听从他人的意见；导航者会确定自己的结论是信念和事实的结合。</p>
-<p>完成事件的预先计划：</p>
-<ol>
-<li>预先制定行动计划</li>
-<li>列出目标</li>
-<li>设定优先次序</li>
-<li>告知关键人物</li>
-<li>预留时间征得同意</li>
-<li>开始行动</li>
-<li>预测将会出现的问题</li>
-<li>始终明白成功的方向</li>
-<li>每日对计划进行回顾</li>
-</ol>
-<h3 id="增值法则：领导者为他人提升价值"><a href="#增值法则：领导者为他人提升价值" class="headerlink" title="增值法则：领导者为他人提升价值"></a>增值法则：领导者为他人提升价值</h3><p>光想给自己邀功是不行的，因为一个组织的成功来自众人的共同努力。</p>
-<p>领导力的底线不在于我们自己能够走多远，而在于我们能够让别人走多远。</p>
-<p>为他人增加价值的三种基本方针：</p>
-<ol>
-<li>当真正重视他人的时候，我们增加了他人的价值；</li>
-<li>当使自己成为更加令人敬佩的人时，我们增加了他人的价值；</li>
-<li>当知道别人重视什么并且努力做到时，我们增加了他人的价值。</li>
-</ol>
-<p>没有经验的领导者往往在了解他们将要领导的人之前就急于开始工作，而成熟的领导者会去倾听、了解，然后再开展工作。</p>
-<p><strong>优秀领导力的重要因素之一：与其他人没有尚未解决的关系矛盾。</strong></p>
-<h3 id="根基法则：信任是领导力的根基所在"><a href="#根基法则：信任是领导力的根基所在" class="headerlink" title="根基法则：信任是领导力的根基所在"></a>根基法则：信任是领导力的根基所在</h3><p>重要的不是决定，而是领导力。</p>
-<p>在领导方式上，无论你领导他们多久了，你都不能走捷径。</p>
-<p>要赢得信任，领导者必须表现出工作能力、亲和力和性格优势。</p>
-<p>品格是信任的根基，而信任是领导力的根基。这就是根基法则。</p>
-<p>品格彰显潜力。品格彰显尊重。</p>
-<p>领导者如何赢得尊重呢？通过做出英明决策，承认自己的错误，把追随者和组织的利益放在个人利益之前。</p>
-<p>领导人的优秀品质能够赢得追随者的信任。但如果一个领导者破坏了这种信任，那么他就丧失了领导的能力。</p>
-<p>没有一位领导者能够在失去追随者的信任之后仍然保持自己对他们的影响力。信任是领导力的根基。违反了根基法则，作为领导人的影响就会减弱。</p>
-<h3 id="尊重法则：人们通常愿意追随比自己强的领导者"><a href="#尊重法则：人们通常愿意追随比自己强的领导者" class="headerlink" title="尊重法则：人们通常愿意追随比自己强的领导者"></a>尊重法则：人们通常愿意追随比自己强的领导者</h3><p>一个人的领导力越强，就能越快发现别人的领导力潜质，或者发现别人领导力的不足。</p>
-<p>领导者赢得别人的尊敬的最重要的六个方面：1、天生的领导才能；2、尊重他人（如果坚持尊重他人，始终如一地好好领导他们，你就会一直拥有追随者）；3、勇气（作为领导者，除非他愿意偶尔孤军奋战，否则就是名不副实的）；4、成功（即领导者在某个领域的成功）；5、忠诚；6、为他人增加价值。</p>
-<p>领导力的衡量标准之一就是选择追随者的才干。</p>
-<h3 id="直觉法则：领导者善用领导直觉评估每件事情"><a href="#直觉法则：领导者善用领导直觉评估每件事情" class="headerlink" title="直觉法则：领导者善用领导直觉评估每件事情"></a>直觉法则：领导者善用领导直觉评估每件事情</h3><p>每个人自己善长的直觉。</p>
-<p>领导者是当前情况的考察者。领导者是动向的考察者。领导者是自身资源的考察者（想要获取成功的领导者要最大限度地利用每一份资产和资源，从而实现整个组织的利益）。领导者是他人的考察者（读懂别人也许是领导者应该具有的最重要的直觉能力）。领导者是自身的考察者（领导者必须了解的不仅仅是自己的优势和弱势、能力和缺点，还有自己当前的心理状态）。</p>
-<p>思考一下问题：</p>
-<ul>
-<li>谁是负责这个问题的最佳人选？</li>
-<li>我们拥有何种资源能够帮助自己？</li>
-<li>解决这一问题需要多少资金？</li>
-<li>我们如何激励团队成员取得成功？</li>
-</ul>
-<h3 id="吸引力法则：你只能吸引和你相似的人"><a href="#吸引力法则：你只能吸引和你相似的人" class="headerlink" title="吸引力法则：你只能吸引和你相似的人"></a>吸引力法则：你只能吸引和你相似的人</h3><p>你所吸引的人不是由你的愿望决定的，而是由你的为人决定的。</p>
-<p>团队“必然”成为领导者个性的延伸。</p>
-<h3 id="亲和力法则：领导者深知，得人之前必先得其心"><a href="#亲和力法则：领导者深知，得人之前必先得其心" class="headerlink" title="亲和力法则：领导者深知，得人之前必先得其心"></a>亲和力法则：领导者深知，得人之前必先得其心</h3><p>优秀的领导者总是设法与别人建立亲和力，不论他们是整个组织作为交流还是与单独的个人共事。</p>
-<p>与追随者的关系和感情越牢固，他们就越可能会去帮助领导者。</p>
-<p>在人群中建立亲和力的秘诀就是把他们当作不同的个体来看待。</p>
-<p>如何建立亲和力：</p>
-<ol>
-<li>展现真我</li>
-<li>坦率真诚</li>
-<li>了解对象</li>
-<li>身体力行</li>
-<li>身临其境（适应他人，而不是指望别人来适应我）</li>
-<li>关注他们，而不是你自己</li>
-<li>信任他人（向别人传达信息与和别人沟通不同。前者是因为你相信自己会说出一些有价值的话，后者是因为你相信他们有价值）</li>
-</ol>
-<p><strong>主动与别人建立亲善关系，这就是领导者的职责。</strong></p>
-<p>别人不会在乎你知道多少，除非他们知道你多么在乎他们。</p>
-<p>引领自己，要用脑；引领别人，要用心。</p>
-<h3 id="核心圈法则：一个领导者的潜力，由最接近他的人决定"><a href="#核心圈法则：一个领导者的潜力，由最接近他的人决定" class="headerlink" title="核心圈法则：一个领导者的潜力，由最接近他的人决定"></a>核心圈法则：一个领导者的潜力，由最接近他的人决定</h3><p>只有在你发挥出作为领导者的潜力后，你的追随者才有机会发挥他们的潜力。</p>
-<p>考虑人选是否应当进入你的核心圈：</p>
-<ul>
-<li>他们对其他人是否有很大影响</li>
-<li>他们能否给团队带来互补性的才能</li>
-<li>他们在团队里是否担任要职</li>
-<li>他们能否增加我和团队的价值</li>
-<li>他们能否给核心圈的其他成员带来积极性的影响</li>
-</ul>
-<h3 id="授权法则：有安全感的领导者才会授权予人"><a href="#授权法则：有安全感的领导者才会授权予人" class="headerlink" title="授权法则：有安全感的领导者才会授权予人"></a>授权法则：有安全感的领导者才会授权予人</h3><p>最好的主管懂得找到人才来做好计划的工作，而且又能克制自己在过程中不横加干涉。</p>
-<p>成功的领导不是关乎充实自己——而是关乎授权给他人。</p>
-<p>人才是否能发挥潜能，决定于领导者的授权能力。</p>
-<p>授权的障碍：</p>
-<ul>
-<li>渴望工作上的安全感</li>
-<li>抗拒改变</li>
-<li>缺乏自己肯定（凡是最优秀的领导者都非常自信）</li>
-</ul>
-<p>伟大的领导者通过授予权利来获得权力。</p>
-<h3 id="镜像法则：看到别人怎么做，大家也会怎么做"><a href="#镜像法则：看到别人怎么做，大家也会怎么做" class="headerlink" title="镜像法则：看到别人怎么做，大家也会怎么做"></a>镜像法则：看到别人怎么做，大家也会怎么做</h3><p>伟大的领导者好像一直都表现出两种似乎截然不同的特质。他们很有思想但都非常实际。</p>
-<p>领导者通过对愿景的有效示范把镜像变成现实。</p>
-<ol>
-<li>下属总是在观察你的所作所为</li>
-<li>教正确的事总比做正确的事容易（领导者通常只是说教，只有在他们真正实践的时候，才算是授权）</li>
-<li>提升他人之前，应该首先改变自己</li>
-<li>领导者能给下属的最宝贵的东西就是一个好的榜样</li>
-</ol>
-<p><strong>领导就是示范。</strong></p>
-<h3 id="接纳法则：人们先接纳领导者，然后接纳他描绘的愿景"><a href="#接纳法则：人们先接纳领导者，然后接纳他描绘的愿景" class="headerlink" title="接纳法则：人们先接纳领导者，然后接纳他描绘的愿景"></a>接纳法则：人们先接纳领导者，然后接纳他描绘的愿景</h3><p>领导者先找到目标，然后才找到一群追随者。而普通人却是先找到领导者，然后才认同领导者的目标。</p>
-<h3 id="制胜法则：领导者为他的团队找出一条制胜之路"><a href="#制胜法则：领导者为他的团队找出一条制胜之路" class="headerlink" title="制胜法则：领导者为他的团队找出一条制胜之路"></a>制胜法则：领导者为他的团队找出一条制胜之路</h3><p>渴望获胜的领导者都是有不服输的决心。他们完全不能接受失败。</p>
-<p>胜利的要素：</p>
-<ol>
-<li>统一的目标</li>
-<li>多样化的技能</li>
-<li>一位愿为胜利而献身、致力于发挥队员潜能的领导者</li>
-</ol>
-<h3 id="动势法则：动势是领导者最好的朋友"><a href="#动势法则：动势是领导者最好的朋友" class="headerlink" title="动势法则：动势是领导者最好的朋友"></a>动势法则：动势是领导者最好的朋友</h3><p>在一个具有动势的组织内，即使是普通人也能超水平表现自我。</p>
-<p>只有领导者创造出动势（目标、激情、热忱）。</p>
-<p>领导者总是在想方设法找到那条通往成功的道路。</p>
-<p>激励是创造动势的关键因素。</p>
-<h3 id="优先次序法则：领导者明白，忙碌不一定等于有效"><a href="#优先次序法则：领导者明白，忙碌不一定等于有效" class="headerlink" title="优先次序法则：领导者明白，忙碌不一定等于有效"></a>优先次序法则：领导者明白，忙碌不一定等于有效</h3><p>3R法则：必要的分内事情，回报效益高的事情，回报大的事情。</p>
-<p>领导者们应该走出那些他们感到舒适的领域，而去那些可以发挥他们优势的领域。</p>
-<h3 id="舍得法则：领导者必须先“舍”后“得”"><a href="#舍得法则：领导者必须先“舍”后“得”" class="headerlink" title="舍得法则：领导者必须先“舍”后“得”"></a>舍得法则：领导者必须先“舍”后“得”</h3><p>出色领导的精髓就是牺牲。</p>
-<p>牺牲是一种持续的过程，而非一次性付出。</p>
-<p>如果领导者必须有所“舍”，才能有所“得”。那么你想继续留在高位就得有更多的舍弃。</p>
-<h3 id="时机法则：掌握时机与善用策略同样重要"><a href="#时机法则：掌握时机与善用策略同样重要" class="headerlink" title="时机法则：掌握时机与善用策略同样重要"></a>时机法则：掌握时机与善用策略同样重要</h3><p>良好的领导时机需要很多条件：</p>
-<ol>
-<li>认识——领导者必须对局势有清楚的认识</li>
-<li>成熟——领导者的动机不正确，也就不会有良好的时机</li>
-<li>信心——人们往往追随心里有谱的领导者</li>
-<li>果断——优柔果断的领导者培养出优柔果断的下属</li>
-<li>经验——如果领导者毫无经验，那么他们需要从其他有经验的人那里汲取经验</li>
-<li>直觉——时机通常是由一些抽象的东西决定的，比如动势和士气</li>
-<li>准备——如果条件不适合，领导者必须创造条件</li>
-</ol>
-<p>当正确的领导者遇上了正确的时机，就会产生令人振奋的结果。</p>
-<h3 id="爆炸性倍增法则"><a href="#爆炸性倍增法则" class="headerlink" title="爆炸性倍增法则"></a>爆炸性倍增法则</h3><p>培养追随者，得到相加的效果</p>
-<p>培养领导者，得到倍增的效果</p>
-<h3 id="传承法则：一个领导者的长久价值由其继承者决定"><a href="#传承法则：一个领导者的长久价值由其继承者决定" class="headerlink" title="传承法则：一个领导者的长久价值由其继承者决定"></a>传承法则：一个领导者的长久价值由其继承者决定</h3><p>传承乃是领导的一项主要责任。</p>
-<h3 id="结"><a href="#结" class="headerlink" title="结"></a>结</h3><p>凡事之兴衰成败皆系于领导力。</p>
-<ol>
-<li>人才决定组织的潜力</li>
-<li>关系决定组织的士气</li>
-<li>结构决定组织的规模</li>
-<li>目标决定组织的方向</li>
-<li>领导决定组织的成败</li>
-</ol>
-<hr>
-<p>读《领导力21法则》</p>
-<p>推荐指数：10 / 10</p>
-<p>两年后再读。</p>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>三年，北漂</title>
-    <url>/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/</url>
-    <content><![CDATA[<p>​就这样想想，来北京待三年多，快三年半了。准备离开，说实话，算是有点小期待吧，毕竟还是很期待离家近的。</p>
-<p>对我来说，北京是个适合拼搏的城市，但不适合生活，离家太远，又很孤单，陌生的城市里一个人躺在出租屋里沉默。北京是一个适合成长的城市，你所看到的，见过的或许都是别人不知道的，只有自己处在那个位置，才知道那儿的风景是什么样子的。</p>
-<p>刚来北京时，像没见过世面的孩子一样，期待着新世界。也确实是没见过世面的孩子，对着一切有着新的好奇。</p>
-<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_0036.JPG" alt="开始北漂"></p>
-<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>这三年，我待过两家公司，也遇到一些贵人，这些朋友在我成长与人生路上帮助了我不少。</p>
-<p>17年底去了比特大陆，在比特一年里见证了18年比特币价格下滑的一年。至今为止我也还没有看透比特币，总觉得这是资本的炒作，究竟有多少人是信仰呢？</p>
-<p>在比特遇到尉哥，在工作中给了我很多帮助，后面找工作中帮了我许多，尉哥是一个很开朗的人，总是笑呵呵的，很能感染人。</p>
-<p>也遇到阿冬等好友，有很多交流，是我生活中的导师类的角色吧，能够在我感情不顺的时候陪着我喝点小酒。</p>
-<p>在18年底从比特离职，也算感谢比特把我裁掉，在安逸的日子里待着，成长必然就慢了。后来才会来字节以及在字节经历的一切。</p>
-<p>后续来了字节幸福里团队，经常有人问我，字节也做房产么？可以确切的回答：做。幸福里就是做这个的，这是一个挺不错的团队，在我感知里，大家的目标是统一的——将房产做好，将业务做出色。（有需要内推的同学也可以继续找我）</p>
-<p>在幸福里待了两年多时间，同样也遇到挺多贵人，比如和我们一起成长的leader，算是一起成长了两年，都有着挺大的变化。</p>
-<p>在幸福里遇见庆洲，一起拼搏着支持从0到1，有庆洲在的时候，我的压力也没那么大，会聚焦到某个具体事情上，在这个期间，算是完成了我北京的第一阶段突破。感谢庆洲在这段日子里的陪伴与鼓励。</p>
-<p>从天使到中兴再到天作，搬过两次工区，经常在摆渡车上穿梭。</p>
-<p>还有很多，幸福里遇到很多人，很好的同学，都在这儿一起感谢了，感谢这两年间来的照顾。</p>
-<p>凑巧，在我写这段文字的时候，字节取消大小周了，算是刚好错过双休的字节。</p>
-<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1800.JPG" alt="Inspire Creativity Enrich Life"></p>
-<h3 id="读书"><a href="#读书" class="headerlink" title="读书"></a>读书</h3><p>18年终究是不忙碌的日子，刚来北京，不太熟悉，喜欢通过书籍去慰藉我的孤寂。在这一年我喜欢读一些名著类小说。这年里读了12本书，创建了自己的公众号“青纸”，写下自己的一些读书笔记与想法，虽然写得不是很好，但也算是自我满足着，我至少在去做，在去思考、去总结，算是对没有文采的我的自我安慰。</p>
-<p>19年，20年都开始忙碌起来。19年读了13本书，这一年还读了挺多的名著小说，后来就不读这一类了，转向技术与科学等类别了。20年只读了两本书，总结与产出也降低了。</p>
-<p>这些日子里，看过不正经的猫——《我是猫》；读过悲惨中的苦行者——《悲惨世界》；也读过从人类到上帝的《人类简史》。通过《谁动了我的奶酪》学会了改变，在《王慧文清华产品课》学习了解行业，选择行业。也恰巧知晓了“倒却鹦鹉捶碎楼”的有趣事迹。</p>
-<p>21年要继续加油了，加油多读点书。愿我们能做到“第一境”，“独上高楼，望尽天涯路”。</p>
-<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>从最开始住着回龙观，再到后来搬到中关村，再后来在牡丹园住了有两年时间。租房确实很贵（T_T）。</p>
-<p>刚来北京时很不适应，天气太干燥了，因为流鼻血而夜间醒来。冬天的阳光格外耀眼，明晃晃的，总是晃着看不清前方。尤其是风，让我对 “二月春风似剪刀” 有了额外的认识，二月的风如剪刀一般扎着脸疼。有时想想，如果自己再瘦一点，是不是就可以上天了。</p>
-<p>北京到成都的距离挺远的，高铁只有那几班，基本都是8-10小时。我第一次坐308到北京时，第二天躺了整整一天，很累，全身酸痛。后来好多了，基本没啥感觉了。</p>
-<p>三年里，足迹在北京漫山遍野。去天安门上“挥了挥手”，去故宫“登基”，去颐和园度假，去奥森锻炼，去古北水镇团建。天坛看天圆地方，香山登顶。</p>
-<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1662.jpeg" alt="天坛"></p>
-<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_0990.jpeg" alt="香山"></p>
-<p>在食宝街吃点小吃，我最喜欢的还是烤鸡爪，在西单溜达溜达，在北四环上单骑燃烧我的卡路里。</p>
-<h3 id="感情"><a href="#感情" class="headerlink" title="感情"></a>感情</h3><p>三年也挺快的，找到她，一切尽在不言中。</p>
-<p>![她](IMG_1543 2.jpeg)</p>
-<h3 id="终"><a href="#终" class="headerlink" title="终"></a>终</h3><p>北京是一个很不错的城市，适合拼搏与成长，机会也有很多。</p>
-<p>但北京和成都给我的感受始终不同，北京没有成都那种亲切感，虽然依旧很熟悉，但那种给我亲切感却着实不太一样。</p>
-<p>过些日子准备离开北京了，在此给大家道别。见字如面，一切皆好，勿念。感谢这些日子里大家的鼓励陪伴，以后有空来成都聚聚。</p>
-<p>愿好。</p>
-<p>“青山一道同云雨，明月何曾是两乡”。</p>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>为什么欧洲对现代文明影响这么深--读极简欧洲史</title>
-    <url>/2019/04/24/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AC%A7%E6%B4%B2%E5%AF%B9%E7%8E%B0%E4%BB%A3%E6%96%87%E6%98%8E%E5%BD%B1%E5%93%8D%E8%BF%99%E4%B9%88%E6%B7%B1-%E8%AF%BB%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2/</url>
-    <content><![CDATA[<p><img src="/2019/04/24/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AC%A7%E6%B4%B2%E5%AF%B9%E7%8E%B0%E4%BB%A3%E6%96%87%E6%98%8E%E5%BD%B1%E5%93%8D%E8%BF%99%E4%B9%88%E6%B7%B1-%E8%AF%BB%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2/%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2.png" alt="极简欧洲史"></p>
-<p>为什么欧洲发展了理论科学，而我们的先辈却只有文学和实用科学？</p>
-<p>为什么我们现在所奉行的制度基本都源于欧洲，相比较而言，优势是什么？</p>
-<p>首先，必须说，我是一个对于欧洲哲学十分喜欢的人，在欧洲所发展起来的哲学正是目前社会科学的开端。我喜欢其中对于一些幸福、人性的探讨。</p>
-<p>第一处惊讶之处在于——古典时期到中世纪的欧洲，“并非所有东西都属于国王所有”，是欧洲政府思维的基石。因此，国王、政府的权利都是有限的，国王以及政府都不能完全地为所欲为。</p>
-<p>第二处惊讶是，欧洲脱离宗教的控制是缓慢的，并且存在一段宗教控制的时候，在宗教控制时期，并没有出现对于文化、学识等的打量打压，反而古代的知识等都靠宗教留存下来。</p>
-<p>不得不承认，在欧洲在发展中，除了中间一段时间的统一，一直都存在于多元化的发展中，各个国家都在不停的竞争，文化、经济上的竞争。而在中国古时候，主要人力思维，都主要奉献在了四书五经，达到一种极高的思维认同，这种认同的遗留依然存在于现在。在我看来，正是这种原因，因此欧洲和中国的发展思路是不同的。</p>
-<p>而经过全球化后，国家之间的关系相比较原来，更加紧密，因此对于原来的对于中国的以自己为中心的发展方式现实出来了明显的缺点。并且对于欧洲所证明的那套政治、经济发展可行性。因此世界都在学习这种成功的经验。</p>
-<p>我一直在想，我们相比较来说，优势是什么？</p>
-<p>相比较西方的文化等，我们的优势是什么？我一直没想通，这个待提醒。</p>
-<p>注：本文并非妄自菲薄，只是单纯的思考。</p>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>产品体验——今日头条</title>
-    <url>/2019/03/30/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1/</url>
-    <content><![CDATA[<ul>
-<li>今日头条版本：7.1.9</li>
-<li>头条极速版版本：6.8.7</li>
-</ul>
-<h3 id="产品介绍"><a href="#产品介绍" class="headerlink" title="产品介绍"></a>产品介绍</h3><p>头条开屏的标志下有一行小字——“信息创造价值”。</p>
-<p>头条是一个信息内容创作与分享平台，其中包括文章、视频等多种内容分享方式。</p>
-<p><img src="/2019/03/30/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1/1.png"></p>
-<p>今日头条有两个版本——今日头条（以下称头条）、今日头条（极速版）（下称头条极速版）。</p>
-<p><img src="/2019/03/30/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1/2.png"></p>
-<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>头条的功能很丰富</p>
-<ul>
-<li>发布文章、视频、直播等</li>
-<li>阅读文章、观看视频等</li>
-<li>个人中心功能</li>
-<li>第三方功能接入等（包括小程序）</li>
-</ul>
-<h3 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h3><p>头条用户群体</p>
-<ul>
-<li>喜欢新闻阅读的人群</li>
-<li>喜欢通过视频观看身边发生的事的人群</li>
-<li>喜欢分享身边发生的事的人群</li>
-</ul>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><h4 id="头条极速版和头条的区别"><a href="#头条极速版和头条的区别" class="headerlink" title="头条极速版和头条的区别"></a>头条极速版和头条的区别</h4><p>首先，头条极速版，是对于头条的用户群体进行分流与精简提炼。截掉了发布文章、视频等功能，减少了个人设置与小程序入口。并且在极速版中，通过增加任务奖励等功能刺激用户阅读。</p>
-<p>通过对比，可以明显看出，头条的文章页广告推送数比头条极速版更多。内容上，两个平台的对比都比较相似。</p>
-<h4 id="对比其他平台"><a href="#对比其他平台" class="headerlink" title="对比其他平台"></a>对比其他平台</h4><p>对于头条来说，有两个对比对象，一个是新闻资讯平台，另一个个人创作分享平台。类似新浪新闻、网易新闻、简书等。</p>
-<p>对于新闻类平台来说，头条的优势是资讯的及时性与创作性。还有推荐准确率，这点可以提高用户点击率，更够更加吸引用户阅读。</p>
-<p>对于创作分享平台，其中比较相似点在于创作性，都是创作类软件，能给予用户较高的创作度，但内容相关度不大。</p>
-<h3 id="使用感受"><a href="#使用感受" class="headerlink" title="使用感受"></a>使用感受</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>整体来说，头条的内容推荐丰富，内容推荐与用户喜好度相关性大。头条极速版的任务可以更好的刺激用户，能够吸引用户阅读。</p>
-<h4 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h4><ul>
-<li>资讯同质性严重</li>
-<li>资讯数量大，质量没那么高</li>
-</ul>
-<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><ul>
-<li>对于头条来说，已经比较繁重，要求主要是功能齐全，因此目前要求的是稳定与老用户不流失，并且在这个的基础上增加商业化运转。</li>
-<li>而对于头条极速版来说，可以增加一个高质量的频道，这个频道每天推送的一定数量的高质量资讯，来增加资讯的质量。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>pro-exp</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>产品体验——新草</title>
-    <url>/2019/04/08/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E6%96%B0%E8%8D%89/</url>
-    <content><![CDATA[<ul>
-<li>版本：v0.9.1</li>
-</ul>
-<h3 id="产品介绍"><a href="#产品介绍" class="headerlink" title="产品介绍"></a>产品介绍</h3><p>新草是一个好物分享平台，分别有数码、小物、书影、家居、个护、美食、旅行等分类等。</p>
-<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>新草的功能很简单</p>
-<ul>
-<li>浏览别人的分享</li>
-<li>分享自己的好物</li>
-</ul>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>谈到好物分享，当然最先想到的是小红书了。</p>
-<p>小红书（版本：v5.45.0.6ba2027）主要功能模块：</p>
-<ul>
-<li>首页分享</li>
-<li>商场（与其他购物app相似）</li>
-<li>个人中心功能等</li>
-</ul>
-<p>新草对比的是首页分享。目前主要的功能也是分享类。相对来说，小红书主要是一个购物app，而分享只是对于其功能的一个扩充，增加用户活跃、交互、留存等用户粘度，并在这个分享中有一定的转换率，来吸引用户购物。</p>
-<p>而新草，主要的是分享，提供用户浏览别人的分享，支持图片与视频的方式。</p>
-<h3 id="使用感受"><a href="#使用感受" class="headerlink" title="使用感受"></a>使用感受</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
-<li>界面设计简洁，满足我的简约偏好风格</li>
-<li>好物分享浏览容分类清晰</li>
-</ul>
-<h4 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h4><ul>
-<li>内容不够丰富，或者混排不够，比如我关注的数码类，重复产品概率很高</li>
-<li>缺少一些分类，比如没有分类衣服类，会流失很多用户</li>
-<li>商业化不成熟</li>
-</ul>
-<h4 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h4><p>每个产品很重要的有两点：用户留存活跃度与商业化。</p>
-<ul>
-<li>增加更多的好物分类</li>
-<li>推荐内容可以根据用户偏好进行推荐</li>
-<li>增加商业化，将更多的商品能够与用户分享能够关联起来</li>
-</ul>
-]]></content>
-      <categories>
-        <category>pro-exp</category>
       </categories>
   </entry>
   <entry>
@@ -2263,6 +1862,407 @@
       </tags>
   </entry>
   <entry>
+    <title>【笔记】读《王慧文清华产品课》</title>
+    <url>/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/</url>
+    <content><![CDATA[<p><img src="/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE.png"></p>
+<p>一个领域里一个产品的成功对应着无数的产品的失败，比例大约在1:30。</p>
+<p>产品经理是CEO的学前班，不管是否是专业出身，都要有做创业产品经理的心态和思维。</p>
+<h3 id="战略"><a href="#战略" class="headerlink" title="战略"></a>战略</h3><p><strong>战略是指不同时空中ROI最高的Strategy。</strong>空间有多个含义，不同的地区是空间，不同的业务也是空间。</p>
+<h4 id="市场体量"><a href="#市场体量" class="headerlink" title="市场体量"></a>市场体量</h4><p>投入的合理性取决于对市场体量的判断，需要判断两点：市场足够大、时机合适。</p>
+<h4 id="规模效应"><a href="#规模效应" class="headerlink" title="规模效应"></a>规模效应</h4><p>交易额/客户使用量足够大之后所产生的客户体验优势或成本优势，具体是成本优势还是客户体验优势取决于具体的生意模式。不同的生意具有不同的规模效应。</p>
+<p>企业发展的过程中，越早抓住那些有规模效应的要素，越会因为规模效应起作用（成本低或用户体验好）。所以规模效应是决定企业发展速度成败的高权重要素。</p>
+<p>1、规模效应曲线</p>
+<ul>
+<li>指数形：网络效应</li>
+<li>线性形：规模性越强，则价值越高</li>
+<li>对数形：规模上升，到一个水平后规模效应的增长变缓了，常常有一些负作用，常常有一些负作用出现。一般具有“双边网络具有同边负效应”。</li>
+</ul>
+<p>2、规模效应的范围</p>
+<p>全球型/全国型/城市型/蜂窝型</p>
+<p>规模效应的曲线形状和起作用的范围决定了很多生意的市场格局。</p>
+<p>3、规模效应曲线的参数</p>
+<p>比如斜率的大小。</p>
+<p>4、要素的规模应用</p>
+<p>业务选定下，哪些是有规模效应的，哪些是没有的，哪些要素是反规模效应的，而这些要素里你的经营取舍，商业模式设计，管理取舍就非常重要了。（管理是反规模效应的）</p>
+<h4 id="马太效应"><a href="#马太效应" class="headerlink" title="马太效应"></a>马太效应</h4><blockquote>
+<p>凡有的，还要加倍给他叫他多余；没有的，连他所有的也要夺过来。</p>
+</blockquote>
+<p>快速做大（做出名）——利用马太效应。</p>
+<h4 id="市场集中度"><a href="#市场集中度" class="headerlink" title="市场集中度"></a>市场集中度</h4><p>市场中排名前几名对市场的占有率。</p>
+<h4 id="产业链"><a href="#产业链" class="headerlink" title="产业链"></a>产业链</h4><p>每个产业链都有链主，链主才是这个行业里生存最好的角色，也是产业变革中更有主权的一方。在一个产业里面生存最好的是处于最上游接近核心供应资源和最下游接近消费者的企业。总的来说：对产业链的控制。</p>
+<p>波特五力模型：综合起来影响着产业的吸引力以及现有企业的竞争战争策略。</p>
+<ul>
+<li>同行业内现有竞争者的竞争能力</li>
+<li>潜在竞争者进入能力</li>
+<li>替代品的替代能力</li>
+<li>供应商的讨价还价能力</li>
+<li>购买者的议价能力</li>
+</ul>
+<h4 id="先发与后发"><a href="#先发与后发" class="headerlink" title="先发与后发"></a>先发与后发</h4><ol>
+<li>先发优势</li>
+<li>后发优势</li>
+</ol>
+<p>不需要说服其他人；知道这个事情一定能实现了；后发者通常是比较常规的商业思维模式，而创新者通常思维是很独特的，但也带来了认知盲区。</p>
+<p>创新者和后发者的根本差别是创新者通常是有思维盲区，而后者思维盲区会小些。</p>
+<h4 id="存量与增量"><a href="#存量与增量" class="headerlink" title="存量与增量"></a>存量与增量</h4><p>任何一个时间点要知道我们在做增量还是存量的市场。存量市场的发展实在是太难了。对组织的要求也很高，所以还是在增量市场去发展。</p>
+<p>衡量增量存量的一个标准就是渗透率。</p>
+<h4 id="高频低频"><a href="#高频低频" class="headerlink" title="高频低频"></a>高频低频</h4><p>高频打低频APP就具备优势。</p>
+<h4 id="入场时机"><a href="#入场时机" class="headerlink" title="入场时机"></a>入场时机</h4><p>天时大于地利，地利大于人和。</p>
+<p>“如果你相信一件事早晚会发生，就每三年试一次”。只要你没有倒闭，就是早入场比晚入场好，但怎么扛住别倒闭这件事对大公司和小公司都很难。</p>
+<h4 id="麦克波特三战略"><a href="#麦克波特三战略" class="headerlink" title="麦克波特三战略"></a>麦克波特三战略</h4><p>成本领先，差异化，聚焦。（只是商业中竞争的一部分）</p>
+<h4 id="标准化战略和有效战略"><a href="#标准化战略和有效战略" class="headerlink" title="标准化战略和有效战略"></a>标准化战略和有效战略</h4><h3 id="Strategy-for-Product"><a href="#Strategy-for-Product" class="headerlink" title="Strategy for Product"></a>Strategy for Product</h3><h4 id="PMF（Product-Market-Fit）"><a href="#PMF（Product-Market-Fit）" class="headerlink" title="PMF（Product Market Fit）"></a>PMF（Product Market Fit）</h4><p><strong>为市场匹配一个产品。</strong></p>
+<p>无论是要做一个多大的市场，最开始都需要找一个更锐利的切入点切入市场，这个PMF选择越犀利，早期ROI就高，成功的概率就越高。</p>
+<p>创新的扩散、STP、4P帮助找到PMF。</p>
+<h4 id="创新的扩散"><a href="#创新的扩散" class="headerlink" title="创新的扩散"></a>创新的扩散</h4><p>在产品设计和市场推广的过程中能分清扩散的阶段和匹配扩散阶段设计产品会极大的提高ROI，当资金、组织能力、研发能力都上来之后再扩展新的人群，提供更好的产品。</p>
+<p>创新的扩散里第一阶段是创新Innovator，第二阶段是Early Adopter。需要正确地找到自己的Innovator或Early Adopter。</p>
+<h4 id="STP"><a href="#STP" class="headerlink" title="STP"></a>STP</h4><p>S是市场做划分，分成很多块，T是划分完的市场里选一块作为目标市场，P是市场和产品（供给端）的认知连接。</p>
+<p>1、Segmenting</p>
+<p>选择正确的选择系来划分市场。</p>
+<p>坐标系的划分可以有非常多的维度，把哪些要素选入坐标系中，是非常根本性地影响你对这个行业和生意和产品的看法的。</p>
+<p>如果你要做一个很艰难的决策，那可能是你分析不够好，你没有选择正确的维度和颗粒度去分析，所以怎么做都很艰难。</p>
+<p>2、Targeting</p>
+<p>警惕市场空间选得太大了。</p>
+<p>3、Positioning</p>
+<p>对用户来说，你的产品是什么，用户为什么要选你的产品。T偏向需求和客户，而P更偏供给和产品。</p>
+<p>高效的营销是能快速把T和P关联起来营销。要用最低的成本去建立用户认知。</p>
+<h4 id="4P理论"><a href="#4P理论" class="headerlink" title="4P理论"></a>4P理论</h4><p><strong>价格、产品、渠道、推广</strong></p>
+<p>定价决定产品，定价影响需求，而产品是供给。</p>
+<p>用STP选完选择之后再分别应用4P。</p>
+<h4 id="互联网时代的4P理论"><a href="#互联网时代的4P理论" class="headerlink" title="互联网时代的4P理论"></a>互联网时代的4P理论</h4><p>4P理论一方面是我们做商业模式设计的框架，另一方面是定义产业链的利益分配。</p>
+<h3 id="Strategy-for-Operation"><a href="#Strategy-for-Operation" class="headerlink" title="Strategy for Operation"></a>Strategy for Operation</h3><h4 id="分层经营"><a href="#分层经营" class="headerlink" title="分层经营"></a>分层经营</h4><p>没有一个产品可以满足其所在领域的所有需求，也没有一个经营分层可以解决所有需求，不同的经营分层的差别是很大的。（分层经营的挑战在认知和组织局面都很大）</p>
+<ul>
+<li>不同产品的经营分层</li>
+<li>同一种产品的经营分层</li>
+</ul>
+<h4 id="分类经营"><a href="#分类经营" class="headerlink" title="分类经营"></a>分类经营</h4><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h4 id="需求的不可满足性"><a href="#需求的不可满足性" class="headerlink" title="需求的不可满足性"></a>需求的不可满足性</h4><p>能满足的需求远远少于不能满足的需求。</p>
+<h4 id="需求的永恒性和变化性"><a href="#需求的永恒性和变化性" class="headerlink" title="需求的永恒性和变化性"></a>需求的永恒性和变化性</h4><p>需求分为两种：1、一直很强烈，一直很广泛但实现很难；2、虽然一直存在但最近一段时间强烈度和广泛程度变大。</p>
+<p>所有伟大的需求都有两个很重要的特征：1、人们会说这是一个伟大的需求但不可能实现；2、人们会说没有这个需求。</p>
+<h4 id="如何识别需求"><a href="#如何识别需求" class="headerlink" title="如何识别需求"></a>如何识别需求</h4><p>搞清楚过去那些人为什么没有成功（尤其要研究那些挺成功的失败）。</p>
+<h4 id="微观层面的需求"><a href="#微观层面的需求" class="headerlink" title="微观层面的需求"></a>微观层面的需求</h4><p>基本没有用户会直接说出自己的需求，大部分人提的是Demand或者Requirement，极少有人提的是Needs。</p>
+<h3 id="供需关系"><a href="#供需关系" class="headerlink" title="供需关系"></a>供需关系</h3><ol>
+<li>供需关系的重要性</li>
+<li>空间要素</li>
+<li>时间要素</li>
+<li>分层</li>
+<li>非市场要素</li>
+<li>线上与线下</li>
+</ol>
+]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+      <tags>
+        <tag>pro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三年，北漂</title>
+    <url>/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/</url>
+    <content><![CDATA[<p>​就这样想想，来北京待三年多，快三年半了。准备离开，说实话，算是有点小期待吧，毕竟还是很期待离家近的。</p>
+<p>对我来说，北京是个适合拼搏的城市，但不适合生活，离家太远，又很孤单，陌生的城市里一个人躺在出租屋里沉默。北京是一个适合成长的城市，你所看到的，见过的或许都是别人不知道的，只有自己处在那个位置，才知道那儿的风景是什么样子的。</p>
+<p>刚来北京时，像没见过世面的孩子一样，期待着新世界。也确实是没见过世面的孩子，对着一切有着新的好奇。</p>
+<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_0036.JPG" alt="开始北漂"></p>
+<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>这三年，我待过两家公司，也遇到一些贵人，这些朋友在我成长与人生路上帮助了我不少。</p>
+<p>17年底去了比特大陆，在比特一年里见证了18年比特币价格下滑的一年。至今为止我也还没有看透比特币，总觉得这是资本的炒作，究竟有多少人是信仰呢？</p>
+<p>在比特遇到尉哥，在工作中给了我很多帮助，后面找工作中帮了我许多，尉哥是一个很开朗的人，总是笑呵呵的，很能感染人。</p>
+<p>也遇到阿冬等好友，有很多交流，是我生活中的导师类的角色吧，能够在我感情不顺的时候陪着我喝点小酒。</p>
+<p>在18年底从比特离职，也算感谢比特把我裁掉，在安逸的日子里待着，成长必然就慢了。后来才会来字节以及在字节经历的一切。</p>
+<p>后续来了字节幸福里团队，经常有人问我，字节也做房产么？可以确切的回答：做。幸福里就是做这个的，这是一个挺不错的团队，在我感知里，大家的目标是统一的——将房产做好，将业务做出色。（有需要内推的同学也可以继续找我）</p>
+<p>在幸福里待了两年多时间，同样也遇到挺多贵人，比如和我们一起成长的leader，算是一起成长了两年，都有着挺大的变化。</p>
+<p>在幸福里遇见庆洲，一起拼搏着支持从0到1，有庆洲在的时候，我的压力也没那么大，会聚焦到某个具体事情上，在这个期间，算是完成了我北京的第一阶段突破。感谢庆洲在这段日子里的陪伴与鼓励。</p>
+<p>从天使到中兴再到天作，搬过两次工区，经常在摆渡车上穿梭。</p>
+<p>还有很多，幸福里遇到很多人，很好的同学，都在这儿一起感谢了，感谢这两年间来的照顾。</p>
+<p>凑巧，在我写这段文字的时候，字节取消大小周了，算是刚好错过双休的字节。</p>
+<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1800.JPG" alt="Inspire Creativity Enrich Life"></p>
+<h3 id="读书"><a href="#读书" class="headerlink" title="读书"></a>读书</h3><p>18年终究是不忙碌的日子，刚来北京，不太熟悉，喜欢通过书籍去慰藉我的孤寂。在这一年我喜欢读一些名著类小说。这年里读了12本书，创建了自己的公众号“青纸”，写下自己的一些读书笔记与想法，虽然写得不是很好，但也算是自我满足着，我至少在去做，在去思考、去总结，算是对没有文采的我的自我安慰。</p>
+<p>19年，20年都开始忙碌起来。19年读了13本书，这一年还读了挺多的名著小说，后来就不读这一类了，转向技术与科学等类别了。20年只读了两本书，总结与产出也降低了。</p>
+<p>这些日子里，看过不正经的猫——《我是猫》；读过悲惨中的苦行者——《悲惨世界》；也读过从人类到上帝的《人类简史》。通过《谁动了我的奶酪》学会了改变，在《王慧文清华产品课》学习了解行业，选择行业。也恰巧知晓了“倒却鹦鹉捶碎楼”的有趣事迹。</p>
+<p>21年要继续加油了，加油多读点书。愿我们能做到“第一境”，“独上高楼，望尽天涯路”。</p>
+<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>从最开始住着回龙观，再到后来搬到中关村，再后来在牡丹园住了有两年时间。租房确实很贵（T_T）。</p>
+<p>刚来北京时很不适应，天气太干燥了，因为流鼻血而夜间醒来。冬天的阳光格外耀眼，明晃晃的，总是晃着看不清前方。尤其是风，让我对 “二月春风似剪刀” 有了额外的认识，二月的风如剪刀一般扎着脸疼。有时想想，如果自己再瘦一点，是不是就可以上天了。</p>
+<p>北京到成都的距离挺远的，高铁只有那几班，基本都是8-10小时。我第一次坐308到北京时，第二天躺了整整一天，很累，全身酸痛。后来好多了，基本没啥感觉了。</p>
+<p>三年里，足迹在北京漫山遍野。去天安门上“挥了挥手”，去故宫“登基”，去颐和园度假，去奥森锻炼，去古北水镇团建。天坛看天圆地方，香山登顶。</p>
+<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1662.jpeg" alt="天坛"></p>
+<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_0990.jpeg" alt="香山"></p>
+<p>在食宝街吃点小吃，我最喜欢的还是烤鸡爪，在西单溜达溜达，在北四环上单骑燃烧我的卡路里。</p>
+<h3 id="感情"><a href="#感情" class="headerlink" title="感情"></a>感情</h3><p>三年也挺快的，找到她，一切尽在不言中。</p>
+<p>![她](IMG_1543 2.jpeg)</p>
+<h3 id="终"><a href="#终" class="headerlink" title="终"></a>终</h3><p>北京是一个很不错的城市，适合拼搏与成长，机会也有很多。</p>
+<p>但北京和成都给我的感受始终不同，北京没有成都那种亲切感，虽然依旧很熟悉，但那种给我亲切感却着实不太一样。</p>
+<p>过些日子准备离开北京了，在此给大家道别。见字如面，一切皆好，勿念。感谢这些日子里大家的鼓励陪伴，以后有空来成都聚聚。</p>
+<p>愿好。</p>
+<p>“青山一道同云雨，明月何曾是两乡”。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>【笔记】领导力21法则</title>
+    <url>/2020/04/20/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E9%A2%86%E5%AF%BC%E5%8A%9B21%E6%B3%95%E5%88%99/</url>
+    <content><![CDATA[<h3 id="盖子法则：领导力决定一个人或一个组织的办事效率"><a href="#盖子法则：领导力决定一个人或一个组织的办事效率" class="headerlink" title="盖子法则：领导力决定一个人或一个组织的办事效率"></a>盖子法则：领导力决定一个人或一个组织的办事效率</h3><p>领导力决定了成就的高度。</p>
+<p>相对外界施加更大的影响，就必须具备更大的影响力。</p>
+<p>要想改变一个组织的发展方向，那就换一个领导人。</p>
+<p>个人和组织的办事效力与领导力成正比。</p>
+<p>领导力主要体现在：人际交往能力；规划能力和战略思维；远见卓识；业绩。</p>
+<h3 id="影响力法则：衡量领导力的真正尺度是影响力"><a href="#影响力法则：衡量领导力的真正尺度是影响力" class="headerlink" title="影响力法则：衡量领导力的真正尺度是影响力"></a>影响力法则：衡量领导力的真正尺度是影响力</h3><p>领导力的本质恰恰就是影响力。</p>
+<p>真正的领导力来自一个人的影响力，而影响力是无法被委任的。</p>
+<p><strong>管理者不是领导者。领导是指影响他人，让他人追随自己，而管理关注的焦点是维持既定系统和流程。管理者把握既定的前进方向，无法改变这个方向。领导者负责带领方向。</strong></p>
+<p>要成为领导者，一个人不仅要走在前面，还要有人愿意跟着他走，愿意服从他的领导，并且愿意采取行动去实现他描绘的愿景。</p>
+<p>不是职位造就了领导者，而是领导者造就了职位。</p>
+<p>衡量领导力的真正尺度只能是影响力，不可能是其他任何因素。</p>
+<p>所有影响力的本质都在于让别人参与其中。</p>
+<h3 id="过程法则：领导力的提升是日积月累的结果，而非一日之功"><a href="#过程法则：领导力的提升是日积月累的结果，而非一日之功" class="headerlink" title="过程法则：领导力的提升是日积月累的结果，而非一日之功"></a>过程法则：领导力的提升是日积月累的结果，而非一日之功</h3><p>领导者都是善于学习的人。自我发展和不断提升自身的技能水平，这正是领导者和其追随者的最本质的区别。</p>
+<p>领导力提升的几个阶段：</p>
+<ol>
+<li>不知道你不知道（不知道领导力的价值与重要性）；</li>
+<li>知道自己需要知道；</li>
+<li>知道自己不知道；</li>
+<li>我知道，我成长，我发现（努力成长）；</li>
+<li>因为我知道（时刻做好准备，等待机会的到来）。</li>
+</ol>
+<h3 id="导航法则：谁都可以掌舵，唯有领导者才能设定航线"><a href="#导航法则：谁都可以掌舵，唯有领导者才能设定航线" class="headerlink" title="导航法则：谁都可以掌舵，唯有领导者才能设定航线"></a>导航法则：谁都可以掌舵，唯有领导者才能设定航线</h3><p>领导者就是看得比别人过，看得比别人远，在别人看到之前看到的人。导航者会依靠过去的经验；导航者在作出承诺前会考察各种情况；导航者会听从他人的意见；导航者会确定自己的结论是信念和事实的结合。</p>
+<p>完成事件的预先计划：</p>
+<ol>
+<li>预先制定行动计划</li>
+<li>列出目标</li>
+<li>设定优先次序</li>
+<li>告知关键人物</li>
+<li>预留时间征得同意</li>
+<li>开始行动</li>
+<li>预测将会出现的问题</li>
+<li>始终明白成功的方向</li>
+<li>每日对计划进行回顾</li>
+</ol>
+<h3 id="增值法则：领导者为他人提升价值"><a href="#增值法则：领导者为他人提升价值" class="headerlink" title="增值法则：领导者为他人提升价值"></a>增值法则：领导者为他人提升价值</h3><p>光想给自己邀功是不行的，因为一个组织的成功来自众人的共同努力。</p>
+<p>领导力的底线不在于我们自己能够走多远，而在于我们能够让别人走多远。</p>
+<p>为他人增加价值的三种基本方针：</p>
+<ol>
+<li>当真正重视他人的时候，我们增加了他人的价值；</li>
+<li>当使自己成为更加令人敬佩的人时，我们增加了他人的价值；</li>
+<li>当知道别人重视什么并且努力做到时，我们增加了他人的价值。</li>
+</ol>
+<p>没有经验的领导者往往在了解他们将要领导的人之前就急于开始工作，而成熟的领导者会去倾听、了解，然后再开展工作。</p>
+<p><strong>优秀领导力的重要因素之一：与其他人没有尚未解决的关系矛盾。</strong></p>
+<h3 id="根基法则：信任是领导力的根基所在"><a href="#根基法则：信任是领导力的根基所在" class="headerlink" title="根基法则：信任是领导力的根基所在"></a>根基法则：信任是领导力的根基所在</h3><p>重要的不是决定，而是领导力。</p>
+<p>在领导方式上，无论你领导他们多久了，你都不能走捷径。</p>
+<p>要赢得信任，领导者必须表现出工作能力、亲和力和性格优势。</p>
+<p>品格是信任的根基，而信任是领导力的根基。这就是根基法则。</p>
+<p>品格彰显潜力。品格彰显尊重。</p>
+<p>领导者如何赢得尊重呢？通过做出英明决策，承认自己的错误，把追随者和组织的利益放在个人利益之前。</p>
+<p>领导人的优秀品质能够赢得追随者的信任。但如果一个领导者破坏了这种信任，那么他就丧失了领导的能力。</p>
+<p>没有一位领导者能够在失去追随者的信任之后仍然保持自己对他们的影响力。信任是领导力的根基。违反了根基法则，作为领导人的影响就会减弱。</p>
+<h3 id="尊重法则：人们通常愿意追随比自己强的领导者"><a href="#尊重法则：人们通常愿意追随比自己强的领导者" class="headerlink" title="尊重法则：人们通常愿意追随比自己强的领导者"></a>尊重法则：人们通常愿意追随比自己强的领导者</h3><p>一个人的领导力越强，就能越快发现别人的领导力潜质，或者发现别人领导力的不足。</p>
+<p>领导者赢得别人的尊敬的最重要的六个方面：1、天生的领导才能；2、尊重他人（如果坚持尊重他人，始终如一地好好领导他们，你就会一直拥有追随者）；3、勇气（作为领导者，除非他愿意偶尔孤军奋战，否则就是名不副实的）；4、成功（即领导者在某个领域的成功）；5、忠诚；6、为他人增加价值。</p>
+<p>领导力的衡量标准之一就是选择追随者的才干。</p>
+<h3 id="直觉法则：领导者善用领导直觉评估每件事情"><a href="#直觉法则：领导者善用领导直觉评估每件事情" class="headerlink" title="直觉法则：领导者善用领导直觉评估每件事情"></a>直觉法则：领导者善用领导直觉评估每件事情</h3><p>每个人自己善长的直觉。</p>
+<p>领导者是当前情况的考察者。领导者是动向的考察者。领导者是自身资源的考察者（想要获取成功的领导者要最大限度地利用每一份资产和资源，从而实现整个组织的利益）。领导者是他人的考察者（读懂别人也许是领导者应该具有的最重要的直觉能力）。领导者是自身的考察者（领导者必须了解的不仅仅是自己的优势和弱势、能力和缺点，还有自己当前的心理状态）。</p>
+<p>思考一下问题：</p>
+<ul>
+<li>谁是负责这个问题的最佳人选？</li>
+<li>我们拥有何种资源能够帮助自己？</li>
+<li>解决这一问题需要多少资金？</li>
+<li>我们如何激励团队成员取得成功？</li>
+</ul>
+<h3 id="吸引力法则：你只能吸引和你相似的人"><a href="#吸引力法则：你只能吸引和你相似的人" class="headerlink" title="吸引力法则：你只能吸引和你相似的人"></a>吸引力法则：你只能吸引和你相似的人</h3><p>你所吸引的人不是由你的愿望决定的，而是由你的为人决定的。</p>
+<p>团队“必然”成为领导者个性的延伸。</p>
+<h3 id="亲和力法则：领导者深知，得人之前必先得其心"><a href="#亲和力法则：领导者深知，得人之前必先得其心" class="headerlink" title="亲和力法则：领导者深知，得人之前必先得其心"></a>亲和力法则：领导者深知，得人之前必先得其心</h3><p>优秀的领导者总是设法与别人建立亲和力，不论他们是整个组织作为交流还是与单独的个人共事。</p>
+<p>与追随者的关系和感情越牢固，他们就越可能会去帮助领导者。</p>
+<p>在人群中建立亲和力的秘诀就是把他们当作不同的个体来看待。</p>
+<p>如何建立亲和力：</p>
+<ol>
+<li>展现真我</li>
+<li>坦率真诚</li>
+<li>了解对象</li>
+<li>身体力行</li>
+<li>身临其境（适应他人，而不是指望别人来适应我）</li>
+<li>关注他们，而不是你自己</li>
+<li>信任他人（向别人传达信息与和别人沟通不同。前者是因为你相信自己会说出一些有价值的话，后者是因为你相信他们有价值）</li>
+</ol>
+<p><strong>主动与别人建立亲善关系，这就是领导者的职责。</strong></p>
+<p>别人不会在乎你知道多少，除非他们知道你多么在乎他们。</p>
+<p>引领自己，要用脑；引领别人，要用心。</p>
+<h3 id="核心圈法则：一个领导者的潜力，由最接近他的人决定"><a href="#核心圈法则：一个领导者的潜力，由最接近他的人决定" class="headerlink" title="核心圈法则：一个领导者的潜力，由最接近他的人决定"></a>核心圈法则：一个领导者的潜力，由最接近他的人决定</h3><p>只有在你发挥出作为领导者的潜力后，你的追随者才有机会发挥他们的潜力。</p>
+<p>考虑人选是否应当进入你的核心圈：</p>
+<ul>
+<li>他们对其他人是否有很大影响</li>
+<li>他们能否给团队带来互补性的才能</li>
+<li>他们在团队里是否担任要职</li>
+<li>他们能否增加我和团队的价值</li>
+<li>他们能否给核心圈的其他成员带来积极性的影响</li>
+</ul>
+<h3 id="授权法则：有安全感的领导者才会授权予人"><a href="#授权法则：有安全感的领导者才会授权予人" class="headerlink" title="授权法则：有安全感的领导者才会授权予人"></a>授权法则：有安全感的领导者才会授权予人</h3><p>最好的主管懂得找到人才来做好计划的工作，而且又能克制自己在过程中不横加干涉。</p>
+<p>成功的领导不是关乎充实自己——而是关乎授权给他人。</p>
+<p>人才是否能发挥潜能，决定于领导者的授权能力。</p>
+<p>授权的障碍：</p>
+<ul>
+<li>渴望工作上的安全感</li>
+<li>抗拒改变</li>
+<li>缺乏自己肯定（凡是最优秀的领导者都非常自信）</li>
+</ul>
+<p>伟大的领导者通过授予权利来获得权力。</p>
+<h3 id="镜像法则：看到别人怎么做，大家也会怎么做"><a href="#镜像法则：看到别人怎么做，大家也会怎么做" class="headerlink" title="镜像法则：看到别人怎么做，大家也会怎么做"></a>镜像法则：看到别人怎么做，大家也会怎么做</h3><p>伟大的领导者好像一直都表现出两种似乎截然不同的特质。他们很有思想但都非常实际。</p>
+<p>领导者通过对愿景的有效示范把镜像变成现实。</p>
+<ol>
+<li>下属总是在观察你的所作所为</li>
+<li>教正确的事总比做正确的事容易（领导者通常只是说教，只有在他们真正实践的时候，才算是授权）</li>
+<li>提升他人之前，应该首先改变自己</li>
+<li>领导者能给下属的最宝贵的东西就是一个好的榜样</li>
+</ol>
+<p><strong>领导就是示范。</strong></p>
+<h3 id="接纳法则：人们先接纳领导者，然后接纳他描绘的愿景"><a href="#接纳法则：人们先接纳领导者，然后接纳他描绘的愿景" class="headerlink" title="接纳法则：人们先接纳领导者，然后接纳他描绘的愿景"></a>接纳法则：人们先接纳领导者，然后接纳他描绘的愿景</h3><p>领导者先找到目标，然后才找到一群追随者。而普通人却是先找到领导者，然后才认同领导者的目标。</p>
+<h3 id="制胜法则：领导者为他的团队找出一条制胜之路"><a href="#制胜法则：领导者为他的团队找出一条制胜之路" class="headerlink" title="制胜法则：领导者为他的团队找出一条制胜之路"></a>制胜法则：领导者为他的团队找出一条制胜之路</h3><p>渴望获胜的领导者都是有不服输的决心。他们完全不能接受失败。</p>
+<p>胜利的要素：</p>
+<ol>
+<li>统一的目标</li>
+<li>多样化的技能</li>
+<li>一位愿为胜利而献身、致力于发挥队员潜能的领导者</li>
+</ol>
+<h3 id="动势法则：动势是领导者最好的朋友"><a href="#动势法则：动势是领导者最好的朋友" class="headerlink" title="动势法则：动势是领导者最好的朋友"></a>动势法则：动势是领导者最好的朋友</h3><p>在一个具有动势的组织内，即使是普通人也能超水平表现自我。</p>
+<p>只有领导者创造出动势（目标、激情、热忱）。</p>
+<p>领导者总是在想方设法找到那条通往成功的道路。</p>
+<p>激励是创造动势的关键因素。</p>
+<h3 id="优先次序法则：领导者明白，忙碌不一定等于有效"><a href="#优先次序法则：领导者明白，忙碌不一定等于有效" class="headerlink" title="优先次序法则：领导者明白，忙碌不一定等于有效"></a>优先次序法则：领导者明白，忙碌不一定等于有效</h3><p>3R法则：必要的分内事情，回报效益高的事情，回报大的事情。</p>
+<p>领导者们应该走出那些他们感到舒适的领域，而去那些可以发挥他们优势的领域。</p>
+<h3 id="舍得法则：领导者必须先“舍”后“得”"><a href="#舍得法则：领导者必须先“舍”后“得”" class="headerlink" title="舍得法则：领导者必须先“舍”后“得”"></a>舍得法则：领导者必须先“舍”后“得”</h3><p>出色领导的精髓就是牺牲。</p>
+<p>牺牲是一种持续的过程，而非一次性付出。</p>
+<p>如果领导者必须有所“舍”，才能有所“得”。那么你想继续留在高位就得有更多的舍弃。</p>
+<h3 id="时机法则：掌握时机与善用策略同样重要"><a href="#时机法则：掌握时机与善用策略同样重要" class="headerlink" title="时机法则：掌握时机与善用策略同样重要"></a>时机法则：掌握时机与善用策略同样重要</h3><p>良好的领导时机需要很多条件：</p>
+<ol>
+<li>认识——领导者必须对局势有清楚的认识</li>
+<li>成熟——领导者的动机不正确，也就不会有良好的时机</li>
+<li>信心——人们往往追随心里有谱的领导者</li>
+<li>果断——优柔果断的领导者培养出优柔果断的下属</li>
+<li>经验——如果领导者毫无经验，那么他们需要从其他有经验的人那里汲取经验</li>
+<li>直觉——时机通常是由一些抽象的东西决定的，比如动势和士气</li>
+<li>准备——如果条件不适合，领导者必须创造条件</li>
+</ol>
+<p>当正确的领导者遇上了正确的时机，就会产生令人振奋的结果。</p>
+<h3 id="爆炸性倍增法则"><a href="#爆炸性倍增法则" class="headerlink" title="爆炸性倍增法则"></a>爆炸性倍增法则</h3><p>培养追随者，得到相加的效果</p>
+<p>培养领导者，得到倍增的效果</p>
+<h3 id="传承法则：一个领导者的长久价值由其继承者决定"><a href="#传承法则：一个领导者的长久价值由其继承者决定" class="headerlink" title="传承法则：一个领导者的长久价值由其继承者决定"></a>传承法则：一个领导者的长久价值由其继承者决定</h3><p>传承乃是领导的一项主要责任。</p>
+<h3 id="结"><a href="#结" class="headerlink" title="结"></a>结</h3><p>凡事之兴衰成败皆系于领导力。</p>
+<ol>
+<li>人才决定组织的潜力</li>
+<li>关系决定组织的士气</li>
+<li>结构决定组织的规模</li>
+<li>目标决定组织的方向</li>
+<li>领导决定组织的成败</li>
+</ol>
+<hr>
+<p>读《领导力21法则》</p>
+<p>推荐指数：10 / 10</p>
+<p>两年后再读。</p>
+]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>为什么欧洲对现代文明影响这么深--读极简欧洲史</title>
+    <url>/2019/04/24/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AC%A7%E6%B4%B2%E5%AF%B9%E7%8E%B0%E4%BB%A3%E6%96%87%E6%98%8E%E5%BD%B1%E5%93%8D%E8%BF%99%E4%B9%88%E6%B7%B1-%E8%AF%BB%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2/</url>
+    <content><![CDATA[<p><img src="/2019/04/24/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AC%A7%E6%B4%B2%E5%AF%B9%E7%8E%B0%E4%BB%A3%E6%96%87%E6%98%8E%E5%BD%B1%E5%93%8D%E8%BF%99%E4%B9%88%E6%B7%B1-%E8%AF%BB%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2/%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2.png" alt="极简欧洲史"></p>
+<p>为什么欧洲发展了理论科学，而我们的先辈却只有文学和实用科学？</p>
+<p>为什么我们现在所奉行的制度基本都源于欧洲，相比较而言，优势是什么？</p>
+<p>首先，必须说，我是一个对于欧洲哲学十分喜欢的人，在欧洲所发展起来的哲学正是目前社会科学的开端。我喜欢其中对于一些幸福、人性的探讨。</p>
+<p>第一处惊讶之处在于——古典时期到中世纪的欧洲，“并非所有东西都属于国王所有”，是欧洲政府思维的基石。因此，国王、政府的权利都是有限的，国王以及政府都不能完全地为所欲为。</p>
+<p>第二处惊讶是，欧洲脱离宗教的控制是缓慢的，并且存在一段宗教控制的时候，在宗教控制时期，并没有出现对于文化、学识等的打量打压，反而古代的知识等都靠宗教留存下来。</p>
+<p>不得不承认，在欧洲在发展中，除了中间一段时间的统一，一直都存在于多元化的发展中，各个国家都在不停的竞争，文化、经济上的竞争。而在中国古时候，主要人力思维，都主要奉献在了四书五经，达到一种极高的思维认同，这种认同的遗留依然存在于现在。在我看来，正是这种原因，因此欧洲和中国的发展思路是不同的。</p>
+<p>而经过全球化后，国家之间的关系相比较原来，更加紧密，因此对于原来的对于中国的以自己为中心的发展方式现实出来了明显的缺点。并且对于欧洲所证明的那套政治、经济发展可行性。因此世界都在学习这种成功的经验。</p>
+<p>我一直在想，我们相比较来说，优势是什么？</p>
+<p>相比较西方的文化等，我们的优势是什么？我一直没想通，这个待提醒。</p>
+<p>注：本文并非妄自菲薄，只是单纯的思考。</p>
+]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>产品体验——今日头条</title>
+    <url>/2019/03/30/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1/</url>
+    <content><![CDATA[<ul>
+<li>今日头条版本：7.1.9</li>
+<li>头条极速版版本：6.8.7</li>
+</ul>
+<h3 id="产品介绍"><a href="#产品介绍" class="headerlink" title="产品介绍"></a>产品介绍</h3><p>头条开屏的标志下有一行小字——“信息创造价值”。</p>
+<p>头条是一个信息内容创作与分享平台，其中包括文章、视频等多种内容分享方式。</p>
+<p><img src="/2019/03/30/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1/1.png"></p>
+<p>今日头条有两个版本——今日头条（以下称头条）、今日头条（极速版）（下称头条极速版）。</p>
+<p><img src="/2019/03/30/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1/2.png"></p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>头条的功能很丰富</p>
+<ul>
+<li>发布文章、视频、直播等</li>
+<li>阅读文章、观看视频等</li>
+<li>个人中心功能</li>
+<li>第三方功能接入等（包括小程序）</li>
+</ul>
+<h3 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h3><p>头条用户群体</p>
+<ul>
+<li>喜欢新闻阅读的人群</li>
+<li>喜欢通过视频观看身边发生的事的人群</li>
+<li>喜欢分享身边发生的事的人群</li>
+</ul>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><h4 id="头条极速版和头条的区别"><a href="#头条极速版和头条的区别" class="headerlink" title="头条极速版和头条的区别"></a>头条极速版和头条的区别</h4><p>首先，头条极速版，是对于头条的用户群体进行分流与精简提炼。截掉了发布文章、视频等功能，减少了个人设置与小程序入口。并且在极速版中，通过增加任务奖励等功能刺激用户阅读。</p>
+<p>通过对比，可以明显看出，头条的文章页广告推送数比头条极速版更多。内容上，两个平台的对比都比较相似。</p>
+<h4 id="对比其他平台"><a href="#对比其他平台" class="headerlink" title="对比其他平台"></a>对比其他平台</h4><p>对于头条来说，有两个对比对象，一个是新闻资讯平台，另一个个人创作分享平台。类似新浪新闻、网易新闻、简书等。</p>
+<p>对于新闻类平台来说，头条的优势是资讯的及时性与创作性。还有推荐准确率，这点可以提高用户点击率，更够更加吸引用户阅读。</p>
+<p>对于创作分享平台，其中比较相似点在于创作性，都是创作类软件，能给予用户较高的创作度，但内容相关度不大。</p>
+<h3 id="使用感受"><a href="#使用感受" class="headerlink" title="使用感受"></a>使用感受</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>整体来说，头条的内容推荐丰富，内容推荐与用户喜好度相关性大。头条极速版的任务可以更好的刺激用户，能够吸引用户阅读。</p>
+<h4 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h4><ul>
+<li>资讯同质性严重</li>
+<li>资讯数量大，质量没那么高</li>
+</ul>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><ul>
+<li>对于头条来说，已经比较繁重，要求主要是功能齐全，因此目前要求的是稳定与老用户不流失，并且在这个的基础上增加商业化运转。</li>
+<li>而对于头条极速版来说，可以增加一个高质量的频道，这个频道每天推送的一定数量的高质量资讯，来增加资讯的质量。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>pro-exp</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>产品体验——新草</title>
+    <url>/2019/04/08/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E2%80%94%E2%80%94%E6%96%B0%E8%8D%89/</url>
+    <content><![CDATA[<ul>
+<li>版本：v0.9.1</li>
+</ul>
+<h3 id="产品介绍"><a href="#产品介绍" class="headerlink" title="产品介绍"></a>产品介绍</h3><p>新草是一个好物分享平台，分别有数码、小物、书影、家居、个护、美食、旅行等分类等。</p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>新草的功能很简单</p>
+<ul>
+<li>浏览别人的分享</li>
+<li>分享自己的好物</li>
+</ul>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>谈到好物分享，当然最先想到的是小红书了。</p>
+<p>小红书（版本：v5.45.0.6ba2027）主要功能模块：</p>
+<ul>
+<li>首页分享</li>
+<li>商场（与其他购物app相似）</li>
+<li>个人中心功能等</li>
+</ul>
+<p>新草对比的是首页分享。目前主要的功能也是分享类。相对来说，小红书主要是一个购物app，而分享只是对于其功能的一个扩充，增加用户活跃、交互、留存等用户粘度，并在这个分享中有一定的转换率，来吸引用户购物。</p>
+<p>而新草，主要的是分享，提供用户浏览别人的分享，支持图片与视频的方式。</p>
+<h3 id="使用感受"><a href="#使用感受" class="headerlink" title="使用感受"></a>使用感受</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>界面设计简洁，满足我的简约偏好风格</li>
+<li>好物分享浏览容分类清晰</li>
+</ul>
+<h4 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h4><ul>
+<li>内容不够丰富，或者混排不够，比如我关注的数码类，重复产品概率很高</li>
+<li>缺少一些分类，比如没有分类衣服类，会流失很多用户</li>
+<li>商业化不成熟</li>
+</ul>
+<h4 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h4><p>每个产品很重要的有两点：用户留存活跃度与商业化。</p>
+<ul>
+<li>增加更多的好物分类</li>
+<li>推荐内容可以根据用户偏好进行推荐</li>
+<li>增加商业化，将更多的商品能够与用户分享能够关联起来</li>
+</ul>
+]]></content>
+      <categories>
+        <category>pro-exp</category>
+      </categories>
+  </entry>
+  <entry>
     <title>人类简史——从动物到上帝</title>
     <url>/2019/03/24/%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2%E2%80%94%E2%80%94%E4%BB%8E%E5%8A%A8%E7%89%A9%E5%88%B0%E4%B8%8A%E5%B8%9D/</url>
     <content><![CDATA[<p>这是一本我无法用一句话来总结的书。从动物到上帝，是说明的这本书的历史部分，而涉及的科学与哲学部分都没法用这句话来概括。作者在每一处现象里，都能够深入到本质，讲究涉及物理、化学、生物，以及心理学等。这本书虽然对于每一个科学部分的涉入都特别浅，但正是因为这特别浅，因此通俗易懂，方便大众的读物；也正是因为不是纯粹的历史，因此读起来也就不无聊了。</p>
@@ -2301,6 +2301,22 @@
       </categories>
   </entry>
   <entry>
+    <title>以一颗艺术的心做事</title>
+    <url>/2019/07/22/%E4%BB%A5%E4%B8%80%E9%A2%97%E8%89%BA%E6%9C%AF%E7%9A%84%E5%BF%83%E5%81%9A%E4%BA%8B/</url>
+    <content><![CDATA[<p>在理发时，突然想到，对于理发师来说，理发究竟是什么？他们是一种什么样的心来理发的呢？是敷衍了事，还是精益求精，还是有一定的心情波动呢？</p>
+<p>其实可以类推，对我来说，写代码是一种生活必要的工作技能。写代码的时候都是严谨并全身心的投入的。以一种设计的方式来实现功能。</p>
+<p>以一颗艺术的心做事。其中有两个要点，第一点是做事，第二点是以艺术的心来做。</p>
+<p>做事，就是实现原本的目的。比如理发，第一目的是将头发以某种方式剪短，如果不管以什么方式来设计或者什么手法来表演，没有讲头发剪短都不能称为理发。不能实现目的的设计或艺术都是没有意义的。因此不管自己拥有多高的设计灵感，没有实现本来目的都没有意义。</p>
+<p>以艺术的心做事。为何以艺术的心做事？如何能将一件事做的很好，那便是有技巧的且仔细的去做。那么和别人来做有什么差别呢？因此需要找到自己做事情的特色，我认为艺术便是一种特色。每个人都有自己的特色，因此在事情上也会体现出自己相对应的特色。比如理发，理发师会表现出自己对于别人头型适用哪种发型做自己建议，以及哪种方式的剪法会看起来优美。正如设计代码一样，如何写出一份自己特色的代码，并且让别人看着赏心悦目。</p>
+<p>艺术的心做事，其实主要在于自己对于“事”本身的理解会有多深了。刚开始只能做到做事的这个程度，随着自己对于做事的深入了解，明白如何更加严谨的做事。再后来，就开始考虑如何设计“事”这个本身，以及按照自己的喜好来做事。总的来讲，需要加深自己对于做事的理解。</p>
+<p>我有时候会偏离自己做事的主题，在不断的考虑如何“做好”这件事，太过于注重设计与优美，而有时候忘了做事的本身。自己在考虑以一颗艺术的心做事时，需要多考虑事这个本身，自己这样做是否事真的围绕着做事这个本身来进行的。或者多问自己几遍——“你真的想做的是什么？真的想做的是这个吗？”。</p>
+<p>以一颗艺术的心做事，首先是做事，其次是以艺术的心来做。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
     <title>什么是技术？</title>
     <url>/2021/04/18/%E4%BB%80%E4%B9%88%E6%98%AF%E6%8A%80%E6%9C%AF%EF%BC%9F/</url>
     <content><![CDATA[<p>我们在工作中，每天在做的事情是：接需求、分析需求、选择与设计方案、开发、测试、上线、监控。似乎我们一直在这个循环中进行轮回，一直在忙着做事，解决问题；却不知道我们在成长什么，我们的竞争力是什么？</p>
@@ -2321,22 +2337,6 @@
 </ul>
 <p>按照我的思维细拆了一下我理解的技术方向，其中常说的技术，更偏向于方案这个分类，也就是常说的硬实力。</p>
 <p><img src="/2021/04/18/%E4%BB%80%E4%B9%88%E6%98%AF%E6%8A%80%E6%9C%AF%EF%BC%9F/%E6%8A%80%E6%9C%AF.png" alt="技术"></p>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>以一颗艺术的心做事</title>
-    <url>/2019/07/22/%E4%BB%A5%E4%B8%80%E9%A2%97%E8%89%BA%E6%9C%AF%E7%9A%84%E5%BF%83%E5%81%9A%E4%BA%8B/</url>
-    <content><![CDATA[<p>在理发时，突然想到，对于理发师来说，理发究竟是什么？他们是一种什么样的心来理发的呢？是敷衍了事，还是精益求精，还是有一定的心情波动呢？</p>
-<p>其实可以类推，对我来说，写代码是一种生活必要的工作技能。写代码的时候都是严谨并全身心的投入的。以一种设计的方式来实现功能。</p>
-<p>以一颗艺术的心做事。其中有两个要点，第一点是做事，第二点是以艺术的心来做。</p>
-<p>做事，就是实现原本的目的。比如理发，第一目的是将头发以某种方式剪短，如果不管以什么方式来设计或者什么手法来表演，没有讲头发剪短都不能称为理发。不能实现目的的设计或艺术都是没有意义的。因此不管自己拥有多高的设计灵感，没有实现本来目的都没有意义。</p>
-<p>以艺术的心做事。为何以艺术的心做事？如何能将一件事做的很好，那便是有技巧的且仔细的去做。那么和别人来做有什么差别呢？因此需要找到自己做事情的特色，我认为艺术便是一种特色。每个人都有自己的特色，因此在事情上也会体现出自己相对应的特色。比如理发，理发师会表现出自己对于别人头型适用哪种发型做自己建议，以及哪种方式的剪法会看起来优美。正如设计代码一样，如何写出一份自己特色的代码，并且让别人看着赏心悦目。</p>
-<p>艺术的心做事，其实主要在于自己对于“事”本身的理解会有多深了。刚开始只能做到做事的这个程度，随着自己对于做事的深入了解，明白如何更加严谨的做事。再后来，就开始考虑如何设计“事”这个本身，以及按照自己的喜好来做事。总的来讲，需要加深自己对于做事的理解。</p>
-<p>我有时候会偏离自己做事的主题，在不断的考虑如何“做好”这件事，太过于注重设计与优美，而有时候忘了做事的本身。自己在考虑以一颗艺术的心做事时，需要多考虑事这个本身，自己这样做是否事真的围绕着做事这个本身来进行的。或者多问自己几遍——“你真的想做的是什么？真的想做的是这个吗？”。</p>
-<p>以一颗艺术的心做事，首先是做事，其次是以艺术的心来做。</p>
 ]]></content>
       <categories>
         <category>other</category>
@@ -2391,34 +2391,6 @@
       </categories>
   </entry>
   <entry>
-    <title>北上征程之巧合版</title>
-    <url>/2019/02/11/%E5%8C%97%E4%B8%8A%E5%BE%81%E7%A8%8B%E4%B9%8B%E5%B7%A7%E5%90%88%E7%89%88/</url>
-    <content><![CDATA[<p>北上征程有很多，对我而言，每次从家到北京都是一次征程，往往我的选择方式也有很多，比如提前一天到成都第二天坐高铁到北京，或者直接飞机到北京，或者当天动车从家里到成都再转车等。我没有试过坐上两天的绿皮车，一直不是很喜欢坐很长时间的车。</p>
-<p>时间定格在2019年2月10日，这一天，我开始了我的新一轮北上征程，也是目前唯一一次值得称得上征程的一次。</p>
-<p>早6点20，闹钟响起。起床，洗漱，洗了头发，充电器塞箱子，吃几个汤圆。Now, Go!</p>
-<p>7点，从家里出发，坐车到眉山东站。他们开车比我预计的快了挺多，8点10分，到了。时间挺早，进站慢慢等待我9点多的动车。</p>
-<p><img src="/2019/02/11/%E5%8C%97%E4%B8%8A%E5%BE%81%E7%A8%8B%E4%B9%8B%E5%B7%A7%E5%90%88%E7%89%88/%E6%88%91%E7%9A%84%E8%BD%A6%E7%A5%A8.jpg" alt="我的车票"></p>
-<p>一切都在有条不紊地进行着。上车，行李搬上行李架。我第一次心想，“我为啥不少带几个苹果或者橘子，这箱子也忒重了”，试了几次，终于搬上行李架了，真不容易。</p>
-<p>9点45分，到达成都南站。然后排队买了票，成都地铁做的比较好的一点是地铁买票可以支持微信支付宝付款，这点上比较人性化。然后再排队过安检，再排队闸机口刷票，门不开，然后我走开去刷另一个门了，失败。我当时在想，“这¥%……&amp;*什么情况？”，我知道我的票出了问题，然后需要处理。</p>
-<p>时间9点55分，我的高铁出发时间是10点42分。然后我到客服中心，然而看到非常长的队伍，我心想：“凉了，被成都地铁坑了”，我心里是很焦躁的，毕竟我的时间上不允许再有耽搁。然后我向工作人员寻求快速处理，工作人员似乎也没办法，只能把我指向另一个客服中心——“向那边走，那边客服中心人少”。我拉着行李拔腿就跑，看到了一个空空如也的歇业的客服中心，然后再询问工作人员，指向下一个客服中心，我也是一路奔拔，处理完再再再过安检，然后去等车了。为什么是“再再再”呢？因为我每次决定我可以过闸机的时候，都失败了，第一次是刷门不开，第二次是空的客服中心，我以为安检人员可以处理，第三次成功了，所以过了三次安检。</p>
-<p>上地铁了，时间10点整。到达东站，10点20分。一路跑起来，从东站地下广场到地上广场，然后进站。排队安检，向安检人员寻求快速安检方式，通过。到达B16检票口，已经没有排队了。检票上车，找了挺久行李架空位，找到一个较远的位置再次举上去。</p>
-<p>累。跑得太快，额头上都有豆大的汗珠。</p>
-<p>列车准时出发。穿越四川盆地的环山后，看到白雪装裹的平原，有雪！我有两种心情——“景色真好，但是这会不会影响高铁呢？”。一直到西安都没什么问题，问题来自那一个不经意间。雪的影响，限速允许，原来最高时速300km/h的高铁现在变成了195km/h了。</p>
-<p>从最后结果来看，延误了1个小时10分钟。当一开始延误后，就会导致更多的延误，每个站点时，这班延误的车都需要等待前面其他车通过后再运行。</p>
-<p><img src="/2019/02/11/%E5%8C%97%E4%B8%8A%E5%BE%81%E7%A8%8B%E4%B9%8B%E5%B7%A7%E5%90%88%E7%89%88/%E5%BB%B6%E8%AF%AF.png" alt="延误"></p>
-<p>火车上，吃了两个面包，两盒牛奶，一个苹果，喝水若干。就这样终于到了北京西站。到达时间接近10点。花了15分钟排队过地铁安检，然后去挤地铁。</p>
-<p>一切看上去都不会有什么意外了。经历了9号线转6号线再转8号线的一系列换乘后，就要到我住的附近地铁站了。</p>
-<p>然而最意想不到事发生了。为了描述当时我的处境，有必要先描述地铁列车上的情况，列车上，人不算人多，每个人都大大小小带着行李箱，座位和中间位置都被行李箱与带行李的人占去了地方，列车门口位置都留出来了上下乘客。</p>
-<p>当我到站时，我准备下车的列车站点外门，竟然在维护，不开，“what!!!”，我只能从旁边门下车，当面临生死攸关的时刻，人的潜力总会被放大许多，我也是，我两手就抱起了箱子，从一众箱子间翻山越岭到达下一个门口出来。放下箱子，听着身后列车的关门警告声，长叹一声。“I got it!!!”，真不容易。当我叹气时，车里的人儿笑了笑，我回了一个似笑非笑，表诉我当前的心情。</p>
-<p>到达住的地方，我朋友这儿。然后他屋子的门锁密码开不了，原来的密码不对。我已经接近无语了。重新打电话给朋友，确认了一下新密码，终于休息了。</p>
-<p>码一点字，平复一下遇到这些偶然的我的心情。</p>
-<p><img src="/2019/02/11/%E5%8C%97%E4%B8%8A%E5%BE%81%E7%A8%8B%E4%B9%8B%E5%B7%A7%E5%90%88%E7%89%88/1.jpg"></p>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
     <title>关于HLS直播流HTML页面播放解决</title>
     <url>/2017/11/09/%E5%85%B3%E4%BA%8EHLS%E7%9B%B4%E6%92%AD%E6%B5%81HTML%E9%A1%B5%E9%9D%A2%E6%92%AD%E6%94%BE%E8%A7%A3%E5%86%B3/</url>
     <content><![CDATA[<p>在最近的项目开发中，涉及了HLS直播音频流的播放，关于网上的资料较多，各种混杂，因此对此在问题解决尝试以及结果进行总结。</p>
@@ -2470,6 +2442,63 @@
       </tags>
   </entry>
   <entry>
+    <title>北上征程之巧合版</title>
+    <url>/2019/02/11/%E5%8C%97%E4%B8%8A%E5%BE%81%E7%A8%8B%E4%B9%8B%E5%B7%A7%E5%90%88%E7%89%88/</url>
+    <content><![CDATA[<p>北上征程有很多，对我而言，每次从家到北京都是一次征程，往往我的选择方式也有很多，比如提前一天到成都第二天坐高铁到北京，或者直接飞机到北京，或者当天动车从家里到成都再转车等。我没有试过坐上两天的绿皮车，一直不是很喜欢坐很长时间的车。</p>
+<p>时间定格在2019年2月10日，这一天，我开始了我的新一轮北上征程，也是目前唯一一次值得称得上征程的一次。</p>
+<p>早6点20，闹钟响起。起床，洗漱，洗了头发，充电器塞箱子，吃几个汤圆。Now, Go!</p>
+<p>7点，从家里出发，坐车到眉山东站。他们开车比我预计的快了挺多，8点10分，到了。时间挺早，进站慢慢等待我9点多的动车。</p>
+<p><img src="/2019/02/11/%E5%8C%97%E4%B8%8A%E5%BE%81%E7%A8%8B%E4%B9%8B%E5%B7%A7%E5%90%88%E7%89%88/%E6%88%91%E7%9A%84%E8%BD%A6%E7%A5%A8.jpg" alt="我的车票"></p>
+<p>一切都在有条不紊地进行着。上车，行李搬上行李架。我第一次心想，“我为啥不少带几个苹果或者橘子，这箱子也忒重了”，试了几次，终于搬上行李架了，真不容易。</p>
+<p>9点45分，到达成都南站。然后排队买了票，成都地铁做的比较好的一点是地铁买票可以支持微信支付宝付款，这点上比较人性化。然后再排队过安检，再排队闸机口刷票，门不开，然后我走开去刷另一个门了，失败。我当时在想，“这¥%……&amp;*什么情况？”，我知道我的票出了问题，然后需要处理。</p>
+<p>时间9点55分，我的高铁出发时间是10点42分。然后我到客服中心，然而看到非常长的队伍，我心想：“凉了，被成都地铁坑了”，我心里是很焦躁的，毕竟我的时间上不允许再有耽搁。然后我向工作人员寻求快速处理，工作人员似乎也没办法，只能把我指向另一个客服中心——“向那边走，那边客服中心人少”。我拉着行李拔腿就跑，看到了一个空空如也的歇业的客服中心，然后再询问工作人员，指向下一个客服中心，我也是一路奔拔，处理完再再再过安检，然后去等车了。为什么是“再再再”呢？因为我每次决定我可以过闸机的时候，都失败了，第一次是刷门不开，第二次是空的客服中心，我以为安检人员可以处理，第三次成功了，所以过了三次安检。</p>
+<p>上地铁了，时间10点整。到达东站，10点20分。一路跑起来，从东站地下广场到地上广场，然后进站。排队安检，向安检人员寻求快速安检方式，通过。到达B16检票口，已经没有排队了。检票上车，找了挺久行李架空位，找到一个较远的位置再次举上去。</p>
+<p>累。跑得太快，额头上都有豆大的汗珠。</p>
+<p>列车准时出发。穿越四川盆地的环山后，看到白雪装裹的平原，有雪！我有两种心情——“景色真好，但是这会不会影响高铁呢？”。一直到西安都没什么问题，问题来自那一个不经意间。雪的影响，限速允许，原来最高时速300km/h的高铁现在变成了195km/h了。</p>
+<p>从最后结果来看，延误了1个小时10分钟。当一开始延误后，就会导致更多的延误，每个站点时，这班延误的车都需要等待前面其他车通过后再运行。</p>
+<p><img src="/2019/02/11/%E5%8C%97%E4%B8%8A%E5%BE%81%E7%A8%8B%E4%B9%8B%E5%B7%A7%E5%90%88%E7%89%88/%E5%BB%B6%E8%AF%AF.png" alt="延误"></p>
+<p>火车上，吃了两个面包，两盒牛奶，一个苹果，喝水若干。就这样终于到了北京西站。到达时间接近10点。花了15分钟排队过地铁安检，然后去挤地铁。</p>
+<p>一切看上去都不会有什么意外了。经历了9号线转6号线再转8号线的一系列换乘后，就要到我住的附近地铁站了。</p>
+<p>然而最意想不到事发生了。为了描述当时我的处境，有必要先描述地铁列车上的情况，列车上，人不算人多，每个人都大大小小带着行李箱，座位和中间位置都被行李箱与带行李的人占去了地方，列车门口位置都留出来了上下乘客。</p>
+<p>当我到站时，我准备下车的列车站点外门，竟然在维护，不开，“what!!!”，我只能从旁边门下车，当面临生死攸关的时刻，人的潜力总会被放大许多，我也是，我两手就抱起了箱子，从一众箱子间翻山越岭到达下一个门口出来。放下箱子，听着身后列车的关门警告声，长叹一声。“I got it!!!”，真不容易。当我叹气时，车里的人儿笑了笑，我回了一个似笑非笑，表诉我当前的心情。</p>
+<p>到达住的地方，我朋友这儿。然后他屋子的门锁密码开不了，原来的密码不对。我已经接近无语了。重新打电话给朋友，确认了一下新密码，终于休息了。</p>
+<p>码一点字，平复一下遇到这些偶然的我的心情。</p>
+<p><img src="/2019/02/11/%E5%8C%97%E4%B8%8A%E5%BE%81%E7%A8%8B%E4%B9%8B%E5%B7%A7%E5%90%88%E7%89%88/1.jpg"></p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>原理与假设——《经济学原理——微观经济学分册》</title>
+    <url>/2021/08/10/%E5%8E%9F%E7%90%86%E4%B8%8E%E5%81%87%E8%AE%BE%E2%80%94%E2%80%94%E3%80%8A%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%88%86%E5%86%8C%E3%80%8B/</url>
+    <content><![CDATA[<p>最近草草的读了《经济学原理——微观经济学分册》，回头来想想，我想从这本书里得到什么？我最开始读经济学这本书，是本着想了解经济学这个方向而读的。但却在阅读中发现取了解一种新的问题分析方法，和自我分析的方法却有点不太一样。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>首先，经济学是什么？“经济学是一门研究人类一般生活事务的学问。”“经济学是研究人类社会在各个发展阶段上的各种经济活动和各种相应的经济关系及其运行、发展的规律的学科。核心思想是物质稀缺性和有效利用资源。”</p>
+<p>既然了解了经济学，那么西方经济学与政治经济学的区别是什么？西方经济学是从微观和宏观两个方面对经济问题进行阐述，着重于对经济规律的概括，找到一种使企业和社会利润最大化的方式。马克思政治经济学，主要研究的是生产力、生产关系、资本主义生产方式及其特点，研究资本在整个社会生产中以利益最大化为流通方向的立场。</p>
+<p>经济学永远是研究经济的，只是存在一些立场的不同罢了。比如本书中讲解的经济学都是以生产消费关系为主要引导，然后得到社会福利更大化结果这个方向去思考的。但实际中的经济学并不是完全是这样的，会掺杂一些政治、资本人为控制等各种因素，都在方方面面影响着经济，在不同的方面思考，有时会有不同的结论。</p>
+<p>微观经济学研究家庭和企业如何做决策，以及它们如何在市场上相互交易。宏观经济学研究整体经济现象。</p>
+<h3 id="十大原理"><a href="#十大原理" class="headerlink" title="十大原理"></a>十大原理</h3><p><img src="/2021/08/10/%E5%8E%9F%E7%90%86%E4%B8%8E%E5%81%87%E8%AE%BE%E2%80%94%E2%80%94%E3%80%8A%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%88%86%E5%86%8C%E3%80%8B/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8D%81%E5%A4%A7%E5%8E%9F%E7%90%86.png" alt="经济学十大原理"></p>
+<p>这些经济学原理主要是从三方面进行解释经济学：1、人们如何做出决策；2、人们如何相互影响；3、整体经济如何运作。即使最复杂的经济分析也是用这里所介绍的十大原理构建起来的。</p>
+<p>政府干预经济并改变人们自己选择的资源配置的原因有两类：促进效率或促进平等。大多数政策的目标要么是把经济蛋糕做大，要么是改变这个蛋糕的分割方式。（政府有时可以改善市场结果并不意味着它总会这样。）决策者可以通过改变政府支出量、税收量和发行的货币量来影响对物品和服务的总需求。需求的变动反过来又影响经济在短期中所经历的通货膨胀和失业的组合。</p>
+<h3 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h3><p>科学的本质是科学方法——冷静地建立并检验有关世界如何运行的各种理论。</p>
+<ol>
+<li>观察、理论和进一步观察</li>
+<li>假设</li>
+<li>经济模型</li>
+</ol>
+<p>在经济学中，始终需要考虑的是两点：供给-需求；成本-产量。</p>
+<p>供给与需求关系中间以价格为桥梁，最终形成供给-价格-需求之间的平衡。同样的成本-产量之间最终也会在“无形的手”下最终平衡。</p>
+<p>在本书中的分析方法其实一直都很简单，都是控制变量的方法，然后使用原理来进行解释。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这本书总体感觉，依然还是偏向于教程方向的书籍，对于经济学方向确实有促进了解的作用，但全书中罗列的点较多，对于普通人，看这本书的成本相对来说较高，而从中汲取的知识其实较少一些。</p>
+<p>但每个人的获取的点不太一样，比如我只是想初窥一下经济学的东西，因此成本较高，但却是也得到一些很有趣的东西。能够学习到“经济学十大原理”，并对这些原理有一定的认识，了解了经济学的一些分析方法，算是挺有趣的。</p>
+<p>在书中有一点印象很深刻，就是边际成本，因此对于新增数量的成本在数量不同的时候是不同的，同样的还有边际收益。</p>
+<p>书中讲了很多概念，然后，我都忘了。</p>
+]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+  </entry>
+  <entry>
     <title>协程里的通信</title>
     <url>/2021/04/24/%E5%8D%8F%E7%A8%8B%E9%87%8C%E7%9A%84%E9%80%9A%E4%BF%A1/</url>
     <content><![CDATA[<p>在我们项目中经常遇到一些生产者-消费者问题，比如在我们提出的kafka组件，就是面对生产者与消费者的中间通信组件。我们在开发中常提到线程，常常通过线程来做并发处理。任何一个函数，或者任何一个组件，实际都是存在输入、输出。从其中将问题归纳，也是生产者-消费者。</p>
@@ -2512,29 +2541,17 @@
       </tags>
   </entry>
   <entry>
-    <title>原理与假设——《经济学原理——微观经济学分册》</title>
-    <url>/2021/08/10/%E5%8E%9F%E7%90%86%E4%B8%8E%E5%81%87%E8%AE%BE%E2%80%94%E2%80%94%E3%80%8A%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%88%86%E5%86%8C%E3%80%8B/</url>
-    <content><![CDATA[<p>最近草草的读了《经济学原理——微观经济学分册》，回头来想想，我想从这本书里得到什么？我最开始读经济学这本书，是本着想了解经济学这个方向而读的。但却在阅读中发现取了解一种新的问题分析方法，和自我分析的方法却有点不太一样。</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>首先，经济学是什么？“经济学是一门研究人类一般生活事务的学问。”“经济学是研究人类社会在各个发展阶段上的各种经济活动和各种相应的经济关系及其运行、发展的规律的学科。核心思想是物质稀缺性和有效利用资源。”</p>
-<p>既然了解了经济学，那么西方经济学与政治经济学的区别是什么？西方经济学是从微观和宏观两个方面对经济问题进行阐述，着重于对经济规律的概括，找到一种使企业和社会利润最大化的方式。马克思政治经济学，主要研究的是生产力、生产关系、资本主义生产方式及其特点，研究资本在整个社会生产中以利益最大化为流通方向的立场。</p>
-<p>经济学永远是研究经济的，只是存在一些立场的不同罢了。比如本书中讲解的经济学都是以生产消费关系为主要引导，然后得到社会福利更大化结果这个方向去思考的。但实际中的经济学并不是完全是这样的，会掺杂一些政治、资本人为控制等各种因素，都在方方面面影响着经济，在不同的方面思考，有时会有不同的结论。</p>
-<p>微观经济学研究家庭和企业如何做决策，以及它们如何在市场上相互交易。宏观经济学研究整体经济现象。</p>
-<h3 id="十大原理"><a href="#十大原理" class="headerlink" title="十大原理"></a>十大原理</h3><p><img src="/2021/08/10/%E5%8E%9F%E7%90%86%E4%B8%8E%E5%81%87%E8%AE%BE%E2%80%94%E2%80%94%E3%80%8A%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94%E5%BE%AE%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%88%86%E5%86%8C%E3%80%8B/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%8D%81%E5%A4%A7%E5%8E%9F%E7%90%86.png" alt="经济学十大原理"></p>
-<p>这些经济学原理主要是从三方面进行解释经济学：1、人们如何做出决策；2、人们如何相互影响；3、整体经济如何运作。即使最复杂的经济分析也是用这里所介绍的十大原理构建起来的。</p>
-<p>政府干预经济并改变人们自己选择的资源配置的原因有两类：促进效率或促进平等。大多数政策的目标要么是把经济蛋糕做大，要么是改变这个蛋糕的分割方式。（政府有时可以改善市场结果并不意味着它总会这样。）决策者可以通过改变政府支出量、税收量和发行的货币量来影响对物品和服务的总需求。需求的变动反过来又影响经济在短期中所经历的通货膨胀和失业的组合。</p>
-<h3 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h3><p>科学的本质是科学方法——冷静地建立并检验有关世界如何运行的各种理论。</p>
-<ol>
-<li>观察、理论和进一步观察</li>
-<li>假设</li>
-<li>经济模型</li>
-</ol>
-<p>在经济学中，始终需要考虑的是两点：供给-需求；成本-产量。</p>
-<p>供给与需求关系中间以价格为桥梁，最终形成供给-价格-需求之间的平衡。同样的成本-产量之间最终也会在“无形的手”下最终平衡。</p>
-<p>在本书中的分析方法其实一直都很简单，都是控制变量的方法，然后使用原理来进行解释。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这本书总体感觉，依然还是偏向于教程方向的书籍，对于经济学方向确实有促进了解的作用，但全书中罗列的点较多，对于普通人，看这本书的成本相对来说较高，而从中汲取的知识其实较少一些。</p>
-<p>但每个人的获取的点不太一样，比如我只是想初窥一下经济学的东西，因此成本较高，但却是也得到一些很有趣的东西。能够学习到“经济学十大原理”，并对这些原理有一定的认识，了解了经济学的一些分析方法，算是挺有趣的。</p>
-<p>在书中有一点印象很深刻，就是边际成本，因此对于新增数量的成本在数量不同的时候是不同的，同样的还有边际收益。</p>
-<p>书中讲了很多概念，然后，我都忘了。</p>
+    <title>发发牢骚——读《白鹿原》</title>
+    <url>/2019/09/08/%E5%8F%91%E5%8F%91%E7%89%A2%E9%AA%9A%E2%80%94%E2%80%94%E8%AF%BB%E3%80%8A%E7%99%BD%E9%B9%BF%E5%8E%9F%E3%80%8B/</url>
+    <content><![CDATA[<p>《白鹿原》被誉为一个民族的秘史。在读完后，能够明显感受到名不虚传。白鹿原讲述了半个世纪里在白鹿原上发生的事情。</p>
+<p>我已经很长一段时间里，不涉及与历史相关的事情了，或许是因为我在看了《明朝那些事儿》后，开始明白，我讨厌那些史书上讲述简短几句，描述平平无奇的一场变动。每本书都有自己所处于的角度，只是我无法适应这种角度罢了。</p>
+<p>读完一本书后，我总是在考虑我从这本书中得到了什么？不停的思考。就这本书中，确实有多处都让我得到了一些。比如终于找到了一本，以平凡人的一生来描述的历史了。终于明白需要更加清醒的认识问题，书中所树立的朱先生的偶像，或许正是多数人所崇拜的，刚正不阿。</p>
+<p>在不断思考我获得从书中获得了什么时，突然发现，我一直考虑掉了，我期望获得什么？我内心究竟期望从书中获得什么？我是抱着怎么一种心态来看这本书的呢？</p>
+<p>其实，我只是感觉这本书有趣，所以看这本书并不应该在意获得了什么？看书就应该当作闲时来的味剂。</p>
+<p>每次看到别人的一辈子如何去过活时，我也开始思考，我的这辈子怎么过活。我终究现在还不明白我究竟要选择怎样的一种生活？从小到大以来，我的选择都是顺从着现实而来的，没有换一个角度，顺从心的角度来选择。我的心里依然迷惘，我该选择如何过活下去？</p>
+<p>我顺其自然的成为了一名程序员，顺其自然的开始写代码，并且顺其自然的喜欢代码。但是我不明白，我选择代码是否正确。正如我有时候在提醒自己，不能太沉入代码了？换一个角度或者提升一个高度可以看到另一个问题，或者可以更加明白问题的本源。</p>
+<p>顺其自然的成为现在的我的状态。其实也有本质原因，没有财富自由，也没有那种为了财富自由的拼命三郎的精神。总之，我还不明白我究竟想做什么。</p>
+<p>已经不会写读后感了，只是我随便发的牢骚。</p>
 ]]></content>
       <categories>
         <category>read</category>
@@ -2651,23 +2668,6 @@
         <tag>github</tag>
         <tag>hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>发发牢骚——读《白鹿原》</title>
-    <url>/2019/09/08/%E5%8F%91%E5%8F%91%E7%89%A2%E9%AA%9A%E2%80%94%E2%80%94%E8%AF%BB%E3%80%8A%E7%99%BD%E9%B9%BF%E5%8E%9F%E3%80%8B/</url>
-    <content><![CDATA[<p>《白鹿原》被誉为一个民族的秘史。在读完后，能够明显感受到名不虚传。白鹿原讲述了半个世纪里在白鹿原上发生的事情。</p>
-<p>我已经很长一段时间里，不涉及与历史相关的事情了，或许是因为我在看了《明朝那些事儿》后，开始明白，我讨厌那些史书上讲述简短几句，描述平平无奇的一场变动。每本书都有自己所处于的角度，只是我无法适应这种角度罢了。</p>
-<p>读完一本书后，我总是在考虑我从这本书中得到了什么？不停的思考。就这本书中，确实有多处都让我得到了一些。比如终于找到了一本，以平凡人的一生来描述的历史了。终于明白需要更加清醒的认识问题，书中所树立的朱先生的偶像，或许正是多数人所崇拜的，刚正不阿。</p>
-<p>在不断思考我获得从书中获得了什么时，突然发现，我一直考虑掉了，我期望获得什么？我内心究竟期望从书中获得什么？我是抱着怎么一种心态来看这本书的呢？</p>
-<p>其实，我只是感觉这本书有趣，所以看这本书并不应该在意获得了什么？看书就应该当作闲时来的味剂。</p>
-<p>每次看到别人的一辈子如何去过活时，我也开始思考，我的这辈子怎么过活。我终究现在还不明白我究竟要选择怎样的一种生活？从小到大以来，我的选择都是顺从着现实而来的，没有换一个角度，顺从心的角度来选择。我的心里依然迷惘，我该选择如何过活下去？</p>
-<p>我顺其自然的成为了一名程序员，顺其自然的开始写代码，并且顺其自然的喜欢代码。但是我不明白，我选择代码是否正确。正如我有时候在提醒自己，不能太沉入代码了？换一个角度或者提升一个高度可以看到另一个问题，或者可以更加明白问题的本源。</p>
-<p>顺其自然的成为现在的我的状态。其实也有本质原因，没有财富自由，也没有那种为了财富自由的拼命三郎的精神。总之，我还不明白我究竟想做什么。</p>
-<p>已经不会写读后感了，只是我随便发的牢骚。</p>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
   </entry>
   <entry>
     <title>基础查找算法分析</title>
@@ -3080,6 +3080,26 @@
       </categories>
   </entry>
   <entry>
+    <title>平凡世界里，平凡的活着</title>
+    <url>/2019/12/25/%E5%B9%B3%E5%87%A1%E4%B8%96%E7%95%8C%E9%87%8C%EF%BC%8C%E5%B9%B3%E5%87%A1%E7%9A%84%E6%B4%BB%E7%9D%80/</url>
+    <content><![CDATA[<p>一本书，能够引起共鸣，触发感想，引导人继续前进，就是一本好书。</p>
+<p>这本书里，描述极其朴实，生活等场景都历历在目，生动形象。但在人物关系上有点过于巧合，让人觉得有点太凑巧了而显得不够自然。但这些都不妨碍这是一本好书，塑造了一个精神强悍的少平，这可以认为是一个时代里的偶像，平凡里的英雄。</p>
+<p>人生有几个永恒的词：物质、精神、苦难、爱情、出生、死亡。这些词交织在一起就是人生。</p>
+<p>晓霞死时，我哭了。或许不是读着以来第一次哭吧，但是我真心体会到那种悲惨。既可怜死者，更同情生者。一个不平凡的人，终究不能以不平凡的方式存在于平凡的世界，当这种人人所向往的美好，破碎了，还有谁能不感叹呢？</p>
+<p>逝者已矣，但生者还得继续过活下去，读到这时，我害怕，害怕少平终于承受不住，选择逃避；害怕少平突然间看淡了，精神世界里崩溃了。我始终害怕，这个平凡的人，在这个现实里，过不去了。</p>
+<p>或者我对于书中少平的害怕，正是我对自己的胆怯。在现实里，我想着用另一种东西来填补我的精神，我明白我是孤寂的，明白我没有那么大的一颗强大的内心，明白我很平凡，明白我缺少一颗有趣的灵魂。正是缺少，我想要去填补，我害怕哪天，我看开了，油腻了，像老一辈一样，空闲时选择混日子了，胆怯着。</p>
+<p>晓霞始终会“离开”。这是一个令人向往的精神体，是众多期望的非具象的凝聚。若晓霞没有离去，与少平无论以何种结局结束，都是不现实的、不平凡的，这便是现实，平凡的世界。每个人心中都有一个自己所期待着的“晓霞”，正因为是期望着，所以想等待下去，等着能够倾听我灵魂的那个“晓霞”，等着能够带领自己的精神突破的人。</p>
+<p>《平凡的世界》结尾得有点让人突然，没有一个是真的悲剧，没有一个是真的喜剧。语言里那一个句号时结束了，但生活、世界都没有停下，接下来会和前面生活一样，不停歇，有喜有悲、有爱有恨、有生命诞生有死亡降临。这一切都会这样一直持续不断的进行下去，生活会一直慢慢过下去。</p>
+<p>现实里也是一个平凡的世界，我是一个平凡的人，想平平凡凡的活下去。</p>
+<p>平凡的世界里，一切都那么地自然，一切都那么现实。而我们就处在这样一个世界里，“只能永远把艰辛的劳动看作是生命的必要；即使没有收获的指望，也心平气和地继续耕种”，只能继续不寻边界的寻找追求的精神与信仰，继续读书，继续追求精神，继续突破边界。这便是我们的选择，如此平凡又不平凡的活下去。</p>
+<p>《平凡的世界》：推荐分8分</p>
+<p><img src="/2019/12/25/%E5%B9%B3%E5%87%A1%E4%B8%96%E7%95%8C%E9%87%8C%EF%BC%8C%E5%B9%B3%E5%87%A1%E7%9A%84%E6%B4%BB%E7%9D%80/%E9%9B%AA.jpg"></p>
+]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+  </entry>
+  <entry>
     <title>我</title>
     <url>/2020/02/27/%E6%88%91/</url>
     <content><![CDATA[<p><img src="/2020/02/27/%E6%88%91/happy.jpeg"></p>
@@ -3113,24 +3133,59 @@
       </categories>
   </entry>
   <entry>
-    <title>平凡世界里，平凡的活着</title>
-    <url>/2019/12/25/%E5%B9%B3%E5%87%A1%E4%B8%96%E7%95%8C%E9%87%8C%EF%BC%8C%E5%B9%B3%E5%87%A1%E7%9A%84%E6%B4%BB%E7%9D%80/</url>
-    <content><![CDATA[<p>一本书，能够引起共鸣，触发感想，引导人继续前进，就是一本好书。</p>
-<p>这本书里，描述极其朴实，生活等场景都历历在目，生动形象。但在人物关系上有点过于巧合，让人觉得有点太凑巧了而显得不够自然。但这些都不妨碍这是一本好书，塑造了一个精神强悍的少平，这可以认为是一个时代里的偶像，平凡里的英雄。</p>
-<p>人生有几个永恒的词：物质、精神、苦难、爱情、出生、死亡。这些词交织在一起就是人生。</p>
-<p>晓霞死时，我哭了。或许不是读着以来第一次哭吧，但是我真心体会到那种悲惨。既可怜死者，更同情生者。一个不平凡的人，终究不能以不平凡的方式存在于平凡的世界，当这种人人所向往的美好，破碎了，还有谁能不感叹呢？</p>
-<p>逝者已矣，但生者还得继续过活下去，读到这时，我害怕，害怕少平终于承受不住，选择逃避；害怕少平突然间看淡了，精神世界里崩溃了。我始终害怕，这个平凡的人，在这个现实里，过不去了。</p>
-<p>或者我对于书中少平的害怕，正是我对自己的胆怯。在现实里，我想着用另一种东西来填补我的精神，我明白我是孤寂的，明白我没有那么大的一颗强大的内心，明白我很平凡，明白我缺少一颗有趣的灵魂。正是缺少，我想要去填补，我害怕哪天，我看开了，油腻了，像老一辈一样，空闲时选择混日子了，胆怯着。</p>
-<p>晓霞始终会“离开”。这是一个令人向往的精神体，是众多期望的非具象的凝聚。若晓霞没有离去，与少平无论以何种结局结束，都是不现实的、不平凡的，这便是现实，平凡的世界。每个人心中都有一个自己所期待着的“晓霞”，正因为是期望着，所以想等待下去，等着能够倾听我灵魂的那个“晓霞”，等着能够带领自己的精神突破的人。</p>
-<p>《平凡的世界》结尾得有点让人突然，没有一个是真的悲剧，没有一个是真的喜剧。语言里那一个句号时结束了，但生活、世界都没有停下，接下来会和前面生活一样，不停歇，有喜有悲、有爱有恨、有生命诞生有死亡降临。这一切都会这样一直持续不断的进行下去，生活会一直慢慢过下去。</p>
-<p>现实里也是一个平凡的世界，我是一个平凡的人，想平平凡凡的活下去。</p>
-<p>平凡的世界里，一切都那么地自然，一切都那么现实。而我们就处在这样一个世界里，“只能永远把艰辛的劳动看作是生命的必要；即使没有收获的指望，也心平气和地继续耕种”，只能继续不寻边界的寻找追求的精神与信仰，继续读书，继续追求精神，继续突破边界。这便是我们的选择，如此平凡又不平凡的活下去。</p>
-<p>《平凡的世界》：推荐分8分</p>
-<p><img src="/2019/12/25/%E5%B9%B3%E5%87%A1%E4%B8%96%E7%95%8C%E9%87%8C%EF%BC%8C%E5%B9%B3%E5%87%A1%E7%9A%84%E6%B4%BB%E7%9D%80/%E9%9B%AA.jpg"></p>
+    <title>我所遇，皆为我一生</title>
+    <url>/2017/09/01/%E6%88%91%E6%89%80%E9%81%87%EF%BC%8C%E7%9A%86%E4%B8%BA%E6%88%91%E4%B8%80%E7%94%9F/</url>
+    <content><![CDATA[<p><img src="/2017/09/01/%E6%88%91%E6%89%80%E9%81%87%EF%BC%8C%E7%9A%86%E4%B8%BA%E6%88%91%E4%B8%80%E7%94%9F/%E5%85%AC%E4%BA%A4%E4%B8%80%E8%B7%AF%EF%BC%8C%E5%A4%9C%E6%99%AF%E4%B8%8D%E5%8F%98%E5%A6%82%E6%AD%A4.jpg" alt="公交一路，夜景不变如此"></p>
+<p>我所遇，皆为我一生。</p>
+<p>世间沉浮，人生百态，苦乐欢甜，所遇所感，所见所想，皆为我一生财富。</p>
+<p>我说过，我或许除了时间，一无所有；其实并不是，我还有我自己，我的一生。</p>
+<p>我想要一个完美的大学，想要一个完美的结束。第一次参加迎新志愿者，第一次想去看看，刚进校园的我会是什么情况。</p>
+<p>我遇到许多学弟学妹。有的健谈，说不定内心藏匿着一个内向的自己；有的沉默，说不定是一个开朗的人。有的很好相处，有的有点内向。</p>
+<p>而当初的我究竟是怎么样的呢？</p>
+<p>我看不透一生，因为我没有一生的积累。我看不透浮沉，因为我没有物质的基础。人生是怎样？未来的我是怎样？</p>
+<p>大学里，第一年里，我勤奋刻苦，我那时候十分努力，那时候，我努力是为了什么？其实我不懂。我可能只是持续着好友说的，“到一个新的环境里，我也想要名列前茅，不求第一，但求上榜”。</p>
+<p>大二里，我搬了校区，开始颓废的我开始迷惘，我究竟是要读研还是找工作呢？迷惘的我在迷惘的迷离的路灯下前行，是不是前行，我也不清楚。或许只是原地踏步吧，或许还有些后退吧，浪费了时光。</p>
+<p>大三下里，我开始实习，我也开始学习，这半年里，我知道我在努力，我知道我是幸福的，那种努力的幸福。</p>
+<p>穷尽一生，我的一生究竟有多长，我不知道，或许挺短，或许也很长。我会后悔吗？那是肯定会啊。我只想我以后不后悔曾今后悔过。</p>
+<p>当初我踏进校园，与走出高中，心情是不同的吧。这学校这么大，或许有些激动吧，也有些无赖，我最想来的并不是这儿。或许这种错过是上天给我的最好的选择，让我进入代码的世界，唱着“Hello world”，拥抱世界。也或许是上天给我的选择，是殊途同归，还是道不同。</p>
+<p>刚进校园的我，没有迷惘，没有一丝犹豫。我心中总是默默告诉自己，要好好学习。我没做到吧。</p>
+<p>大学里，我遇到不同的人，学弟学妹，学长学姐，各式各样，各有各的人生，我羡慕的是别人人生里那种自信；羡慕别人时间里可以有多一年或者两年的选择，羡慕别人比我年轻。总是叹息着，要是我现在才大三该多好啊。可惜，我大四了。</p>
+<p>大四的字眼里总是有着不同的含义一样，对于所有，大四总是特殊的。那种百感交集，会在大四的日子里一一体现出来。</p>
+<p>这三年里，我或许什么都基本经历过吧，为了考试，我可以在考前一周学完一学期的内容，而且学得更好，我可以熬夜到一点多，就为了看完复习资料，而第二天早起考试。</p>
+<p>我可以白天上班，晚上上课，直到回寝室的路上竟然叫不出同班同学的名字。我可以坐一个多小时破破烂烂的公交，为了和你相聚。我可以为了考过科三，见过凌晨三点一闪而过的流星。我可以为了看尽我的大学，在大四开始的最忙时间里参加迎新。</p>
+<p>别人总说，穷尽一生的运气遇到你。我不同意，遇到你是我一生的经历。</p>
+<p>别人总说，自己运气太差。我不同意，遇到的一切皆为我的一生。</p>
+<p>大学里，我有过拼搏，有过忙碌，有过社团，有过图书馆义工，有过迎新，有过一段伤情的恋爱，有过颓废，有过和室友一起游戏，有过逃课……</p>
+<p>大学里，我还差一场说走就走的旅行，还差一个挂科记录。</p>
+<p>世间所遇，都有不同的规律吗？缘在于上天吗？我不同意，规律是由自己决定的，缘是由自己创造的。我所遇，皆为我的选择，都是我选择的结果。</p>
+<p>每一滴泪，每一颗汗，每一次哈哈大笑，每一回沉默不语，都是我的一生。我的感情变化，我的思想变化，都是我的财富。</p>
+<p>大学里，我学会了短时间学会，我拓宽了视野，我开始为一生做安排。我开始喜欢哲学，我开始经常问自己，我想要做什么，我该做什么。</p>
+<p>我一生里后续怎样谱写？</p>
+<p>我所遇，皆为我幸，为我一生。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>打工人如何选择行业-读《王慧文清华产品课》随想</title>
+    <url>/2021/03/21/%E6%89%93%E5%B7%A5%E4%BA%BA%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E8%A1%8C%E4%B8%9A-%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B%E9%9A%8F%E6%83%B3/</url>
+    <content><![CDATA[<p>这是讲如何做产品的课程，同样可以让我们学会如何剖析产品。作为一个打工人，如何选择自己的行业也可以在这里找到一些思路。</p>
+<p>或许在很多场景中，老板都会和你聊当前行业前景很大，在这个行业中会有很大的收获，俗称“画饼”。那么如何判断这个饼是否真实呢？</p>
+<p>正如文档中提到的，一般来说在一个领域中一个产品的成功对应着无数产品的失败，这个比例大约在1:30。如何判断我们所处在的行业是可以成功的，并且我们是可以去突破这个极限的呢？</p>
+<p>首先我们需要看到这个行业的市场体量，如果是一个很小的市场，那么这个市场就无法做到画伟大蓝图的前景；并且我们还需要知道目前处在这个市场是增量还是存量市场，这个和市场的规模同样需要知道，知道目前市场的前景是什么样子的，在打增量市场和在打存量市场所对应的难度是不同的，比如说在熟人聊天这个行业，现在入场就很难了，这儿也就有存量市场一个因素。</p>
+<p>另外需要判断这个市场的扩展是具有规模效应的，如何快速的讲当前的模式就行扩展，进行规模化，并且需要考虑规模化的成本。需要清晰这个规模效应的模式，比如一个行业中最重要的链主是什么？这一点需要清楚，我们才能找到具体的生意模式，以及知道找到整个生意中最重要的部分。</p>
+<p>在进入一个行业时，还需要考虑这个行业的市场集中度，比如在这个行业中头部公司对市场的占有率，在一个头部公司对市场占有率还没那么高的行业，就可以体现出这个行业目前还有很大的竞争潜力，在这个行业中将会有很大的发展。</p>
+<p>还需要考虑另外一个点，波特五力模型，综合起来影响着产业的吸引力以及现有企业的竞争战争策略。比如说我们经常提到的行业壁垒，这个也是在这个行业中提到了的一点。一个壁垒高的行业，在增长曲线上表现为则是指数形的，并且先发优势也很大，对于后发者，难度特别高。比如微信，这个行业就是这种情况。而对于淘宝，这个行业的增长曲线是线性的，因此后来的拼多多成长起来了。</p>
+<p>以上只是我在读《王慧文清华产品课》的一些简单想法。强力推荐读这篇文稿，可以看到一些很不一样的视角。</p>
+<p><a href="https://feiybox.com/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/">【笔记】读《王慧文清华产品课》</a></p>
 ]]></content>
       <categories>
         <category>read</category>
       </categories>
+      <tags>
+        <tag>pro</tag>
+      </tags>
   </entry>
   <entry>
     <title>时间简史：读完了多少，读懂了多少</title>
@@ -3188,6 +3243,53 @@
       <categories>
         <category>other</category>
       </categories>
+  </entry>
+  <entry>
+    <title>根据前序和后序遍历构造二叉树</title>
+    <url>/2018/08/19/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <content><![CDATA[<p>在leetcode上做题刚好做到一题：根据前序和后序遍历构造二叉树。在我们一般构建二叉树时，一般是根据中序和前序或者后序构建二叉树。根据前序和后序构建的二叉树不一定是唯一的。</p>
+<blockquote>
+<p>889. 根据前序和后序遍历构造二叉树<br>返回与给定的前序和后序遍历匹配的任何二叉树。<br><code>pre</code> 和 <code>post</code> 遍历中的值是不同的正整数。</p>
+</blockquote>
+<p>不多说，上代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">constructFromPrePost</span><span class="params">(<span class="keyword">int</span>[] pre, <span class="keyword">int</span>[] post)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (pre.length &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> constructFromPrePostHelper(pre, post, <span class="number">0</span>, <span class="number">0</span>, post.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> TreeNode <span class="title">constructFromPrePostHelper</span><span class="params">(<span class="keyword">int</span>[] pre, <span class="keyword">int</span>[] post, <span class="keyword">int</span> flag, <span class="keyword">int</span> postStart, <span class="keyword">int</span> postEnd)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (flag &gt;= pre.length || postStart &gt; postEnd) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (flag &lt; pre.length &amp;&amp; postStart == postEnd) &#123;<span class="comment">//判断没有子树的节点</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(pre[flag]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = postStart;</span><br><span class="line">    <span class="comment">//判断左右子树的分隔点</span></span><br><span class="line">    <span class="keyword">if</span> (flag + <span class="number">1</span> &lt; pre.length) &#123;</span><br><span class="line">        <span class="keyword">for</span> (; mid &lt; postEnd; mid++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (post[mid] == pre[flag + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode node = <span class="keyword">new</span> TreeNode(pre[flag]);</span><br><span class="line">    node.left = constructFromPrePostHelper(pre, post, flag + <span class="number">1</span>, postStart, mid);</span><br><span class="line">    node.right = constructFromPrePostHelper(pre, post, flag + mid - postStart + <span class="number">2</span>, mid + <span class="number">1</span>, postEnd - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    TreeNode left;</span><br><span class="line">    TreeNode right;</span><br><span class="line"></span><br><span class="line">    TreeNode(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        val = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试用例：<br>输入：pre  [1,2,4,5,3,6,7], post [4,5,2,6,7,3,1]<br>输出：[1, 2, 3, 4, 5, 6, 7]</p>
+<p>原理：<br>在通过递归的方式，每次找到分隔点，构建左右子树的方式，在其中主要需要判断最终一个没有子树的节点判断。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Algo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>洗牌算法</title>
+    <url>/2017/05/04/%E6%B4%97%E7%89%8C%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>第一次接触洗牌算法是在一次面试上，面试官要求我写出一个算法将一个1～100的有序数组打乱，不考虑性能，那次我想了许久，想到一种基于二叉排序的方式实现了随机洗牌，但是那个性能呢，惨不忍睹。后来详细学习排序算法的时候，发现为了保证快速排序的性能，需要在排序之前对排序的数组进行洗牌操作。</p>
+<h3 id="为什么不基于一般排序算法做洗牌？"><a href="#为什么不基于一般排序算法做洗牌？" class="headerlink" title="为什么不基于一般排序算法做洗牌？"></a>为什么不基于一般排序算法做洗牌？</h3><p>众所周知，一般排序算法在在性能上以快速排序最好吧，时间复杂度基本在N*logN，空间复杂度在logN，当然三切分快速排序更好一些。所有算法中空间复杂度最好时为1，这当然是最好的。详细见<a href="https://feiybox.github.io/2017/04/24/%E5%AF%B9%E4%BA%8E%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%80%E8%A6%81%E6%80%BB%E7%BB%93/">对于基础排序算法的简要总结</a>。但是在排序算法中没有能够达到时间复杂度N的线性的。而在洗牌算法中，我们随便便能实现N的线性的时间复杂度，因此基于排序算法做洗牌不可取。</p>
+<h3 id="洗牌算法第一版"><a href="#洗牌算法第一版" class="headerlink" title="洗牌算法第一版"></a>洗牌算法第一版</h3><p>初次想的是一个排列好的数组，再新建一个长度相等的数组，每次通过随机数，随机一个N以内的数作为下标将其添加到新数组，并将该随机下标与N为下标的数交换，当然N需要自减。在N开始的时候为数组长度减1的值（保证下标最大而不越界）。那么最后会形成一个任意数组在数组内的某一位置的概率都是1/N的随机数组。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Comparable[] Shuffle1(Comparable[] c) &#123;</span><br><span class="line">    Comparable[] a = <span class="keyword">new</span> Comparable[c.length];</span><br><span class="line">    <span class="keyword">int</span> N = c.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; c.length; i++, N--) &#123;</span><br><span class="line">        <span class="keyword">int</span> ran = intRandom(<span class="number">0</span>, N);</span><br><span class="line">        a[i] = c[ran];</span><br><span class="line">        c[ran] = c[N];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种算法相比较之前打算基于一般排序算法求解的方式，在时间复杂度上有了很大的提升。在时间复杂度上，这种算法保证了N次循环（N为数组长度），N次获取随机值，N次交换（但是有2N次数组元素赋值操作）实现了分部均匀的洗牌算法。但是它的缺点是需要另建数组，使得空间复杂度增加。</p>
+<p>在算法中使用了随机数的intRandom函数如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">intRandom</span><span class="params">(<span class="keyword">int</span> min, <span class="keyword">int</span> max)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (min &gt; max) </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;min can not bigger than max&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (max == min) </span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Random().nextInt(max - min + <span class="number">1</span>) + min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="洗牌算法第二版"><a href="#洗牌算法第二版" class="headerlink" title="洗牌算法第二版"></a>洗牌算法第二版</h3><p>为了减少空间复杂度，使得算法在原地进行洗牌操作，尝试着将算法改进。在本算法中使用随机生成一个下标，使得对应的数与第一个i个数交换（i会从0到N-1自增）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Shuffle2</span><span class="params">(Comparable[] c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        Comparable mid = c[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> ran = intRandom(<span class="number">0</span>, N-<span class="number">1</span>);</span><br><span class="line">        c[<span class="number">0</span>] = c[ran];</span><br><span class="line">        c[ran] = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然在本算法中，空间复杂度是1，达到最小。而时间复杂度也没有很大升高，依然需要N次循环，N次随机，N次交换（但是有3N次赋值操作）。因为对于数组中的每个数都会进行同样的操作，不因为数组元素顺序等变化，因此对于任意一个数分布在某个位置的概率是相同的。所有这是目前我发现的最好的洗牌算法。</p>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文仅讲述一些自我对于洗牌算法的一些了解以及自我的一些思考以及实现，在目前我的了解中，这两种洗牌算法是最好的了，如有更好，请指出，共同学习。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Algo</tag>
+      </tags>
   </entry>
   <entry>
     <title>注重实效的程序员参考指南</title>
@@ -3380,108 +3482,6 @@
       </categories>
   </entry>
   <entry>
-    <title>我所遇，皆为我一生</title>
-    <url>/2017/09/01/%E6%88%91%E6%89%80%E9%81%87%EF%BC%8C%E7%9A%86%E4%B8%BA%E6%88%91%E4%B8%80%E7%94%9F/</url>
-    <content><![CDATA[<p><img src="/2017/09/01/%E6%88%91%E6%89%80%E9%81%87%EF%BC%8C%E7%9A%86%E4%B8%BA%E6%88%91%E4%B8%80%E7%94%9F/%E5%85%AC%E4%BA%A4%E4%B8%80%E8%B7%AF%EF%BC%8C%E5%A4%9C%E6%99%AF%E4%B8%8D%E5%8F%98%E5%A6%82%E6%AD%A4.jpg" alt="公交一路，夜景不变如此"></p>
-<p>我所遇，皆为我一生。</p>
-<p>世间沉浮，人生百态，苦乐欢甜，所遇所感，所见所想，皆为我一生财富。</p>
-<p>我说过，我或许除了时间，一无所有；其实并不是，我还有我自己，我的一生。</p>
-<p>我想要一个完美的大学，想要一个完美的结束。第一次参加迎新志愿者，第一次想去看看，刚进校园的我会是什么情况。</p>
-<p>我遇到许多学弟学妹。有的健谈，说不定内心藏匿着一个内向的自己；有的沉默，说不定是一个开朗的人。有的很好相处，有的有点内向。</p>
-<p>而当初的我究竟是怎么样的呢？</p>
-<p>我看不透一生，因为我没有一生的积累。我看不透浮沉，因为我没有物质的基础。人生是怎样？未来的我是怎样？</p>
-<p>大学里，第一年里，我勤奋刻苦，我那时候十分努力，那时候，我努力是为了什么？其实我不懂。我可能只是持续着好友说的，“到一个新的环境里，我也想要名列前茅，不求第一，但求上榜”。</p>
-<p>大二里，我搬了校区，开始颓废的我开始迷惘，我究竟是要读研还是找工作呢？迷惘的我在迷惘的迷离的路灯下前行，是不是前行，我也不清楚。或许只是原地踏步吧，或许还有些后退吧，浪费了时光。</p>
-<p>大三下里，我开始实习，我也开始学习，这半年里，我知道我在努力，我知道我是幸福的，那种努力的幸福。</p>
-<p>穷尽一生，我的一生究竟有多长，我不知道，或许挺短，或许也很长。我会后悔吗？那是肯定会啊。我只想我以后不后悔曾今后悔过。</p>
-<p>当初我踏进校园，与走出高中，心情是不同的吧。这学校这么大，或许有些激动吧，也有些无赖，我最想来的并不是这儿。或许这种错过是上天给我的最好的选择，让我进入代码的世界，唱着“Hello world”，拥抱世界。也或许是上天给我的选择，是殊途同归，还是道不同。</p>
-<p>刚进校园的我，没有迷惘，没有一丝犹豫。我心中总是默默告诉自己，要好好学习。我没做到吧。</p>
-<p>大学里，我遇到不同的人，学弟学妹，学长学姐，各式各样，各有各的人生，我羡慕的是别人人生里那种自信；羡慕别人时间里可以有多一年或者两年的选择，羡慕别人比我年轻。总是叹息着，要是我现在才大三该多好啊。可惜，我大四了。</p>
-<p>大四的字眼里总是有着不同的含义一样，对于所有，大四总是特殊的。那种百感交集，会在大四的日子里一一体现出来。</p>
-<p>这三年里，我或许什么都基本经历过吧，为了考试，我可以在考前一周学完一学期的内容，而且学得更好，我可以熬夜到一点多，就为了看完复习资料，而第二天早起考试。</p>
-<p>我可以白天上班，晚上上课，直到回寝室的路上竟然叫不出同班同学的名字。我可以坐一个多小时破破烂烂的公交，为了和你相聚。我可以为了考过科三，见过凌晨三点一闪而过的流星。我可以为了看尽我的大学，在大四开始的最忙时间里参加迎新。</p>
-<p>别人总说，穷尽一生的运气遇到你。我不同意，遇到你是我一生的经历。</p>
-<p>别人总说，自己运气太差。我不同意，遇到的一切皆为我的一生。</p>
-<p>大学里，我有过拼搏，有过忙碌，有过社团，有过图书馆义工，有过迎新，有过一段伤情的恋爱，有过颓废，有过和室友一起游戏，有过逃课……</p>
-<p>大学里，我还差一场说走就走的旅行，还差一个挂科记录。</p>
-<p>世间所遇，都有不同的规律吗？缘在于上天吗？我不同意，规律是由自己决定的，缘是由自己创造的。我所遇，皆为我的选择，都是我选择的结果。</p>
-<p>每一滴泪，每一颗汗，每一次哈哈大笑，每一回沉默不语，都是我的一生。我的感情变化，我的思想变化，都是我的财富。</p>
-<p>大学里，我学会了短时间学会，我拓宽了视野，我开始为一生做安排。我开始喜欢哲学，我开始经常问自己，我想要做什么，我该做什么。</p>
-<p>我一生里后续怎样谱写？</p>
-<p>我所遇，皆为我幸，为我一生。</p>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>根据前序和后序遍历构造二叉树</title>
-    <url>/2018/08/19/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<p>在leetcode上做题刚好做到一题：根据前序和后序遍历构造二叉树。在我们一般构建二叉树时，一般是根据中序和前序或者后序构建二叉树。根据前序和后序构建的二叉树不一定是唯一的。</p>
-<blockquote>
-<p>889. 根据前序和后序遍历构造二叉树<br>返回与给定的前序和后序遍历匹配的任何二叉树。<br><code>pre</code> 和 <code>post</code> 遍历中的值是不同的正整数。</p>
-</blockquote>
-<p>不多说，上代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">constructFromPrePost</span><span class="params">(<span class="keyword">int</span>[] pre, <span class="keyword">int</span>[] post)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (pre.length &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> constructFromPrePostHelper(pre, post, <span class="number">0</span>, <span class="number">0</span>, post.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> TreeNode <span class="title">constructFromPrePostHelper</span><span class="params">(<span class="keyword">int</span>[] pre, <span class="keyword">int</span>[] post, <span class="keyword">int</span> flag, <span class="keyword">int</span> postStart, <span class="keyword">int</span> postEnd)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (flag &gt;= pre.length || postStart &gt; postEnd) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (flag &lt; pre.length &amp;&amp; postStart == postEnd) &#123;<span class="comment">//判断没有子树的节点</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(pre[flag]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = postStart;</span><br><span class="line">    <span class="comment">//判断左右子树的分隔点</span></span><br><span class="line">    <span class="keyword">if</span> (flag + <span class="number">1</span> &lt; pre.length) &#123;</span><br><span class="line">        <span class="keyword">for</span> (; mid &lt; postEnd; mid++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (post[mid] == pre[flag + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode node = <span class="keyword">new</span> TreeNode(pre[flag]);</span><br><span class="line">    node.left = constructFromPrePostHelper(pre, post, flag + <span class="number">1</span>, postStart, mid);</span><br><span class="line">    node.right = constructFromPrePostHelper(pre, post, flag + mid - postStart + <span class="number">2</span>, mid + <span class="number">1</span>, postEnd - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    TreeNode left;</span><br><span class="line">    TreeNode right;</span><br><span class="line"></span><br><span class="line">    TreeNode(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        val = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试用例：<br>输入：pre  [1,2,4,5,3,6,7], post [4,5,2,6,7,3,1]<br>输出：[1, 2, 3, 4, 5, 6, 7]</p>
-<p>原理：<br>在通过递归的方式，每次找到分隔点，构建左右子树的方式，在其中主要需要判断最终一个没有子树的节点判断。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Algo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>打工人如何选择行业-读《王慧文清华产品课》随想</title>
-    <url>/2021/03/21/%E6%89%93%E5%B7%A5%E4%BA%BA%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E8%A1%8C%E4%B8%9A-%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B%E9%9A%8F%E6%83%B3/</url>
-    <content><![CDATA[<p>这是讲如何做产品的课程，同样可以让我们学会如何剖析产品。作为一个打工人，如何选择自己的行业也可以在这里找到一些思路。</p>
-<p>或许在很多场景中，老板都会和你聊当前行业前景很大，在这个行业中会有很大的收获，俗称“画饼”。那么如何判断这个饼是否真实呢？</p>
-<p>正如文档中提到的，一般来说在一个领域中一个产品的成功对应着无数产品的失败，这个比例大约在1:30。如何判断我们所处在的行业是可以成功的，并且我们是可以去突破这个极限的呢？</p>
-<p>首先我们需要看到这个行业的市场体量，如果是一个很小的市场，那么这个市场就无法做到画伟大蓝图的前景；并且我们还需要知道目前处在这个市场是增量还是存量市场，这个和市场的规模同样需要知道，知道目前市场的前景是什么样子的，在打增量市场和在打存量市场所对应的难度是不同的，比如说在熟人聊天这个行业，现在入场就很难了，这儿也就有存量市场一个因素。</p>
-<p>另外需要判断这个市场的扩展是具有规模效应的，如何快速的讲当前的模式就行扩展，进行规模化，并且需要考虑规模化的成本。需要清晰这个规模效应的模式，比如一个行业中最重要的链主是什么？这一点需要清楚，我们才能找到具体的生意模式，以及知道找到整个生意中最重要的部分。</p>
-<p>在进入一个行业时，还需要考虑这个行业的市场集中度，比如在这个行业中头部公司对市场的占有率，在一个头部公司对市场占有率还没那么高的行业，就可以体现出这个行业目前还有很大的竞争潜力，在这个行业中将会有很大的发展。</p>
-<p>还需要考虑另外一个点，波特五力模型，综合起来影响着产业的吸引力以及现有企业的竞争战争策略。比如说我们经常提到的行业壁垒，这个也是在这个行业中提到了的一点。一个壁垒高的行业，在增长曲线上表现为则是指数形的，并且先发优势也很大，对于后发者，难度特别高。比如微信，这个行业就是这种情况。而对于淘宝，这个行业的增长曲线是线性的，因此后来的拼多多成长起来了。</p>
-<p>以上只是我在读《王慧文清华产品课》的一些简单想法。强力推荐读这篇文稿，可以看到一些很不一样的视角。</p>
-<p><a href="https://feiybox.com/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/">【笔记】读《王慧文清华产品课》</a></p>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
-      <tags>
-        <tag>pro</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>洗牌算法</title>
-    <url>/2017/05/04/%E6%B4%97%E7%89%8C%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>第一次接触洗牌算法是在一次面试上，面试官要求我写出一个算法将一个1～100的有序数组打乱，不考虑性能，那次我想了许久，想到一种基于二叉排序的方式实现了随机洗牌，但是那个性能呢，惨不忍睹。后来详细学习排序算法的时候，发现为了保证快速排序的性能，需要在排序之前对排序的数组进行洗牌操作。</p>
-<h3 id="为什么不基于一般排序算法做洗牌？"><a href="#为什么不基于一般排序算法做洗牌？" class="headerlink" title="为什么不基于一般排序算法做洗牌？"></a>为什么不基于一般排序算法做洗牌？</h3><p>众所周知，一般排序算法在在性能上以快速排序最好吧，时间复杂度基本在N*logN，空间复杂度在logN，当然三切分快速排序更好一些。所有算法中空间复杂度最好时为1，这当然是最好的。详细见<a href="https://feiybox.github.io/2017/04/24/%E5%AF%B9%E4%BA%8E%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%80%E8%A6%81%E6%80%BB%E7%BB%93/">对于基础排序算法的简要总结</a>。但是在排序算法中没有能够达到时间复杂度N的线性的。而在洗牌算法中，我们随便便能实现N的线性的时间复杂度，因此基于排序算法做洗牌不可取。</p>
-<h3 id="洗牌算法第一版"><a href="#洗牌算法第一版" class="headerlink" title="洗牌算法第一版"></a>洗牌算法第一版</h3><p>初次想的是一个排列好的数组，再新建一个长度相等的数组，每次通过随机数，随机一个N以内的数作为下标将其添加到新数组，并将该随机下标与N为下标的数交换，当然N需要自减。在N开始的时候为数组长度减1的值（保证下标最大而不越界）。那么最后会形成一个任意数组在数组内的某一位置的概率都是1/N的随机数组。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Comparable[] Shuffle1(Comparable[] c) &#123;</span><br><span class="line">    Comparable[] a = <span class="keyword">new</span> Comparable[c.length];</span><br><span class="line">    <span class="keyword">int</span> N = c.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; c.length; i++, N--) &#123;</span><br><span class="line">        <span class="keyword">int</span> ran = intRandom(<span class="number">0</span>, N);</span><br><span class="line">        a[i] = c[ran];</span><br><span class="line">        c[ran] = c[N];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这种算法相比较之前打算基于一般排序算法求解的方式，在时间复杂度上有了很大的提升。在时间复杂度上，这种算法保证了N次循环（N为数组长度），N次获取随机值，N次交换（但是有2N次数组元素赋值操作）实现了分部均匀的洗牌算法。但是它的缺点是需要另建数组，使得空间复杂度增加。</p>
-<p>在算法中使用了随机数的intRandom函数如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">intRandom</span><span class="params">(<span class="keyword">int</span> min, <span class="keyword">int</span> max)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (min &gt; max) </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;min can not bigger than max&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (max == min) </span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Random().nextInt(max - min + <span class="number">1</span>) + min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="洗牌算法第二版"><a href="#洗牌算法第二版" class="headerlink" title="洗牌算法第二版"></a>洗牌算法第二版</h3><p>为了减少空间复杂度，使得算法在原地进行洗牌操作，尝试着将算法改进。在本算法中使用随机生成一个下标，使得对应的数与第一个i个数交换（i会从0到N-1自增）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Shuffle2</span><span class="params">(Comparable[] c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        Comparable mid = c[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> ran = intRandom(<span class="number">0</span>, N-<span class="number">1</span>);</span><br><span class="line">        c[<span class="number">0</span>] = c[ran];</span><br><span class="line">        c[ran] = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当然在本算法中，空间复杂度是1，达到最小。而时间复杂度也没有很大升高，依然需要N次循环，N次随机，N次交换（但是有3N次赋值操作）。因为对于数组中的每个数都会进行同样的操作，不因为数组元素顺序等变化，因此对于任意一个数分布在某个位置的概率是相同的。所有这是目前我发现的最好的洗牌算法。</p>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文仅讲述一些自我对于洗牌算法的一些了解以及自我的一些思考以及实现，在目前我的了解中，这两种洗牌算法是最好的了，如有更好，请指出，共同学习。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Algo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>白说：并不白说</title>
     <url>/2018/07/15/%E7%99%BD%E8%AF%B4%EF%BC%9A%E5%B9%B6%E4%B8%8D%E7%99%BD%E8%AF%B4/</url>
     <content><![CDATA[<p><img src="/2018/07/15/%E7%99%BD%E8%AF%B4%EF%BC%9A%E5%B9%B6%E4%B8%8D%E7%99%BD%E8%AF%B4/1.jpg" alt="《白说》"></p>
@@ -3527,6 +3527,55 @@
       <categories>
         <category>read</category>
       </categories>
+  </entry>
+  <entry>
+    <title>笔记整理——算法（笔记整理三之一）</title>
+    <url>/2019/11/20/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E7%AE%97%E6%B3%95%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h3 id="穷举法"><a href="#穷举法" class="headerlink" title="穷举法"></a>穷举法</h3><h3 id="递推法"><a href="#递推法" class="headerlink" title="递推法"></a>递推法</h3><h3 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h3><p>辗转法，不断用变量的新值代替旧值的过程。</p>
+<h3 id="分治法"><a href="#分治法" class="headerlink" title="分治法"></a>分治法</h3><ul>
+<li><strong>划分</strong>。把规模为N的原问题划分为K个规模较小的子问题，并尽量使K个字问题的规模大致相等。</li>
+<li><strong>求解子问题</strong>。子问题的解法通常与原问题是相同的，可以用递归的方式求解，当子问题较小时，可以直接求解（或更快方式求解）。</li>
+<li><strong>合并</strong>。把各个子问题的解合并起来。分治算法有效性很大程度上依赖于合并的实现。</li>
+</ul>
+<h3 id="贪心法"><a href="#贪心法" class="headerlink" title="贪心法"></a>贪心法</h3><p>每一次获得局部最优解，若下一个数据与局部最优解连在一起不再时可行解，就不把该数据添加到局部解中，直到所有数据枚举完，或者不再添加为止。（需要选择度量方式）</p>
+<ul>
+<li><strong>多阶段决策</strong>：指解决问题过程可分为若干阶段，在每一个阶段都做出相应的决策，所有的决策构成序列就是问题的解决方案。</li>
+<li><strong>无后向性</strong>：指每一个阶段面临的问题都是原问题的一个子问题，并且子问题的解决只与当前阶段和以后的决策有关，与以前各阶段的决策无关。</li>
+<li><strong>最优化原理</strong>：指一个问题的最优策略有这样一个性质，即不论以前的决策如何，对于当前的子问题，其余决策一定构成最优策略。</li>
+</ul>
+<h3 id="动态规划法"><a href="#动态规划法" class="headerlink" title="动态规划法"></a>动态规划法</h3><p>求解的问题必须满足：</p>
+<ol>
+<li>问题的状态必须满足最优化原理</li>
+<li>问题中的状态必须满足无后向性（下一个状态只与当前状态有关，与当前状态之前的状态无关）</li>
+</ol>
+<ul>
+<li><strong>划分阶段</strong>：按照问题的时间或空间特征，把问题分为若干阶段。在阶段划分时，注意划分后的阶段一定要是有序或者时可排序的，否则问题就无法求解。</li>
+<li><strong>确定状态和状态变量</strong>：将问题发展到各个阶段时所处的客观情况用户不同的状态表示出来。当然状态的选择要满足无后效性。</li>
+<li><strong>确定决策并写出状态转移方程</strong>：因为决策和状态转移有着天然的联系，状态转移就是根据上一阶段的状态和决策来导出本阶段的状态。做法时根据相邻两阶段各状态之间的关系来确定决策。</li>
+<li><strong>寻找边界条件</strong>：给定状态转移方程时一个递推式，需要一个递推的终止条件或边界条件。</li>
+</ul>
+<h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><p>若当前位置探测到一条通路则继续向前，若在当前位置探测不到一条通路则回溯至前一位置继续探测尚未探测的方向，直到找到一条通路或探测出无通路存在为止。</p>
+<ul>
+<li>定义一个解空间，它包含问题的解</li>
+<li>利用适于搜索的方法组织解空间</li>
+<li>利用深度优先法搜索解空间</li>
+<li>利用限界函数避免移动到不可能产生解的子空间</li>
+</ul>
+<p>问题的解空间通常时在搜索问题的解的过程中动态产生的。适用于解一些组合数较大的问题。</p>
+<h3 id="分支限界法"><a href="#分支限界法" class="headerlink" title="分支限界法"></a>分支限界法</h3><p>一般采用广度优先策略或者最大收益（或者最小损耗）策略，同时利用最优解属性的上下界来控制搜索的分支。</p>
+<p>基本思想是对有约束条件的最优化问题的所有可行解空间进行搜索。</p>
+<p>具体执行时，把全部可行解空间不断分割为越来越小的子集（称为分支），并为每个子集内的解的值计算一个下界或上界，每次分支后，对凡是界限超出已知可行解值的那些子集不再做进一步分支。</p>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><ul>
+<li><a href="https://feiybox.com/2019/11/23/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%BA%8C%EF%BC%89/">笔记整理——计算机网络（笔记整理三之二)</a></li>
+<li><a href="https://feiybox.com/2019/11/25/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%B8%89%EF%BC%89/">笔记整理——计算机操作系统（笔记整理三之三）</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Algo</tag>
+      </tags>
   </entry>
   <entry>
     <title>社区产品思考</title>
@@ -3589,55 +3638,6 @@
       <categories>
         <category>pro-exp</category>
       </categories>
-  </entry>
-  <entry>
-    <title>笔记整理——算法（笔记整理三之一）</title>
-    <url>/2019/11/20/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E7%AE%97%E6%B3%95%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<h3 id="穷举法"><a href="#穷举法" class="headerlink" title="穷举法"></a>穷举法</h3><h3 id="递推法"><a href="#递推法" class="headerlink" title="递推法"></a>递推法</h3><h3 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h3><p>辗转法，不断用变量的新值代替旧值的过程。</p>
-<h3 id="分治法"><a href="#分治法" class="headerlink" title="分治法"></a>分治法</h3><ul>
-<li><strong>划分</strong>。把规模为N的原问题划分为K个规模较小的子问题，并尽量使K个字问题的规模大致相等。</li>
-<li><strong>求解子问题</strong>。子问题的解法通常与原问题是相同的，可以用递归的方式求解，当子问题较小时，可以直接求解（或更快方式求解）。</li>
-<li><strong>合并</strong>。把各个子问题的解合并起来。分治算法有效性很大程度上依赖于合并的实现。</li>
-</ul>
-<h3 id="贪心法"><a href="#贪心法" class="headerlink" title="贪心法"></a>贪心法</h3><p>每一次获得局部最优解，若下一个数据与局部最优解连在一起不再时可行解，就不把该数据添加到局部解中，直到所有数据枚举完，或者不再添加为止。（需要选择度量方式）</p>
-<ul>
-<li><strong>多阶段决策</strong>：指解决问题过程可分为若干阶段，在每一个阶段都做出相应的决策，所有的决策构成序列就是问题的解决方案。</li>
-<li><strong>无后向性</strong>：指每一个阶段面临的问题都是原问题的一个子问题，并且子问题的解决只与当前阶段和以后的决策有关，与以前各阶段的决策无关。</li>
-<li><strong>最优化原理</strong>：指一个问题的最优策略有这样一个性质，即不论以前的决策如何，对于当前的子问题，其余决策一定构成最优策略。</li>
-</ul>
-<h3 id="动态规划法"><a href="#动态规划法" class="headerlink" title="动态规划法"></a>动态规划法</h3><p>求解的问题必须满足：</p>
-<ol>
-<li>问题的状态必须满足最优化原理</li>
-<li>问题中的状态必须满足无后向性（下一个状态只与当前状态有关，与当前状态之前的状态无关）</li>
-</ol>
-<ul>
-<li><strong>划分阶段</strong>：按照问题的时间或空间特征，把问题分为若干阶段。在阶段划分时，注意划分后的阶段一定要是有序或者时可排序的，否则问题就无法求解。</li>
-<li><strong>确定状态和状态变量</strong>：将问题发展到各个阶段时所处的客观情况用户不同的状态表示出来。当然状态的选择要满足无后效性。</li>
-<li><strong>确定决策并写出状态转移方程</strong>：因为决策和状态转移有着天然的联系，状态转移就是根据上一阶段的状态和决策来导出本阶段的状态。做法时根据相邻两阶段各状态之间的关系来确定决策。</li>
-<li><strong>寻找边界条件</strong>：给定状态转移方程时一个递推式，需要一个递推的终止条件或边界条件。</li>
-</ul>
-<h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><p>若当前位置探测到一条通路则继续向前，若在当前位置探测不到一条通路则回溯至前一位置继续探测尚未探测的方向，直到找到一条通路或探测出无通路存在为止。</p>
-<ul>
-<li>定义一个解空间，它包含问题的解</li>
-<li>利用适于搜索的方法组织解空间</li>
-<li>利用深度优先法搜索解空间</li>
-<li>利用限界函数避免移动到不可能产生解的子空间</li>
-</ul>
-<p>问题的解空间通常时在搜索问题的解的过程中动态产生的。适用于解一些组合数较大的问题。</p>
-<h3 id="分支限界法"><a href="#分支限界法" class="headerlink" title="分支限界法"></a>分支限界法</h3><p>一般采用广度优先策略或者最大收益（或者最小损耗）策略，同时利用最优解属性的上下界来控制搜索的分支。</p>
-<p>基本思想是对有约束条件的最优化问题的所有可行解空间进行搜索。</p>
-<p>具体执行时，把全部可行解空间不断分割为越来越小的子集（称为分支），并为每个子集内的解的值计算一个下界或上界，每次分支后，对凡是界限超出已知可行解值的那些子集不再做进一步分支。</p>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><ul>
-<li><a href="https://feiybox.com/2019/11/23/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%BA%8C%EF%BC%89/">笔记整理——计算机网络（笔记整理三之二)</a></li>
-<li><a href="https://feiybox.com/2019/11/25/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%B8%89%EF%BC%89/">笔记整理——计算机操作系统（笔记整理三之三）</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Algo</tag>
-      </tags>
   </entry>
   <entry>
     <title>笔记整理——计算机操作系统（笔记整理三之三）</title>
@@ -4079,6 +4079,29 @@
       </tags>
   </entry>
   <entry>
+    <title>解决SXSSF使用时“Attempting to write a row[?] in the range [0,?]that is already written to disk.”异常</title>
+    <url>/2018/09/22/%E8%A7%A3%E5%86%B3SXSSF%E4%BD%BF%E7%94%A8%E6%97%B6%E2%80%9CAttempting-to-write-a-row-in-the-range-0-that-is-already-written-to-disk-%E2%80%9D%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<p>在开发中，使用SXSSFWorkbook构建导出excel时，可能会遇到“Attempting to write a row[?] in the range [0,?]that is already written to disk.”的报错情况，如下图所示。</p>
+<p><img src="/2018/09/22/%E8%A7%A3%E5%86%B3SXSSF%E4%BD%BF%E7%94%A8%E6%97%B6%E2%80%9CAttempting-to-write-a-row-in-the-range-0-that-is-already-written-to-disk-%E2%80%9D%E5%BC%82%E5%B8%B8/bug.jpeg" alt="bug"></p>
+<p>对于这种情况下，需要我们详细分析，首先时这个错误时从哪儿抛出的，通过源码分析，查看到在SXSSFSheet的createRow函数中找到这样一个抛出异常的位置。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> (rownum &lt;= <span class="keyword">this</span>._writer.getLastFlushedRow()) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Attempting to write a row[&quot;</span> + rownum + <span class="string">&quot;] &quot;</span> + <span class="string">&quot;in the range [0,&quot;</span> + <span class="keyword">this</span>._writer.getLastFlushedRow() + <span class="string">&quot;] that is already written to disk.&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>._sh.getPhysicalNumberOfRows() &gt; <span class="number">0</span> &amp;&amp; rownum &lt;= <span class="keyword">this</span>._sh.getLastRowNum()) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Attempting to write a row[&quot;</span> + rownum + <span class="string">&quot;] &quot;</span> + <span class="string">&quot;in the range [0,&quot;</span> + <span class="keyword">this</span>._sh.getLastRowNum() + <span class="string">&quot;] that is already written to disk.&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>分析这段异常的原因，当前要创建的行小于等于最近已经创建的行时，就会抛出异常。因此这个要求是，<em><strong>我们不能在已经创建行的位置再创建行</strong></em>。</p>
+<p>究其原因，是在于SXSSFWorkbook的本身实现方式，其本身实现方式在于，不断的将一定行数的表格写入临时文件，最终将所有的临时文件合并起来，这种方式中保证了内存的占用数理想，并且导出的效率也比较理想。</p>
+<p>在这种实现中，如果一个行已经写入临时文件了，就不能再修改了，因此在源代码中直接限制了重复创建并写同一栏，并在此抛出异常。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>1、使用HSSFWorkbook、XSSFWorkbook替代SXSSFWorkbook。这种方式中要么是在HSSFWorkbook中仅支持xls，并且导出的数量有限，并且导出文件效率也较低，内存占用较大；虽然在XSSFWorkbook中，导出效率提高了，使用了xlsx格式，导出数量限制也大大放宽，但是内存占用问题依然没有得到解决。</p>
+<p>2、避免在已经创建的行上重新创建行，使用getRow代替重复创建的情况。</p>
+<p><strong>注</strong>：多数情况下，这种情况的出现，都是因为程序行数计数标志出现了重复、计数错误等情况导致的。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>poi</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决word章节标题段前间距不显示问题</title>
     <url>/2018/03/07/%E8%A7%A3%E5%86%B3word%E7%AB%A0%E8%8A%82%E6%A0%87%E9%A2%98%E6%AE%B5%E5%89%8D%E9%97%B4%E8%B7%9D%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p><img src="/2018/03/07/%E8%A7%A3%E5%86%B3word%E7%AB%A0%E8%8A%82%E6%A0%87%E9%A2%98%E6%AE%B5%E5%89%8D%E9%97%B4%E8%B7%9D%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/%E9%97%AE%E9%A2%98%E6%89%80%E5%9C%A8.png" alt="问题所在"></p>
@@ -4132,29 +4155,6 @@
       <categories>
         <category>other</category>
       </categories>
-  </entry>
-  <entry>
-    <title>解决SXSSF使用时“Attempting to write a row[?] in the range [0,?]that is already written to disk.”异常</title>
-    <url>/2018/09/22/%E8%A7%A3%E5%86%B3SXSSF%E4%BD%BF%E7%94%A8%E6%97%B6%E2%80%9CAttempting-to-write-a-row-in-the-range-0-that-is-already-written-to-disk-%E2%80%9D%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<p>在开发中，使用SXSSFWorkbook构建导出excel时，可能会遇到“Attempting to write a row[?] in the range [0,?]that is already written to disk.”的报错情况，如下图所示。</p>
-<p><img src="/2018/09/22/%E8%A7%A3%E5%86%B3SXSSF%E4%BD%BF%E7%94%A8%E6%97%B6%E2%80%9CAttempting-to-write-a-row-in-the-range-0-that-is-already-written-to-disk-%E2%80%9D%E5%BC%82%E5%B8%B8/bug.jpeg" alt="bug"></p>
-<p>对于这种情况下，需要我们详细分析，首先时这个错误时从哪儿抛出的，通过源码分析，查看到在SXSSFSheet的createRow函数中找到这样一个抛出异常的位置。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> (rownum &lt;= <span class="keyword">this</span>._writer.getLastFlushedRow()) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Attempting to write a row[&quot;</span> + rownum + <span class="string">&quot;] &quot;</span> + <span class="string">&quot;in the range [0,&quot;</span> + <span class="keyword">this</span>._writer.getLastFlushedRow() + <span class="string">&quot;] that is already written to disk.&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>._sh.getPhysicalNumberOfRows() &gt; <span class="number">0</span> &amp;&amp; rownum &lt;= <span class="keyword">this</span>._sh.getLastRowNum()) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Attempting to write a row[&quot;</span> + rownum + <span class="string">&quot;] &quot;</span> + <span class="string">&quot;in the range [0,&quot;</span> + <span class="keyword">this</span>._sh.getLastRowNum() + <span class="string">&quot;] that is already written to disk.&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-
-<p>分析这段异常的原因，当前要创建的行小于等于最近已经创建的行时，就会抛出异常。因此这个要求是，<em><strong>我们不能在已经创建行的位置再创建行</strong></em>。</p>
-<p>究其原因，是在于SXSSFWorkbook的本身实现方式，其本身实现方式在于，不断的将一定行数的表格写入临时文件，最终将所有的临时文件合并起来，这种方式中保证了内存的占用数理想，并且导出的效率也比较理想。</p>
-<p>在这种实现中，如果一个行已经写入临时文件了，就不能再修改了，因此在源代码中直接限制了重复创建并写同一栏，并在此抛出异常。</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>1、使用HSSFWorkbook、XSSFWorkbook替代SXSSFWorkbook。这种方式中要么是在HSSFWorkbook中仅支持xls，并且导出的数量有限，并且导出文件效率也较低，内存占用较大；虽然在XSSFWorkbook中，导出效率提高了，使用了xlsx格式，导出数量限制也大大放宽，但是内存占用问题依然没有得到解决。</p>
-<p>2、避免在已经创建的行上重新创建行，使用getRow代替重复创建的情况。</p>
-<p><strong>注</strong>：多数情况下，这种情况的出现，都是因为程序行数计数标志出现了重复、计数错误等情况导致的。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>poi</tag>
-      </tags>
   </entry>
   <entry>
     <title>设计模式归纳</title>
