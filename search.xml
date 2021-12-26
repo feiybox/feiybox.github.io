@@ -78,7 +78,7 @@
 <p>简书，终究还是我选择自我陶醉或者自我表达的地方。从相遇到现在，我在简书写了三万四千多文字，写了有四十篇随笔或技术。我没有那种文学上的表达能力，只是专注的写下自己的想法。没有感动别人，但终究还是感动了自我。</p>
 <p>17年里，我开始找工作，我最终找到一份比较满意的工作，选择去一个优秀的环境里变得优秀起来，最终自我选择了北漂，开启了北漂一族的生活。我未曾出过远门，而现在却独自北上，从校园到社会，对我来说，“我有什么不能够承受，或者不管什么，都得承受着。”，这是我17年后的最好的总结。</p>
 <p>我来了北京，我开始发现，是因为一个人，所以恋上一座城。而我对于每一座城都不再去追求。倘若我能够在北京好着，而没有我留恋的地方所去，则留下来。对我来说哪儿都是一座城，都是在生活里摸滚打爬。</p>
-<p><img src="/17%E6%9B%B2%E7%BB%88%EF%BC%8C18%E4%BC%8A%E5%A7%8B/17%E5%B9%B4%E7%9A%84%E5%8C%97%E4%BA%AC.jpg" alt="17年的北京"></p>
+<p><img src="/2017/12/30/17%E6%9B%B2%E7%BB%88%EF%BC%8C18%E4%BC%8A%E5%A7%8B/17%E5%B9%B4%E7%9A%84%E5%8C%97%E4%BA%AC.jpg" alt="17年的北京"></p>
 <p>17年，也是我从16年的迷茫里里走出来的一年，这一年里，我决定了我毕业后工作的道路，我开始认真学习，我基本保持着至少一个月一本技术书籍的进度学习，认真总结学习。我开始准备构建自己的个人网站，开始学会自己安排进度。</p>
 <p>回顾这17年，我留下的一切，我开始看开感情，随风般任其跟随我心去做，“尽人事而听天命”，虽未尽人事，但也听天由命。我追求哲学里不同的认识，我开始注重经历，感受经历里的每一个风景。</p>
 <p>18年是我毕业的一年，这一年我或者是真正走上社会。这一年里，我有许多想做。</p>
@@ -567,7 +567,7 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.16.18<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>每次开始项目开发时，最好将配置java导入包优化以及去掉无用包开启，可以让IDEA优化我们导入的包。</p>
-<p><img src="/Mac%E4%B8%8BJava%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/1.png" alt="Preferences -&gt; Editor -&gt; General -&gt; Auto Import 设置"></p>
+<p><img src="/2018/01/17/Mac%E4%B8%8BJava%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/1.png" alt="Preferences -&gt; Editor -&gt; General -&gt; Auto Import 设置"></p>
 <ul>
 <li><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3></li>
 </ul>
@@ -1247,7 +1247,7 @@
 <p>可以通过设置成<code>allkeys-lru</code>策略把Redis变为纯缓存服务器使用。</p>
 <p>每次Redis执行命令时，如果设置了<code>maxmemory</code>参数，都会尝试进行内存回收操作（不一定执行），如果使用内存大于上限值，则会根据一定当前策略进行回收。</p>
 <h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><p>redisObject对象结构如下：</p>
-<p><img src="/Redis%E6%80%BB%E7%BB%93/redisObject%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.jpg" alt="redisObject内部结构"></p>
+<p><img src="/2019/06/03/Redis%E6%80%BB%E7%BB%93/redisObject%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.jpg" alt="redisObject内部结构"></p>
 <blockquote>
 <p>缩减key和value的长度，value可以通过压缩降低内存占用。（当频繁压缩解压时，需要考虑压缩和解压的开销成本）</p>
 </blockquote>
