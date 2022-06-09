@@ -4651,4 +4651,44 @@
         <category>other</category>
       </categories>
   </entry>
+  <entry>
+    <title>为什么我不推荐使用@Data注解</title>
+    <url>/2022/06/09/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8-Data%E6%B3%A8%E8%A7%A3/</url>
+    <content><![CDATA[<p>网上有言论，“推荐Lombok”，“不推荐使用Lombok”。虽然在此不针对这个做争论，也需要表示一下，我是推荐使用Lombok的，但不是无条件使用的，希望的是在尽可能完全了解，与减少影响范围的情况下去使用。比如，并不需要因为需要某个A功能，而引入了B功能。这样是我不推荐的。</p>
+<p>首先，我们先了解一下Lombok出生的本意是什么？</p>
+<blockquote>
+<p>Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java.</p>
+</blockquote>
+<p>Lombok主要目的就是简化Java代码，可以让我们的Java代码看起来更加简洁。减少重复类似的代码出现的占比，更加精炼。让我们自己回归到代码最关注的核心里。</p>
+<p>回到主题，为什么我不推荐使用@Data注解？</p>
+<p>首先，先表述一下，我并不是抵制@Data这个注解，并没有什么和它“不死不活”。在需要的情况下，还是应该使用的。</p>
+<p>首先，既然不推荐使用@Data，那么@Data是什么，实现了什么样的能力？</p>
+<blockquote>
+<p><strong>@Data = @Getter, @Setter, @ToString, @EqualsAndHashCode and @RequiredArgsConstructor</strong></p>
+</blockquote>
+<p>可以看出@Data实现了4个能力，属性的get方法、set方法，对象的toString方法，以及必须参数构造函数。</p>
+<p>正如@Data实现了这4个方法，才是我不推荐使用@Data注解的原因。首先，很多同学在做开发的时候，因为嫌弃@Getter、@Setter是两个注解，而@Data刚好是一个注解，实现了这两个能力。因此经常被用来当作@Getter与@Setter的替代品使用。</p>
+<p>但是这儿会引入两个问题：</p>
+<ol>
+<li>实现了equals，hashCode</li>
+<li>实现了了一个必须参数构造函数</li>
+</ol>
+<p>此处实现的equals与hashCode方法，对于有父类的对象来说，默认是不会调用父类的equals方法的。因此会导致不相同的对象，在代码中表现出相同来。</p>
+<p>同样的，如果默认实现了必须参数构造函数，那么此类就没有默认的无参构造函数，如果需要，则需要再加@NoArgsConstructor注解来实现无参构造函数。但是，@Data带入的必须参数构造函数，对于很多同学来说，是无用的，相当于用了一个无用的函数干扰了默认逻辑的认知。</p>
+<p>本质是什么？</p>
+<blockquote>
+<ul>
+<li><strong>不要引入不会使用的方法的最小引入原则；</strong></li>
+<li><strong>使得代码简洁的目的是，让代码的可阅读性增强。</strong></li>
+</ul>
+</blockquote>
+<p>@Data在大多数时候都是降低代码可阅读性的简洁，如果仅仅想实现get与set方法，直接引入@Getter与@Setter即可。其他的几个实现，在大多数情况下都是不需要的。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Lombok</tag>
+      </tags>
+  </entry>
 </search>
