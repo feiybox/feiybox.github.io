@@ -4726,7 +4726,7 @@
 <li>在每个节点内增加一个字段high key，在查询时如果目标值超过该节点的high key，就需要循着link pointer继续往后继节点查找</li>
 </ul>
 <p>BLink树为了解决的是为了并发控制，读操作会判断子节点的右兄弟节点的最小值是否大于它正在查找的目标键值，如果不是说明目标键值对在右兄弟节点或者更右边的节点，指针就会往右走，直到找到某个右兄弟节点的最小值大于目标键值。因此可以保证在节点分裂时，依然可以进行读操作。这种思想其实在Redis的map以及ConcurrentHashMap扩容时，有类似的思想。</p>
-<p>![B-Link Tree](B-Link Tree.png)</p>
+<p><img src="/2022/10/29/B-%E6%A0%91-%E4%B8%8E-LSM%E6%A0%91/B-Link_Tree.png" alt="B-Link Tree"></p>
 <p>参考：</p>
 <ul>
 <li><a href="https://www.csd.uoc.gr/~hy460/pdf/p650-lehman.pdf">https://www.csd.uoc.gr/~hy460/pdf/p650-lehman.pdf</a></li>
