@@ -72,6 +72,40 @@
       </categories>
   </entry>
   <entry>
+    <title>2022：还没🐑的我找到了继续前进的方向</title>
+    <url>/2022/12/31/2022%EF%BC%9A%E8%BF%98%E6%B2%A1%F0%9F%90%91%E7%9A%84%E6%88%91%E6%89%BE%E5%88%B0%E4%BA%86%E7%BB%A7%E7%BB%AD%E5%89%8D%E8%BF%9B%E7%9A%84%E6%96%B9%E5%90%91/</url>
+    <content><![CDATA[<p>新冠3年，结束了。2022年也顺利翻过去了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>2022年目标：</p>
+<blockquote>
+<ol>
+<li>好好对女朋友</li>
+<li>书4本（完成学习CS:APP）</li>
+<li>Leetcode刷题12（保持思维活跃）</li>
+<li>学习存储知识</li>
+</ol>
+</blockquote>
+<p>22年总结统计：</p>
+<p><img src="/2022/12/31/2022%EF%BC%9A%E8%BF%98%E6%B2%A1%F0%9F%90%91%E7%9A%84%E6%88%91%E6%89%BE%E5%88%B0%E4%BA%86%E7%BB%A7%E7%BB%AD%E5%89%8D%E8%BF%9B%E7%9A%84%E6%96%B9%E5%90%91/2022.png" alt="2022"></p>
+<p>今年，粗略读完了5本书。更文10篇：博客更新了4篇，公众号更新了1篇，公司内ATA更新了5篇。在学习上，今年开始尝试专注了JAVA基础，在工作上将JVM调优付诸于实践，对于JVM的理解相比较值钱的纸面有了更加深入的理解；同样，对Netty也有了更多的了解；在存储方面，学习了LSM树，以及与B+树的对比，终于，在会议上，我能听懂了。工作上在阿里工作的第二年。</p>
+<p>我发现在JAVA方向的基础确实挺薄弱的，因为我开始阅读一些源代码，开始阅读公司内的项目Schedulerx 1.0的代码，了解了一些Netty的用法，通信方式等。同样的，通过阅读ATA，扩展了自己对各种技术的了解，补充了自己的技术横向扩展。在ATA上总结在对老项目的问题解决过程中遇到的各种问题，并通过这种方式加深自己的思考。</p>
+<p>另外，我发现自己在总结上，有很大的缺陷。开始学习一张图总结，会做PPT也是很重要的事情，多尝试总结，并多看看别人的总结，提升自己的总结能力。</p>
+<h3 id="启程"><a href="#启程" class="headerlink" title="启程"></a>启程</h3><p>23年目标：</p>
+<blockquote>
+<ol>
+<li>好好对女朋友</li>
+<li>新冠结束，有机会多回家晃悠晃悠</li>
+<li>书3本（偏向JAVA以前的书重看，重新学习总结）</li>
+<li>看开源项目源码学习（部分可以动手写代码验证），加强JAVA代码能力</li>
+<li>保持技术阅读（以ATA为主，尝试阅读论文（基本没有阅读过多少论文，需要多读训练））</li>
+</ol>
+</blockquote>
+<p><strong>还没🐑的我找到了继续前进的方向</strong>：更多的学习JAVA基础，并通过实践的方式进行对基础进行学习。同样地开始读更多的开源项目源码，以夯实自己的JAVA代码能力，学习更多的实践方式。另外，在JAVA领域之外，要学习更多的存储知识，更多的汲取在存储行业遇到的各种问题，并学习解决办法等，他山之石可以攻玉，学习问题的一些通用性解决办法，或者其他解法。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Aiden：我第一个React项目发布啦</title>
     <url>/2021/10/06/Aiden%EF%BC%9A%E6%88%91%E7%AC%AC%E4%B8%80%E4%B8%AAReact%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83%E5%95%A6/</url>
     <content><![CDATA[<blockquote>
@@ -991,59 +1025,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SCC算法初解</title>
-    <url>/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/</url>
-    <content><![CDATA[<p>在算法学习之路上漂泊，遇见了图，而分无向与有向。在本文中主要讲解关于有向图中的求极大连通分量的算法，主要是Kasaraju算法、Tarjan算法以及Gabow算法。</p>
-<p>三种算法都是基于深度优先搜索算法（DFS）而实现的，实际上后两种算法是对于Kasaraju算法的改进，减少了一次深度优先搜索（DFS），因此在性能上相比较而言要好一些。</p>
-<h3 id="初识强连通分量"><a href="#初识强连通分量" class="headerlink" title="初识强连通分量"></a>初识强连通分量</h3><p>首先，连通分量是无向图G的一个极大连通子图称为G的一个连通分量（或连通分支）。连通图只有一个连通分量，即其自身；非连通的无向图有多个连通分量。</p>
-<p>强连通图指每一个顶点皆可以经由该图上的边抵达其他的每一个点的有向图。意即对于此图上每一个点对(Va,Vb)，皆存在路径Va→Vb以及Vb→Va。强连通分量则是指一张有向图G的极大强连通子图G’。如果将每一个强连通分量缩成一个点，则原图G将会变成一张有向无环图。一张图被称为有向无环图当且仅当此图不具有点集合数量大于一的强连通分量，因为有向环即是一个强连通分量，而且任何的强连通分量皆具有至少一个有向环。（摘自维基百科）</p>
-<p>对于无向图，求连通分量的问题就等价于求是否连通的问题，使用深度优先、广度优先搜索的算法的到的树都能求出最大连通分量。</p>
-<h3 id="Kasaraju算法"><a href="#Kasaraju算法" class="headerlink" title="Kasaraju算法"></a>Kasaraju算法</h3><p>Kasaraju算法在我第一次接触时，感觉确实有点难理解，虽然现在也还是有点难理解。本文中不会去证明算法，只是讲解算法的一些实现等。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KosarajuSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    List&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    KosarajuSCC(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.adj = <span class="keyword">new</span> ArrayList[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.adj[i] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adj[v].add(w);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正向遍历，以后根序压栈，保证根先出栈</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fillorder</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited, Stack&lt;Integer&gt; s)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer i : <span class="keyword">this</span>.adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//reverse 得到反向图</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KosarajuSCC <span class="title">getTranspose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        KosarajuSCC gv = <span class="keyword">new</span> KosarajuSCC(<span class="keyword">this</span>.n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer j : <span class="keyword">this</span>.adj[i]) &#123;</span><br><span class="line">                gv.adj[j].add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> gv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//DFS打印连通分支</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFSUtil</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        System.out.print(v + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer i : adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                DFSUtil(i, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按照Kosaraju算法的步骤执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printSCCs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="keyword">this</span>.n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//逆后序压栈</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//得到反向图</span></span><br><span class="line">        KosarajuSCC gr = <span class="keyword">this</span>.getTranspose();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//依据反向图算可达性</span></span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = s.pop();</span><br><span class="line">            <span class="keyword">if</span> (visited[v] == <span class="keyword">false</span>) &#123;</span><br><span class="line">                gr.DFSUtil(v, visited);</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>先理解一下Karasaju算法的思路。</p>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Kasaraju%E7%AE%97%E6%B3%95.png" alt="Kasaraju算法"></p>
-<ul>
-<li>对图G求其逆后序，即在深度优先遍历（DFS）中在递归调用之后压入栈中；</li>
-<li>对G进行转置，在代码中即得到反图；</li>
-<li>按照第一步中得到的栈的出栈的顶点顺序，对于G<sup>R</sup>图进行DFS可以得到若干搜索树。每棵搜索树都代表一个强连通分量。</li>
-</ul>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/%E7%A4%BA%E4%BE%8B%E5%9B%BEG.png" alt="示例图G"></p>
-<p>如上图示例的有向图，先求逆后序排序，得到<code>&#123;7, 8, 6, 9, 11, 10, 12, 0, 5, 4, 2, 3, 1&#125;</code>，然后按照这个图的转置图G<sup>R</sup>进行DFS，最终可以得到极大强连通分量5个：<code>&#123;7, 8&#125;, &#123;6&#125;, &#123;9, 11, 10, 12&#125;, &#123;0, 5, 4, 2, 3&#125;, &#123;1&#125;</code>。</p>
-<p>在Karasaju算法中使用了两次DFS，第一次是得到节点的逆后序排序（有的算法书将逆后序排序合并在拓扑排序里面）；第二次是对于转置图DFS得到最终的强连通分量。我们当然想要对于算法进行优化，减少DFS的次数也是一种极好的优化方式，想想如果一次DFS就可以得出强连通分量岂不是很好。</p>
-<h3 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h3><p>Tarjan算法是对于Kasaraju算法的改进。其基本代码实现思维如下：</p>
-<ul>
-<li>遍历一个点，指定唯一时间戳<code>DFN[i]</code>；指定改点向前追溯可追溯到最老时间戳<code>LOW[i]</code>；</li>
-<li>枚举当前点的所有边，若<code>DFN[j]=0</code>表明未被搜索过（这儿0、-1等都是可以的，只要是自我约定好的，正常不使用的就可以，如下面算法中使用的<code>NO_VISIT</code>），递归搜索；</li>
-<li>当<code>DFN[i]</code>不为0，则j被搜索过，这时判断是否在我们存储新建的栈中，且j的时间戳<code>DFN[j]</code>小于当前时间戳<code>DFN[i]</code>，可判定成环，将<code>LOW[i]</code>设定为<code>DFN[j]</code>；</li>
-<li>若这个点<code>LOW[i]</code>和<code>DFN[i]</code>相等，则这个点是目前强连通分量的元素中在栈中的最早的节点；</li>
-<li>出栈，将这个强连通分量全部弹出，保存。</li>
-</ul>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Tarjan%E7%AE%97%E6%B3%95.png" alt="Tarjan算法"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TarjanSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] inStack;<span class="comment">//标记节点是否在栈内</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dfn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] low;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TarjanSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.inStack = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfNode];</span><br><span class="line">        <span class="keyword">this</span>.stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        dfn = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        low = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(dfn, NO_VISIT);<span class="comment">//将dfn所有元素都置为0，代表i还有没被访问过。</span></span><br><span class="line">        Arrays.fill(low, NO_VISIT);</span><br><span class="line">        result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取强连通分量</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;ArrayList&lt;Integer&gt;&gt; tarjanResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dfn[i] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//算法核心</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> current)</span> </span>&#123;</span><br><span class="line">        dfn[current] = low[current] = time++;</span><br><span class="line">        inStack[current] = <span class="keyword">true</span>;</span><br><span class="line">        stack.push(current);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(current).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(current).get(i);</span><br><span class="line">            <span class="keyword">if</span> (dfn[next] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(next);</span><br><span class="line">                low[current] = Math.min(low[current], low[next]);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inStack[next]) &#123;</span><br><span class="line">                low[current] = Math.min(low[current], dfn[next]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (low[current] == dfn[current]) &#123;</span><br><span class="line">            ArrayList&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (current != j) &#123;</span><br><span class="line">                j = stack.pop();</span><br><span class="line">                inStack[j] = <span class="keyword">false</span>;</span><br><span class="line">                temp.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是在算法中的时间戳这个标记，并不是代表真正的时间戳，而是对于每个节点不同的一种标记，在本文算法中都是用一个递增数组来表示，即访问每个节点时，将该时间戳变量自增赋值给该节点的时间戳<code>DFN[i]</code>。</p>
-<h3 id="Gabow算法"><a href="#Gabow算法" class="headerlink" title="Gabow算法"></a>Gabow算法</h3><p>Gabow算法在基础上与Tarjan算法相似，都是利用一次DFS算法实现。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GabowSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; path;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; root;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] order;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] part; <span class="comment">// 连通变量的标号；</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> partNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GabowSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.path = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        order = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        part = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(order, NO_VISIT);</span><br><span class="line">        Arrays.fill(part, NO_VISIT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] gabowResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (order[i] == NO_VISIT) &#123;</span><br><span class="line">                gabow(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> part;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gabow</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        order[v] = ++time;</span><br><span class="line">        path.push(v);</span><br><span class="line">        root.push(v);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(v).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(v).get(i);</span><br><span class="line">            <span class="keyword">if</span> (order[next] == NO_VISIT) &#123;</span><br><span class="line">                gabow(next);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (part[next] == NO_VISIT) &#123;</span><br><span class="line">                <span class="keyword">while</span> (order[root.peek()] &gt; order[next]) &#123;</span><br><span class="line">                    root.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (v == root.peek()) &#123;</span><br><span class="line">            root.pop();</span><br><span class="line">            partNum++;</span><br><span class="line">            <span class="keyword">int</span> top;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                top = path.peek();</span><br><span class="line">                part[top] = partNum;</span><br><span class="line">                path.pop();</span><br><span class="line">            &#125; <span class="keyword">while</span> (top != v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其算法基本思路是：</p>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Gabow%E7%AE%97%E6%B3%95.png" alt="Gabow算法"></p>
-<ul>
-<li>在所有顶点中，找一个没有被访问的节点v，如果没有则完成；</li>
-<li>记录v的访问顺序；<br>将v压入堆栈path和root；<br>如果v指向的邻接点，对应每个邻接点next：<br>1、如果没有访问过，则以next为参数，递归到第二步；<br>2、如果访问过，且没有确定它属于哪个强连通分量，弹出root栈中next之后（即之上）的所有顶点；<br>3、如果root栈中的元素等于v，那么在part中记录顶点对应的强连通分量</li>
-<li>递归返回</li>
-</ul>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文只涉及算法的实现，没有设计算法的证明等，如有想法，请分享。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Algo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis总结</title>
     <url>/2019/06/03/Redis%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>为什么我会学习Redis？</p>
@@ -1518,6 +1499,59 @@
       </tags>
   </entry>
   <entry>
+    <title>SCC算法初解</title>
+    <url>/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/</url>
+    <content><![CDATA[<p>在算法学习之路上漂泊，遇见了图，而分无向与有向。在本文中主要讲解关于有向图中的求极大连通分量的算法，主要是Kasaraju算法、Tarjan算法以及Gabow算法。</p>
+<p>三种算法都是基于深度优先搜索算法（DFS）而实现的，实际上后两种算法是对于Kasaraju算法的改进，减少了一次深度优先搜索（DFS），因此在性能上相比较而言要好一些。</p>
+<h3 id="初识强连通分量"><a href="#初识强连通分量" class="headerlink" title="初识强连通分量"></a>初识强连通分量</h3><p>首先，连通分量是无向图G的一个极大连通子图称为G的一个连通分量（或连通分支）。连通图只有一个连通分量，即其自身；非连通的无向图有多个连通分量。</p>
+<p>强连通图指每一个顶点皆可以经由该图上的边抵达其他的每一个点的有向图。意即对于此图上每一个点对(Va,Vb)，皆存在路径Va→Vb以及Vb→Va。强连通分量则是指一张有向图G的极大强连通子图G’。如果将每一个强连通分量缩成一个点，则原图G将会变成一张有向无环图。一张图被称为有向无环图当且仅当此图不具有点集合数量大于一的强连通分量，因为有向环即是一个强连通分量，而且任何的强连通分量皆具有至少一个有向环。（摘自维基百科）</p>
+<p>对于无向图，求连通分量的问题就等价于求是否连通的问题，使用深度优先、广度优先搜索的算法的到的树都能求出最大连通分量。</p>
+<h3 id="Kasaraju算法"><a href="#Kasaraju算法" class="headerlink" title="Kasaraju算法"></a>Kasaraju算法</h3><p>Kasaraju算法在我第一次接触时，感觉确实有点难理解，虽然现在也还是有点难理解。本文中不会去证明算法，只是讲解算法的一些实现等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KosarajuSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    List&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    KosarajuSCC(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.adj = <span class="keyword">new</span> ArrayList[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.adj[i] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adj[v].add(w);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正向遍历，以后根序压栈，保证根先出栈</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fillorder</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited, Stack&lt;Integer&gt; s)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer i : <span class="keyword">this</span>.adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//reverse 得到反向图</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KosarajuSCC <span class="title">getTranspose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        KosarajuSCC gv = <span class="keyword">new</span> KosarajuSCC(<span class="keyword">this</span>.n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer j : <span class="keyword">this</span>.adj[i]) &#123;</span><br><span class="line">                gv.adj[j].add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> gv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//DFS打印连通分支</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFSUtil</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        System.out.print(v + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer i : adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                DFSUtil(i, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按照Kosaraju算法的步骤执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printSCCs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="keyword">this</span>.n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//逆后序压栈</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//得到反向图</span></span><br><span class="line">        KosarajuSCC gr = <span class="keyword">this</span>.getTranspose();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//依据反向图算可达性</span></span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = s.pop();</span><br><span class="line">            <span class="keyword">if</span> (visited[v] == <span class="keyword">false</span>) &#123;</span><br><span class="line">                gr.DFSUtil(v, visited);</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先理解一下Karasaju算法的思路。</p>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Kasaraju%E7%AE%97%E6%B3%95.png" alt="Kasaraju算法"></p>
+<ul>
+<li>对图G求其逆后序，即在深度优先遍历（DFS）中在递归调用之后压入栈中；</li>
+<li>对G进行转置，在代码中即得到反图；</li>
+<li>按照第一步中得到的栈的出栈的顶点顺序，对于G<sup>R</sup>图进行DFS可以得到若干搜索树。每棵搜索树都代表一个强连通分量。</li>
+</ul>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/%E7%A4%BA%E4%BE%8B%E5%9B%BEG.png" alt="示例图G"></p>
+<p>如上图示例的有向图，先求逆后序排序，得到<code>&#123;7, 8, 6, 9, 11, 10, 12, 0, 5, 4, 2, 3, 1&#125;</code>，然后按照这个图的转置图G<sup>R</sup>进行DFS，最终可以得到极大强连通分量5个：<code>&#123;7, 8&#125;, &#123;6&#125;, &#123;9, 11, 10, 12&#125;, &#123;0, 5, 4, 2, 3&#125;, &#123;1&#125;</code>。</p>
+<p>在Karasaju算法中使用了两次DFS，第一次是得到节点的逆后序排序（有的算法书将逆后序排序合并在拓扑排序里面）；第二次是对于转置图DFS得到最终的强连通分量。我们当然想要对于算法进行优化，减少DFS的次数也是一种极好的优化方式，想想如果一次DFS就可以得出强连通分量岂不是很好。</p>
+<h3 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h3><p>Tarjan算法是对于Kasaraju算法的改进。其基本代码实现思维如下：</p>
+<ul>
+<li>遍历一个点，指定唯一时间戳<code>DFN[i]</code>；指定改点向前追溯可追溯到最老时间戳<code>LOW[i]</code>；</li>
+<li>枚举当前点的所有边，若<code>DFN[j]=0</code>表明未被搜索过（这儿0、-1等都是可以的，只要是自我约定好的，正常不使用的就可以，如下面算法中使用的<code>NO_VISIT</code>），递归搜索；</li>
+<li>当<code>DFN[i]</code>不为0，则j被搜索过，这时判断是否在我们存储新建的栈中，且j的时间戳<code>DFN[j]</code>小于当前时间戳<code>DFN[i]</code>，可判定成环，将<code>LOW[i]</code>设定为<code>DFN[j]</code>；</li>
+<li>若这个点<code>LOW[i]</code>和<code>DFN[i]</code>相等，则这个点是目前强连通分量的元素中在栈中的最早的节点；</li>
+<li>出栈，将这个强连通分量全部弹出，保存。</li>
+</ul>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Tarjan%E7%AE%97%E6%B3%95.png" alt="Tarjan算法"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TarjanSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] inStack;<span class="comment">//标记节点是否在栈内</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dfn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] low;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TarjanSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.inStack = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfNode];</span><br><span class="line">        <span class="keyword">this</span>.stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        dfn = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        low = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(dfn, NO_VISIT);<span class="comment">//将dfn所有元素都置为0，代表i还有没被访问过。</span></span><br><span class="line">        Arrays.fill(low, NO_VISIT);</span><br><span class="line">        result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取强连通分量</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;ArrayList&lt;Integer&gt;&gt; tarjanResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dfn[i] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//算法核心</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> current)</span> </span>&#123;</span><br><span class="line">        dfn[current] = low[current] = time++;</span><br><span class="line">        inStack[current] = <span class="keyword">true</span>;</span><br><span class="line">        stack.push(current);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(current).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(current).get(i);</span><br><span class="line">            <span class="keyword">if</span> (dfn[next] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(next);</span><br><span class="line">                low[current] = Math.min(low[current], low[next]);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inStack[next]) &#123;</span><br><span class="line">                low[current] = Math.min(low[current], dfn[next]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (low[current] == dfn[current]) &#123;</span><br><span class="line">            ArrayList&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (current != j) &#123;</span><br><span class="line">                j = stack.pop();</span><br><span class="line">                inStack[j] = <span class="keyword">false</span>;</span><br><span class="line">                temp.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是在算法中的时间戳这个标记，并不是代表真正的时间戳，而是对于每个节点不同的一种标记，在本文算法中都是用一个递增数组来表示，即访问每个节点时，将该时间戳变量自增赋值给该节点的时间戳<code>DFN[i]</code>。</p>
+<h3 id="Gabow算法"><a href="#Gabow算法" class="headerlink" title="Gabow算法"></a>Gabow算法</h3><p>Gabow算法在基础上与Tarjan算法相似，都是利用一次DFS算法实现。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GabowSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; path;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; root;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] order;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] part; <span class="comment">// 连通变量的标号；</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> partNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GabowSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.path = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        order = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        part = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(order, NO_VISIT);</span><br><span class="line">        Arrays.fill(part, NO_VISIT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] gabowResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (order[i] == NO_VISIT) &#123;</span><br><span class="line">                gabow(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> part;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gabow</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        order[v] = ++time;</span><br><span class="line">        path.push(v);</span><br><span class="line">        root.push(v);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(v).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(v).get(i);</span><br><span class="line">            <span class="keyword">if</span> (order[next] == NO_VISIT) &#123;</span><br><span class="line">                gabow(next);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (part[next] == NO_VISIT) &#123;</span><br><span class="line">                <span class="keyword">while</span> (order[root.peek()] &gt; order[next]) &#123;</span><br><span class="line">                    root.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (v == root.peek()) &#123;</span><br><span class="line">            root.pop();</span><br><span class="line">            partNum++;</span><br><span class="line">            <span class="keyword">int</span> top;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                top = path.peek();</span><br><span class="line">                part[top] = partNum;</span><br><span class="line">                path.pop();</span><br><span class="line">            &#125; <span class="keyword">while</span> (top != v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其算法基本思路是：</p>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Gabow%E7%AE%97%E6%B3%95.png" alt="Gabow算法"></p>
+<ul>
+<li>在所有顶点中，找一个没有被访问的节点v，如果没有则完成；</li>
+<li>记录v的访问顺序；<br>将v压入堆栈path和root；<br>如果v指向的邻接点，对应每个邻接点next：<br>1、如果没有访问过，则以next为参数，递归到第二步；<br>2、如果访问过，且没有确定它属于哪个强连通分量，弹出root栈中next之后（即之上）的所有顶点；<br>3、如果root栈中的元素等于v，那么在part中记录顶点对应的强连通分量</li>
+<li>递归返回</li>
+</ul>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文只涉及算法的实现，没有设计算法的证明等，如有想法，请分享。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Algo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringBoot解决返回体content-type非json</title>
     <url>/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/</url>
     <content><![CDATA[<p>最佳解决方案为自定义消息转换器。</p>
@@ -1640,100 +1674,6 @@
       <categories>
         <category>other</category>
       </categories>
-  </entry>
-  <entry>
-    <title>【笔记】读《王慧文清华产品课》</title>
-    <url>/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/</url>
-    <content><![CDATA[<p><img src="/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE.png"></p>
-<p>一个领域里一个产品的成功对应着无数的产品的失败，比例大约在1:30。</p>
-<p>产品经理是CEO的学前班，不管是否是专业出身，都要有做创业产品经理的心态和思维。</p>
-<h3 id="战略"><a href="#战略" class="headerlink" title="战略"></a>战略</h3><p><strong>战略是指不同时空中ROI最高的Strategy。</strong>空间有多个含义，不同的地区是空间，不同的业务也是空间。</p>
-<h4 id="市场体量"><a href="#市场体量" class="headerlink" title="市场体量"></a>市场体量</h4><p>投入的合理性取决于对市场体量的判断，需要判断两点：市场足够大、时机合适。</p>
-<h4 id="规模效应"><a href="#规模效应" class="headerlink" title="规模效应"></a>规模效应</h4><p>交易额/客户使用量足够大之后所产生的客户体验优势或成本优势，具体是成本优势还是客户体验优势取决于具体的生意模式。不同的生意具有不同的规模效应。</p>
-<p>企业发展的过程中，越早抓住那些有规模效应的要素，越会因为规模效应起作用（成本低或用户体验好）。所以规模效应是决定企业发展速度成败的高权重要素。</p>
-<p>1、规模效应曲线</p>
-<ul>
-<li>指数形：网络效应</li>
-<li>线性形：规模性越强，则价值越高</li>
-<li>对数形：规模上升，到一个水平后规模效应的增长变缓了，常常有一些负作用，常常有一些负作用出现。一般具有“双边网络具有同边负效应”。</li>
-</ul>
-<p>2、规模效应的范围</p>
-<p>全球型/全国型/城市型/蜂窝型</p>
-<p>规模效应的曲线形状和起作用的范围决定了很多生意的市场格局。</p>
-<p>3、规模效应曲线的参数</p>
-<p>比如斜率的大小。</p>
-<p>4、要素的规模应用</p>
-<p>业务选定下，哪些是有规模效应的，哪些是没有的，哪些要素是反规模效应的，而这些要素里你的经营取舍，商业模式设计，管理取舍就非常重要了。（管理是反规模效应的）</p>
-<h4 id="马太效应"><a href="#马太效应" class="headerlink" title="马太效应"></a>马太效应</h4><blockquote>
-<p>凡有的，还要加倍给他叫他多余；没有的，连他所有的也要夺过来。</p>
-</blockquote>
-<p>快速做大（做出名）——利用马太效应。</p>
-<h4 id="市场集中度"><a href="#市场集中度" class="headerlink" title="市场集中度"></a>市场集中度</h4><p>市场中排名前几名对市场的占有率。</p>
-<h4 id="产业链"><a href="#产业链" class="headerlink" title="产业链"></a>产业链</h4><p>每个产业链都有链主，链主才是这个行业里生存最好的角色，也是产业变革中更有主权的一方。在一个产业里面生存最好的是处于最上游接近核心供应资源和最下游接近消费者的企业。总的来说：对产业链的控制。</p>
-<p>波特五力模型：综合起来影响着产业的吸引力以及现有企业的竞争战争策略。</p>
-<ul>
-<li>同行业内现有竞争者的竞争能力</li>
-<li>潜在竞争者进入能力</li>
-<li>替代品的替代能力</li>
-<li>供应商的讨价还价能力</li>
-<li>购买者的议价能力</li>
-</ul>
-<h4 id="先发与后发"><a href="#先发与后发" class="headerlink" title="先发与后发"></a>先发与后发</h4><ol>
-<li>先发优势</li>
-<li>后发优势</li>
-</ol>
-<p>不需要说服其他人；知道这个事情一定能实现了；后发者通常是比较常规的商业思维模式，而创新者通常思维是很独特的，但也带来了认知盲区。</p>
-<p>创新者和后发者的根本差别是创新者通常是有思维盲区，而后者思维盲区会小些。</p>
-<h4 id="存量与增量"><a href="#存量与增量" class="headerlink" title="存量与增量"></a>存量与增量</h4><p>任何一个时间点要知道我们在做增量还是存量的市场。存量市场的发展实在是太难了。对组织的要求也很高，所以还是在增量市场去发展。</p>
-<p>衡量增量存量的一个标准就是渗透率。</p>
-<h4 id="高频低频"><a href="#高频低频" class="headerlink" title="高频低频"></a>高频低频</h4><p>高频打低频APP就具备优势。</p>
-<h4 id="入场时机"><a href="#入场时机" class="headerlink" title="入场时机"></a>入场时机</h4><p>天时大于地利，地利大于人和。</p>
-<p>“如果你相信一件事早晚会发生，就每三年试一次”。只要你没有倒闭，就是早入场比晚入场好，但怎么扛住别倒闭这件事对大公司和小公司都很难。</p>
-<h4 id="麦克波特三战略"><a href="#麦克波特三战略" class="headerlink" title="麦克波特三战略"></a>麦克波特三战略</h4><p>成本领先，差异化，聚焦。（只是商业中竞争的一部分）</p>
-<h4 id="标准化战略和有效战略"><a href="#标准化战略和有效战略" class="headerlink" title="标准化战略和有效战略"></a>标准化战略和有效战略</h4><h3 id="Strategy-for-Product"><a href="#Strategy-for-Product" class="headerlink" title="Strategy for Product"></a>Strategy for Product</h3><h4 id="PMF（Product-Market-Fit）"><a href="#PMF（Product-Market-Fit）" class="headerlink" title="PMF（Product Market Fit）"></a>PMF（Product Market Fit）</h4><p><strong>为市场匹配一个产品。</strong></p>
-<p>无论是要做一个多大的市场，最开始都需要找一个更锐利的切入点切入市场，这个PMF选择越犀利，早期ROI就高，成功的概率就越高。</p>
-<p>创新的扩散、STP、4P帮助找到PMF。</p>
-<h4 id="创新的扩散"><a href="#创新的扩散" class="headerlink" title="创新的扩散"></a>创新的扩散</h4><p>在产品设计和市场推广的过程中能分清扩散的阶段和匹配扩散阶段设计产品会极大的提高ROI，当资金、组织能力、研发能力都上来之后再扩展新的人群，提供更好的产品。</p>
-<p>创新的扩散里第一阶段是创新Innovator，第二阶段是Early Adopter。需要正确地找到自己的Innovator或Early Adopter。</p>
-<h4 id="STP"><a href="#STP" class="headerlink" title="STP"></a>STP</h4><p>S是市场做划分，分成很多块，T是划分完的市场里选一块作为目标市场，P是市场和产品（供给端）的认知连接。</p>
-<p>1、Segmenting</p>
-<p>选择正确的选择系来划分市场。</p>
-<p>坐标系的划分可以有非常多的维度，把哪些要素选入坐标系中，是非常根本性地影响你对这个行业和生意和产品的看法的。</p>
-<p>如果你要做一个很艰难的决策，那可能是你分析不够好，你没有选择正确的维度和颗粒度去分析，所以怎么做都很艰难。</p>
-<p>2、Targeting</p>
-<p>警惕市场空间选得太大了。</p>
-<p>3、Positioning</p>
-<p>对用户来说，你的产品是什么，用户为什么要选你的产品。T偏向需求和客户，而P更偏供给和产品。</p>
-<p>高效的营销是能快速把T和P关联起来营销。要用最低的成本去建立用户认知。</p>
-<h4 id="4P理论"><a href="#4P理论" class="headerlink" title="4P理论"></a>4P理论</h4><p><strong>价格、产品、渠道、推广</strong></p>
-<p>定价决定产品，定价影响需求，而产品是供给。</p>
-<p>用STP选完选择之后再分别应用4P。</p>
-<h4 id="互联网时代的4P理论"><a href="#互联网时代的4P理论" class="headerlink" title="互联网时代的4P理论"></a>互联网时代的4P理论</h4><p>4P理论一方面是我们做商业模式设计的框架，另一方面是定义产业链的利益分配。</p>
-<h3 id="Strategy-for-Operation"><a href="#Strategy-for-Operation" class="headerlink" title="Strategy for Operation"></a>Strategy for Operation</h3><h4 id="分层经营"><a href="#分层经营" class="headerlink" title="分层经营"></a>分层经营</h4><p>没有一个产品可以满足其所在领域的所有需求，也没有一个经营分层可以解决所有需求，不同的经营分层的差别是很大的。（分层经营的挑战在认知和组织局面都很大）</p>
-<ul>
-<li>不同产品的经营分层</li>
-<li>同一种产品的经营分层</li>
-</ul>
-<h4 id="分类经营"><a href="#分类经营" class="headerlink" title="分类经营"></a>分类经营</h4><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h4 id="需求的不可满足性"><a href="#需求的不可满足性" class="headerlink" title="需求的不可满足性"></a>需求的不可满足性</h4><p>能满足的需求远远少于不能满足的需求。</p>
-<h4 id="需求的永恒性和变化性"><a href="#需求的永恒性和变化性" class="headerlink" title="需求的永恒性和变化性"></a>需求的永恒性和变化性</h4><p>需求分为两种：1、一直很强烈，一直很广泛但实现很难；2、虽然一直存在但最近一段时间强烈度和广泛程度变大。</p>
-<p>所有伟大的需求都有两个很重要的特征：1、人们会说这是一个伟大的需求但不可能实现；2、人们会说没有这个需求。</p>
-<h4 id="如何识别需求"><a href="#如何识别需求" class="headerlink" title="如何识别需求"></a>如何识别需求</h4><p>搞清楚过去那些人为什么没有成功（尤其要研究那些挺成功的失败）。</p>
-<h4 id="微观层面的需求"><a href="#微观层面的需求" class="headerlink" title="微观层面的需求"></a>微观层面的需求</h4><p>基本没有用户会直接说出自己的需求，大部分人提的是Demand或者Requirement，极少有人提的是Needs。</p>
-<h3 id="供需关系"><a href="#供需关系" class="headerlink" title="供需关系"></a>供需关系</h3><ol>
-<li>供需关系的重要性</li>
-<li>空间要素</li>
-<li>时间要素</li>
-<li>分层</li>
-<li>非市场要素</li>
-<li>线上与线下</li>
-</ol>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
-      <tags>
-        <tag>pro</tag>
-      </tags>
   </entry>
   <entry>
     <title>【笔记】数据库系统概念</title>
@@ -2175,6 +2115,100 @@
       </tags>
   </entry>
   <entry>
+    <title>【笔记】读《王慧文清华产品课》</title>
+    <url>/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/</url>
+    <content><![CDATA[<p><img src="/2021/03/21/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E8%AF%BB%E3%80%8A%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE%E3%80%8B/%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE.png"></p>
+<p>一个领域里一个产品的成功对应着无数的产品的失败，比例大约在1:30。</p>
+<p>产品经理是CEO的学前班，不管是否是专业出身，都要有做创业产品经理的心态和思维。</p>
+<h3 id="战略"><a href="#战略" class="headerlink" title="战略"></a>战略</h3><p><strong>战略是指不同时空中ROI最高的Strategy。</strong>空间有多个含义，不同的地区是空间，不同的业务也是空间。</p>
+<h4 id="市场体量"><a href="#市场体量" class="headerlink" title="市场体量"></a>市场体量</h4><p>投入的合理性取决于对市场体量的判断，需要判断两点：市场足够大、时机合适。</p>
+<h4 id="规模效应"><a href="#规模效应" class="headerlink" title="规模效应"></a>规模效应</h4><p>交易额/客户使用量足够大之后所产生的客户体验优势或成本优势，具体是成本优势还是客户体验优势取决于具体的生意模式。不同的生意具有不同的规模效应。</p>
+<p>企业发展的过程中，越早抓住那些有规模效应的要素，越会因为规模效应起作用（成本低或用户体验好）。所以规模效应是决定企业发展速度成败的高权重要素。</p>
+<p>1、规模效应曲线</p>
+<ul>
+<li>指数形：网络效应</li>
+<li>线性形：规模性越强，则价值越高</li>
+<li>对数形：规模上升，到一个水平后规模效应的增长变缓了，常常有一些负作用，常常有一些负作用出现。一般具有“双边网络具有同边负效应”。</li>
+</ul>
+<p>2、规模效应的范围</p>
+<p>全球型/全国型/城市型/蜂窝型</p>
+<p>规模效应的曲线形状和起作用的范围决定了很多生意的市场格局。</p>
+<p>3、规模效应曲线的参数</p>
+<p>比如斜率的大小。</p>
+<p>4、要素的规模应用</p>
+<p>业务选定下，哪些是有规模效应的，哪些是没有的，哪些要素是反规模效应的，而这些要素里你的经营取舍，商业模式设计，管理取舍就非常重要了。（管理是反规模效应的）</p>
+<h4 id="马太效应"><a href="#马太效应" class="headerlink" title="马太效应"></a>马太效应</h4><blockquote>
+<p>凡有的，还要加倍给他叫他多余；没有的，连他所有的也要夺过来。</p>
+</blockquote>
+<p>快速做大（做出名）——利用马太效应。</p>
+<h4 id="市场集中度"><a href="#市场集中度" class="headerlink" title="市场集中度"></a>市场集中度</h4><p>市场中排名前几名对市场的占有率。</p>
+<h4 id="产业链"><a href="#产业链" class="headerlink" title="产业链"></a>产业链</h4><p>每个产业链都有链主，链主才是这个行业里生存最好的角色，也是产业变革中更有主权的一方。在一个产业里面生存最好的是处于最上游接近核心供应资源和最下游接近消费者的企业。总的来说：对产业链的控制。</p>
+<p>波特五力模型：综合起来影响着产业的吸引力以及现有企业的竞争战争策略。</p>
+<ul>
+<li>同行业内现有竞争者的竞争能力</li>
+<li>潜在竞争者进入能力</li>
+<li>替代品的替代能力</li>
+<li>供应商的讨价还价能力</li>
+<li>购买者的议价能力</li>
+</ul>
+<h4 id="先发与后发"><a href="#先发与后发" class="headerlink" title="先发与后发"></a>先发与后发</h4><ol>
+<li>先发优势</li>
+<li>后发优势</li>
+</ol>
+<p>不需要说服其他人；知道这个事情一定能实现了；后发者通常是比较常规的商业思维模式，而创新者通常思维是很独特的，但也带来了认知盲区。</p>
+<p>创新者和后发者的根本差别是创新者通常是有思维盲区，而后者思维盲区会小些。</p>
+<h4 id="存量与增量"><a href="#存量与增量" class="headerlink" title="存量与增量"></a>存量与增量</h4><p>任何一个时间点要知道我们在做增量还是存量的市场。存量市场的发展实在是太难了。对组织的要求也很高，所以还是在增量市场去发展。</p>
+<p>衡量增量存量的一个标准就是渗透率。</p>
+<h4 id="高频低频"><a href="#高频低频" class="headerlink" title="高频低频"></a>高频低频</h4><p>高频打低频APP就具备优势。</p>
+<h4 id="入场时机"><a href="#入场时机" class="headerlink" title="入场时机"></a>入场时机</h4><p>天时大于地利，地利大于人和。</p>
+<p>“如果你相信一件事早晚会发生，就每三年试一次”。只要你没有倒闭，就是早入场比晚入场好，但怎么扛住别倒闭这件事对大公司和小公司都很难。</p>
+<h4 id="麦克波特三战略"><a href="#麦克波特三战略" class="headerlink" title="麦克波特三战略"></a>麦克波特三战略</h4><p>成本领先，差异化，聚焦。（只是商业中竞争的一部分）</p>
+<h4 id="标准化战略和有效战略"><a href="#标准化战略和有效战略" class="headerlink" title="标准化战略和有效战略"></a>标准化战略和有效战略</h4><h3 id="Strategy-for-Product"><a href="#Strategy-for-Product" class="headerlink" title="Strategy for Product"></a>Strategy for Product</h3><h4 id="PMF（Product-Market-Fit）"><a href="#PMF（Product-Market-Fit）" class="headerlink" title="PMF（Product Market Fit）"></a>PMF（Product Market Fit）</h4><p><strong>为市场匹配一个产品。</strong></p>
+<p>无论是要做一个多大的市场，最开始都需要找一个更锐利的切入点切入市场，这个PMF选择越犀利，早期ROI就高，成功的概率就越高。</p>
+<p>创新的扩散、STP、4P帮助找到PMF。</p>
+<h4 id="创新的扩散"><a href="#创新的扩散" class="headerlink" title="创新的扩散"></a>创新的扩散</h4><p>在产品设计和市场推广的过程中能分清扩散的阶段和匹配扩散阶段设计产品会极大的提高ROI，当资金、组织能力、研发能力都上来之后再扩展新的人群，提供更好的产品。</p>
+<p>创新的扩散里第一阶段是创新Innovator，第二阶段是Early Adopter。需要正确地找到自己的Innovator或Early Adopter。</p>
+<h4 id="STP"><a href="#STP" class="headerlink" title="STP"></a>STP</h4><p>S是市场做划分，分成很多块，T是划分完的市场里选一块作为目标市场，P是市场和产品（供给端）的认知连接。</p>
+<p>1、Segmenting</p>
+<p>选择正确的选择系来划分市场。</p>
+<p>坐标系的划分可以有非常多的维度，把哪些要素选入坐标系中，是非常根本性地影响你对这个行业和生意和产品的看法的。</p>
+<p>如果你要做一个很艰难的决策，那可能是你分析不够好，你没有选择正确的维度和颗粒度去分析，所以怎么做都很艰难。</p>
+<p>2、Targeting</p>
+<p>警惕市场空间选得太大了。</p>
+<p>3、Positioning</p>
+<p>对用户来说，你的产品是什么，用户为什么要选你的产品。T偏向需求和客户，而P更偏供给和产品。</p>
+<p>高效的营销是能快速把T和P关联起来营销。要用最低的成本去建立用户认知。</p>
+<h4 id="4P理论"><a href="#4P理论" class="headerlink" title="4P理论"></a>4P理论</h4><p><strong>价格、产品、渠道、推广</strong></p>
+<p>定价决定产品，定价影响需求，而产品是供给。</p>
+<p>用STP选完选择之后再分别应用4P。</p>
+<h4 id="互联网时代的4P理论"><a href="#互联网时代的4P理论" class="headerlink" title="互联网时代的4P理论"></a>互联网时代的4P理论</h4><p>4P理论一方面是我们做商业模式设计的框架，另一方面是定义产业链的利益分配。</p>
+<h3 id="Strategy-for-Operation"><a href="#Strategy-for-Operation" class="headerlink" title="Strategy for Operation"></a>Strategy for Operation</h3><h4 id="分层经营"><a href="#分层经营" class="headerlink" title="分层经营"></a>分层经营</h4><p>没有一个产品可以满足其所在领域的所有需求，也没有一个经营分层可以解决所有需求，不同的经营分层的差别是很大的。（分层经营的挑战在认知和组织局面都很大）</p>
+<ul>
+<li>不同产品的经营分层</li>
+<li>同一种产品的经营分层</li>
+</ul>
+<h4 id="分类经营"><a href="#分类经营" class="headerlink" title="分类经营"></a>分类经营</h4><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h4 id="需求的不可满足性"><a href="#需求的不可满足性" class="headerlink" title="需求的不可满足性"></a>需求的不可满足性</h4><p>能满足的需求远远少于不能满足的需求。</p>
+<h4 id="需求的永恒性和变化性"><a href="#需求的永恒性和变化性" class="headerlink" title="需求的永恒性和变化性"></a>需求的永恒性和变化性</h4><p>需求分为两种：1、一直很强烈，一直很广泛但实现很难；2、虽然一直存在但最近一段时间强烈度和广泛程度变大。</p>
+<p>所有伟大的需求都有两个很重要的特征：1、人们会说这是一个伟大的需求但不可能实现；2、人们会说没有这个需求。</p>
+<h4 id="如何识别需求"><a href="#如何识别需求" class="headerlink" title="如何识别需求"></a>如何识别需求</h4><p>搞清楚过去那些人为什么没有成功（尤其要研究那些挺成功的失败）。</p>
+<h4 id="微观层面的需求"><a href="#微观层面的需求" class="headerlink" title="微观层面的需求"></a>微观层面的需求</h4><p>基本没有用户会直接说出自己的需求，大部分人提的是Demand或者Requirement，极少有人提的是Needs。</p>
+<h3 id="供需关系"><a href="#供需关系" class="headerlink" title="供需关系"></a>供需关系</h3><ol>
+<li>供需关系的重要性</li>
+<li>空间要素</li>
+<li>时间要素</li>
+<li>分层</li>
+<li>非市场要素</li>
+<li>线上与线下</li>
+</ol>
+]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+      <tags>
+        <tag>pro</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【笔记】领导力21法则</title>
     <url>/2020/04/20/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E9%A2%86%E5%AF%BC%E5%8A%9B21%E6%B3%95%E5%88%99/</url>
     <content><![CDATA[<h3 id="盖子法则：领导力决定一个人或一个组织的办事效率"><a href="#盖子法则：领导力决定一个人或一个组织的办事效率" class="headerlink" title="盖子法则：领导力决定一个人或一个组织的办事效率"></a>盖子法则：领导力决定一个人或一个组织的办事效率</h3><p>领导力决定了成就的高度。</p>
@@ -2561,6 +2595,22 @@
       </categories>
   </entry>
   <entry>
+    <title>以一颗艺术的心做事</title>
+    <url>/2019/07/22/%E4%BB%A5%E4%B8%80%E9%A2%97%E8%89%BA%E6%9C%AF%E7%9A%84%E5%BF%83%E5%81%9A%E4%BA%8B/</url>
+    <content><![CDATA[<p>在理发时，突然想到，对于理发师来说，理发究竟是什么？他们是一种什么样的心来理发的呢？是敷衍了事，还是精益求精，还是有一定的心情波动呢？</p>
+<p>其实可以类推，对我来说，写代码是一种生活必要的工作技能。写代码的时候都是严谨并全身心的投入的。以一种设计的方式来实现功能。</p>
+<p>以一颗艺术的心做事。其中有两个要点，第一点是做事，第二点是以艺术的心来做。</p>
+<p>做事，就是实现原本的目的。比如理发，第一目的是将头发以某种方式剪短，如果不管以什么方式来设计或者什么手法来表演，没有讲头发剪短都不能称为理发。不能实现目的的设计或艺术都是没有意义的。因此不管自己拥有多高的设计灵感，没有实现本来目的都没有意义。</p>
+<p>以艺术的心做事。为何以艺术的心做事？如何能将一件事做的很好，那便是有技巧的且仔细的去做。那么和别人来做有什么差别呢？因此需要找到自己做事情的特色，我认为艺术便是一种特色。每个人都有自己的特色，因此在事情上也会体现出自己相对应的特色。比如理发，理发师会表现出自己对于别人头型适用哪种发型做自己建议，以及哪种方式的剪法会看起来优美。正如设计代码一样，如何写出一份自己特色的代码，并且让别人看着赏心悦目。</p>
+<p>艺术的心做事，其实主要在于自己对于“事”本身的理解会有多深了。刚开始只能做到做事的这个程度，随着自己对于做事的深入了解，明白如何更加严谨的做事。再后来，就开始考虑如何设计“事”这个本身，以及按照自己的喜好来做事。总的来讲，需要加深自己对于做事的理解。</p>
+<p>我有时候会偏离自己做事的主题，在不断的考虑如何“做好”这件事，太过于注重设计与优美，而有时候忘了做事的本身。自己在考虑以一颗艺术的心做事时，需要多考虑事这个本身，自己这样做是否事真的围绕着做事这个本身来进行的。或者多问自己几遍——“你真的想做的是什么？真的想做的是这个吗？”。</p>
+<p>以一颗艺术的心做事，首先是做事，其次是以艺术的心来做。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
     <title>什么是技术？</title>
     <url>/2021/04/18/%E4%BB%80%E4%B9%88%E6%98%AF%E6%8A%80%E6%9C%AF%EF%BC%9F/</url>
     <content><![CDATA[<p>我们在工作中，每天在做的事情是：接需求、分析需求、选择与设计方案、开发、测试、上线、监控。似乎我们一直在这个循环中进行轮回，一直在忙着做事，解决问题；却不知道我们在成长什么，我们的竞争力是什么？</p>
@@ -2581,22 +2631,6 @@
 </ul>
 <p>按照我的思维细拆了一下我理解的技术方向，其中常说的技术，更偏向于方案这个分类，也就是常说的硬实力。</p>
 <p><img src="/2021/04/18/%E4%BB%80%E4%B9%88%E6%98%AF%E6%8A%80%E6%9C%AF%EF%BC%9F/%E6%8A%80%E6%9C%AF.png" alt="技术"></p>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>以一颗艺术的心做事</title>
-    <url>/2019/07/22/%E4%BB%A5%E4%B8%80%E9%A2%97%E8%89%BA%E6%9C%AF%E7%9A%84%E5%BF%83%E5%81%9A%E4%BA%8B/</url>
-    <content><![CDATA[<p>在理发时，突然想到，对于理发师来说，理发究竟是什么？他们是一种什么样的心来理发的呢？是敷衍了事，还是精益求精，还是有一定的心情波动呢？</p>
-<p>其实可以类推，对我来说，写代码是一种生活必要的工作技能。写代码的时候都是严谨并全身心的投入的。以一种设计的方式来实现功能。</p>
-<p>以一颗艺术的心做事。其中有两个要点，第一点是做事，第二点是以艺术的心来做。</p>
-<p>做事，就是实现原本的目的。比如理发，第一目的是将头发以某种方式剪短，如果不管以什么方式来设计或者什么手法来表演，没有讲头发剪短都不能称为理发。不能实现目的的设计或艺术都是没有意义的。因此不管自己拥有多高的设计灵感，没有实现本来目的都没有意义。</p>
-<p>以艺术的心做事。为何以艺术的心做事？如何能将一件事做的很好，那便是有技巧的且仔细的去做。那么和别人来做有什么差别呢？因此需要找到自己做事情的特色，我认为艺术便是一种特色。每个人都有自己的特色，因此在事情上也会体现出自己相对应的特色。比如理发，理发师会表现出自己对于别人头型适用哪种发型做自己建议，以及哪种方式的剪法会看起来优美。正如设计代码一样，如何写出一份自己特色的代码，并且让别人看着赏心悦目。</p>
-<p>艺术的心做事，其实主要在于自己对于“事”本身的理解会有多深了。刚开始只能做到做事的这个程度，随着自己对于做事的深入了解，明白如何更加严谨的做事。再后来，就开始考虑如何设计“事”这个本身，以及按照自己的喜好来做事。总的来讲，需要加深自己对于做事的理解。</p>
-<p>我有时候会偏离自己做事的主题，在不断的考虑如何“做好”这件事，太过于注重设计与优美，而有时候忘了做事的本身。自己在考虑以一颗艺术的心做事时，需要多考虑事这个本身，自己这样做是否事真的围绕着做事这个本身来进行的。或者多问自己几遍——“你真的想做的是什么？真的想做的是这个吗？”。</p>
-<p>以一颗艺术的心做事，首先是做事，其次是以艺术的心来做。</p>
 ]]></content>
       <categories>
         <category>other</category>
@@ -4011,6 +4045,108 @@
       </tags>
   </entry>
   <entry>
+    <title>笔记整理——计算机网络（笔记整理三之二）</title>
+    <url>/2019/11/23/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<p>计算机网络的功能：1、数据交换与通信；2、资源共享；3、提高系统的可靠性和可用性；4、分布式网络处理。计算机网络中可以共享的资源包括：硬件、软件、数据、通信信道。</p>
+<p>应用层、运输层、网络层、链路层、物理层</p>
+<p>应用层、表示层、会话层、运输层、网络层、链路层、物理层</p>
+<ul>
+<li>应用层：HTTP、SMTP、FTP、（DNS）协议。网络应用程序及它们的应用层协议存留的地方。</li>
+<li>运输层：在应用程序端点之间传送应用层报文（不同主机应用进程之间的逻辑通信）。TCP、UDP协议。</li>
+<li>网络层：将数据报从一台主机移动到另一台主机。分组，不可靠服务。IP协议、OSPF协议（路由选择协议：转发和路由选择）。</li>
+<li>链路层：数据帧</li>
+<li>物理层：比特流</li>
+</ul>
+<p><strong>TCP/IP协议包括：应用层、传输层、网络层、网络接口层。</strong></p>
+<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>应用层负责处理网络应用。（HTTP、FTP、SMTP）</p>
+<p>应用层协议定义了运行在不同端系统上的应用程序如何相互传递报文。报文定义为：报文类型、语法、语义、一个进程何时以如何时序发送报文，对报文的响应规则。</p>
+<p>HTTP使用TCP作为运输层协议，也是无状态协议：HTTP服务器并不保存关于客户的任何信息。并分为持续连接：HTTP默认使用带流水线的持续连接；非持续连接：必须为每一个请求的对象建立和维护一个全新的连接。</p>
+<p>FTP使用两个并行的TCP连接来传输文件，分为控制连接、数据连接（21、20端口）。一个控制连接可以对应多个数据连接，即控制连接贯穿了整个用户回话期间，但是对会话中的每一个文件传输都需要建立一个新的数据连接。</p>
+<p>DNS（域名系统）：1、一个由分层的DNS服务器实现的分布式数据库；2、一个使得主机能够查询分布式数据库的应用层协议。DNS协议运行在UDP之上，使用53端口号。</p>
+<p>DNS域名正向查询：通过域名得到IP的查询；反向查询：通过IP得到域名。迭代查询、递归查询。根DNS服务器、顶级域DNS（TLD）服务器、权威DNS服务器、本地DNS服务器。</p>
+<p>1、HTTP 2.x 相对于 HTTP 1.x 的区别：</p>
+<ul>
+<li>多路复用：允许同时通过单一的HTTP/2连接发起多重请求——响应消息。</li>
+<li>二进制分帧：改进传输性能，实现低延迟和高吞吐量。</li>
+<li>首部压缩</li>
+<li>服务端推送</li>
+</ul>
+<p>2、HTTP 1.1 相对于 HTTP 1.0 的区别：</p>
+<ul>
+<li>缓存处理：可以选择更多缓存控制策略。</li>
+<li>带宽优化和网络连接的使用</li>
+<li>错误的通知管理（新增24个错误状态响应码）</li>
+<li>Host处理</li>
+<li>长连接（keep alive）</li>
+</ul>
+<p>Cookie存在客户端，Session存在服务端。Http下cookie是明文传输的，Https下是密文传递的。子域名可以访问根域名的cookie，反之则不可。对于不同的浏览器，cookie大小由不同的限制。</p>
+<p>HTTP会话的四个过程：1、连接；2、请求；3、应答；4、关闭。</p>
+<h3 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h3><p>传输层负责端到端连接。进程通过socket的软件接口向网络发送报文和网络接收报文。（TCP、UDP、SPX）</p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>面向连接服务，可靠数据传输、拥塞控制、流量控制、自动重传请求（ARQ）协议、rdt3.0停等协议（累计确认）。</p>
+<p>建立TCP连接需要三次握手，（三次握手）建立连接 -&gt; 传输报文 -&gt; 拆除连接。断开连接需要四次握手。</p>
+<p><img src="/2019/11/23/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%BA%8C%EF%BC%89/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt="TCP三次握手"></p>
+<p><img src="/2019/11/23/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%BA%8C%EF%BC%89/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" alt="TCP四次挥手"></p>
+<p>客户端状态变化：CLOSED -&gt; SYN_SENT -&gt; ESTANBLISHED -&gt; FIN_WAIT_1 -&gt; FIN_WAIT_2（半关闭状态，有接收数据能力，但已经无法发送数据） -&gt; TIME_WAIT（等待状态，2MSL等待状态，第四次握手的保险状态） -&gt; CLOSED。</p>
+<p>服务端状态变化：CLOSED -&gt; LISTEN -&gt; SYN_RCVD -&gt; ESTABLISHED -&gt; CLOSE_WAIT -&gt; LAST_ACK -&gt; CLOSED。</p>
+<p>回退N步（GBN）、选择重传（SR）。慢启动、拥塞避免、快速恢复（AIMD：加增倍减）。</p>
+<p>带宽 X 时延 = 缓冲区大小。在一般的操作系统中TCP发送缓冲区默认值是4MB左右（有一定的自调节能力）。</p>
+<p>TCP中用16bit来表示窗口大小。滑动窗口提供TCP的可靠性，提供TCP的流控特性。（确认重传机制，重传情况下采用一种“指数退避”的方式）。（RST：表示重置连接、复位连接；RTT：连接的往返时间；RTO：重传超时时间）。1、一个连接中，有且仅有一个测量定时器被使用。也就是说如果TCP连续发出3组数据，只有一组数据会被测量。2、ACK数据报不会被测量，原因是没有ACK的ACK回应可以供结束定时器测量。</p>
+<p>TCP为了提高效率，允许重新传输的时候，只要传输包含重要数据报文就可以，而不用重传需要传输的报文。</p>
+<p>如果发送方收到接受方的窗口大小为0的TCP数据报文，发送端将会停止发送数据，等到接受方发送窗口大小不为0的数据报的到来。</p>
+<p>发送窗口上限值 = Min[接收窗口，拥塞窗口]</p>
+<p>SSL是一种对TCP的强化socket，强化是在应用层实现的。</p>
+<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><p>无连接、不可靠数据传输，没有拥塞控制机制，不提供时延保证。</p>
+<p>伪头部用于检验和差错检测功能。</p>
+<p>TCP/UDP传输段中，源端口地址和目的端口地址不能相同，相同则是LAND攻击。</p>
+<p>DNS服务器之间传输时使用TCP，而客户端与DNS服务器之间传输时使用UDP。</p>
+<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>网络层负责寻址和最短路径。（IP、IPX、APPLETALK、ICMP）</p>
+<p>路由选择算法：1、全局式路由选择算法；2、分散式路由选择算法。（LS算法：链路状态；DV算法：距离向量）</p>
+<p>自治系统内部的路由选择：路由选择信息协议（RIP协议：基于距离矢量的路由协议，一种DV算法）；开放最短路优先（OSPF：开放最短路径优化协议，一种LS算法）。自治系统间的路由选择：BGP（边界网关协议：一种DV算法）。RIP最多支持的跳数为15，即在源和目的的网间所要经过的最多路由器的数目为15，跳数为16表示不可达。</p>
+<p>ICMP：Internet控制报文协议，用于IP主机、路由器之间的传输控制消息（指网络通不通、主机是否可达、路由是否可用等网络本身的消息）；让其他所有需要知道自己处于哪个多播组的主机和路由器知道自己的状态。是TCP/IP协议族的一个子协议，用在网络层。PING使用的是ICMP协议。Traceroute：用于侦测主机到目的主机之间所经由路由情况（windows下是tracert)。</p>
+<p>查询报文：Ping查询、子网掩码查询、时间戳查询；差错报文：产生在数据传送发送错误时。</p>
+<p>IP地址：网络号 + 主机号。IP地址匹配遵循最长前缀匹配原则。IP数据报分片可能发生在信号源/路由器，而重组必须在目的主机。</p>
+<p>一般操作系统默认是没有路由功能的（需要自己配置）。</p>
+<p>ICMP的IP重定向报文：重定向报文只能由路由器发出；重定向报文为主机所用，而不是为路由器所用。</p>
+<p>集线器共享带宽，交换机独占带宽。路由器的每一个接口是一个广播域；交换机的每个接口是一个冲突域，交换机在未配置策略前是所有接口是一个广播域。集线器的所有接口是一个冲突域。</p>
+<h3 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h3><p>链路层为介入介质。提供服务：成帧、链路接入、可靠交付、差错检测与纠正（比特级）。（802.2、802.3、ATM（电路交换和分组交换的组合，53个字节，前5个为信头，完成寻址，后48为信息端）、HDLC、FRAME、RELAY、PPP）</p>
+<p>链路接入：媒体访问控制协议（MAC），规定帧在链路上传输规则。</p>
+<p>奇偶校验、二维奇偶校验（前向纠错）、循环冗余检测（CRC）。</p>
+<p>地址解析协议（ARP）：IP地址到MAC地址的转换。（RARP：逆地址解析协议）</p>
+<p>以太网中的最小帧长是根据网络检测冲突的最长时间来确定的。</p>
+<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><p>二进制传输。</p>
+<p>物理层电路交换在发送数据前要建立一条端到端的路径。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>NAT地址转换实现了对用户透明的网络内部地址分配。</p>
+<p>QoS：服务质量。是网络的一种安全机制，是用来解决网络延迟和阻塞等问题的一种技术。（正常不需要）但对关键应用和多媒体应用就十分必要。当网络过载或拥塞时，QoS能确保重要业务量不受延迟或丢弃，同时保证网络的高效运行。</p>
+<p>数据网络中经历的总时延包括：发送时延、传播时延、排队时延、处理时延。</p>
+<p>负载均衡一般由第四层或第七层实现。</p>
+<p>VPN是互联网内用软件建立的安全隧道。</p>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><ul>
+<li><a href="https://feiybox.com/2019/11/20/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E7%AE%97%E6%B3%95%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%B8%80%EF%BC%89/">笔记整理——算法（笔记整理三之一）</a></li>
+<li><a href="https://feiybox.com/2019/11/25/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%B8%89%EF%BC%89/">笔记整理——计算机操作系统（笔记整理三之三）</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>类图中的关系</title>
+    <url>/2018/06/03/%E7%B1%BB%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
+    <content><![CDATA[<p>在我们使用UML图进行设计时，会涉及类图之间的关系，一般关系为以下的五种关系，理解其中的概要能够对于后续我们的设计有一定的帮助。</p>
+<p>1、一般化关系，或者称为继承关系</p>
+<p>2、关联关系<br>关联关系中一个类知道另一个类的属性和方法。通常通过类里引用另一个类的实例变量实现。</p>
+<p>3、聚合关系<br>聚合关系与下面的合成关系都是属于关联关系的一种。在聚合关系中，主要表现的是整体与个体的关系。由于本属于关联关系，因此也是通过实例变量的方式实现。<br>聚合关系与关联关系的区别是，关联关系主要是两个类都是在同一个层次的。</p>
+<p>4、合成关系<br>合成关系是指普通聚合关系的同时，代表整体的对象负责代表部分的对象的生命周期。<br>合成关系是不能够共享的。代表部分的对象每个时刻只能与一个对象发生合成关系。</p>
+<p>5、依赖关系<br>依赖关系主要指类的局部变量、方法参数以及对静态方法的调用，是另一个类的实例对象等。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+  </entry>
+  <entry>
     <title>笔记整理——计算机操作系统（笔记整理三之三）</title>
     <url>/2019/11/25/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%B8%89%EF%BC%89/</url>
     <content><![CDATA[<p>操作系统的五大功能：处理机管理、存储器管理、设备管理、文件管理、向用户提供方便的用户接口。</p>
@@ -4151,108 +4287,6 @@
       <tags>
         <tag>computer os</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>笔记整理——计算机网络（笔记整理三之二）</title>
-    <url>/2019/11/23/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<p>计算机网络的功能：1、数据交换与通信；2、资源共享；3、提高系统的可靠性和可用性；4、分布式网络处理。计算机网络中可以共享的资源包括：硬件、软件、数据、通信信道。</p>
-<p>应用层、运输层、网络层、链路层、物理层</p>
-<p>应用层、表示层、会话层、运输层、网络层、链路层、物理层</p>
-<ul>
-<li>应用层：HTTP、SMTP、FTP、（DNS）协议。网络应用程序及它们的应用层协议存留的地方。</li>
-<li>运输层：在应用程序端点之间传送应用层报文（不同主机应用进程之间的逻辑通信）。TCP、UDP协议。</li>
-<li>网络层：将数据报从一台主机移动到另一台主机。分组，不可靠服务。IP协议、OSPF协议（路由选择协议：转发和路由选择）。</li>
-<li>链路层：数据帧</li>
-<li>物理层：比特流</li>
-</ul>
-<p><strong>TCP/IP协议包括：应用层、传输层、网络层、网络接口层。</strong></p>
-<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>应用层负责处理网络应用。（HTTP、FTP、SMTP）</p>
-<p>应用层协议定义了运行在不同端系统上的应用程序如何相互传递报文。报文定义为：报文类型、语法、语义、一个进程何时以如何时序发送报文，对报文的响应规则。</p>
-<p>HTTP使用TCP作为运输层协议，也是无状态协议：HTTP服务器并不保存关于客户的任何信息。并分为持续连接：HTTP默认使用带流水线的持续连接；非持续连接：必须为每一个请求的对象建立和维护一个全新的连接。</p>
-<p>FTP使用两个并行的TCP连接来传输文件，分为控制连接、数据连接（21、20端口）。一个控制连接可以对应多个数据连接，即控制连接贯穿了整个用户回话期间，但是对会话中的每一个文件传输都需要建立一个新的数据连接。</p>
-<p>DNS（域名系统）：1、一个由分层的DNS服务器实现的分布式数据库；2、一个使得主机能够查询分布式数据库的应用层协议。DNS协议运行在UDP之上，使用53端口号。</p>
-<p>DNS域名正向查询：通过域名得到IP的查询；反向查询：通过IP得到域名。迭代查询、递归查询。根DNS服务器、顶级域DNS（TLD）服务器、权威DNS服务器、本地DNS服务器。</p>
-<p>1、HTTP 2.x 相对于 HTTP 1.x 的区别：</p>
-<ul>
-<li>多路复用：允许同时通过单一的HTTP/2连接发起多重请求——响应消息。</li>
-<li>二进制分帧：改进传输性能，实现低延迟和高吞吐量。</li>
-<li>首部压缩</li>
-<li>服务端推送</li>
-</ul>
-<p>2、HTTP 1.1 相对于 HTTP 1.0 的区别：</p>
-<ul>
-<li>缓存处理：可以选择更多缓存控制策略。</li>
-<li>带宽优化和网络连接的使用</li>
-<li>错误的通知管理（新增24个错误状态响应码）</li>
-<li>Host处理</li>
-<li>长连接（keep alive）</li>
-</ul>
-<p>Cookie存在客户端，Session存在服务端。Http下cookie是明文传输的，Https下是密文传递的。子域名可以访问根域名的cookie，反之则不可。对于不同的浏览器，cookie大小由不同的限制。</p>
-<p>HTTP会话的四个过程：1、连接；2、请求；3、应答；4、关闭。</p>
-<h3 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h3><p>传输层负责端到端连接。进程通过socket的软件接口向网络发送报文和网络接收报文。（TCP、UDP、SPX）</p>
-<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>面向连接服务，可靠数据传输、拥塞控制、流量控制、自动重传请求（ARQ）协议、rdt3.0停等协议（累计确认）。</p>
-<p>建立TCP连接需要三次握手，（三次握手）建立连接 -&gt; 传输报文 -&gt; 拆除连接。断开连接需要四次握手。</p>
-<p><img src="/2019/11/23/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%BA%8C%EF%BC%89/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt="TCP三次握手"></p>
-<p><img src="/2019/11/23/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%BA%8C%EF%BC%89/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" alt="TCP四次挥手"></p>
-<p>客户端状态变化：CLOSED -&gt; SYN_SENT -&gt; ESTANBLISHED -&gt; FIN_WAIT_1 -&gt; FIN_WAIT_2（半关闭状态，有接收数据能力，但已经无法发送数据） -&gt; TIME_WAIT（等待状态，2MSL等待状态，第四次握手的保险状态） -&gt; CLOSED。</p>
-<p>服务端状态变化：CLOSED -&gt; LISTEN -&gt; SYN_RCVD -&gt; ESTABLISHED -&gt; CLOSE_WAIT -&gt; LAST_ACK -&gt; CLOSED。</p>
-<p>回退N步（GBN）、选择重传（SR）。慢启动、拥塞避免、快速恢复（AIMD：加增倍减）。</p>
-<p>带宽 X 时延 = 缓冲区大小。在一般的操作系统中TCP发送缓冲区默认值是4MB左右（有一定的自调节能力）。</p>
-<p>TCP中用16bit来表示窗口大小。滑动窗口提供TCP的可靠性，提供TCP的流控特性。（确认重传机制，重传情况下采用一种“指数退避”的方式）。（RST：表示重置连接、复位连接；RTT：连接的往返时间；RTO：重传超时时间）。1、一个连接中，有且仅有一个测量定时器被使用。也就是说如果TCP连续发出3组数据，只有一组数据会被测量。2、ACK数据报不会被测量，原因是没有ACK的ACK回应可以供结束定时器测量。</p>
-<p>TCP为了提高效率，允许重新传输的时候，只要传输包含重要数据报文就可以，而不用重传需要传输的报文。</p>
-<p>如果发送方收到接受方的窗口大小为0的TCP数据报文，发送端将会停止发送数据，等到接受方发送窗口大小不为0的数据报的到来。</p>
-<p>发送窗口上限值 = Min[接收窗口，拥塞窗口]</p>
-<p>SSL是一种对TCP的强化socket，强化是在应用层实现的。</p>
-<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><p>无连接、不可靠数据传输，没有拥塞控制机制，不提供时延保证。</p>
-<p>伪头部用于检验和差错检测功能。</p>
-<p>TCP/UDP传输段中，源端口地址和目的端口地址不能相同，相同则是LAND攻击。</p>
-<p>DNS服务器之间传输时使用TCP，而客户端与DNS服务器之间传输时使用UDP。</p>
-<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>网络层负责寻址和最短路径。（IP、IPX、APPLETALK、ICMP）</p>
-<p>路由选择算法：1、全局式路由选择算法；2、分散式路由选择算法。（LS算法：链路状态；DV算法：距离向量）</p>
-<p>自治系统内部的路由选择：路由选择信息协议（RIP协议：基于距离矢量的路由协议，一种DV算法）；开放最短路优先（OSPF：开放最短路径优化协议，一种LS算法）。自治系统间的路由选择：BGP（边界网关协议：一种DV算法）。RIP最多支持的跳数为15，即在源和目的的网间所要经过的最多路由器的数目为15，跳数为16表示不可达。</p>
-<p>ICMP：Internet控制报文协议，用于IP主机、路由器之间的传输控制消息（指网络通不通、主机是否可达、路由是否可用等网络本身的消息）；让其他所有需要知道自己处于哪个多播组的主机和路由器知道自己的状态。是TCP/IP协议族的一个子协议，用在网络层。PING使用的是ICMP协议。Traceroute：用于侦测主机到目的主机之间所经由路由情况（windows下是tracert)。</p>
-<p>查询报文：Ping查询、子网掩码查询、时间戳查询；差错报文：产生在数据传送发送错误时。</p>
-<p>IP地址：网络号 + 主机号。IP地址匹配遵循最长前缀匹配原则。IP数据报分片可能发生在信号源/路由器，而重组必须在目的主机。</p>
-<p>一般操作系统默认是没有路由功能的（需要自己配置）。</p>
-<p>ICMP的IP重定向报文：重定向报文只能由路由器发出；重定向报文为主机所用，而不是为路由器所用。</p>
-<p>集线器共享带宽，交换机独占带宽。路由器的每一个接口是一个广播域；交换机的每个接口是一个冲突域，交换机在未配置策略前是所有接口是一个广播域。集线器的所有接口是一个冲突域。</p>
-<h3 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h3><p>链路层为介入介质。提供服务：成帧、链路接入、可靠交付、差错检测与纠正（比特级）。（802.2、802.3、ATM（电路交换和分组交换的组合，53个字节，前5个为信头，完成寻址，后48为信息端）、HDLC、FRAME、RELAY、PPP）</p>
-<p>链路接入：媒体访问控制协议（MAC），规定帧在链路上传输规则。</p>
-<p>奇偶校验、二维奇偶校验（前向纠错）、循环冗余检测（CRC）。</p>
-<p>地址解析协议（ARP）：IP地址到MAC地址的转换。（RARP：逆地址解析协议）</p>
-<p>以太网中的最小帧长是根据网络检测冲突的最长时间来确定的。</p>
-<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><p>二进制传输。</p>
-<p>物理层电路交换在发送数据前要建立一条端到端的路径。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>NAT地址转换实现了对用户透明的网络内部地址分配。</p>
-<p>QoS：服务质量。是网络的一种安全机制，是用来解决网络延迟和阻塞等问题的一种技术。（正常不需要）但对关键应用和多媒体应用就十分必要。当网络过载或拥塞时，QoS能确保重要业务量不受延迟或丢弃，同时保证网络的高效运行。</p>
-<p>数据网络中经历的总时延包括：发送时延、传播时延、排队时延、处理时延。</p>
-<p>负载均衡一般由第四层或第七层实现。</p>
-<p>VPN是互联网内用软件建立的安全隧道。</p>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><ul>
-<li><a href="https://feiybox.com/2019/11/20/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E7%AE%97%E6%B3%95%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%B8%80%EF%BC%89/">笔记整理——算法（笔记整理三之一）</a></li>
-<li><a href="https://feiybox.com/2019/11/25/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%B8%89%EF%BC%89/">笔记整理——计算机操作系统（笔记整理三之三）</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>类图中的关系</title>
-    <url>/2018/06/03/%E7%B1%BB%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
-    <content><![CDATA[<p>在我们使用UML图进行设计时，会涉及类图之间的关系，一般关系为以下的五种关系，理解其中的概要能够对于后续我们的设计有一定的帮助。</p>
-<p>1、一般化关系，或者称为继承关系</p>
-<p>2、关联关系<br>关联关系中一个类知道另一个类的属性和方法。通常通过类里引用另一个类的实例变量实现。</p>
-<p>3、聚合关系<br>聚合关系与下面的合成关系都是属于关联关系的一种。在聚合关系中，主要表现的是整体与个体的关系。由于本属于关联关系，因此也是通过实例变量的方式实现。<br>聚合关系与关联关系的区别是，关联关系主要是两个类都是在同一个层次的。</p>
-<p>4、合成关系<br>合成关系是指普通聚合关系的同时，代表整体的对象负责代表部分的对象的生命周期。<br>合成关系是不能够共享的。代表部分的对象每个时刻只能与一个对象发生合成关系。</p>
-<p>5、依赖关系<br>依赖关系主要指类的局部变量、方法参数以及对静态方法的调用，是另一个类的实例对象等。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
   </entry>
   <entry>
     <title>[翻译]When nil Isn&#39;t Equal to nil</title>
@@ -4872,40 +4906,6 @@
 <p>还记得那个不签到点名却满座的白老师的课堂；还记得那个微积分老师红阿姨至少7种不同颜色的发卡；还记得那个永远第一排的现代信息课。</p>
 <p>还记得有许多。</p>
 <p>此去或许陌路，一上海，一厦门，两北京，最后不知道还会相聚多少？祝福你们，一路皆好。</p>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>2022：还没🐑的我找到了继续前进的方向</title>
-    <url>/2022/12/31/2022%EF%BC%9A%E8%BF%98%E6%B2%A1%F0%9F%90%91%E7%9A%84%E6%88%91%E6%89%BE%E5%88%B0%E4%BA%86%E7%BB%A7%E7%BB%AD%E5%89%8D%E8%BF%9B%E7%9A%84%E6%96%B9%E5%90%91/</url>
-    <content><![CDATA[<p>新冠3年，结束了。2022年也顺利翻过去了。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>2022年目标：</p>
-<blockquote>
-<ol>
-<li>好好对女朋友</li>
-<li>书4本（完成学习CS:APP）</li>
-<li>Leetcode刷题12（保持思维活跃）</li>
-<li>学习存储知识</li>
-</ol>
-</blockquote>
-<p>22年总结统计：</p>
-<p><img src="/2022.png" alt="2022"></p>
-<p>今年，粗略读完了5本书。更文10篇：博客更新了4篇，公众号更新了1篇，公司内ATA更新了5篇。在学习上，今年开始尝试专注了JAVA基础，在工作上将JVM调优付诸于实践，对于JVM的理解相比较值钱的纸面有了更加深入的理解；同样，对Netty也有了更多的了解；在存储方面，学习了LSM树，以及与B+树的对比，终于，在会议上，我能听懂了。工作上在阿里工作的第二年。</p>
-<p>我发现在JAVA方向的基础确实挺薄弱的，因为我开始阅读一些源代码，开始阅读公司内的项目Schedulerx 1.0的代码，了解了一些Netty的用法，通信方式等。同样的，通过阅读ATA，扩展了自己对各种技术的了解，补充了自己的技术横向扩展。在ATA上总结在对老项目的问题解决过程中遇到的各种问题，并通过这种方式加深自己的思考。</p>
-<p>另外，我发现自己在总结上，有很大的缺陷。开始学习一张图总结，会做PPT也是很重要的事情，多尝试总结，并多看看别人的总结，提升自己的总结能力。</p>
-<h3 id="启程"><a href="#启程" class="headerlink" title="启程"></a>启程</h3><p>23年目标：</p>
-<blockquote>
-<ol>
-<li>好好对女朋友</li>
-<li>新冠结束，有机会多回家晃悠晃悠</li>
-<li>书3本（偏向JAVA以前的书重看，重新学习总结）</li>
-<li>看开源项目源码学习（部分可以动手写代码验证），加强JAVA代码能力</li>
-<li>保持技术阅读（以ATA为主，尝试阅读论文（基本没有阅读过多少论文，需要多读训练））</li>
-</ol>
-</blockquote>
-<p><strong>还没🐑的我找到了继续前进的方向</strong>：更多的学习JAVA基础，并通过实践的方式进行对基础进行学习。同样地开始读更多的开源项目源码，以夯实自己的JAVA代码能力，学习更多的实践方式。另外，在JAVA领域之外，要学习更多的存储知识，更多的汲取在存储行业遇到的各种问题，并学习解决办法等，他山之石可以攻玉，学习问题的一些通用性解决办法，或者其他解法。</p>
 ]]></content>
       <categories>
         <category>other</category>
