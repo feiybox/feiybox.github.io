@@ -520,50 +520,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Golang下int、float和String之间的转换</title>
-    <url>/2019/04/05/Golang%E4%B8%8Bint%E3%80%81float%E5%92%8CString%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<ul>
-<li>int =&gt; string</li>
-</ul>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">string</span> := strconv.Itoa(<span class="keyword">int</span>)</span><br></pre></td></tr></table></figure>
-
-<p>其原理是<code>FormatInt(int64(i), 10)</code>。</p>
-<ul>
-<li>string =&gt; int</li>
-</ul>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>, err := strconv.Atoi(<span class="keyword">string</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>int64,int32,int16,int8 =&gt; string</li>
-</ul>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">string</span> := strconv.FormatInt(<span class="keyword">int64</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>string =&gt; int系列</li>
-</ul>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>, err := strconv.ParseInt(<span class="keyword">string</span>, <span class="number">10</span>, <span class="number">64</span>) <span class="comment">// 64,32,16,8分别对应int系列</span></span><br></pre></td></tr></table></figure>
-
-<p>然后将结果强转成对应的类型。</p>
-<ul>
-<li>float系列 =&gt; string</li>
-</ul>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">string</span> := strconv.FormatFloat(<span class="keyword">float64</span>,<span class="string">&#x27;E&#x27;</span>,<span class="number">-1</span>,<span class="number">64</span>)</span><br><span class="line"><span class="comment">// &#x27;b&#x27; (-ddddp±ddd，二进制指数)</span></span><br><span class="line"><span class="comment">// &#x27;e&#x27; (-d.dddde±dd，十进制指数)</span></span><br><span class="line"><span class="comment">// &#x27;E&#x27; (-d.ddddE±dd，十进制指数)</span></span><br><span class="line"><span class="comment">// &#x27;f&#x27; (-ddd.dddd，没有指数)</span></span><br><span class="line"><span class="comment">// &#x27;g&#x27; (&#x27;e&#x27;:大指数，&#x27;f&#x27;:其它情况)</span></span><br><span class="line"><span class="comment">// &#x27;G&#x27; (&#x27;E&#x27;:大指数，&#x27;f&#x27;:其它情况)</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>string =&gt; float系列</li>
-</ul>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line">float,err := strconv.ParseFloat(<span class="keyword">string</span>,<span class="number">64</span>)</span><br></pre></td></tr></table></figure>
-
-<h4 id="附"><a href="#附" class="headerlink" title="附"></a>附</h4><p>使用<code>fmt.Sprintf(&quot;%d&quot;, int)</code>来转换int成string时，相对于使用<code>strconv.FormatInt</code>，性能差了很多。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Golang</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HashMap 源码分析</title>
     <url>/2017/04/03/HashMap-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<p>HashMap是非常常用的键值对类型。本文主要讲述了HashMap的思维以及其重要或者常用的put，get，remove以及resize函数。</p>
@@ -624,6 +580,50 @@
       <tags>
         <tag>map</tag>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Golang下int、float和String之间的转换</title>
+    <url>/2019/04/05/Golang%E4%B8%8Bint%E3%80%81float%E5%92%8CString%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<ul>
+<li>int =&gt; string</li>
+</ul>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">string</span> := strconv.Itoa(<span class="keyword">int</span>)</span><br></pre></td></tr></table></figure>
+
+<p>其原理是<code>FormatInt(int64(i), 10)</code>。</p>
+<ul>
+<li>string =&gt; int</li>
+</ul>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>, err := strconv.Atoi(<span class="keyword">string</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>int64,int32,int16,int8 =&gt; string</li>
+</ul>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">string</span> := strconv.FormatInt(<span class="keyword">int64</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>string =&gt; int系列</li>
+</ul>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>, err := strconv.ParseInt(<span class="keyword">string</span>, <span class="number">10</span>, <span class="number">64</span>) <span class="comment">// 64,32,16,8分别对应int系列</span></span><br></pre></td></tr></table></figure>
+
+<p>然后将结果强转成对应的类型。</p>
+<ul>
+<li>float系列 =&gt; string</li>
+</ul>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">string</span> := strconv.FormatFloat(<span class="keyword">float64</span>,<span class="string">&#x27;E&#x27;</span>,<span class="number">-1</span>,<span class="number">64</span>)</span><br><span class="line"><span class="comment">// &#x27;b&#x27; (-ddddp±ddd，二进制指数)</span></span><br><span class="line"><span class="comment">// &#x27;e&#x27; (-d.dddde±dd，十进制指数)</span></span><br><span class="line"><span class="comment">// &#x27;E&#x27; (-d.ddddE±dd，十进制指数)</span></span><br><span class="line"><span class="comment">// &#x27;f&#x27; (-ddd.dddd，没有指数)</span></span><br><span class="line"><span class="comment">// &#x27;g&#x27; (&#x27;e&#x27;:大指数，&#x27;f&#x27;:其它情况)</span></span><br><span class="line"><span class="comment">// &#x27;G&#x27; (&#x27;E&#x27;:大指数，&#x27;f&#x27;:其它情况)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>string =&gt; float系列</li>
+</ul>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line">float,err := strconv.ParseFloat(<span class="keyword">string</span>,<span class="number">64</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="附"><a href="#附" class="headerlink" title="附"></a>附</h4><p>使用<code>fmt.Sprintf(&quot;%d&quot;, int)</code>来转换int成string时，相对于使用<code>strconv.FormatInt</code>，性能差了很多。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Golang</tag>
       </tags>
   </entry>
   <entry>
@@ -1092,6 +1092,88 @@
       </categories>
       <tags>
         <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SCC算法初解</title>
+    <url>/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/</url>
+    <content><![CDATA[<p>在算法学习之路上漂泊，遇见了图，而分无向与有向。在本文中主要讲解关于有向图中的求极大连通分量的算法，主要是Kasaraju算法、Tarjan算法以及Gabow算法。</p>
+<p>三种算法都是基于深度优先搜索算法（DFS）而实现的，实际上后两种算法是对于Kasaraju算法的改进，减少了一次深度优先搜索（DFS），因此在性能上相比较而言要好一些。</p>
+<h3 id="初识强连通分量"><a href="#初识强连通分量" class="headerlink" title="初识强连通分量"></a>初识强连通分量</h3><p>首先，连通分量是无向图G的一个极大连通子图称为G的一个连通分量（或连通分支）。连通图只有一个连通分量，即其自身；非连通的无向图有多个连通分量。</p>
+<p>强连通图指每一个顶点皆可以经由该图上的边抵达其他的每一个点的有向图。意即对于此图上每一个点对(Va,Vb)，皆存在路径Va→Vb以及Vb→Va。强连通分量则是指一张有向图G的极大强连通子图G’。如果将每一个强连通分量缩成一个点，则原图G将会变成一张有向无环图。一张图被称为有向无环图当且仅当此图不具有点集合数量大于一的强连通分量，因为有向环即是一个强连通分量，而且任何的强连通分量皆具有至少一个有向环。（摘自维基百科）</p>
+<p>对于无向图，求连通分量的问题就等价于求是否连通的问题，使用深度优先、广度优先搜索的算法的到的树都能求出最大连通分量。</p>
+<h3 id="Kasaraju算法"><a href="#Kasaraju算法" class="headerlink" title="Kasaraju算法"></a>Kasaraju算法</h3><p>Kasaraju算法在我第一次接触时，感觉确实有点难理解，虽然现在也还是有点难理解。本文中不会去证明算法，只是讲解算法的一些实现等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KosarajuSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    List&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    KosarajuSCC(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.adj = <span class="keyword">new</span> ArrayList[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.adj[i] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adj[v].add(w);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正向遍历，以后根序压栈，保证根先出栈</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fillorder</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited, Stack&lt;Integer&gt; s)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer i : <span class="keyword">this</span>.adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//reverse 得到反向图</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KosarajuSCC <span class="title">getTranspose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        KosarajuSCC gv = <span class="keyword">new</span> KosarajuSCC(<span class="keyword">this</span>.n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer j : <span class="keyword">this</span>.adj[i]) &#123;</span><br><span class="line">                gv.adj[j].add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> gv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//DFS打印连通分支</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFSUtil</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        System.out.print(v + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer i : adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                DFSUtil(i, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按照Kosaraju算法的步骤执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printSCCs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="keyword">this</span>.n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//逆后序压栈</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//得到反向图</span></span><br><span class="line">        KosarajuSCC gr = <span class="keyword">this</span>.getTranspose();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//依据反向图算可达性</span></span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = s.pop();</span><br><span class="line">            <span class="keyword">if</span> (visited[v] == <span class="keyword">false</span>) &#123;</span><br><span class="line">                gr.DFSUtil(v, visited);</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先理解一下Karasaju算法的思路。</p>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Kasaraju%E7%AE%97%E6%B3%95.png" alt="Kasaraju算法"></p>
+<ul>
+<li>对图G求其逆后序，即在深度优先遍历（DFS）中在递归调用之后压入栈中；</li>
+<li>对G进行转置，在代码中即得到反图；</li>
+<li>按照第一步中得到的栈的出栈的顶点顺序，对于G<sup>R</sup>图进行DFS可以得到若干搜索树。每棵搜索树都代表一个强连通分量。</li>
+</ul>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/%E7%A4%BA%E4%BE%8B%E5%9B%BEG.png" alt="示例图G"></p>
+<p>如上图示例的有向图，先求逆后序排序，得到<code>&#123;7, 8, 6, 9, 11, 10, 12, 0, 5, 4, 2, 3, 1&#125;</code>，然后按照这个图的转置图G<sup>R</sup>进行DFS，最终可以得到极大强连通分量5个：<code>&#123;7, 8&#125;, &#123;6&#125;, &#123;9, 11, 10, 12&#125;, &#123;0, 5, 4, 2, 3&#125;, &#123;1&#125;</code>。</p>
+<p>在Karasaju算法中使用了两次DFS，第一次是得到节点的逆后序排序（有的算法书将逆后序排序合并在拓扑排序里面）；第二次是对于转置图DFS得到最终的强连通分量。我们当然想要对于算法进行优化，减少DFS的次数也是一种极好的优化方式，想想如果一次DFS就可以得出强连通分量岂不是很好。</p>
+<h3 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h3><p>Tarjan算法是对于Kasaraju算法的改进。其基本代码实现思维如下：</p>
+<ul>
+<li>遍历一个点，指定唯一时间戳<code>DFN[i]</code>；指定改点向前追溯可追溯到最老时间戳<code>LOW[i]</code>；</li>
+<li>枚举当前点的所有边，若<code>DFN[j]=0</code>表明未被搜索过（这儿0、-1等都是可以的，只要是自我约定好的，正常不使用的就可以，如下面算法中使用的<code>NO_VISIT</code>），递归搜索；</li>
+<li>当<code>DFN[i]</code>不为0，则j被搜索过，这时判断是否在我们存储新建的栈中，且j的时间戳<code>DFN[j]</code>小于当前时间戳<code>DFN[i]</code>，可判定成环，将<code>LOW[i]</code>设定为<code>DFN[j]</code>；</li>
+<li>若这个点<code>LOW[i]</code>和<code>DFN[i]</code>相等，则这个点是目前强连通分量的元素中在栈中的最早的节点；</li>
+<li>出栈，将这个强连通分量全部弹出，保存。</li>
+</ul>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Tarjan%E7%AE%97%E6%B3%95.png" alt="Tarjan算法"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TarjanSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] inStack;<span class="comment">//标记节点是否在栈内</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dfn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] low;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TarjanSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.inStack = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfNode];</span><br><span class="line">        <span class="keyword">this</span>.stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        dfn = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        low = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(dfn, NO_VISIT);<span class="comment">//将dfn所有元素都置为0，代表i还有没被访问过。</span></span><br><span class="line">        Arrays.fill(low, NO_VISIT);</span><br><span class="line">        result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取强连通分量</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;ArrayList&lt;Integer&gt;&gt; tarjanResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dfn[i] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//算法核心</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> current)</span> </span>&#123;</span><br><span class="line">        dfn[current] = low[current] = time++;</span><br><span class="line">        inStack[current] = <span class="keyword">true</span>;</span><br><span class="line">        stack.push(current);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(current).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(current).get(i);</span><br><span class="line">            <span class="keyword">if</span> (dfn[next] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(next);</span><br><span class="line">                low[current] = Math.min(low[current], low[next]);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inStack[next]) &#123;</span><br><span class="line">                low[current] = Math.min(low[current], dfn[next]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (low[current] == dfn[current]) &#123;</span><br><span class="line">            ArrayList&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (current != j) &#123;</span><br><span class="line">                j = stack.pop();</span><br><span class="line">                inStack[j] = <span class="keyword">false</span>;</span><br><span class="line">                temp.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是在算法中的时间戳这个标记，并不是代表真正的时间戳，而是对于每个节点不同的一种标记，在本文算法中都是用一个递增数组来表示，即访问每个节点时，将该时间戳变量自增赋值给该节点的时间戳<code>DFN[i]</code>。</p>
+<h3 id="Gabow算法"><a href="#Gabow算法" class="headerlink" title="Gabow算法"></a>Gabow算法</h3><p>Gabow算法在基础上与Tarjan算法相似，都是利用一次DFS算法实现。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GabowSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; path;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; root;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] order;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] part; <span class="comment">// 连通变量的标号；</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> partNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GabowSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.path = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        order = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        part = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(order, NO_VISIT);</span><br><span class="line">        Arrays.fill(part, NO_VISIT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] gabowResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (order[i] == NO_VISIT) &#123;</span><br><span class="line">                gabow(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> part;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gabow</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        order[v] = ++time;</span><br><span class="line">        path.push(v);</span><br><span class="line">        root.push(v);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(v).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(v).get(i);</span><br><span class="line">            <span class="keyword">if</span> (order[next] == NO_VISIT) &#123;</span><br><span class="line">                gabow(next);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (part[next] == NO_VISIT) &#123;</span><br><span class="line">                <span class="keyword">while</span> (order[root.peek()] &gt; order[next]) &#123;</span><br><span class="line">                    root.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (v == root.peek()) &#123;</span><br><span class="line">            root.pop();</span><br><span class="line">            partNum++;</span><br><span class="line">            <span class="keyword">int</span> top;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                top = path.peek();</span><br><span class="line">                part[top] = partNum;</span><br><span class="line">                path.pop();</span><br><span class="line">            &#125; <span class="keyword">while</span> (top != v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其算法基本思路是：</p>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Gabow%E7%AE%97%E6%B3%95.png" alt="Gabow算法"></p>
+<ul>
+<li>在所有顶点中，找一个没有被访问的节点v，如果没有则完成；</li>
+<li>记录v的访问顺序；<br>将v压入堆栈path和root；<br>如果v指向的邻接点，对应每个邻接点next：<br>1、如果没有访问过，则以next为参数，递归到第二步；<br>2、如果访问过，且没有确定它属于哪个强连通分量，弹出root栈中next之后（即之上）的所有顶点；<br>3、如果root栈中的元素等于v，那么在part中记录顶点对应的强连通分量</li>
+<li>递归返回</li>
+</ul>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文只涉及算法的实现，没有设计算法的证明等，如有想法，请分享。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Algo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot解决返回体content-type非json</title>
+    <url>/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/</url>
+    <content><![CDATA[<p>最佳解决方案为自定义消息转换器。</p>
+<p>首先，为什么要自定义消息转换器？所见即所得，原本的消息转换器并不能满足我们目前的需求。</p>
+<p>在最近的项目中，使用了SpringBoot与FastJson构建项目，在我们返回时，使用 <code>@ResponseBody</code>的方法里，采用了fastjson里的<code>JSON.toJSONString()</code>方法返回我们需要的Json数据，而这种返回中，会有一个问题，在返回中<code>@ResponseBody</code>注解中的消息转换器会默认理解为String解析，在返回体中如下图，<code>content-type</code>为<code>text/html</code>。</p>
+<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/1.jpg"></p>
+<p>因此我们解决想让我们的返回体中<code>content-type</code>为<code>application/json</code>。</p>
+<p>针对于这个问题，有一种最暴力的解决方案，直接在<code>@RequestMapping</code>中添加<code>produces</code>属性，设置<code>produces=&quot;application/json&quot;</code>直接使得返回体设置为json格式。</p>
+<p>当然对于这种每个接口暴力解决的方案来说，对于每写一个接口都需要设置，因此增加我们写代码的重复性工作，因此需要一个一劳永逸的方式。</p>
+<p>在<code>@ResponseBody</code>里默认有消息转换器，一般json转换使用的是JackJson进行转换的，而我们在项目中配置使用fastjson，因此需要修改消息转化器。</p>
+<p>首先消息转化器中不只有json转换器，还有字符转换器等。</p>
+<p>在我们的项目中可以自定义一个配置类，标注有<code>@Configuration</code>或者在<code>@SpringBootApplication</code>的启动配置类中添加下面代码，就增加了fastjson的消息转换器注入。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * fastjson消息转换器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpMessageConverters <span class="title">httpMessageConverters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FastJsonHttpMessageConverter fastJsonHttpMessageConverter = <span class="keyword">new</span> FastJsonHttpMessageConverter();</span><br><span class="line">    <span class="comment">//添加fastJson的配置信息</span></span><br><span class="line">    FastJsonConfig fastJsonConfig = <span class="keyword">new</span> FastJsonConfig();</span><br><span class="line">    fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);</span><br><span class="line">    <span class="comment">//处理中文乱码问题</span></span><br><span class="line">    List&lt;MediaType&gt; fastMediaTypes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);</span><br><span class="line">    <span class="comment">//在convert中添加配置信息.	 </span></span><br><span class="line">    fastJsonHttpMessageConverter.setSupportedMediaTypes(fastMediaTypes);</span><br><span class="line">    fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);</span><br><span class="line">    HttpMessageConverter&lt;?&gt; converter = fastJsonHttpMessageConverter;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HttpMessageConverters(converter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然需要注意，这种配置的方式必须在<code>fastjson 1.2.44</code>版本及之后才支持。在我们使用Maven构建项目是，需要添加fastjson的依赖。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.44<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用这种配置后，可以在返回中去掉我们的json转化，并直接返回我们需要转化的实体，在消息转换器中会自动调用fastjson进行转json。</p>
+<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/%E8%A7%A3%E5%86%B3%E5%90%8E%E7%BB%93%E6%9E%9C.png" alt="解决后结果"></p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
@@ -1569,88 +1651,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SCC算法初解</title>
-    <url>/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/</url>
-    <content><![CDATA[<p>在算法学习之路上漂泊，遇见了图，而分无向与有向。在本文中主要讲解关于有向图中的求极大连通分量的算法，主要是Kasaraju算法、Tarjan算法以及Gabow算法。</p>
-<p>三种算法都是基于深度优先搜索算法（DFS）而实现的，实际上后两种算法是对于Kasaraju算法的改进，减少了一次深度优先搜索（DFS），因此在性能上相比较而言要好一些。</p>
-<h3 id="初识强连通分量"><a href="#初识强连通分量" class="headerlink" title="初识强连通分量"></a>初识强连通分量</h3><p>首先，连通分量是无向图G的一个极大连通子图称为G的一个连通分量（或连通分支）。连通图只有一个连通分量，即其自身；非连通的无向图有多个连通分量。</p>
-<p>强连通图指每一个顶点皆可以经由该图上的边抵达其他的每一个点的有向图。意即对于此图上每一个点对(Va,Vb)，皆存在路径Va→Vb以及Vb→Va。强连通分量则是指一张有向图G的极大强连通子图G’。如果将每一个强连通分量缩成一个点，则原图G将会变成一张有向无环图。一张图被称为有向无环图当且仅当此图不具有点集合数量大于一的强连通分量，因为有向环即是一个强连通分量，而且任何的强连通分量皆具有至少一个有向环。（摘自维基百科）</p>
-<p>对于无向图，求连通分量的问题就等价于求是否连通的问题，使用深度优先、广度优先搜索的算法的到的树都能求出最大连通分量。</p>
-<h3 id="Kasaraju算法"><a href="#Kasaraju算法" class="headerlink" title="Kasaraju算法"></a>Kasaraju算法</h3><p>Kasaraju算法在我第一次接触时，感觉确实有点难理解，虽然现在也还是有点难理解。本文中不会去证明算法，只是讲解算法的一些实现等。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KosarajuSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    List&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    KosarajuSCC(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.adj = <span class="keyword">new</span> ArrayList[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.adj[i] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adj[v].add(w);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正向遍历，以后根序压栈，保证根先出栈</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fillorder</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited, Stack&lt;Integer&gt; s)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer i : <span class="keyword">this</span>.adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//reverse 得到反向图</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KosarajuSCC <span class="title">getTranspose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        KosarajuSCC gv = <span class="keyword">new</span> KosarajuSCC(<span class="keyword">this</span>.n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer j : <span class="keyword">this</span>.adj[i]) &#123;</span><br><span class="line">                gv.adj[j].add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> gv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//DFS打印连通分支</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFSUtil</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        System.out.print(v + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer i : adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                DFSUtil(i, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按照Kosaraju算法的步骤执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printSCCs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="keyword">this</span>.n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//逆后序压栈</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//得到反向图</span></span><br><span class="line">        KosarajuSCC gr = <span class="keyword">this</span>.getTranspose();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//依据反向图算可达性</span></span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = s.pop();</span><br><span class="line">            <span class="keyword">if</span> (visited[v] == <span class="keyword">false</span>) &#123;</span><br><span class="line">                gr.DFSUtil(v, visited);</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>先理解一下Karasaju算法的思路。</p>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Kasaraju%E7%AE%97%E6%B3%95.png" alt="Kasaraju算法"></p>
-<ul>
-<li>对图G求其逆后序，即在深度优先遍历（DFS）中在递归调用之后压入栈中；</li>
-<li>对G进行转置，在代码中即得到反图；</li>
-<li>按照第一步中得到的栈的出栈的顶点顺序，对于G<sup>R</sup>图进行DFS可以得到若干搜索树。每棵搜索树都代表一个强连通分量。</li>
-</ul>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/%E7%A4%BA%E4%BE%8B%E5%9B%BEG.png" alt="示例图G"></p>
-<p>如上图示例的有向图，先求逆后序排序，得到<code>&#123;7, 8, 6, 9, 11, 10, 12, 0, 5, 4, 2, 3, 1&#125;</code>，然后按照这个图的转置图G<sup>R</sup>进行DFS，最终可以得到极大强连通分量5个：<code>&#123;7, 8&#125;, &#123;6&#125;, &#123;9, 11, 10, 12&#125;, &#123;0, 5, 4, 2, 3&#125;, &#123;1&#125;</code>。</p>
-<p>在Karasaju算法中使用了两次DFS，第一次是得到节点的逆后序排序（有的算法书将逆后序排序合并在拓扑排序里面）；第二次是对于转置图DFS得到最终的强连通分量。我们当然想要对于算法进行优化，减少DFS的次数也是一种极好的优化方式，想想如果一次DFS就可以得出强连通分量岂不是很好。</p>
-<h3 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h3><p>Tarjan算法是对于Kasaraju算法的改进。其基本代码实现思维如下：</p>
-<ul>
-<li>遍历一个点，指定唯一时间戳<code>DFN[i]</code>；指定改点向前追溯可追溯到最老时间戳<code>LOW[i]</code>；</li>
-<li>枚举当前点的所有边，若<code>DFN[j]=0</code>表明未被搜索过（这儿0、-1等都是可以的，只要是自我约定好的，正常不使用的就可以，如下面算法中使用的<code>NO_VISIT</code>），递归搜索；</li>
-<li>当<code>DFN[i]</code>不为0，则j被搜索过，这时判断是否在我们存储新建的栈中，且j的时间戳<code>DFN[j]</code>小于当前时间戳<code>DFN[i]</code>，可判定成环，将<code>LOW[i]</code>设定为<code>DFN[j]</code>；</li>
-<li>若这个点<code>LOW[i]</code>和<code>DFN[i]</code>相等，则这个点是目前强连通分量的元素中在栈中的最早的节点；</li>
-<li>出栈，将这个强连通分量全部弹出，保存。</li>
-</ul>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Tarjan%E7%AE%97%E6%B3%95.png" alt="Tarjan算法"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TarjanSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] inStack;<span class="comment">//标记节点是否在栈内</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dfn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] low;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TarjanSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.inStack = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfNode];</span><br><span class="line">        <span class="keyword">this</span>.stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        dfn = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        low = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(dfn, NO_VISIT);<span class="comment">//将dfn所有元素都置为0，代表i还有没被访问过。</span></span><br><span class="line">        Arrays.fill(low, NO_VISIT);</span><br><span class="line">        result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取强连通分量</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;ArrayList&lt;Integer&gt;&gt; tarjanResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dfn[i] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//算法核心</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> current)</span> </span>&#123;</span><br><span class="line">        dfn[current] = low[current] = time++;</span><br><span class="line">        inStack[current] = <span class="keyword">true</span>;</span><br><span class="line">        stack.push(current);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(current).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(current).get(i);</span><br><span class="line">            <span class="keyword">if</span> (dfn[next] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(next);</span><br><span class="line">                low[current] = Math.min(low[current], low[next]);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inStack[next]) &#123;</span><br><span class="line">                low[current] = Math.min(low[current], dfn[next]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (low[current] == dfn[current]) &#123;</span><br><span class="line">            ArrayList&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (current != j) &#123;</span><br><span class="line">                j = stack.pop();</span><br><span class="line">                inStack[j] = <span class="keyword">false</span>;</span><br><span class="line">                temp.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是在算法中的时间戳这个标记，并不是代表真正的时间戳，而是对于每个节点不同的一种标记，在本文算法中都是用一个递增数组来表示，即访问每个节点时，将该时间戳变量自增赋值给该节点的时间戳<code>DFN[i]</code>。</p>
-<h3 id="Gabow算法"><a href="#Gabow算法" class="headerlink" title="Gabow算法"></a>Gabow算法</h3><p>Gabow算法在基础上与Tarjan算法相似，都是利用一次DFS算法实现。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GabowSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; path;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; root;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] order;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] part; <span class="comment">// 连通变量的标号；</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> partNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GabowSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.path = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        order = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        part = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(order, NO_VISIT);</span><br><span class="line">        Arrays.fill(part, NO_VISIT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] gabowResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (order[i] == NO_VISIT) &#123;</span><br><span class="line">                gabow(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> part;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gabow</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        order[v] = ++time;</span><br><span class="line">        path.push(v);</span><br><span class="line">        root.push(v);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(v).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(v).get(i);</span><br><span class="line">            <span class="keyword">if</span> (order[next] == NO_VISIT) &#123;</span><br><span class="line">                gabow(next);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (part[next] == NO_VISIT) &#123;</span><br><span class="line">                <span class="keyword">while</span> (order[root.peek()] &gt; order[next]) &#123;</span><br><span class="line">                    root.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (v == root.peek()) &#123;</span><br><span class="line">            root.pop();</span><br><span class="line">            partNum++;</span><br><span class="line">            <span class="keyword">int</span> top;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                top = path.peek();</span><br><span class="line">                part[top] = partNum;</span><br><span class="line">                path.pop();</span><br><span class="line">            &#125; <span class="keyword">while</span> (top != v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其算法基本思路是：</p>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Gabow%E7%AE%97%E6%B3%95.png" alt="Gabow算法"></p>
-<ul>
-<li>在所有顶点中，找一个没有被访问的节点v，如果没有则完成；</li>
-<li>记录v的访问顺序；<br>将v压入堆栈path和root；<br>如果v指向的邻接点，对应每个邻接点next：<br>1、如果没有访问过，则以next为参数，递归到第二步；<br>2、如果访问过，且没有确定它属于哪个强连通分量，弹出root栈中next之后（即之上）的所有顶点；<br>3、如果root栈中的元素等于v，那么在part中记录顶点对应的强连通分量</li>
-<li>递归返回</li>
-</ul>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文只涉及算法的实现，没有设计算法的证明等，如有想法，请分享。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Algo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot解决返回体content-type非json</title>
-    <url>/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/</url>
-    <content><![CDATA[<p>最佳解决方案为自定义消息转换器。</p>
-<p>首先，为什么要自定义消息转换器？所见即所得，原本的消息转换器并不能满足我们目前的需求。</p>
-<p>在最近的项目中，使用了SpringBoot与FastJson构建项目，在我们返回时，使用 <code>@ResponseBody</code>的方法里，采用了fastjson里的<code>JSON.toJSONString()</code>方法返回我们需要的Json数据，而这种返回中，会有一个问题，在返回中<code>@ResponseBody</code>注解中的消息转换器会默认理解为String解析，在返回体中如下图，<code>content-type</code>为<code>text/html</code>。</p>
-<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/1.jpg"></p>
-<p>因此我们解决想让我们的返回体中<code>content-type</code>为<code>application/json</code>。</p>
-<p>针对于这个问题，有一种最暴力的解决方案，直接在<code>@RequestMapping</code>中添加<code>produces</code>属性，设置<code>produces=&quot;application/json&quot;</code>直接使得返回体设置为json格式。</p>
-<p>当然对于这种每个接口暴力解决的方案来说，对于每写一个接口都需要设置，因此增加我们写代码的重复性工作，因此需要一个一劳永逸的方式。</p>
-<p>在<code>@ResponseBody</code>里默认有消息转换器，一般json转换使用的是JackJson进行转换的，而我们在项目中配置使用fastjson，因此需要修改消息转化器。</p>
-<p>首先消息转化器中不只有json转换器，还有字符转换器等。</p>
-<p>在我们的项目中可以自定义一个配置类，标注有<code>@Configuration</code>或者在<code>@SpringBootApplication</code>的启动配置类中添加下面代码，就增加了fastjson的消息转换器注入。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * fastjson消息转换器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpMessageConverters <span class="title">httpMessageConverters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FastJsonHttpMessageConverter fastJsonHttpMessageConverter = <span class="keyword">new</span> FastJsonHttpMessageConverter();</span><br><span class="line">    <span class="comment">//添加fastJson的配置信息</span></span><br><span class="line">    FastJsonConfig fastJsonConfig = <span class="keyword">new</span> FastJsonConfig();</span><br><span class="line">    fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);</span><br><span class="line">    <span class="comment">//处理中文乱码问题</span></span><br><span class="line">    List&lt;MediaType&gt; fastMediaTypes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);</span><br><span class="line">    <span class="comment">//在convert中添加配置信息.	 </span></span><br><span class="line">    fastJsonHttpMessageConverter.setSupportedMediaTypes(fastMediaTypes);</span><br><span class="line">    fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);</span><br><span class="line">    HttpMessageConverter&lt;?&gt; converter = fastJsonHttpMessageConverter;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HttpMessageConverters(converter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当然需要注意，这种配置的方式必须在<code>fastjson 1.2.44</code>版本及之后才支持。在我们使用Maven构建项目是，需要添加fastjson的依赖。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.44<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>使用这种配置后，可以在返回中去掉我们的json转化，并直接返回我们需要转化的实体，在消息转换器中会自动调用fastjson进行转json。</p>
-<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/%E8%A7%A3%E5%86%B3%E5%90%8E%E7%BB%93%E6%9E%9C.png" alt="解决后结果"></p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ThreadPoolExecutor源码分析</title>
     <url>/2018/11/18/ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<p>首先，为什么需要读这段源码呢？其实主要就一点，“知其然，知其所以然”。当理解其中的实现方式，就更加明白该如何去使用。</p>
@@ -1840,6 +1840,89 @@
       </tags>
   </entry>
   <entry>
+    <title>三年，北漂</title>
+    <url>/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/</url>
+    <content><![CDATA[<p>​就这样想想，来北京待三年多，快三年半了。准备离开，说实话，算是有点小期待吧，毕竟还是很期待离家近的。</p>
+<p>对我来说，北京是个适合拼搏的城市，但不适合生活，离家太远，又很孤单，陌生的城市里一个人躺在出租屋里沉默。北京是一个适合成长的城市，你所看到的，见过的或许都是别人不知道的，只有自己处在那个位置，才知道那儿的风景是什么样子的。</p>
+<p>刚来北京时，像没见过世面的孩子一样，期待着新世界。也确实是没见过世面的孩子，对着一切有着新的好奇。</p>
+<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_0036.JPG" alt="开始北漂"></p>
+<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>这三年，我待过两家公司，也遇到一些贵人，这些朋友在我成长与人生路上帮助了我不少。</p>
+<p>17年底去了比特大陆，在比特一年里见证了18年比特币价格下滑的一年。至今为止我也还没有看透比特币，总觉得这是资本的炒作，究竟有多少人是信仰呢？</p>
+<p>在比特遇到尉哥，在工作中给了我很多帮助，后面找工作中帮了我许多，尉哥是一个很开朗的人，总是笑呵呵的，很能感染人。</p>
+<p>也遇到阿冬等好友，有很多交流，是我生活中的导师类的角色吧，能够在我感情不顺的时候陪着我喝点小酒。</p>
+<p>在18年底从比特离职，也算感谢比特把我裁掉，在安逸的日子里待着，成长必然就慢了。后来才会来字节以及在字节经历的一切。</p>
+<p>后续来了字节幸福里团队，经常有人问我，字节也做房产么？可以确切的回答：做。幸福里就是做这个的，这是一个挺不错的团队，在我感知里，大家的目标是统一的——将房产做好，将业务做出色。（有需要内推的同学也可以继续找我）</p>
+<p>在幸福里待了两年多时间，同样也遇到挺多贵人，比如和我们一起成长的leader，算是一起成长了两年，都有着挺大的变化。</p>
+<p>在幸福里遇见庆洲，一起拼搏着支持从0到1，有庆洲在的时候，我的压力也没那么大，会聚焦到某个具体事情上，在这个期间，算是完成了我北京的第一阶段突破。感谢庆洲在这段日子里的陪伴与鼓励。</p>
+<p>从天使到中兴再到天作，搬过两次工区，经常在摆渡车上穿梭。</p>
+<p>还有很多，幸福里遇到很多人，很好的同学，都在这儿一起感谢了，感谢这两年间来的照顾。</p>
+<p>凑巧，在我写这段文字的时候，字节取消大小周了，算是刚好错过双休的字节。</p>
+<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1800.JPG" alt="Inspire Creativity Enrich Life"></p>
+<h3 id="读书"><a href="#读书" class="headerlink" title="读书"></a>读书</h3><p>18年终究是不忙碌的日子，刚来北京，不太熟悉，喜欢通过书籍去慰藉我的孤寂。在这一年我喜欢读一些名著类小说。这年里读了12本书，创建了自己的公众号“青纸”，写下自己的一些读书笔记与想法，虽然写得不是很好，但也算是自我满足着，我至少在去做，在去思考、去总结，算是对没有文采的我的自我安慰。</p>
+<p>19年，20年都开始忙碌起来。19年读了13本书，这一年还读了挺多的名著小说，后来就不读这一类了，转向技术与科学等类别了。20年只读了两本书，总结与产出也降低了。</p>
+<p>这些日子里，看过不正经的猫——《我是猫》；读过悲惨中的苦行者——《悲惨世界》；也读过从人类到上帝的《人类简史》。通过《谁动了我的奶酪》学会了改变，在《王慧文清华产品课》学习了解行业，选择行业。也恰巧知晓了“倒却鹦鹉捶碎楼”的有趣事迹。</p>
+<p>21年要继续加油了，加油多读点书。愿我们能做到“第一境”，“独上高楼，望尽天涯路”。</p>
+<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>从最开始住着回龙观，再到后来搬到中关村，再后来在牡丹园住了有两年时间。租房确实很贵（T_T）。</p>
+<p>刚来北京时很不适应，天气太干燥了，因为流鼻血而夜间醒来。冬天的阳光格外耀眼，明晃晃的，总是晃着看不清前方。尤其是风，让我对 “二月春风似剪刀” 有了额外的认识，二月的风如剪刀一般扎着脸疼。有时想想，如果自己再瘦一点，是不是就可以上天了。</p>
+<p>北京到成都的距离挺远的，高铁只有那几班，基本都是8-10小时。我第一次坐308到北京时，第二天躺了整整一天，很累，全身酸痛。后来好多了，基本没啥感觉了。</p>
+<p>三年里，足迹在北京漫山遍野。去天安门上“挥了挥手”，去故宫“登基”，去颐和园度假，去奥森锻炼，去古北水镇团建。天坛看天圆地方，香山登顶。</p>
+<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1662.jpeg" alt="天坛"></p>
+<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_0990.jpeg" alt="香山"></p>
+<p>在食宝街吃点小吃，我最喜欢的还是烤鸡爪，在西单溜达溜达，在北四环上单骑燃烧我的卡路里。</p>
+<h3 id="感情"><a href="#感情" class="headerlink" title="感情"></a>感情</h3><p>三年也挺快的，找到她，一切尽在不言中。</p>
+<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1543.jpeg" alt="三年，北漂"></p>
+<h3 id="终"><a href="#终" class="headerlink" title="终"></a>终</h3><p>北京是一个很不错的城市，适合拼搏与成长，机会也有很多。</p>
+<p>但北京和成都给我的感受始终不同，北京没有成都那种亲切感，虽然依旧很熟悉，但那种给我亲切感却着实不太一样。</p>
+<p>过些日子准备离开北京了，在此给大家道别。见字如面，一切皆好，勿念。感谢这些日子里大家的鼓励陪伴，以后有空来成都聚聚。</p>
+<p>愿好。</p>
+<p>“青山一道同云雨，明月何曾是两乡”。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>为什么我不推荐使用@Data注解</title>
+    <url>/2022/06/09/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8-Data%E6%B3%A8%E8%A7%A3/</url>
+    <content><![CDATA[<p>网上有言论，“推荐Lombok”，“不推荐使用Lombok”。虽然在此不针对这个做争论，也需要表示一下，我是推荐使用Lombok的，但不是无条件使用的，希望的是在尽可能完全了解，与减少影响范围的情况下去使用。比如，并不需要因为需要某个A功能，而引入了B功能。这样是我不推荐的。</p>
+<p>首先，我们先了解一下Lombok出生的本意是什么？</p>
+<blockquote>
+<p>Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java.</p>
+</blockquote>
+<p>Lombok主要目的就是简化Java代码，可以让我们的Java代码看起来更加简洁。减少重复类似的代码出现的占比，更加精炼。让我们自己回归到代码最关注的核心里。</p>
+<p>回到主题，为什么我不推荐使用@Data注解？</p>
+<p>首先，先表述一下，我并不是抵制@Data这个注解，并没有什么和它“不死不活”。在需要的情况下，还是应该使用的。</p>
+<p>首先，既然不推荐使用@Data，那么@Data是什么，实现了什么样的能力？</p>
+<blockquote>
+<p><strong>@Data = @Getter, @Setter, @ToString, @EqualsAndHashCode and @RequiredArgsConstructor</strong></p>
+</blockquote>
+<p>可以看出@Data实现了4个能力，属性的get方法、set方法，对象的toString方法，以及必须参数构造函数。</p>
+<p>正如@Data实现了这4个方法，才是我不推荐使用@Data注解的原因。首先，很多同学在做开发的时候，因为嫌弃@Getter、@Setter是两个注解，而@Data刚好是一个注解，实现了这两个能力。因此经常被用来当作@Getter与@Setter的替代品使用。</p>
+<p>但是这儿会引入两个问题：</p>
+<ol>
+<li>实现了equals，hashCode</li>
+<li>实现了了一个必须参数构造函数</li>
+</ol>
+<p>此处实现的equals与hashCode方法，对于有父类的对象来说，默认是不会调用父类的equals方法的。因此会导致不相同的对象，在代码中表现出相同来。</p>
+<p>同样的，如果默认实现了必须参数构造函数，那么此类就没有默认的无参构造函数，如果需要，则需要再加@NoArgsConstructor注解来实现无参构造函数。但是，@Data带入的必须参数构造函数，对于很多同学来说，是无用的，相当于用了一个无用的函数干扰了默认逻辑的认知。</p>
+<p>本质是什么？</p>
+<blockquote>
+<ul>
+<li><strong>不要引入不会使用的方法的最小引入原则；</strong></li>
+<li><strong>使得代码简洁的目的是，让代码的可阅读性增强。</strong></li>
+</ul>
+</blockquote>
+<p>@Data在大多数时候都是降低代码可阅读性的简洁，如果仅仅想实现get与set方法，直接引入@Getter与@Setter即可。其他的几个实现，在大多数情况下都是不需要的。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Lombok</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【笔记】领导力21法则</title>
     <url>/2020/04/20/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E9%A2%86%E5%AF%BC%E5%8A%9B21%E6%B3%95%E5%88%99/</url>
     <content><![CDATA[<h3 id="盖子法则：领导力决定一个人或一个组织的办事效率"><a href="#盖子法则：领导力决定一个人或一个组织的办事效率" class="headerlink" title="盖子法则：领导力决定一个人或一个组织的办事效率"></a>盖子法则：领导力决定一个人或一个组织的办事效率</h3><p>领导力决定了成就的高度。</p>
@@ -2001,47 +2084,6 @@
       </categories>
   </entry>
   <entry>
-    <title>为什么我不推荐使用@Data注解</title>
-    <url>/2022/06/09/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8-Data%E6%B3%A8%E8%A7%A3/</url>
-    <content><![CDATA[<p>网上有言论，“推荐Lombok”，“不推荐使用Lombok”。虽然在此不针对这个做争论，也需要表示一下，我是推荐使用Lombok的，但不是无条件使用的，希望的是在尽可能完全了解，与减少影响范围的情况下去使用。比如，并不需要因为需要某个A功能，而引入了B功能。这样是我不推荐的。</p>
-<p>首先，我们先了解一下Lombok出生的本意是什么？</p>
-<blockquote>
-<p>Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java.</p>
-</blockquote>
-<p>Lombok主要目的就是简化Java代码，可以让我们的Java代码看起来更加简洁。减少重复类似的代码出现的占比，更加精炼。让我们自己回归到代码最关注的核心里。</p>
-<p>回到主题，为什么我不推荐使用@Data注解？</p>
-<p>首先，先表述一下，我并不是抵制@Data这个注解，并没有什么和它“不死不活”。在需要的情况下，还是应该使用的。</p>
-<p>首先，既然不推荐使用@Data，那么@Data是什么，实现了什么样的能力？</p>
-<blockquote>
-<p><strong>@Data = @Getter, @Setter, @ToString, @EqualsAndHashCode and @RequiredArgsConstructor</strong></p>
-</blockquote>
-<p>可以看出@Data实现了4个能力，属性的get方法、set方法，对象的toString方法，以及必须参数构造函数。</p>
-<p>正如@Data实现了这4个方法，才是我不推荐使用@Data注解的原因。首先，很多同学在做开发的时候，因为嫌弃@Getter、@Setter是两个注解，而@Data刚好是一个注解，实现了这两个能力。因此经常被用来当作@Getter与@Setter的替代品使用。</p>
-<p>但是这儿会引入两个问题：</p>
-<ol>
-<li>实现了equals，hashCode</li>
-<li>实现了了一个必须参数构造函数</li>
-</ol>
-<p>此处实现的equals与hashCode方法，对于有父类的对象来说，默认是不会调用父类的equals方法的。因此会导致不相同的对象，在代码中表现出相同来。</p>
-<p>同样的，如果默认实现了必须参数构造函数，那么此类就没有默认的无参构造函数，如果需要，则需要再加@NoArgsConstructor注解来实现无参构造函数。但是，@Data带入的必须参数构造函数，对于很多同学来说，是无用的，相当于用了一个无用的函数干扰了默认逻辑的认知。</p>
-<p>本质是什么？</p>
-<blockquote>
-<ul>
-<li><strong>不要引入不会使用的方法的最小引入原则；</strong></li>
-<li><strong>使得代码简洁的目的是，让代码的可阅读性增强。</strong></li>
-</ul>
-</blockquote>
-<p>@Data在大多数时候都是降低代码可阅读性的简洁，如果仅仅想实现get与set方法，直接引入@Getter与@Setter即可。其他的几个实现，在大多数情况下都是不需要的。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Lombok</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>为什么欧洲对现代文明影响这么深--读极简欧洲史</title>
     <url>/2019/04/24/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AC%A7%E6%B4%B2%E5%AF%B9%E7%8E%B0%E4%BB%A3%E6%96%87%E6%98%8E%E5%BD%B1%E5%93%8D%E8%BF%99%E4%B9%88%E6%B7%B1-%E8%AF%BB%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2/</url>
     <content><![CDATA[<p><img src="/2019/04/24/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AC%A7%E6%B4%B2%E5%AF%B9%E7%8E%B0%E4%BB%A3%E6%96%87%E6%98%8E%E5%BD%B1%E5%93%8D%E8%BF%99%E4%B9%88%E6%B7%B1-%E8%AF%BB%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2/%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2.png" alt="极简欧洲史"></p>
@@ -2058,48 +2100,6 @@
 ]]></content>
       <categories>
         <category>read</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>三年，北漂</title>
-    <url>/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/</url>
-    <content><![CDATA[<p>​就这样想想，来北京待三年多，快三年半了。准备离开，说实话，算是有点小期待吧，毕竟还是很期待离家近的。</p>
-<p>对我来说，北京是个适合拼搏的城市，但不适合生活，离家太远，又很孤单，陌生的城市里一个人躺在出租屋里沉默。北京是一个适合成长的城市，你所看到的，见过的或许都是别人不知道的，只有自己处在那个位置，才知道那儿的风景是什么样子的。</p>
-<p>刚来北京时，像没见过世面的孩子一样，期待着新世界。也确实是没见过世面的孩子，对着一切有着新的好奇。</p>
-<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_0036.JPG" alt="开始北漂"></p>
-<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>这三年，我待过两家公司，也遇到一些贵人，这些朋友在我成长与人生路上帮助了我不少。</p>
-<p>17年底去了比特大陆，在比特一年里见证了18年比特币价格下滑的一年。至今为止我也还没有看透比特币，总觉得这是资本的炒作，究竟有多少人是信仰呢？</p>
-<p>在比特遇到尉哥，在工作中给了我很多帮助，后面找工作中帮了我许多，尉哥是一个很开朗的人，总是笑呵呵的，很能感染人。</p>
-<p>也遇到阿冬等好友，有很多交流，是我生活中的导师类的角色吧，能够在我感情不顺的时候陪着我喝点小酒。</p>
-<p>在18年底从比特离职，也算感谢比特把我裁掉，在安逸的日子里待着，成长必然就慢了。后来才会来字节以及在字节经历的一切。</p>
-<p>后续来了字节幸福里团队，经常有人问我，字节也做房产么？可以确切的回答：做。幸福里就是做这个的，这是一个挺不错的团队，在我感知里，大家的目标是统一的——将房产做好，将业务做出色。（有需要内推的同学也可以继续找我）</p>
-<p>在幸福里待了两年多时间，同样也遇到挺多贵人，比如和我们一起成长的leader，算是一起成长了两年，都有着挺大的变化。</p>
-<p>在幸福里遇见庆洲，一起拼搏着支持从0到1，有庆洲在的时候，我的压力也没那么大，会聚焦到某个具体事情上，在这个期间，算是完成了我北京的第一阶段突破。感谢庆洲在这段日子里的陪伴与鼓励。</p>
-<p>从天使到中兴再到天作，搬过两次工区，经常在摆渡车上穿梭。</p>
-<p>还有很多，幸福里遇到很多人，很好的同学，都在这儿一起感谢了，感谢这两年间来的照顾。</p>
-<p>凑巧，在我写这段文字的时候，字节取消大小周了，算是刚好错过双休的字节。</p>
-<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1800.JPG" alt="Inspire Creativity Enrich Life"></p>
-<h3 id="读书"><a href="#读书" class="headerlink" title="读书"></a>读书</h3><p>18年终究是不忙碌的日子，刚来北京，不太熟悉，喜欢通过书籍去慰藉我的孤寂。在这一年我喜欢读一些名著类小说。这年里读了12本书，创建了自己的公众号“青纸”，写下自己的一些读书笔记与想法，虽然写得不是很好，但也算是自我满足着，我至少在去做，在去思考、去总结，算是对没有文采的我的自我安慰。</p>
-<p>19年，20年都开始忙碌起来。19年读了13本书，这一年还读了挺多的名著小说，后来就不读这一类了，转向技术与科学等类别了。20年只读了两本书，总结与产出也降低了。</p>
-<p>这些日子里，看过不正经的猫——《我是猫》；读过悲惨中的苦行者——《悲惨世界》；也读过从人类到上帝的《人类简史》。通过《谁动了我的奶酪》学会了改变，在《王慧文清华产品课》学习了解行业，选择行业。也恰巧知晓了“倒却鹦鹉捶碎楼”的有趣事迹。</p>
-<p>21年要继续加油了，加油多读点书。愿我们能做到“第一境”，“独上高楼，望尽天涯路”。</p>
-<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>从最开始住着回龙观，再到后来搬到中关村，再后来在牡丹园住了有两年时间。租房确实很贵（T_T）。</p>
-<p>刚来北京时很不适应，天气太干燥了，因为流鼻血而夜间醒来。冬天的阳光格外耀眼，明晃晃的，总是晃着看不清前方。尤其是风，让我对 “二月春风似剪刀” 有了额外的认识，二月的风如剪刀一般扎着脸疼。有时想想，如果自己再瘦一点，是不是就可以上天了。</p>
-<p>北京到成都的距离挺远的，高铁只有那几班，基本都是8-10小时。我第一次坐308到北京时，第二天躺了整整一天，很累，全身酸痛。后来好多了，基本没啥感觉了。</p>
-<p>三年里，足迹在北京漫山遍野。去天安门上“挥了挥手”，去故宫“登基”，去颐和园度假，去奥森锻炼，去古北水镇团建。天坛看天圆地方，香山登顶。</p>
-<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1662.jpeg" alt="天坛"></p>
-<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_0990.jpeg" alt="香山"></p>
-<p>在食宝街吃点小吃，我最喜欢的还是烤鸡爪，在西单溜达溜达，在北四环上单骑燃烧我的卡路里。</p>
-<h3 id="感情"><a href="#感情" class="headerlink" title="感情"></a>感情</h3><p>三年也挺快的，找到她，一切尽在不言中。</p>
-<p><img src="/2021/07/11/%E4%B8%89%E5%B9%B4%EF%BC%8C%E5%8C%97%E6%BC%82/IMG_1543.jpeg" alt="三年，北漂"></p>
-<h3 id="终"><a href="#终" class="headerlink" title="终"></a>终</h3><p>北京是一个很不错的城市，适合拼搏与成长，机会也有很多。</p>
-<p>但北京和成都给我的感受始终不同，北京没有成都那种亲切感，虽然依旧很熟悉，但那种给我亲切感却着实不太一样。</p>
-<p>过些日子准备离开北京了，在此给大家道别。见字如面，一切皆好，勿念。感谢这些日子里大家的鼓励陪伴，以后有空来成都聚聚。</p>
-<p>愿好。</p>
-<p>“青山一道同云雨，明月何曾是两乡”。</p>
-]]></content>
-      <categories>
-        <category>other</category>
       </categories>
   </entry>
   <entry>
@@ -3065,59 +3065,6 @@
       </tags>
   </entry>
   <entry>
-    <title>字符串匹配算法</title>
-    <url>/2020/12/07/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>字符串匹配：本身是指在一个字符串中找到另一个字符串，可以暴力的方式按照字符来进行匹配。优化匹配的效率的方向是：减少不成功的匹配次数，比如KMP、BM等优化策略都是如此，通过某种方式，或者某种规则来加速匹配过程。</p>
-<h3 id="BF算法（暴力算法）"><a href="#BF算法（暴力算法）" class="headerlink" title="BF算法（暴力算法）"></a>BF算法（暴力算法）</h3><p>普通模式的匹配算法：两个循环嵌套进行匹配，直到匹配成功。</p>
-<p>Golang语法下可以截取字符串进行比较：</p>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Golang语法字符串截取优化</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchUseGo</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= <span class="built_in">len</span>(strArr)-<span class="built_in">len</span>(targetArr); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> target == <span class="keyword">string</span>(strArr[i:i+<span class="built_in">len</span>(targetArr)]) &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="comment">// BF算法：暴力算法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchBF</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= <span class="built_in">len</span>(strArr)-<span class="built_in">len</span>(targetArr); i++ &#123;</span><br><span class="line">		match := <span class="literal">true</span></span><br><span class="line">		<span class="keyword">if</span> target == <span class="keyword">string</span>(strArr[i:<span class="built_in">len</span>(targetArr)]) &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(targetArr); j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> strArr[i+j] != targetArr[j] &#123;</span><br><span class="line">				match = <span class="literal">false</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> match &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="RK算法（基于BF算法的改进）"><a href="#RK算法（基于BF算法的改进）" class="headerlink" title="RK算法（基于BF算法的改进）"></a>RK算法（基于BF算法的改进）</h3><p>核心思想是哈希，即在详细比较之前，先使用hash进行比较，如果不匹配则右移。如果匹配，由于hash值可能存在碰撞的情况，因此需要进行详细判断。</p>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="comment">// RK算法：使用hash匹配匹配进行优化</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchRK</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= <span class="built_in">len</span>(strArr)-<span class="built_in">len</span>(targetArr); i++ &#123;</span><br><span class="line">		<span class="comment">// 使用字符串的hash进行匹配，如果一致再进行详细匹配</span></span><br><span class="line">		<span class="keyword">if</span> md5.Sum([]<span class="keyword">byte</span>(<span class="keyword">string</span>(strArr[i:i+<span class="built_in">len</span>(targetArr)]))) != md5.Sum([]<span class="keyword">byte</span>(target)) &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		match := <span class="literal">true</span></span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(targetArr); j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> strArr[i+j] != targetArr[j] &#123;</span><br><span class="line">				match = <span class="literal">false</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> match &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><p>关键在于部分匹配表（RMT表）：字符串起始位置到当前位置的字符串，“前缀”和“后缀”的最长的共有元素长度。</p>
-<p><code>移动位数 = 已匹配的字符数 - 对应的部分匹配值</code>。</p>
-<p>部分匹配表代表：模式串中某个位置匹配失败的时候，可以直接转到某个位置开始重新开始匹配。</p>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="comment">// KMP算法：部分匹配表，在匹配失败时，可以跳过部分字符匹配</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchKMP</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构建部分匹配表（RMT表）</span></span><br><span class="line">	targetRMT := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="built_in">len</span>(targetArr))</span><br><span class="line">	k := <span class="number">-1</span></span><br><span class="line">	targetRMT[<span class="number">0</span>] = <span class="number">-1</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(targetRMT) - <span class="number">1</span>; &#123;</span><br><span class="line">		<span class="keyword">if</span> k == <span class="number">-1</span> || targetArr[i] == targetArr[k] &#123;</span><br><span class="line">			i++</span><br><span class="line">			k++</span><br><span class="line">			targetRMT[i] = k</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			k = targetRMT[k]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 匹配</span></span><br><span class="line">	i, j := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> ; i &lt; <span class="built_in">len</span>(strArr) &amp;&amp; j &lt; <span class="built_in">len</span>(targetArr); &#123;</span><br><span class="line">		<span class="keyword">if</span> j == <span class="number">-1</span> || strArr[i] == targetArr[j] &#123;</span><br><span class="line">			i++</span><br><span class="line">			j++</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			j = targetRMT[j] <span class="comment">// 当前位置的字符匹配失败，直接转移到模式串匹配表对应位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> j &gt;= <span class="built_in">len</span>(targetArr) &#123;</span><br><span class="line">		<span class="keyword">return</span> i - <span class="built_in">len</span>(targetArr)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="BM算法"><a href="#BM算法" class="headerlink" title="BM算法"></a>BM算法</h3><p>从后往前对模式串进行扫描与主串进行匹配的，使用两个启发策略。</p>
-<p><strong>坏字符算法</strong>：坏字符：字符串中的某个字符跟模式串的某个字符不匹配时，这个失配字符为坏<br>字符。</p>
-<ol>
-<li>模式串中有对应的坏字符时，让模式串最靠右的对应字符与坏字符相对。</li>
-<li>模式串中不存在坏字符，那么直接右移整个模式串长度这么大步数。</li>
-</ol>
-<p>坏字符表的定义为：对于输入字符集合中的字符C，如果C不在模式串中，则<code>C对应的值=模式串最末元素的索引值-字符C在模式串中最右出现的位置</code>，字符不在模式串中时对应的值为-1。</p>
-<p><strong>好后缀算法</strong>：</p>
-<ol>
-<li>模式串中有子串和好后嘴完全匹配，则将最靠右的那个子串移动到好后缀的位置继续进行匹配。</li>
-<li>如果不存在和好后缀完全匹配的子串，则好后缀中找到具有如下特征的最长子串，使得<code>P[m-s...m] = P[0...s]</code>。</li>
-<li>如果完全不存在和好后缀匹配的子串，则右移整个模式串。</li>
-</ol>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchBM</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	strLen := <span class="built_in">len</span>(strArr)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	targetLen := <span class="built_in">len</span>(targetArr)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构建坏字符</span></span><br><span class="line">	badArr := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">256</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">256</span>; i++ &#123;</span><br><span class="line">		badArr[i] = targetLen</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; targetLen; i++ &#123;</span><br><span class="line">		badArr[targetArr[i]] = targetLen - i - <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构建好后缀</span></span><br><span class="line">	suff := <span class="built_in">make</span>([]<span class="keyword">int</span>, targetLen)</span><br><span class="line">	suff[targetLen<span class="number">-1</span>] = targetLen</span><br><span class="line">	<span class="keyword">for</span> i := targetLen - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">		q := i</span><br><span class="line">		<span class="keyword">for</span> q &gt;= <span class="number">0</span> &amp;&amp; targetArr[q] == targetArr[targetLen<span class="number">-1</span>-i+q] &#123;</span><br><span class="line">			q = q - <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">		suff[i] = i - q</span><br><span class="line">	&#125;</span><br><span class="line">	goods := <span class="built_in">make</span>([]<span class="keyword">int</span>, targetLen)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; targetLen; i++ &#123;</span><br><span class="line">		goods[i] = targetLen</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := targetLen - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">		j := <span class="number">0</span></span><br><span class="line">		<span class="keyword">if</span> suff[i] == i+<span class="number">1</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> ; j &lt; targetLen<span class="number">-1</span>-i; j++ &#123;</span><br><span class="line">				<span class="keyword">if</span> goods[j] == targetLen &#123;</span><br><span class="line">					goods[j] = targetLen - <span class="number">1</span> - i</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; targetLen<span class="number">-1</span>; i++ &#123;</span><br><span class="line">		goods[targetLen<span class="number">-1</span>-suff[i]] = targetLen - <span class="number">1</span> - i</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 查找</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= strLen-targetLen; &#123;</span><br><span class="line">		j := targetLen - <span class="number">1</span></span><br><span class="line">		<span class="keyword">for</span> ; j &gt;= <span class="number">0</span> &amp;&amp; targetArr[j] == strArr[i+j]; j-- &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> j &lt; <span class="number">0</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		max := badArr[<span class="keyword">int</span>(strArr[i+j])] - targetLen + <span class="number">1</span> + j</span><br><span class="line">		<span class="keyword">if</span> goods[j] &gt; max &#123;</span><br><span class="line">			max = goods[j]</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		i = i + max</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Sunday算法"><a href="#Sunday算法" class="headerlink" title="Sunday算法"></a>Sunday算法</h3><p>从前往后扫描模式串的，其思路更像是对于“坏字符”策略的升华，<strong>关注的是主串中参与匹配的最末字符的下一位</strong>，将其与当前跳表判断下一步移动距离。</p>
-<p><strong>启发策略</strong>：</p>
-<ul>
-<li>当遇到不匹配的字符时，如果关注的字符没有在模式串中出现则直接跳过即<code>移动位数=子串长度+1</code>。</li>
-<li>当遇到不匹配的字符时，如果关注的字符在模式串中也存在时，其<code>移动位数=模式串长度-该字符最右出现的位置（以0开始）</code>或者**<code>移动位数=模式串中该子串最右出现的位置到尾部的距离+1</code>**。</li>
-</ul>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchSunday</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	strLen := <span class="built_in">len</span>(strArr)</span><br><span class="line">	targetLen := <span class="built_in">len</span>(targetArr)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构建跳表</span></span><br><span class="line">	jump := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">255</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">255</span>; i++ &#123;</span><br><span class="line">		jump[i] = targetLen + <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i, c := <span class="keyword">range</span> targetArr &#123;</span><br><span class="line">		jump[c] = targetLen-i</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= strLen-targetLen; &#123;</span><br><span class="line">		flag := <span class="literal">true</span></span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; targetLen; j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> targetArr[j] != strArr[i+j] &#123;</span><br><span class="line">				flag = <span class="literal">false</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> flag &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 使用当前匹配对应长度的下一个字符计算移动距离</span></span><br><span class="line">		i = i + jump[strArr[i+targetLen]]</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Algo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>好奇并谦卑——《事实》</title>
     <url>/2021/08/17/%E5%A5%BD%E5%A5%87%E5%B9%B6%E8%B0%A6%E5%8D%91%E2%80%94%E2%80%94%E3%80%8A%E4%BA%8B%E5%AE%9E%E3%80%8B/</url>
     <content><![CDATA[<p>我们经常提到，要保持童心，保持好奇心，那么为什么要保持好奇心呢？好奇心与童心有什么作用？</p>
@@ -3352,24 +3299,57 @@
       </categories>
   </entry>
   <entry>
-    <title>巴霍巴利：历史是重复的</title>
-    <url>/2018/06/05/%E5%B7%B4%E9%9C%8D%E5%B7%B4%E5%88%A9%EF%BC%9A%E5%8E%86%E5%8F%B2%E6%98%AF%E9%87%8D%E5%A4%8D%E7%9A%84/</url>
-    <content><![CDATA[<p>我似乎向来有着一种十分悲剧的思维，总是向着悲伤的方向进行着思考。有时候我甚至认为我变了，我没有以前那么喜欢历史了，因为历史讲述的，没有一个平凡人的一生，没有将我们所理解的生活真正多彩起来。在历史上，分久必合，合久必分，我理解里就是体现着一种历史重复的悲剧。</p>
-<p>巴霍巴利，一个英雄主义的世界，有着每个人所注意的看点。他有着一种近乎重复的剧情。讲述着一个被受爱戴的王子从角落走向王座，又被人陷害后孩子流落人间。后来孩子又重复着这种复仇的历史。</p>
-<p>一千个人有一千个哈姆雷特。有人觉得这是一个美好的结局，有人觉得太过于悲惨。虽然最终结局当然是孩子终于坐上了王座。但是难免会让我想起重复进行这种剧情，可以说剧情的前后照映，某种程度上有一种生死轮回的感觉。</p>
-<p>我是一个不敢看悲剧以及青春剧的人，悲剧太过于悲惨，青春剧或者有时没有我的生活狗血。但这种轮回的方式确实也应该是一种悲，悲剧是讲人所喜好的东西毁灭给人看。或许在这儿，我只是不愿意去承受轮回的概念，不愿意接受我或许也是在做一些重复的事，想来这些是很恐怖的。</p>
-<p>虽然我坚信，或许在当事人来说，其中有大多数的欢乐与少部分的痛苦，或许在他们主角自己的认识里，并没有觉得自己是悲惨的。我以前常说，悲剧与喜剧之间，过程是相同的，只是结局是相反的。其实也不完全对，或许正因为我过于强调了结果，而少了过程的美，少了过程的喜悦。毕竟没有一个人，能够承受住，当自己尽心竭力后，却不得不去接受那一个悲惨的结局。</p>
-<p>每个人或许都不能够承受住，当自己完全从心而行时，却完全走上了前人的路，获得了前人相同的结果，这或许不是仅仅能够用信仰能够让人坚持下去的理由。或许也应该是好奇，好奇前人在这一路上，究竟看到了哪些风景，或许好奇前人为什么后选择这一条路，正如好奇自己为什么选择着这样一样。</p>
-<p>在历史上，每个朝代的诞生都必然伴随着一个朝代的灭亡，或许在一些昏庸的末世君王下，真的有推翻后会更好。但是真的从那些安安稳稳过着小日子的人来说，战争更好吗？不管怎样，战争都无法与生活相比，哪怕是生活一次又一次的欺骗了你。在这一个过程里，又有多少的悲哀。</p>
-<p>在历史里，胜者留下宏伟，败者留下脚印，而那些想生活的人，啥都没有。然而就这样的历史，却在周而复始的向前走着，或者按照着剧本执行。</p>
-<p>或者在影片里，留下了许多动作的美好，歌曲的美好，有着象征性的美好结局。但从来不可否认的，每一个次战争就是一次重复的悲剧。只是这些重复，并没有像主角一样提上纸面，没有从主要描述上引人关注。</p>
-<p>在巴霍巴利里，国王被人从背后捅了一刀，而王子又被从背后捅一刀，让我不得不怀疑，在这个里面确实重复了许多。或许正因为相信，才会将最脆弱的地方展示给别人，或者将自己的伤展示给别人。在现实里，确实也是这样的重复，有多少人，将眼睁睁看着别人在自己恢复过的伤口上刺下一刀，却装作毫不在意的样子，笑着说没事。到后来一个人也就被刺不进了，或许这也是一种成长。</p>
-<p>在现实里，有多少人过着重复的生活，早起忙碌睡觉，但是这种生活里却又是多么有色彩，沿岸的风景只有自己才懂得，重复的日子，没有重复的心情。</p>
-<p>历史是重复的。当知道自己正在向着一个重复的结果走着，但依然踏步上前，这或许是一种勇气。知道结果的努力，是最大的悲剧，或许也是最大的喜剧。</p>
+    <title>字符串匹配算法</title>
+    <url>/2020/12/07/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>字符串匹配：本身是指在一个字符串中找到另一个字符串，可以暴力的方式按照字符来进行匹配。优化匹配的效率的方向是：减少不成功的匹配次数，比如KMP、BM等优化策略都是如此，通过某种方式，或者某种规则来加速匹配过程。</p>
+<h3 id="BF算法（暴力算法）"><a href="#BF算法（暴力算法）" class="headerlink" title="BF算法（暴力算法）"></a>BF算法（暴力算法）</h3><p>普通模式的匹配算法：两个循环嵌套进行匹配，直到匹配成功。</p>
+<p>Golang语法下可以截取字符串进行比较：</p>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Golang语法字符串截取优化</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchUseGo</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= <span class="built_in">len</span>(strArr)-<span class="built_in">len</span>(targetArr); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> target == <span class="keyword">string</span>(strArr[i:i+<span class="built_in">len</span>(targetArr)]) &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="comment">// BF算法：暴力算法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchBF</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= <span class="built_in">len</span>(strArr)-<span class="built_in">len</span>(targetArr); i++ &#123;</span><br><span class="line">		match := <span class="literal">true</span></span><br><span class="line">		<span class="keyword">if</span> target == <span class="keyword">string</span>(strArr[i:<span class="built_in">len</span>(targetArr)]) &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(targetArr); j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> strArr[i+j] != targetArr[j] &#123;</span><br><span class="line">				match = <span class="literal">false</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> match &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="RK算法（基于BF算法的改进）"><a href="#RK算法（基于BF算法的改进）" class="headerlink" title="RK算法（基于BF算法的改进）"></a>RK算法（基于BF算法的改进）</h3><p>核心思想是哈希，即在详细比较之前，先使用hash进行比较，如果不匹配则右移。如果匹配，由于hash值可能存在碰撞的情况，因此需要进行详细判断。</p>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="comment">// RK算法：使用hash匹配匹配进行优化</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchRK</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= <span class="built_in">len</span>(strArr)-<span class="built_in">len</span>(targetArr); i++ &#123;</span><br><span class="line">		<span class="comment">// 使用字符串的hash进行匹配，如果一致再进行详细匹配</span></span><br><span class="line">		<span class="keyword">if</span> md5.Sum([]<span class="keyword">byte</span>(<span class="keyword">string</span>(strArr[i:i+<span class="built_in">len</span>(targetArr)]))) != md5.Sum([]<span class="keyword">byte</span>(target)) &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		match := <span class="literal">true</span></span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(targetArr); j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> strArr[i+j] != targetArr[j] &#123;</span><br><span class="line">				match = <span class="literal">false</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> match &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><p>关键在于部分匹配表（RMT表）：字符串起始位置到当前位置的字符串，“前缀”和“后缀”的最长的共有元素长度。</p>
+<p><code>移动位数 = 已匹配的字符数 - 对应的部分匹配值</code>。</p>
+<p>部分匹配表代表：模式串中某个位置匹配失败的时候，可以直接转到某个位置开始重新开始匹配。</p>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="comment">// KMP算法：部分匹配表，在匹配失败时，可以跳过部分字符匹配</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchKMP</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构建部分匹配表（RMT表）</span></span><br><span class="line">	targetRMT := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="built_in">len</span>(targetArr))</span><br><span class="line">	k := <span class="number">-1</span></span><br><span class="line">	targetRMT[<span class="number">0</span>] = <span class="number">-1</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(targetRMT) - <span class="number">1</span>; &#123;</span><br><span class="line">		<span class="keyword">if</span> k == <span class="number">-1</span> || targetArr[i] == targetArr[k] &#123;</span><br><span class="line">			i++</span><br><span class="line">			k++</span><br><span class="line">			targetRMT[i] = k</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			k = targetRMT[k]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 匹配</span></span><br><span class="line">	i, j := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> ; i &lt; <span class="built_in">len</span>(strArr) &amp;&amp; j &lt; <span class="built_in">len</span>(targetArr); &#123;</span><br><span class="line">		<span class="keyword">if</span> j == <span class="number">-1</span> || strArr[i] == targetArr[j] &#123;</span><br><span class="line">			i++</span><br><span class="line">			j++</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			j = targetRMT[j] <span class="comment">// 当前位置的字符匹配失败，直接转移到模式串匹配表对应位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> j &gt;= <span class="built_in">len</span>(targetArr) &#123;</span><br><span class="line">		<span class="keyword">return</span> i - <span class="built_in">len</span>(targetArr)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="BM算法"><a href="#BM算法" class="headerlink" title="BM算法"></a>BM算法</h3><p>从后往前对模式串进行扫描与主串进行匹配的，使用两个启发策略。</p>
+<p><strong>坏字符算法</strong>：坏字符：字符串中的某个字符跟模式串的某个字符不匹配时，这个失配字符为坏<br>字符。</p>
+<ol>
+<li>模式串中有对应的坏字符时，让模式串最靠右的对应字符与坏字符相对。</li>
+<li>模式串中不存在坏字符，那么直接右移整个模式串长度这么大步数。</li>
+</ol>
+<p>坏字符表的定义为：对于输入字符集合中的字符C，如果C不在模式串中，则<code>C对应的值=模式串最末元素的索引值-字符C在模式串中最右出现的位置</code>，字符不在模式串中时对应的值为-1。</p>
+<p><strong>好后缀算法</strong>：</p>
+<ol>
+<li>模式串中有子串和好后嘴完全匹配，则将最靠右的那个子串移动到好后缀的位置继续进行匹配。</li>
+<li>如果不存在和好后缀完全匹配的子串，则好后缀中找到具有如下特征的最长子串，使得<code>P[m-s...m] = P[0...s]</code>。</li>
+<li>如果完全不存在和好后缀匹配的子串，则右移整个模式串。</li>
+</ol>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchBM</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	strLen := <span class="built_in">len</span>(strArr)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	targetLen := <span class="built_in">len</span>(targetArr)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构建坏字符</span></span><br><span class="line">	badArr := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">256</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">256</span>; i++ &#123;</span><br><span class="line">		badArr[i] = targetLen</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; targetLen; i++ &#123;</span><br><span class="line">		badArr[targetArr[i]] = targetLen - i - <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构建好后缀</span></span><br><span class="line">	suff := <span class="built_in">make</span>([]<span class="keyword">int</span>, targetLen)</span><br><span class="line">	suff[targetLen<span class="number">-1</span>] = targetLen</span><br><span class="line">	<span class="keyword">for</span> i := targetLen - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">		q := i</span><br><span class="line">		<span class="keyword">for</span> q &gt;= <span class="number">0</span> &amp;&amp; targetArr[q] == targetArr[targetLen<span class="number">-1</span>-i+q] &#123;</span><br><span class="line">			q = q - <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">		suff[i] = i - q</span><br><span class="line">	&#125;</span><br><span class="line">	goods := <span class="built_in">make</span>([]<span class="keyword">int</span>, targetLen)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; targetLen; i++ &#123;</span><br><span class="line">		goods[i] = targetLen</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := targetLen - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">		j := <span class="number">0</span></span><br><span class="line">		<span class="keyword">if</span> suff[i] == i+<span class="number">1</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> ; j &lt; targetLen<span class="number">-1</span>-i; j++ &#123;</span><br><span class="line">				<span class="keyword">if</span> goods[j] == targetLen &#123;</span><br><span class="line">					goods[j] = targetLen - <span class="number">1</span> - i</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; targetLen<span class="number">-1</span>; i++ &#123;</span><br><span class="line">		goods[targetLen<span class="number">-1</span>-suff[i]] = targetLen - <span class="number">1</span> - i</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 查找</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= strLen-targetLen; &#123;</span><br><span class="line">		j := targetLen - <span class="number">1</span></span><br><span class="line">		<span class="keyword">for</span> ; j &gt;= <span class="number">0</span> &amp;&amp; targetArr[j] == strArr[i+j]; j-- &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> j &lt; <span class="number">0</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		max := badArr[<span class="keyword">int</span>(strArr[i+j])] - targetLen + <span class="number">1</span> + j</span><br><span class="line">		<span class="keyword">if</span> goods[j] &gt; max &#123;</span><br><span class="line">			max = goods[j]</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		i = i + max</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Sunday算法"><a href="#Sunday算法" class="headerlink" title="Sunday算法"></a>Sunday算法</h3><p>从前往后扫描模式串的，其思路更像是对于“坏字符”策略的升华，<strong>关注的是主串中参与匹配的最末字符的下一位</strong>，将其与当前跳表判断下一步移动距离。</p>
+<p><strong>启发策略</strong>：</p>
+<ul>
+<li>当遇到不匹配的字符时，如果关注的字符没有在模式串中出现则直接跳过即<code>移动位数=子串长度+1</code>。</li>
+<li>当遇到不匹配的字符时，如果关注的字符在模式串中也存在时，其<code>移动位数=模式串长度-该字符最右出现的位置（以0开始）</code>或者**<code>移动位数=模式串中该子串最右出现的位置到尾部的距离+1</code>**。</li>
+</ul>
+<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MatchSunday</span><span class="params">(str <span class="keyword">string</span>, target <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	strArr := []<span class="keyword">rune</span>(str)</span><br><span class="line">	targetArr := []<span class="keyword">rune</span>(target)</span><br><span class="line">	strLen := <span class="built_in">len</span>(strArr)</span><br><span class="line">	targetLen := <span class="built_in">len</span>(targetArr)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构建跳表</span></span><br><span class="line">	jump := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">255</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">255</span>; i++ &#123;</span><br><span class="line">		jump[i] = targetLen + <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i, c := <span class="keyword">range</span> targetArr &#123;</span><br><span class="line">		jump[c] = targetLen-i</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= strLen-targetLen; &#123;</span><br><span class="line">		flag := <span class="literal">true</span></span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; targetLen; j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> targetArr[j] != strArr[i+j] &#123;</span><br><span class="line">				flag = <span class="literal">false</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> flag &#123;</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 使用当前匹配对应长度的下一个字符计算移动距离</span></span><br><span class="line">		i = i + jump[strArr[i+targetLen]]</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
-        <category>movie</category>
+        <category>tech</category>
       </categories>
+      <tags>
+        <tag>Algo</tag>
+      </tags>
   </entry>
   <entry>
     <title>工作沟通技巧笔记</title>
@@ -3442,6 +3422,26 @@
       <tags>
         <tag>Communicate</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>巴霍巴利：历史是重复的</title>
+    <url>/2018/06/05/%E5%B7%B4%E9%9C%8D%E5%B7%B4%E5%88%A9%EF%BC%9A%E5%8E%86%E5%8F%B2%E6%98%AF%E9%87%8D%E5%A4%8D%E7%9A%84/</url>
+    <content><![CDATA[<p>我似乎向来有着一种十分悲剧的思维，总是向着悲伤的方向进行着思考。有时候我甚至认为我变了，我没有以前那么喜欢历史了，因为历史讲述的，没有一个平凡人的一生，没有将我们所理解的生活真正多彩起来。在历史上，分久必合，合久必分，我理解里就是体现着一种历史重复的悲剧。</p>
+<p>巴霍巴利，一个英雄主义的世界，有着每个人所注意的看点。他有着一种近乎重复的剧情。讲述着一个被受爱戴的王子从角落走向王座，又被人陷害后孩子流落人间。后来孩子又重复着这种复仇的历史。</p>
+<p>一千个人有一千个哈姆雷特。有人觉得这是一个美好的结局，有人觉得太过于悲惨。虽然最终结局当然是孩子终于坐上了王座。但是难免会让我想起重复进行这种剧情，可以说剧情的前后照映，某种程度上有一种生死轮回的感觉。</p>
+<p>我是一个不敢看悲剧以及青春剧的人，悲剧太过于悲惨，青春剧或者有时没有我的生活狗血。但这种轮回的方式确实也应该是一种悲，悲剧是讲人所喜好的东西毁灭给人看。或许在这儿，我只是不愿意去承受轮回的概念，不愿意接受我或许也是在做一些重复的事，想来这些是很恐怖的。</p>
+<p>虽然我坚信，或许在当事人来说，其中有大多数的欢乐与少部分的痛苦，或许在他们主角自己的认识里，并没有觉得自己是悲惨的。我以前常说，悲剧与喜剧之间，过程是相同的，只是结局是相反的。其实也不完全对，或许正因为我过于强调了结果，而少了过程的美，少了过程的喜悦。毕竟没有一个人，能够承受住，当自己尽心竭力后，却不得不去接受那一个悲惨的结局。</p>
+<p>每个人或许都不能够承受住，当自己完全从心而行时，却完全走上了前人的路，获得了前人相同的结果，这或许不是仅仅能够用信仰能够让人坚持下去的理由。或许也应该是好奇，好奇前人在这一路上，究竟看到了哪些风景，或许好奇前人为什么后选择这一条路，正如好奇自己为什么选择着这样一样。</p>
+<p>在历史上，每个朝代的诞生都必然伴随着一个朝代的灭亡，或许在一些昏庸的末世君王下，真的有推翻后会更好。但是真的从那些安安稳稳过着小日子的人来说，战争更好吗？不管怎样，战争都无法与生活相比，哪怕是生活一次又一次的欺骗了你。在这一个过程里，又有多少的悲哀。</p>
+<p>在历史里，胜者留下宏伟，败者留下脚印，而那些想生活的人，啥都没有。然而就这样的历史，却在周而复始的向前走着，或者按照着剧本执行。</p>
+<p>或者在影片里，留下了许多动作的美好，歌曲的美好，有着象征性的美好结局。但从来不可否认的，每一个次战争就是一次重复的悲剧。只是这些重复，并没有像主角一样提上纸面，没有从主要描述上引人关注。</p>
+<p>在巴霍巴利里，国王被人从背后捅了一刀，而王子又被从背后捅一刀，让我不得不怀疑，在这个里面确实重复了许多。或许正因为相信，才会将最脆弱的地方展示给别人，或者将自己的伤展示给别人。在现实里，确实也是这样的重复，有多少人，将眼睁睁看着别人在自己恢复过的伤口上刺下一刀，却装作毫不在意的样子，笑着说没事。到后来一个人也就被刺不进了，或许这也是一种成长。</p>
+<p>在现实里，有多少人过着重复的生活，早起忙碌睡觉，但是这种生活里却又是多么有色彩，沿岸的风景只有自己才懂得，重复的日子，没有重复的心情。</p>
+<p>历史是重复的。当知道自己正在向着一个重复的结果走着，但依然踏步上前，这或许是一种勇气。知道结果的努力，是最大的悲剧，或许也是最大的喜剧。</p>
+]]></content>
+      <categories>
+        <category>movie</category>
+      </categories>
   </entry>
   <entry>
     <title>平凡世界里，平凡的活着</title>
@@ -4718,20 +4718,6 @@
       </categories>
   </entry>
   <entry>
-    <title>读《傲慢与偏见》</title>
-    <url>/2019/01/31/%E8%AF%BB%E3%80%8A%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81%E3%80%8B/</url>
-    <content><![CDATA[<p>很喜欢《傲慢与偏见》这种故事，和《简·爱》的故事一样，都是美满的结局，全程没有一点压抑，或许有一些人物出现的不完美，但是都终归走向那个人的向往的结局。或许我本身开始对悲剧的胆怯而导致对喜剧的期待了，人终究是期待美满的。</p>
-<p>书里一直持续着两条大的线，一条是班纳特姐妹的爱情到婚姻的故事，另一条是达西的傲慢与伊丽莎白的偏见。或者说在班纳特小姐们的爱情中着重叙述了伊丽莎白的故事。</p>
-<p>书中有两点非常有趣。</p>
-<p>第一点是彬格莱与吉英的恋爱中的一段。当彬格莱刚开始在尼日斐花园时，对吉英表现了自己对于其的倾慕。但吉英虽然也喜欢彬格莱，却没有表现出喜欢，以至于后来的懊悔。对于自己的喜欢，不要刻意去压抑，喜欢的本身是很美的东西。</p>
-<p>第二点就是本书中的中心。达西的傲慢的形象，导致了伊丽莎白对于其的偏见。其中有两点很重要，一是我们也需要像达西后来一样，不能有那种十分傲慢、自以为是的态度；二是不能因为自己对于别人的偏见而否定别人。</p>
-<p>人非圣人，傲慢与偏见是或多或少都有些的。养好自己的心智才是最重要的。</p>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
-  </entry>
-  <entry>
     <title>读《机器崛起》</title>
     <url>/2018/05/30/%E8%AF%BB%E3%80%8A%E6%9C%BA%E5%99%A8%E5%B4%9B%E8%B5%B7%E3%80%8B/</url>
     <content><![CDATA[<p><img src="/2018/05/30/%E8%AF%BB%E3%80%8A%E6%9C%BA%E5%99%A8%E5%B4%9B%E8%B5%B7%E3%80%8B/1.jpg"></p>
@@ -4807,7 +4793,7 @@
   <entry>
     <title>读懂 Slf4j、Log4j2、LogBack 关系</title>
     <url>/2023/04/16/%E8%AF%BB%E6%87%82-Slf4j%E3%80%81Log4j2%E3%80%81LogBack-%E5%85%B3%E7%B3%BB/</url>
-    <content><![CDATA[<h1 id="读懂-Slf4j、Log4j2、LogBack-关系"><a href="#读懂-Slf4j、Log4j2、LogBack-关系" class="headerlink" title="读懂 Slf4j、Log4j2、LogBack 关系"></a>读懂 Slf4j、Log4j2、LogBack 关系</h1><p>我们可以看到，很多文章都在告诉我，Slf4j 是日志的门面，是接口；而 Log4j2 和 Logback 是日志的实现。但是至于它们是怎么联系到一起，我们经常能看到说，使用 <code>log4j-slf4j-impl</code> 建立桥梁，就可以使得 Slf4j 桥接到 Log4j2 上，就可以使用 Log4j 的实现了。而我们的项目中，打日志都直接基于 Slf4j 接口即可。</p>
+    <content><![CDATA[<p>我们可以看到，很多文章都在告诉我，Slf4j 是日志的门面，是接口；而 Log4j2 和 Logback 是日志的实现。但是至于它们是怎么联系到一起，我们经常能看到说，使用 <code>log4j-slf4j-impl</code> 建立桥梁，就可以使得 Slf4j 桥接到 Log4j2 上，就可以使用 Log4j 的实现了。而我们的项目中，打日志都直接基于 Slf4j 接口即可。</p>
 <p>那么我们思考多个问题：</p>
 <ol>
 <li>这个绑定操作是怎么实现的呢？</li>
@@ -4898,6 +4884,20 @@
       </categories>
   </entry>
   <entry>
+    <title>读《傲慢与偏见》</title>
+    <url>/2019/01/31/%E8%AF%BB%E3%80%8A%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81%E3%80%8B/</url>
+    <content><![CDATA[<p>很喜欢《傲慢与偏见》这种故事，和《简·爱》的故事一样，都是美满的结局，全程没有一点压抑，或许有一些人物出现的不完美，但是都终归走向那个人的向往的结局。或许我本身开始对悲剧的胆怯而导致对喜剧的期待了，人终究是期待美满的。</p>
+<p>书里一直持续着两条大的线，一条是班纳特姐妹的爱情到婚姻的故事，另一条是达西的傲慢与伊丽莎白的偏见。或者说在班纳特小姐们的爱情中着重叙述了伊丽莎白的故事。</p>
+<p>书中有两点非常有趣。</p>
+<p>第一点是彬格莱与吉英的恋爱中的一段。当彬格莱刚开始在尼日斐花园时，对吉英表现了自己对于其的倾慕。但吉英虽然也喜欢彬格莱，却没有表现出喜欢，以至于后来的懊悔。对于自己的喜欢，不要刻意去压抑，喜欢的本身是很美的东西。</p>
+<p>第二点就是本书中的中心。达西的傲慢的形象，导致了伊丽莎白对于其的偏见。其中有两点很重要，一是我们也需要像达西后来一样，不能有那种十分傲慢、自以为是的态度；二是不能因为自己对于别人的偏见而否定别人。</p>
+<p>人非圣人，傲慢与偏见是或多或少都有些的。养好自己的心智才是最重要的。</p>
+]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+  </entry>
+  <entry>
     <title>边城：性格使然的悲剧</title>
     <url>/2018/06/27/%E8%BE%B9%E5%9F%8E%EF%BC%9A%E6%80%A7%E6%A0%BC%E4%BD%BF%E7%84%B6%E7%9A%84%E6%82%B2%E5%89%A7/</url>
     <content><![CDATA[<p><img src="/2018/06/27/%E8%BE%B9%E5%9F%8E%EF%BC%9A%E6%80%A7%E6%A0%BC%E4%BD%BF%E7%84%B6%E7%9A%84%E6%82%B2%E5%89%A7/1.jpg"></p>
@@ -4915,45 +4915,6 @@
 <p>这一些都是人本身性格的结果。在我认识里，虽然淳朴，但翠翠还没有真正认识到爱情，还在成长的懵懂期。正是这种害羞，不敢去面对自己喜欢的人，而没有从爷爷那里获知那一切发生的事。</p>
 <p>从每一个人的角度看来，所有人都在向着一个自己所能接受的美好的角度发展，然而从整体上而言，最终的悲剧是不可避免的。从人生角度去理解，只能感受到一种由衷的悲伤，但是这种却也是一种发展，当失去某些东西时，必定将伴随着一些的到来。像翠翠，虽然是悲剧的，但应该明白了之后的，会有长大以及思想的成熟。</p>
 <p>有时候在想，边城是代表着家乡的意思，代表着家乡的变化里，渐渐丧失了原来的一些东西，或许是自己离乡很久了，家乡就变得不像自己记忆里的那一种家乡了，最后便有了每个人心里都有一个属于自己的边城。</p>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>这是一只不正经的猫：读《我是猫》</title>
-    <url>/2018/08/14/%E8%BF%99%E6%98%AF%E4%B8%80%E5%8F%AA%E4%B8%8D%E6%AD%A3%E7%BB%8F%E7%9A%84%E7%8C%AB%EF%BC%9A%E8%AF%BB%E3%80%8A%E6%88%91%E6%98%AF%E7%8C%AB%E3%80%8B/</url>
-    <content><![CDATA[<p>这是一个不正经的猫，从本书中的这只猫来看，这只猫似乎有一种通晓天地，明了古今。能够不经历九年义务教育就懂得一些教育学家以及理学家的谈话。这只猫或许在老师的家里待得太久，就明了这许许多多的人事与时事，也或许通过猫界里的“人类学家”精心传授。</p>
-<p>这些都是些不正经的话语。</p>
-<p><img src="/2018/08/14/%E8%BF%99%E6%98%AF%E4%B8%80%E5%8F%AA%E4%B8%8D%E6%AD%A3%E7%BB%8F%E7%9A%84%E7%8C%AB%EF%BC%9A%E8%AF%BB%E3%80%8A%E6%88%91%E6%98%AF%E7%8C%AB%E3%80%8B/%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB.png" alt="人物关系"></p>
-<p>每一本书，都有自己独到的地方，这本书当然不例外。以猫的角度写某个时期的场景，确实有一种无法比拟的悲。这种悲主要是指那些知识分子等的悲。</p>
-<p>然而这种悲伤，我无法去感同身受。人们所能感同身受的悲，莫过于自己经历过同样的悲伤。我或许还不像这书中的知识分子同样，有着面对新潮而无法接受，或者在某一种程度上却自己不被世界接受的悲伤。《我是猫》是过去作品吗？或者说写的仅仅是过去的某个时代的吗？这却得深思，在当今这个社会里，没有那些相同的吗？</p>
-<p>像苦沙弥，他正代表着自己这一类知识分子，对于实业者有着一种鄙夷，而反之金田所代表的实业家，也对那些穷苦知识分子有一种轻蔑。这是明显的两个阶层之间的矛盾。在当下，依然在有条不紊地摩擦着。</p>
-<p>这本书，我没有多少感悟，这也是一种缘。</p>
-<h4 id="摘来部分"><a href="#摘来部分" class="headerlink" title="摘来部分"></a>摘来部分</h4><blockquote>
-<ul>
-<li><p>难得的机缘，会使所有的动物敢于干出他们并非情愿的事来。</p>
-</li>
-<li><p>临危之际，平时做不到的事这时也能做到。</p>
-</li>
-<li><p>看起来，人哪，为了消磨时间，硬是鼓唇摇舌，笑那些并不可笑、乐那些并不可乐的事，此外便一无所长。</p>
-</li>
-<li><p>一言以蔽之，不论是主人、寒月还是迷亭，都是些太平盛世的逸民。尽管他们像没用的丝瓜随风摇曳，却又装作超然物外的样子。其实他们既有俗念，又有贪欲。即使在日常谈笑中，也隐约可见其争胜之意、夺魁之心。进而言是一丘之貉。</p>
-</li>
-<li><p>假如既不能零售空气，又不能割据苍天，那么，土地私有，岂不也是不合理的吗？</p>
-</li>
-<li><p>真理在咱家手里，而权力却握在别人的手心，这时，只有两条路：或委曲求全，唯命是从；或背对权贵的耳目，我行我素。</p>
-</li>
-<li><p>我想写美学原理的意志很坚定，可这意志对你发表后的第二天就已经忘得一干二净。因此，没能在紫薇花飘零以前完成我的著作，这时记忆力的罪孽，而不是意志的过错。既然不是意志的过错，也就没有什么理由请你吃西餐了。</p>
-</li>
-<li><p>既然是社会动物，不管怎么自命清高，也要在某种程度上与社会协调些。</p>
-</li>
-<li><p>那些家伙到底是“知了知了”地叫？还是“了知了知”的地鸣？</p>
-</li>
-<li><p>冷漠乃人类本性，不加掩饰才是正直的人。</p>
-</li>
-</ul>
-</blockquote>
 ]]></content>
       <categories>
         <category>read</category>
@@ -5030,6 +4991,45 @@
 ]]></content>
       <categories>
         <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>这是一只不正经的猫：读《我是猫》</title>
+    <url>/2018/08/14/%E8%BF%99%E6%98%AF%E4%B8%80%E5%8F%AA%E4%B8%8D%E6%AD%A3%E7%BB%8F%E7%9A%84%E7%8C%AB%EF%BC%9A%E8%AF%BB%E3%80%8A%E6%88%91%E6%98%AF%E7%8C%AB%E3%80%8B/</url>
+    <content><![CDATA[<p>这是一个不正经的猫，从本书中的这只猫来看，这只猫似乎有一种通晓天地，明了古今。能够不经历九年义务教育就懂得一些教育学家以及理学家的谈话。这只猫或许在老师的家里待得太久，就明了这许许多多的人事与时事，也或许通过猫界里的“人类学家”精心传授。</p>
+<p>这些都是些不正经的话语。</p>
+<p><img src="/2018/08/14/%E8%BF%99%E6%98%AF%E4%B8%80%E5%8F%AA%E4%B8%8D%E6%AD%A3%E7%BB%8F%E7%9A%84%E7%8C%AB%EF%BC%9A%E8%AF%BB%E3%80%8A%E6%88%91%E6%98%AF%E7%8C%AB%E3%80%8B/%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB.png" alt="人物关系"></p>
+<p>每一本书，都有自己独到的地方，这本书当然不例外。以猫的角度写某个时期的场景，确实有一种无法比拟的悲。这种悲主要是指那些知识分子等的悲。</p>
+<p>然而这种悲伤，我无法去感同身受。人们所能感同身受的悲，莫过于自己经历过同样的悲伤。我或许还不像这书中的知识分子同样，有着面对新潮而无法接受，或者在某一种程度上却自己不被世界接受的悲伤。《我是猫》是过去作品吗？或者说写的仅仅是过去的某个时代的吗？这却得深思，在当今这个社会里，没有那些相同的吗？</p>
+<p>像苦沙弥，他正代表着自己这一类知识分子，对于实业者有着一种鄙夷，而反之金田所代表的实业家，也对那些穷苦知识分子有一种轻蔑。这是明显的两个阶层之间的矛盾。在当下，依然在有条不紊地摩擦着。</p>
+<p>这本书，我没有多少感悟，这也是一种缘。</p>
+<h4 id="摘来部分"><a href="#摘来部分" class="headerlink" title="摘来部分"></a>摘来部分</h4><blockquote>
+<ul>
+<li><p>难得的机缘，会使所有的动物敢于干出他们并非情愿的事来。</p>
+</li>
+<li><p>临危之际，平时做不到的事这时也能做到。</p>
+</li>
+<li><p>看起来，人哪，为了消磨时间，硬是鼓唇摇舌，笑那些并不可笑、乐那些并不可乐的事，此外便一无所长。</p>
+</li>
+<li><p>一言以蔽之，不论是主人、寒月还是迷亭，都是些太平盛世的逸民。尽管他们像没用的丝瓜随风摇曳，却又装作超然物外的样子。其实他们既有俗念，又有贪欲。即使在日常谈笑中，也隐约可见其争胜之意、夺魁之心。进而言是一丘之貉。</p>
+</li>
+<li><p>假如既不能零售空气，又不能割据苍天，那么，土地私有，岂不也是不合理的吗？</p>
+</li>
+<li><p>真理在咱家手里，而权力却握在别人的手心，这时，只有两条路：或委曲求全，唯命是从；或背对权贵的耳目，我行我素。</p>
+</li>
+<li><p>我想写美学原理的意志很坚定，可这意志对你发表后的第二天就已经忘得一干二净。因此，没能在紫薇花飘零以前完成我的著作，这时记忆力的罪孽，而不是意志的过错。既然不是意志的过错，也就没有什么理由请你吃西餐了。</p>
+</li>
+<li><p>既然是社会动物，不管怎么自命清高，也要在某种程度上与社会协调些。</p>
+</li>
+<li><p>那些家伙到底是“知了知了”地叫？还是“了知了知”的地鸣？</p>
+</li>
+<li><p>冷漠乃人类本性，不加掩饰才是正直的人。</p>
+</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>read</category>
       </categories>
   </entry>
 </search>
