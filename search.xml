@@ -213,7 +213,7 @@
 <ul>
 <li>总体分三层：索引层，缓存控制层和Flash存储层</li>
 <li>整体上是一个棵B+树，同时借鉴了B-link树的思想，每个节点存在一个指向右兄弟的指针</li>
-<li>在耽搁树节点上表现为类似LSM树的Log-Structure，每个逻辑节点由a base node + a delta records chain组成</li>
+<li>在单独树节点上表现为类似LSM树的Log-Structure，每个逻辑节点由a base node + a delta records chain组成</li>
 <li>实现latch-free的核心数据结构叫Mapping Table，通过CAS进行installing操作，修改一个mapping entry可以同时完全多个逻辑指针的修改</li>
 <li>flash层也是用Log-Structure Store（append only）对逻辑页的物理存储（base page和delta record）进行管理</li>
 </ul>
@@ -236,7 +236,7 @@
     <title>ConcurrentHashMap 源码分析（Java version 1.8）</title>
     <url>/2018/10/06/ConcurrentHashMap-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88Java-version-1-8%EF%BC%89/</url>
     <content><![CDATA[<p>在我之前的文章<a href="https://feiybox.github.io/2017/04/03/HashMap-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">《HashMap 源码分析》</a>中分析了HashMap的源码，众所周知，ConcurrentHashMap是线程安全的Map，在Java 1.7及以前版本使用分段加锁机制，而1.8版本开始使用CAS操作，抛弃了<code>segment</code>，并只对哈希桶数组的的单个元素加锁。相对于HashTable对于每个方法都使用<code>synchronized</code>，效率提升了非常大。</p>
-<p>本文所解读的ConcurrentHashMap是基于Java 1.8 版本。部分代码过于繁琐，因此建议对照源码。</p>
+<p>本文所解读的ConcurrentHashMap是基于Java 1.8 版本。部分代码过于繁琐，因此建议对照源码阅读。</p>
 <h3 id="总体结构"><a href="#总体结构" class="headerlink" title="总体结构"></a>总体结构</h3><p>从总体上，ConcurrentHashMap与HashMap的结构是相同的，是基于哈希桶数组加链表以及红黑树构成的。</p>
 <p><img src="/2018/10/06/ConcurrentHashMap-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88Java-version-1-8%EF%BC%89/%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84.jpg" alt="总体结构"></p>
 <p>红黑树，是平衡查找树的一种，使用这种结构，可以加速查找。</p>
@@ -2560,7 +2560,7 @@
 <li>channel使用完成后，需要close掉，否则消费channel的协程最后不会被销毁、回收</li>
 <li>channel在close之后，如果其中数据存在，依然可以从其中读取数据，直到最终监听到channel close的消息后</li>
 </ol>
-<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>在使用channel的时候，需要避免的事死锁，什么时候会发生死锁的情况呢？其中channel中的缓冲区被消费完成后，如果再向channel中写入的时候，会阻塞当前协程，如果在阻塞之后没有协程会消费channel中的数据，则会发生死锁，协程也是因此阻塞。</p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>在使用channel的时候，需要避免的事死锁，什么时候会发生死锁的情况呢？其中channel中的缓冲区写满，在被消费完成前，再向channel中写入的时候，会阻塞当前协程，如果在阻塞之后没有协程会消费channel中的数据，则会发生死锁，协程也是因此阻塞。</p>
 ]]></content>
       <categories>
         <category>tech</category>
@@ -2944,7 +2944,7 @@
 <li>散列划分：适合于机遇划分属性的点查询。</li>
 <li>范围划分：适合于在划分属性上的点查询和范围查询。</li>
 </ul>
-<p>偏斜式一个主要的问题，特别是当并行度增高时。平衡的划分向量、使用直方图以及虚处理器划分是用于减少偏斜的技术。属性值偏斜指的是某些值出现在许多元组的划分属性中。划分偏斜指的是，即使不存在属性值偏斜，划分也可能会出现负载不均衡。</p>
+<p>偏斜是一个主要的问题，特别是当并行度增高时。平衡的划分向量、使用直方图以及虚处理器划分是用于减少偏斜的技术。属性值偏斜指的是某些值出现在许多元组的划分属性中。划分偏斜指的是，即使不存在属性值偏斜，划分也可能会出现负载不均衡。</p>
 <ul>
 <li>通过为每个关系的每个属性创建和存储该属性值的频率表或直方图，可以降低由于构建平衡的范围划分向量而产生的I/O开销。</li>
 <li>使用虚处理器，特别是针对范围划分带来的偏斜，可以使偏斜的影响达到最小。核心思想是：即使由于偏斜使得在一个范围内有比其他范围更多的元组，这些元组也将划分到多个虚处理器的范围上。</li>
