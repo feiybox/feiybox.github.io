@@ -798,95 +798,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux env 与 export 等</title>
-    <url>/2023/07/13/Linux-env-%E4%B8%8E-export-%E7%AD%89/</url>
-    <content><![CDATA[<h3 id="故事提要"><a href="#故事提要" class="headerlink" title="故事提要"></a>故事提要</h3><p>项目开发中，我在 docker file 中，将需要执行的命令写入到 <code>/etc/rc.d/rc.local</code> 文件中，目的是为了容器启动时，将自动执行此命令。命令等价如下：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">env abc=abc java -jar test.jar $&#123;abc&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但实际运行时，我们发现没有获取到 <code>abc</code> 此变量。</p>
-<p>首先，分析，如果环境变量中已经有了 <code>abc</code> 此变量，那么是否有 <code>env abc=abc</code> 这段，后面都将获取到其变量值。至于为什么不会生效，则会在接下来的章节中说明。</p>
-<p>然后我们查看了 <code>env</code> <code>export</code> 的作用。因此将命令进行了修改。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">env abc=abc sh test.sh</span><br></pre></td></tr></table></figure>
-
-<p>test.sh :</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">java -jar test.jar $&#123;abc&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样执行时，即可读取到对应的变量值。</p>
-<h3 id="Linux-多文件执行顺序"><a href="#Linux-多文件执行顺序" class="headerlink" title="Linux 多文件执行顺序"></a>Linux 多文件执行顺序</h3><ol>
-<li>通过 /boot/vm 进行启动 vmlinuz</li>
-<li>init /etc/inittab</li>
-<li>启动相应的脚本，并且打开终端<ul>
-<li>rc.sysinit</li>
-<li>rc.d (里面的脚本）</li>
-<li>rc.local</li>
-</ul>
-</li>
-<li>登陆 login</li>
-<li>profile 等<ul>
-<li>/etc/profile.d/file</li>
-<li>/etc/profile</li>
-<li>/etc/bashrc</li>
-<li>/root/.bashrc</li>
-<li>/root/.bash_profile</li>
-</ul>
-</li>
-</ol>
-<p>从这儿可以看出 rc.local 文件是在 profile 之前执行的，而环境变量的设置通常是在 profile 中进行设置的，因此一般读取环境变量无法生效。（一种解决办法是将环境变量从 proc/1/env 读取出来拼接成命令，在执行需要环境的命令一起执行，类似上述 env 命令）</p>
-<h3 id="env-export-等命令的区别"><a href="#env-export-等命令的区别" class="headerlink" title="env export 等命令的区别"></a>env export 等命令的区别</h3><h4 id="env"><a href="#env" class="headerlink" title="env"></a>env</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">env</span><br></pre></td></tr></table></figure>
-<p>显示当前用户的环境变量。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">env abc=abc</span><br></pre></td></tr></table></figure>
-<p>仅为将要执行的子进程设置环境变量，临时启用指定的环境变量执行子进程，不影响之后的其他进程与当前进程。</p>
-<h4 id="export"><a href="#export" class="headerlink" title="export"></a>export</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export</span><br></pre></td></tr></table></figure>
-<p>查看已存在的环境变量。按照名称排序。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export abc=abc</span><br></pre></td></tr></table></figure>
-<p>通过调用 putenv 将一个本地变量输出为当前 shell 的环境变量，从而被子进程自动继承，但子进程 export 的变量无法改变父进程的环境变量。</p>
-<p>和 env 的最大区别点事，export 在当前 shell 中生效，而 env 只有子进程生效。</p>
-<h4 id="set-declare"><a href="#set-declare" class="headerlink" title="set / declare"></a>set / declare</h4><p>显示当前 shell 中的所有变量，包括环境变量和自定义变量。declare 会按照名称进行排序。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mac上VPN 连接不上常用解决方案</title>
-    <url>/2017/07/21/Mac%E4%B8%8AVPN-%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<blockquote>
-<p>本文写于在喜马拉雅公司实习期间，解决公司内的VPN连接不上的解决方案，仅作参考，不通用</p>
-</blockquote>
-<p>在工作中常常使用VPN，但是也常常出现VPN连接不上的情况，对于这种情况我们常常是深恶痛绝，花掉半天的时间也没解决，因此在这儿给出我自己的常用解决方案，一般按照着方案1、2、3的顺序执行，通常情况下都是解决的了。</p>
-<p><img src="/2017/07/21/Mac%E4%B8%8AVPN-%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/VPN%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A.png" alt="VPN连接不上"></p>
-<h3 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h3><p>尝试着删除掉我们所配置的VPN，然后重新配置，尝试连接。</p>
-<h3 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h3><p>这是大家常见的方案，在 /etc/ppp下的options文件中写入以下代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">plugin L2TP.ppp</span><br><span class="line">l2tpnoipsec</span><br></pre></td></tr></table></figure>
-
-<p>然后重新连接。</p>
-<p>具体的操作步骤如下：</p>
-<ul>
-<li>在终端中输入 <code>sudo vim /etc/ppp/options</code>，可能需要密码；</li>
-<li>在文件中输入i进入insert方式，然后输入上诉代码，然后按esc，输入<code>:wq</code>，回车保存；</li>
-<li>尝试着重新连接或删除掉旧配置重新连接；</li>
-</ul>
-<p><img src="/2017/07/21/Mac%E4%B8%8AVPN-%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/options%E6%96%87%E4%BB%B6.png" alt="options文件"></p>
-<h3 id="方案3"><a href="#方案3" class="headerlink" title="方案3"></a>方案3</h3><p>如果上述方案都不能够奏效，那么尝试第三种方案。<em>此方案只能在方案2不奏效的情况下使用</em></p>
-<ul>
-<li>删除<code>/etc/ppp/options</code>文件，即在终端执行<code>sudo rm -rf /etc/ppp/options</code>；</li>
-<li>删除VPN的配置重新配置，连接。<em><strong>这儿一定要删除配置重新配置</strong></em>（至于为什么，我也不清楚，反正不重新配置一般是不能成功的）</li>
-</ul>
-<p>一般情况下，按照这三种方案的顺序执行后都是能够成功访问了。</p>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>若本文中未总结的相关解决方案，欢迎补充。</p>
-]]></content>
-      <categories>
-        <category>tool</category>
-      </categories>
-      <tags>
-        <tag>VPN</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mac下Java开发环境配置</title>
     <url>/2018/01/17/Mac%E4%B8%8BJava%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>作为一名程序员，每次换了电脑，都需要重新配置一次所有的环境，有时候会突然忘了一些设置以及一些软件的破解等。</p>
@@ -1148,208 +1059,39 @@
       </tags>
   </entry>
   <entry>
-    <title>SpringBoot解决返回体content-type非json</title>
-    <url>/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/</url>
-    <content><![CDATA[<p>最佳解决方案为自定义消息转换器。</p>
-<p>首先，为什么要自定义消息转换器？所见即所得，原本的消息转换器并不能满足我们目前的需求。</p>
-<p>在最近的项目中，使用了SpringBoot与FastJson构建项目，在我们返回时，使用 <code>@ResponseBody</code>的方法里，采用了fastjson里的<code>JSON.toJSONString()</code>方法返回我们需要的Json数据，而这种返回中，会有一个问题，在返回中<code>@ResponseBody</code>注解中的消息转换器会默认理解为String解析，在返回体中如下图，<code>content-type</code>为<code>text/html</code>。</p>
-<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/1.jpg"></p>
-<p>因此我们解决想让我们的返回体中<code>content-type</code>为<code>application/json</code>。</p>
-<p>针对于这个问题，有一种最暴力的解决方案，直接在<code>@RequestMapping</code>中添加<code>produces</code>属性，设置<code>produces=&quot;application/json&quot;</code>直接使得返回体设置为json格式。</p>
-<p>当然对于这种每个接口暴力解决的方案来说，对于每写一个接口都需要设置，因此增加我们写代码的重复性工作，因此需要一个一劳永逸的方式。</p>
-<p>在<code>@ResponseBody</code>里默认有消息转换器，一般json转换使用的是JackJson进行转换的，而我们在项目中配置使用fastjson，因此需要修改消息转化器。</p>
-<p>首先消息转化器中不只有json转换器，还有字符转换器等。</p>
-<p>在我们的项目中可以自定义一个配置类，标注有<code>@Configuration</code>或者在<code>@SpringBootApplication</code>的启动配置类中添加下面代码，就增加了fastjson的消息转换器注入。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * fastjson消息转换器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpMessageConverters <span class="title">httpMessageConverters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FastJsonHttpMessageConverter fastJsonHttpMessageConverter = <span class="keyword">new</span> FastJsonHttpMessageConverter();</span><br><span class="line">    <span class="comment">//添加fastJson的配置信息</span></span><br><span class="line">    FastJsonConfig fastJsonConfig = <span class="keyword">new</span> FastJsonConfig();</span><br><span class="line">    fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);</span><br><span class="line">    <span class="comment">//处理中文乱码问题</span></span><br><span class="line">    List&lt;MediaType&gt; fastMediaTypes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);</span><br><span class="line">    <span class="comment">//在convert中添加配置信息.	 </span></span><br><span class="line">    fastJsonHttpMessageConverter.setSupportedMediaTypes(fastMediaTypes);</span><br><span class="line">    fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);</span><br><span class="line">    HttpMessageConverter&lt;?&gt; converter = fastJsonHttpMessageConverter;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HttpMessageConverters(converter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当然需要注意，这种配置的方式必须在<code>fastjson 1.2.44</code>版本及之后才支持。在我们使用Maven构建项目是，需要添加fastjson的依赖。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.44<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>使用这种配置后，可以在返回中去掉我们的json转化，并直接返回我们需要转化的实体，在消息转换器中会自动调用fastjson进行转json。</p>
-<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/%E8%A7%A3%E5%86%B3%E5%90%8E%E7%BB%93%E6%9E%9C.png" alt="解决后结果"></p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ThreadPoolExecutor源码分析</title>
-    <url>/2018/11/18/ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<p>首先，为什么需要读这段源码呢？其实主要就一点，“知其然，知其所以然”。当理解其中的实现方式，就更加明白该如何去使用。</p>
-<p>为什么需要使用线程池？其原因正如像众所周知的，当我们需要不断的执行各种小型的任务时，而创建与销毁线程所带来的成本将影响系统的性能，因此使用线程池来减少线程的创建、销毁。</p>
-<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p>在此，状态是指线程池的状态。其中状态转换如下图</p>
-<p><img src="/2018/11/18/ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2.jpg" alt="状态转换"></p>
-<p>当然，在程序中，每个状态都会有一个值来代替。</p>
-<blockquote>
-<p>RUNNING：-1；SHUTDOWN：0；STOP：1；TIDYING：2；TERMINATED：3<br>并将所有的值左移29位。</p>
-</blockquote>
-<p>在程序中用ctl来表示当前线程池的状态。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> AtomicInteger ctl = <span class="keyword">new</span> AtomicInteger(ctlOf(RUNNING, <span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-
-<p>ctl是一个原子变量，后续的每一个操作都会使用CAS来进行原子操作。当然我们还需要记录当前线程池中启动的线程数，这个线程数也是通过ctl来记录的。</p>
-<p>这儿有一个巧妙的设计方式，将ctl的32位比特位分开，将其中前3位用来表示线程池的状态，而后面的29位用来记录当前线程池的线程数。其中每次获取线程数或者获取线程的状态的操作都使用位操作来获得。</p>
-<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,//核心线程上限数量</span></span></span><br><span class="line"><span class="params"><span class="function">                          <span class="keyword">int</span> maximumPoolSize,//最大线程数</span></span></span><br><span class="line"><span class="params"><span class="function">                          <span class="keyword">long</span> keepAliveTime,//允许线程空闲等待时间（允许setKeepAliveTime()</span>修改）</span></span><br><span class="line"><span class="function">                          TimeUnit unit,<span class="comment">//时间单位</span></span></span><br><span class="line"><span class="function">                          BlockingQueue&lt;Runnable&gt; workQueue,<span class="comment">//任务等待队列</span></span></span><br><span class="line"><span class="function">                          ThreadFactory threadFactory,<span class="comment">//线程构造工厂</span></span></span><br><span class="line"><span class="function">                          RejectedExecutionHandler handler) </span>&#123;<span class="comment">//任务拒绝方案</span></span><br><span class="line">    <span class="keyword">if</span> (corePoolSize &lt; <span class="number">0</span> ||</span><br><span class="line">        maximumPoolSize &lt;= <span class="number">0</span> ||</span><br><span class="line">        maximumPoolSize &lt; corePoolSize ||</span><br><span class="line">        keepAliveTime &lt; <span class="number">0</span>)<span class="comment">//校验参数</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</span><br><span class="line">    <span class="keyword">if</span> (workQueue == <span class="keyword">null</span> || threadFactory == <span class="keyword">null</span> || handler == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">     <span class="keyword">this</span>.acc = System.getSecurityManager() == <span class="keyword">null</span> ?</span><br><span class="line">            <span class="keyword">null</span> :</span><br><span class="line">            AccessController.getContext();<span class="comment">//初始化上下文</span></span><br><span class="line">    <span class="keyword">this</span>.corePoolSize = corePoolSize;</span><br><span class="line">    <span class="keyword">this</span>.maximumPoolSize = maximumPoolSize;</span><br><span class="line">    <span class="keyword">this</span>.workQueue = workQueue;</span><br><span class="line">    <span class="keyword">this</span>.keepAliveTime = unit.toNanos(keepAliveTime);</span><br><span class="line">    <span class="keyword">this</span>.threadFactory = threadFactory;</span><br><span class="line">    <span class="keyword">this</span>.handler = handler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其中需要注意的有两点。第一点，最大线程数代表的是在线程池中执行任务所允许的最大线程数。在线程池中，分为两种线程，一种是“固定工作人员”线程，另一种是“临时工”，只是在线程池有压力的情况下才会请用“临时工”。而最大线程数代表的是所有允许工作的线程数，核心线程上限数量为最多允许的“固定工作人员”线程数。</p>
-<p>第二点，在构造方法中，有允许默认线程构造方式，以及默认拒绝方案等。默认拒绝方案是接受任务时，不做处理，直接抛出异常。拒绝方案总共：CallerRunsPolicy、AbortPolicy、DiscardPolicy、DiscardOldestPolicy。</p>
-<blockquote>
-<p>CallerRunsPolicy：默认创建线程执行任务，除非执行器关闭<br>AbortPolicy：默认执行方案；不执行任务，直接抛出异常<br>DiscardPolicy：什么也不做。Does nothing<br>DiscardOldestPolicy：将任务队列的队头任务丢弃，再执行尝试加入队列。除非执行器关闭</p>
-</blockquote>
-<h3 id="execute"><a href="#execute" class="headerlink" title="execute"></a>execute</h3><p><strong>execute方法为线程池接收任务的方式。</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (command == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="keyword">int</span> c = ctl.get();</span><br><span class="line">    <span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">        <span class="keyword">if</span> (addWorker(command, <span class="keyword">true</span>))</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        c = ctl.get();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">        <span class="keyword">int</span> recheck = ctl.get();</span><br><span class="line">        <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">            reject(command);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)</span><br><span class="line">            addWorker(<span class="keyword">null</span>, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="keyword">false</span>))</span><br><span class="line">        reject(command);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其中整体思路也是比较简单的明了的。</p>
-<blockquote>
-<p>1、首先，校验运行线程数小于核心数，尝试增加新的核心线程直接运行任务，结束；<br>2、如果线程池在运行状态，尝试加入等待队列；加入成功后再次校验运行状态：非运行状态则移除任务并拒绝任务（拒绝任务时会执行拒绝方式）；如果线程池没有运行的线程，则加入一个新的非核心线程（运行任务将从队列中去获取）；<br>3、对于上一点开始的判断不满足，则再次尝试加入一个非核心线程运行当前任务，失败则拒绝任务。</p>
-</blockquote>
-<p>在第2点中为什么需要再次校验线程池中没有线程，并加入线程呢？其中在于并发情况下，当我在加入任务到等待队列时，刚好前面运行的线程都执行完任务，并队列为空，如果没有等待时间或者等待时间很短，那么这些线程都会消亡，那么在加入任务到线程池等待队列后，线程池没有消费任务的线程。</p>
-<p><strong>为什么添加“非核心”线程呢？</strong>如果添加的是核心线程会有什么不一样吗？其实换个角度想就明白了。核心线程与非核心线程在线程池中有明显的区分吗？并没有。只是有表示核心线程数上限与总线程数上限。加入线程时判断是否加入核心线程，只是判断当前线程总数是否到达核心线程数的限制。而这儿，线程总数是空的，因此加入一个新的线程，不管核心与否都行，但是必须要传这个参数。</p>
-<p>当然有一种情况，如果在此处加入非核心线程的前，其他允许核心数的线程加入线程，那么当前线程的加入没有达到最大线程数限制则不会失败，在我看来这儿传true/false本质上是相同的，ThreadPoolExecutor本身具有一定的自适应调节能力。重点是必须要传一个参数。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">int</span> wc = workerCountOf(c);</span><br><span class="line"><span class="keyword">if</span> (wc &gt;= CAPACITY ||</span><br><span class="line">      wc &gt;= (core ? corePoolSize : maximumPoolSize))</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>在第3点中，如果任务加入队列失败且创建了一个新的非核心线程。这种情况代表着当前情况下，目前的生产者的生产数量大于消费者数量，需要增加消费者的数量，等到不需要时，再释放临时工。</p>
-<p>其中addWorker函数，参数firstTask代表初始化任务，core代表创建的线程是否核心线程，而返回结果true/false分别代表新建线程加入并启动成功/失败。</p>
-<p><img src="/2018/11/18/ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/addWorker%E5%87%BD%E6%95%B0%E6%B5%81%E7%A8%8B.jpg" alt="addWorker()函数流程"></p>
-<h3 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown"></a>shutdown</h3><p>shutdown函数逻辑如下：</p>
-<p>1、先获得自旋锁，并加锁<br>2、对每个worker检查是否有修改线程权限（需要加锁）<br>3、循环尝试修改执行状态为SHUTDOWN<br>4、尝试阻塞每个线程（修改阻塞标志）<br>5、关闭锁后并调用<code>tryTerminate()</code>函数</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">this</span>.mainLock;</span><br><span class="line">    mainLock.lock();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        checkShutdownAccess();</span><br><span class="line">        advanceRunState(SHUTDOWN);</span><br><span class="line">        interruptIdleWorkers();</span><br><span class="line">        onShutdown(); <span class="comment">// hook for ScheduledThreadPoolExecutor</span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        mainLock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">    tryTerminate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>tryTerminate方法将在循环中执行下叙流程：</p>
-<p>1、判断线程池状态，运行中，TIDYING，或者SHUTDOWN同时等待队列不为空则结束；<br>2、判断当前线程执行数不为0，阻塞一个线程，结束（只是标识为阻塞）；<br>3、获取锁并加锁；<br>4、尝试状态位设置为按位或上TIDYING；<br>5、执行terminated，预留可被重载；<br>6、状态位设置为按位或上TERMINATED；<br>7、signalAll，唤醒此lock上等待的所有线程；<br>8、关闭锁；</p>
-<h3 id="shutdownNow"><a href="#shutdownNow" class="headerlink" title="shutdownNow"></a>shutdownNow</h3><p>shutdownNow()函数与shutdown()函数的主要区别是，shutdownNow会马上停止线程池，而shutdown不会马上停止线程池，会待目前线程池中的任务执行完成后再停止线程池。</p>
-<p>在代码上体现为三点区别：</p>
-<ul>
-<li>shutdownNow修改线程池的状态为STOP状态；</li>
-<li>shutdownNow调用阻塞线程是调用的是interruptWorkers()方法，而shutdown调用的是interruptIdleWorkers()方法。<br>这两个线程方法具有本质的区别，interruptWorkers会直接将循环所有的线程进行阻塞线程，而interruptIdleWorkers会阻塞没有运行的任务的线程，其中在于后者会拿到Worker的的锁后再调用阻塞；</li>
-<li>shutdownNow会直接清空任务队列里没有运行的任务，并返回。</li>
-</ul>
-<h3 id="Worker-run"><a href="#Worker-run" class="headerlink" title="Worker::run"></a>Worker::run</h3><p>首先，Worker是对于线程的一个封装，其中有当前线程，初始化任务，完成任务数等信息。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">runWorker</span><span class="params">(Worker w)</span> </span>&#123;</span><br><span class="line">    Thread wt = Thread.currentThread();</span><br><span class="line">    Runnable task = w.firstTask;</span><br><span class="line">    w.firstTask = <span class="keyword">null</span>;</span><br><span class="line">    w.unlock(); <span class="comment">// allow interrupts</span></span><br><span class="line">    <span class="keyword">boolean</span> completedAbruptly = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (task != <span class="keyword">null</span> || (task = getTask()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            w.lock();</span><br><span class="line">            <span class="keyword">if</span> ((runStateAtLeast(ctl.get(), STOP) || </span><br><span class="line">                    (Thread.interrupted() &amp;&amp; runStateAtLeast(ctl.get(), STOP))) </span><br><span class="line">                    &amp;&amp; !wt.isInterrupted())</span><br><span class="line">                wt.interrupt();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                beforeExecute(wt, task);</span><br><span class="line">                Throwable thrown = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    task.run();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (RuntimeException x) &#123;</span><br><span class="line">                    thrown = x; <span class="keyword">throw</span> x;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Error x) &#123;</span><br><span class="line">                    thrown = x; <span class="keyword">throw</span> x;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Throwable x) &#123;</span><br><span class="line">                    thrown = x; <span class="keyword">throw</span> <span class="keyword">new</span> Error(x);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    afterExecute(task, thrown);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                task = <span class="keyword">null</span>;</span><br><span class="line">                w.completedTasks++;</span><br><span class="line">                w.unlock();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        completedAbruptly = <span class="keyword">false</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        processWorkerExit(w, completedAbruptly);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其中逻辑如下：</p>
-<p>1、尝试从队列中拿出一个任务；（初始化时任务可能为空，后续将在此不断循环）<br>2、加锁；<br>3、判断线程池是否停止，如果停止则中断线程；<br>4、执行任务；<br>5、task置空，并将当前线程完成任务数自增，并关闭锁；<br>6、清理。<br>在清理中，会判断当前执行任务异常而导致线程结束，则将worker数减1，并执行一些清理性的工作。</p>
-<p>getTask在本处也是一个很有趣的方法。其实也很简单，就是循环尝试从任务队列中拿出一个新的任务，如果拿出了就返回，这是一个消费者。</p>
-<p>1、如果当前线程池的状态是STOP或者将STOP，则将worker数减1并结束；<br>2、计算是否有存活时间，以及线程数是否大于允许核心数；<br>3、根据2的计算结果判断线程是够需要结束，尝试将线程数减1；<br>4、尝试从队列中拿出任务，poll方法可以超时，并返回（会阻塞等待）；<br>5、没有拿出任务则把timeOut置为true；</p>
-<p>其实在这儿就可以明白，keepAliveTime所代表的当线程为空时，线程死亡前的等待时间，其实是设置为线程等待任务队列中拿到任务的超时时间。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在ThreadPoolExecutor通过充分的利用锁以及CAS操作，保证了线程安全性，并且也不会有性能上的限制。并且使用一个变量来直接代表两个意义的使用方式挺惊艳。以及在核心线程与非核心线程上的区分都设计得恰到好处。整体设计方案值得学习。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Thread</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>“欲穷千里目，更上一层楼”，现在几楼？</title>
-    <url>/2021/05/22/%E2%80%9C%E6%AC%B2%E7%A9%B7%E5%8D%83%E9%87%8C%E7%9B%AE%EF%BC%8C%E6%9B%B4%E4%B8%8A%E4%B8%80%E5%B1%82%E6%A5%BC%E2%80%9D%EF%BC%8C%E7%8E%B0%E5%9C%A8%E5%87%A0%E6%A5%BC%EF%BC%9F/</url>
+    <title>Mac上VPN 连接不上常用解决方案</title>
+    <url>/2017/07/21/Mac%E4%B8%8AVPN-%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<blockquote>
-<p>白日依山尽，黄河入海流；</p>
-<p>欲穷千里目，更上一层楼。</p>
+<p>本文写于在喜马拉雅公司实习期间，解决公司内的VPN连接不上的解决方案，仅作参考，不通用</p>
 </blockquote>
-<p>王之涣的《登鹳雀楼》只有二十个字，却表达出磅礴万里之气势。该诗写于鹳雀楼，在今山西永济市境内。</p>
-<p><strong>那么问题来了，“欲穷千里目，更上一层楼”，诗人现在在几楼，才能够做到上一层楼就看到那么遥远的距离呢？</strong></p>
-<p><strong>先抛出答案：不存在这么高的楼，因此诗人看不到这么远。</strong>那么接下来，我们证明一下这个问题。</p>
-<p>首先我们要提出几个假设：</p>
+<p>在工作中常常使用VPN，但是也常常出现VPN连接不上的情况，对于这种情况我们常常是深恶痛绝，花掉半天的时间也没解决，因此在这儿给出我自己的常用解决方案，一般按照着方案1、2、3的顺序执行，通常情况下都是解决的了。</p>
+<p><img src="/2017/07/21/Mac%E4%B8%8AVPN-%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/VPN%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A.png" alt="VPN连接不上"></p>
+<h3 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h3><p>尝试着删除掉我们所配置的VPN，然后重新配置，尝试连接。</p>
+<h3 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h3><p>这是大家常见的方案，在 /etc/ppp下的options文件中写入以下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">plugin L2TP.ppp</span><br><span class="line">l2tpnoipsec</span><br></pre></td></tr></table></figure>
+
+<p>然后重新连接。</p>
+<p>具体的操作步骤如下：</p>
 <ul>
-<li>假设地球是一个标准的球体，不是非规则的椭球</li>
-<li>假设光线在在地球上呈现直线传播，忽略由于地球引力导致的光偏折问题</li>
-<li>假设光线可达的具体为可见距离，实际的可视距离远远小于该距离</li>
+<li>在终端中输入 <code>sudo vim /etc/ppp/options</code>，可能需要密码；</li>
+<li>在文件中输入i进入insert方式，然后输入上诉代码，然后按esc，输入<code>:wq</code>，回车保存；</li>
+<li>尝试着重新连接或删除掉旧配置重新连接；</li>
 </ul>
-<p>我们设当时作者的所在高度离地心的距离为<code>R</code>（<code>R</code>大于海平线到地心的距离）；设<code>x</code>为能看到千里目的位置的高度。1千里等于500km。</p>
-<p><img src="/2021/05/22/%E2%80%9C%E6%AC%B2%E7%A9%B7%E5%8D%83%E9%87%8C%E7%9B%AE%EF%BC%8C%E6%9B%B4%E4%B8%8A%E4%B8%80%E5%B1%82%E6%A5%BC%E2%80%9D%EF%BC%8C%E7%8E%B0%E5%9C%A8%E5%87%A0%E6%A5%BC%EF%BC%9F/%E5%85%AC%E5%BC%8F.png" alt="公式"></p>
-<p>其中 <code>R = 地球海平线半径 + 海拔</code>，其中地球海平线半径约为6371.393千米，山西永济平均海拔在400米左右，因此<code>R</code>约为6372千米。</p>
-<p>那么根据上述公式进行计算，<code>x</code>约为19千米，而世界上最高的楼为828米（<a href="https://baike.baidu.com/item/%E5%93%88%E5%88%A9%E6%B3%95%E5%A1%94/6307669?fr=aladdin">哈利法塔，原名迪拜塔</a>），喜马拉雅高度为8844.43米，而民航一般不会超过12600千米。</p>
-<p><strong>因此我们平常人无法穷千里目。</strong>当然，上火星看地球是可以的当然是可以的。</p>
+<p><img src="/2017/07/21/Mac%E4%B8%8AVPN-%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/options%E6%96%87%E4%BB%B6.png" alt="options文件"></p>
+<h3 id="方案3"><a href="#方案3" class="headerlink" title="方案3"></a>方案3</h3><p>如果上述方案都不能够奏效，那么尝试第三种方案。<em>此方案只能在方案2不奏效的情况下使用</em></p>
+<ul>
+<li>删除<code>/etc/ppp/options</code>文件，即在终端执行<code>sudo rm -rf /etc/ppp/options</code>；</li>
+<li>删除VPN的配置重新配置，连接。<em><strong>这儿一定要删除配置重新配置</strong></em>（至于为什么，我也不清楚，反正不重新配置一般是不能成功的）</li>
+</ul>
+<p>一般情况下，按照这三种方案的顺序执行后都是能够成功访问了。</p>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>若本文中未总结的相关解决方案，欢迎补充。</p>
 ]]></content>
       <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>【File Storage 学习系列】对象存储、文件存储、块存储的区别</title>
-    <url>/2023/07/16/%E3%80%90File-Storage-%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E3%80%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E3%80%81%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E3%80%81%E5%9D%97%E5%AD%98%E5%82%A8%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h3 id="认识存储"><a href="#认识存储" class="headerlink" title="认识存储"></a>认识存储</h3><p>像我一样的童鞋，认知最多的是对象存储，认知的点是可以通过 HTTP 等 Restful 接口进行使用，指定 key 查到对应的内容，类似键值对的方式使用。这便是最开始的认知。</p>
-<p>还记得我最开始在比特大陆时，做过一个事情，是将 HDFS 的图片，都转存到 AWS 的 S3 上，但当时并没有认知到，为什么需要转存上去，为什么要用 S3，只是人云亦云的说 S3 能够更快等。</p>
-<p>后来在字节，我知道图片、文章、视频等，都是存储在对象存储上的。这个时候，我知道对象存储的使用场景便是如此了。写少读多，为互联网而生。当时也接触了 HDFS，在数据开发中常用，也没有更深入的了解。</p>
-<p>再来了阿里云，才真正开始了解存储。</p>
-<p>存储：存下内容提供各种写方式、读方式。并根据读写方式、时延的不同，出现了各个场景的划分。分化出了对象存储、文件存储、快存储、数据库存储等各种存储方式。所以学习存储，先需要了解他们的区别与特点，场景具体有什么不同。</p>
-<h3 id="对象存储"><a href="#对象存储" class="headerlink" title="对象存储"></a>对象存储</h3><ol>
-<li>Restful API：支持通过 Restful API 的方式进行上传、查看、管理数据</li>
-<li>对象：数据以对象的形式存储在Bucket 中，表明数据是以非结构化的方式进行存储</li>
-<li>不支持增量修改：只支持重新完全覆盖写操作</li>
-</ol>
-<h3 id="文件存储"><a href="#文件存储" class="headerlink" title="文件存储"></a>文件存储</h3><ol>
-<li>提供给计算节点使用</li>
-<li>Posix 接口、NFS / SMB 协议，适配操作系统</li>
-<li>多计算节点共享存储</li>
-<li>以文件系统层次化结构，提供完整文件系统语意</li>
-</ol>
-<h3 id="块存储"><a href="#块存储" class="headerlink" title="块存储"></a>块存储</h3><ol>
-<li>块级别存储</li>
-<li>提供块设备，类似 PC 中的磁盘</li>
-<li>标准虚拟块设备协议接口或 NVMe 协议接口</li>
-<li>共享性较差：NVMe 支持一定程度的多计算节点共享</li>
-<li>很多时候无法直接使用，需要进行格式化建立文件系统使用</li>
-</ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
-<li>对象存储：在互联网提供在在线读取业务场景有着很强的优势，针对写少读多场景，比如图片、短视频等</li>
-<li>文件存储：在吞吐、共享上有很强的优势，主打高性能计算、容器场景以及传统使用 NAS 业务上云</li>
-<li>块存储：在时延上有很强优势，主打通用业务场景</li>
-</ol>
-<blockquote>
-<p>块存储的用户是可以读写块设备的软件系统，例如传统的文件系统、数据库；文件存储的用户是自然人；对象存储的用户则是其它计算机软件。</p>
-</blockquote>
-<p>摘录自 <a href="https://www.zhihu.com/question/21536660">https://www.zhihu.com/question/21536660</a>。这段是从组织形式来阐述的，但根据其各自的特点衍生出了不同的用法形式。</p>
-]]></content>
-      <categories>
-        <category>product read</category>
+        <category>tool</category>
       </categories>
       <tags>
-        <tag>File Storage</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【File Storage 学习系列】文件存储的各种场景</title>
-    <url>/2023/09/04/%E3%80%90File-Storage-%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E3%80%91%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E7%9A%84%E5%90%84%E7%A7%8D%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<ol>
-<li>企业应用上云<ul>
-<li>作为部分企业应用上公共云的替代品</li>
-</ul>
-</li>
-<li>容器存储<ul>
-<li>主要是用的是共享的能力，解决容器服务可能在短时间内读取 Docker File 拉起多个容器的场景</li>
-</ul>
-</li>
-<li>内容管理和 Web 服务<ul>
-<li>作为文件系统所提供的一定程度上的基本能力，类似 HDFS</li>
-</ul>
-</li>
-<li>AI 训练、基因计算、工业仿真等高性能计算<ul>
-<li>高 IOPS，高带宽，低延迟要求</li>
-<li>海量小文件</li>
-</ul>
-</li>
-<li>媒体和娱乐工作流<ul>
-<li>共享，以及扩容方便性，降低视频等处理成本</li>
-</ul>
-</li>
-</ol>
-<p>可以看出对文件存储的需求是有递进性的，最开始要求作为文件系统的能力。而后支持共享，以及作为云上的弹性的能力。然后支持高性能高带宽，海量小文件的极端需求场景。也是随着对于需求的变化而不断发展的过程。缓存类型的文件存储以及数据流动的产生，也是随着需求的演进而来的。</p>
-<p>从历史到目前都是一个趋势：数据量越来越大，因此要求更低的成本以及更高的读写能力，对单机读写能力的不满足，所以要支持数据共享的能力，能够支持切片进行并行计算。</p>
-<p>那么下一个需求是什么呢？又会提出什么更高的需求呢？</p>
-<p>但需求越极端则需求数量越少，成本可能就越高。用一套文件存储解决所有的场景终究是不可能的，本也是一个平衡，怎么用最优的成本，解决更多的场景的需求。然后扩充产品线解决更多的场景，更好的支撑用户的需求场景。</p>
-]]></content>
-      <categories>
-        <category>product read</category>
-      </categories>
-      <tags>
-        <tag>File Storage</tag>
+        <tag>macOS</tag>
+        <tag>VPN</tag>
       </tags>
   </entry>
   <entry>
@@ -1824,6 +1566,824 @@
       </categories>
       <tags>
         <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SCC算法初解</title>
+    <url>/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/</url>
+    <content><![CDATA[<p>在算法学习之路上漂泊，遇见了图，而分无向与有向。在本文中主要讲解关于有向图中的求极大连通分量的算法，主要是Kasaraju算法、Tarjan算法以及Gabow算法。</p>
+<p>三种算法都是基于深度优先搜索算法（DFS）而实现的，实际上后两种算法是对于Kasaraju算法的改进，减少了一次深度优先搜索（DFS），因此在性能上相比较而言要好一些。</p>
+<h3 id="初识强连通分量"><a href="#初识强连通分量" class="headerlink" title="初识强连通分量"></a>初识强连通分量</h3><p>首先，连通分量是无向图G的一个极大连通子图称为G的一个连通分量（或连通分支）。连通图只有一个连通分量，即其自身；非连通的无向图有多个连通分量。</p>
+<p>强连通图指每一个顶点皆可以经由该图上的边抵达其他的每一个点的有向图。意即对于此图上每一个点对(Va,Vb)，皆存在路径Va→Vb以及Vb→Va。强连通分量则是指一张有向图G的极大强连通子图G’。如果将每一个强连通分量缩成一个点，则原图G将会变成一张有向无环图。一张图被称为有向无环图当且仅当此图不具有点集合数量大于一的强连通分量，因为有向环即是一个强连通分量，而且任何的强连通分量皆具有至少一个有向环。（摘自维基百科）</p>
+<p>对于无向图，求连通分量的问题就等价于求是否连通的问题，使用深度优先、广度优先搜索的算法的到的树都能求出最大连通分量。</p>
+<h3 id="Kasaraju算法"><a href="#Kasaraju算法" class="headerlink" title="Kasaraju算法"></a>Kasaraju算法</h3><p>Kasaraju算法在我第一次接触时，感觉确实有点难理解，虽然现在也还是有点难理解。本文中不会去证明算法，只是讲解算法的一些实现等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KosarajuSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    List&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    KosarajuSCC(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.adj = <span class="keyword">new</span> ArrayList[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.adj[i] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adj[v].add(w);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正向遍历，以后根序压栈，保证根先出栈</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fillorder</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited, Stack&lt;Integer&gt; s)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer i : <span class="keyword">this</span>.adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//reverse 得到反向图</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KosarajuSCC <span class="title">getTranspose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        KosarajuSCC gv = <span class="keyword">new</span> KosarajuSCC(<span class="keyword">this</span>.n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer j : <span class="keyword">this</span>.adj[i]) &#123;</span><br><span class="line">                gv.adj[j].add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> gv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//DFS打印连通分支</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFSUtil</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        System.out.print(v + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer i : adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                DFSUtil(i, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按照Kosaraju算法的步骤执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printSCCs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="keyword">this</span>.n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//逆后序压栈</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//得到反向图</span></span><br><span class="line">        KosarajuSCC gr = <span class="keyword">this</span>.getTranspose();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//依据反向图算可达性</span></span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = s.pop();</span><br><span class="line">            <span class="keyword">if</span> (visited[v] == <span class="keyword">false</span>) &#123;</span><br><span class="line">                gr.DFSUtil(v, visited);</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先理解一下Karasaju算法的思路。</p>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Kasaraju%E7%AE%97%E6%B3%95.png" alt="Kasaraju算法"></p>
+<ul>
+<li>对图G求其逆后序，即在深度优先遍历（DFS）中在递归调用之后压入栈中；</li>
+<li>对G进行转置，在代码中即得到反图；</li>
+<li>按照第一步中得到的栈的出栈的顶点顺序，对于G<sup>R</sup>图进行DFS可以得到若干搜索树。每棵搜索树都代表一个强连通分量。</li>
+</ul>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/%E7%A4%BA%E4%BE%8B%E5%9B%BEG.png" alt="示例图G"></p>
+<p>如上图示例的有向图，先求逆后序排序，得到<code>&#123;7, 8, 6, 9, 11, 10, 12, 0, 5, 4, 2, 3, 1&#125;</code>，然后按照这个图的转置图G<sup>R</sup>进行DFS，最终可以得到极大强连通分量5个：<code>&#123;7, 8&#125;, &#123;6&#125;, &#123;9, 11, 10, 12&#125;, &#123;0, 5, 4, 2, 3&#125;, &#123;1&#125;</code>。</p>
+<p>在Karasaju算法中使用了两次DFS，第一次是得到节点的逆后序排序（有的算法书将逆后序排序合并在拓扑排序里面）；第二次是对于转置图DFS得到最终的强连通分量。我们当然想要对于算法进行优化，减少DFS的次数也是一种极好的优化方式，想想如果一次DFS就可以得出强连通分量岂不是很好。</p>
+<h3 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h3><p>Tarjan算法是对于Kasaraju算法的改进。其基本代码实现思维如下：</p>
+<ul>
+<li>遍历一个点，指定唯一时间戳<code>DFN[i]</code>；指定改点向前追溯可追溯到最老时间戳<code>LOW[i]</code>；</li>
+<li>枚举当前点的所有边，若<code>DFN[j]=0</code>表明未被搜索过（这儿0、-1等都是可以的，只要是自我约定好的，正常不使用的就可以，如下面算法中使用的<code>NO_VISIT</code>），递归搜索；</li>
+<li>当<code>DFN[i]</code>不为0，则j被搜索过，这时判断是否在我们存储新建的栈中，且j的时间戳<code>DFN[j]</code>小于当前时间戳<code>DFN[i]</code>，可判定成环，将<code>LOW[i]</code>设定为<code>DFN[j]</code>；</li>
+<li>若这个点<code>LOW[i]</code>和<code>DFN[i]</code>相等，则这个点是目前强连通分量的元素中在栈中的最早的节点；</li>
+<li>出栈，将这个强连通分量全部弹出，保存。</li>
+</ul>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Tarjan%E7%AE%97%E6%B3%95.png" alt="Tarjan算法"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TarjanSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] inStack;<span class="comment">//标记节点是否在栈内</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dfn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] low;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TarjanSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.inStack = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfNode];</span><br><span class="line">        <span class="keyword">this</span>.stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        dfn = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        low = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(dfn, NO_VISIT);<span class="comment">//将dfn所有元素都置为0，代表i还有没被访问过。</span></span><br><span class="line">        Arrays.fill(low, NO_VISIT);</span><br><span class="line">        result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取强连通分量</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;ArrayList&lt;Integer&gt;&gt; tarjanResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dfn[i] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//算法核心</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> current)</span> </span>&#123;</span><br><span class="line">        dfn[current] = low[current] = time++;</span><br><span class="line">        inStack[current] = <span class="keyword">true</span>;</span><br><span class="line">        stack.push(current);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(current).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(current).get(i);</span><br><span class="line">            <span class="keyword">if</span> (dfn[next] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(next);</span><br><span class="line">                low[current] = Math.min(low[current], low[next]);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inStack[next]) &#123;</span><br><span class="line">                low[current] = Math.min(low[current], dfn[next]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (low[current] == dfn[current]) &#123;</span><br><span class="line">            ArrayList&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (current != j) &#123;</span><br><span class="line">                j = stack.pop();</span><br><span class="line">                inStack[j] = <span class="keyword">false</span>;</span><br><span class="line">                temp.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是在算法中的时间戳这个标记，并不是代表真正的时间戳，而是对于每个节点不同的一种标记，在本文算法中都是用一个递增数组来表示，即访问每个节点时，将该时间戳变量自增赋值给该节点的时间戳<code>DFN[i]</code>。</p>
+<h3 id="Gabow算法"><a href="#Gabow算法" class="headerlink" title="Gabow算法"></a>Gabow算法</h3><p>Gabow算法在基础上与Tarjan算法相似，都是利用一次DFS算法实现。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GabowSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; path;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; root;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] order;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] part; <span class="comment">// 连通变量的标号；</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> partNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GabowSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.path = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        order = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        part = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(order, NO_VISIT);</span><br><span class="line">        Arrays.fill(part, NO_VISIT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] gabowResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (order[i] == NO_VISIT) &#123;</span><br><span class="line">                gabow(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> part;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gabow</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        order[v] = ++time;</span><br><span class="line">        path.push(v);</span><br><span class="line">        root.push(v);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(v).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(v).get(i);</span><br><span class="line">            <span class="keyword">if</span> (order[next] == NO_VISIT) &#123;</span><br><span class="line">                gabow(next);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (part[next] == NO_VISIT) &#123;</span><br><span class="line">                <span class="keyword">while</span> (order[root.peek()] &gt; order[next]) &#123;</span><br><span class="line">                    root.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (v == root.peek()) &#123;</span><br><span class="line">            root.pop();</span><br><span class="line">            partNum++;</span><br><span class="line">            <span class="keyword">int</span> top;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                top = path.peek();</span><br><span class="line">                part[top] = partNum;</span><br><span class="line">                path.pop();</span><br><span class="line">            &#125; <span class="keyword">while</span> (top != v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其算法基本思路是：</p>
+<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Gabow%E7%AE%97%E6%B3%95.png" alt="Gabow算法"></p>
+<ul>
+<li>在所有顶点中，找一个没有被访问的节点v，如果没有则完成；</li>
+<li>记录v的访问顺序；<br>将v压入堆栈path和root；<br>如果v指向的邻接点，对应每个邻接点next：<br>1、如果没有访问过，则以next为参数，递归到第二步；<br>2、如果访问过，且没有确定它属于哪个强连通分量，弹出root栈中next之后（即之上）的所有顶点；<br>3、如果root栈中的元素等于v，那么在part中记录顶点对应的强连通分量</li>
+<li>递归返回</li>
+</ul>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文只涉及算法的实现，没有设计算法的证明等，如有想法，请分享。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Algo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot解决返回体content-type非json</title>
+    <url>/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/</url>
+    <content><![CDATA[<p>最佳解决方案为自定义消息转换器。</p>
+<p>首先，为什么要自定义消息转换器？所见即所得，原本的消息转换器并不能满足我们目前的需求。</p>
+<p>在最近的项目中，使用了SpringBoot与FastJson构建项目，在我们返回时，使用 <code>@ResponseBody</code>的方法里，采用了fastjson里的<code>JSON.toJSONString()</code>方法返回我们需要的Json数据，而这种返回中，会有一个问题，在返回中<code>@ResponseBody</code>注解中的消息转换器会默认理解为String解析，在返回体中如下图，<code>content-type</code>为<code>text/html</code>。</p>
+<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/1.jpg"></p>
+<p>因此我们解决想让我们的返回体中<code>content-type</code>为<code>application/json</code>。</p>
+<p>针对于这个问题，有一种最暴力的解决方案，直接在<code>@RequestMapping</code>中添加<code>produces</code>属性，设置<code>produces=&quot;application/json&quot;</code>直接使得返回体设置为json格式。</p>
+<p>当然对于这种每个接口暴力解决的方案来说，对于每写一个接口都需要设置，因此增加我们写代码的重复性工作，因此需要一个一劳永逸的方式。</p>
+<p>在<code>@ResponseBody</code>里默认有消息转换器，一般json转换使用的是JackJson进行转换的，而我们在项目中配置使用fastjson，因此需要修改消息转化器。</p>
+<p>首先消息转化器中不只有json转换器，还有字符转换器等。</p>
+<p>在我们的项目中可以自定义一个配置类，标注有<code>@Configuration</code>或者在<code>@SpringBootApplication</code>的启动配置类中添加下面代码，就增加了fastjson的消息转换器注入。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * fastjson消息转换器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpMessageConverters <span class="title">httpMessageConverters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FastJsonHttpMessageConverter fastJsonHttpMessageConverter = <span class="keyword">new</span> FastJsonHttpMessageConverter();</span><br><span class="line">    <span class="comment">//添加fastJson的配置信息</span></span><br><span class="line">    FastJsonConfig fastJsonConfig = <span class="keyword">new</span> FastJsonConfig();</span><br><span class="line">    fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);</span><br><span class="line">    <span class="comment">//处理中文乱码问题</span></span><br><span class="line">    List&lt;MediaType&gt; fastMediaTypes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);</span><br><span class="line">    <span class="comment">//在convert中添加配置信息.	 </span></span><br><span class="line">    fastJsonHttpMessageConverter.setSupportedMediaTypes(fastMediaTypes);</span><br><span class="line">    fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);</span><br><span class="line">    HttpMessageConverter&lt;?&gt; converter = fastJsonHttpMessageConverter;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HttpMessageConverters(converter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然需要注意，这种配置的方式必须在<code>fastjson 1.2.44</code>版本及之后才支持。在我们使用Maven构建项目是，需要添加fastjson的依赖。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.44<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用这种配置后，可以在返回中去掉我们的json转化，并直接返回我们需要转化的实体，在消息转换器中会自动调用fastjson进行转json。</p>
+<p><img src="/2018/07/07/SpringBoot%E8%A7%A3%E5%86%B3%E8%BF%94%E5%9B%9E%E4%BD%93content-type%E9%9D%9Ejson/%E8%A7%A3%E5%86%B3%E5%90%8E%E7%BB%93%E6%9E%9C.png" alt="解决后结果"></p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ThreadPoolExecutor源码分析</title>
+    <url>/2018/11/18/ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>首先，为什么需要读这段源码呢？其实主要就一点，“知其然，知其所以然”。当理解其中的实现方式，就更加明白该如何去使用。</p>
+<p>为什么需要使用线程池？其原因正如像众所周知的，当我们需要不断的执行各种小型的任务时，而创建与销毁线程所带来的成本将影响系统的性能，因此使用线程池来减少线程的创建、销毁。</p>
+<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p>在此，状态是指线程池的状态。其中状态转换如下图</p>
+<p><img src="/2018/11/18/ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2.jpg" alt="状态转换"></p>
+<p>当然，在程序中，每个状态都会有一个值来代替。</p>
+<blockquote>
+<p>RUNNING：-1；SHUTDOWN：0；STOP：1；TIDYING：2；TERMINATED：3<br>并将所有的值左移29位。</p>
+</blockquote>
+<p>在程序中用ctl来表示当前线程池的状态。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> AtomicInteger ctl = <span class="keyword">new</span> AtomicInteger(ctlOf(RUNNING, <span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>ctl是一个原子变量，后续的每一个操作都会使用CAS来进行原子操作。当然我们还需要记录当前线程池中启动的线程数，这个线程数也是通过ctl来记录的。</p>
+<p>这儿有一个巧妙的设计方式，将ctl的32位比特位分开，将其中前3位用来表示线程池的状态，而后面的29位用来记录当前线程池的线程数。其中每次获取线程数或者获取线程的状态的操作都使用位操作来获得。</p>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,//核心线程上限数量</span></span></span><br><span class="line"><span class="params"><span class="function">                          <span class="keyword">int</span> maximumPoolSize,//最大线程数</span></span></span><br><span class="line"><span class="params"><span class="function">                          <span class="keyword">long</span> keepAliveTime,//允许线程空闲等待时间（允许setKeepAliveTime()</span>修改）</span></span><br><span class="line"><span class="function">                          TimeUnit unit,<span class="comment">//时间单位</span></span></span><br><span class="line"><span class="function">                          BlockingQueue&lt;Runnable&gt; workQueue,<span class="comment">//任务等待队列</span></span></span><br><span class="line"><span class="function">                          ThreadFactory threadFactory,<span class="comment">//线程构造工厂</span></span></span><br><span class="line"><span class="function">                          RejectedExecutionHandler handler) </span>&#123;<span class="comment">//任务拒绝方案</span></span><br><span class="line">    <span class="keyword">if</span> (corePoolSize &lt; <span class="number">0</span> ||</span><br><span class="line">        maximumPoolSize &lt;= <span class="number">0</span> ||</span><br><span class="line">        maximumPoolSize &lt; corePoolSize ||</span><br><span class="line">        keepAliveTime &lt; <span class="number">0</span>)<span class="comment">//校验参数</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</span><br><span class="line">    <span class="keyword">if</span> (workQueue == <span class="keyword">null</span> || threadFactory == <span class="keyword">null</span> || handler == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">     <span class="keyword">this</span>.acc = System.getSecurityManager() == <span class="keyword">null</span> ?</span><br><span class="line">            <span class="keyword">null</span> :</span><br><span class="line">            AccessController.getContext();<span class="comment">//初始化上下文</span></span><br><span class="line">    <span class="keyword">this</span>.corePoolSize = corePoolSize;</span><br><span class="line">    <span class="keyword">this</span>.maximumPoolSize = maximumPoolSize;</span><br><span class="line">    <span class="keyword">this</span>.workQueue = workQueue;</span><br><span class="line">    <span class="keyword">this</span>.keepAliveTime = unit.toNanos(keepAliveTime);</span><br><span class="line">    <span class="keyword">this</span>.threadFactory = threadFactory;</span><br><span class="line">    <span class="keyword">this</span>.handler = handler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中需要注意的有两点。第一点，最大线程数代表的是在线程池中执行任务所允许的最大线程数。在线程池中，分为两种线程，一种是“固定工作人员”线程，另一种是“临时工”，只是在线程池有压力的情况下才会请用“临时工”。而最大线程数代表的是所有允许工作的线程数，核心线程上限数量为最多允许的“固定工作人员”线程数。</p>
+<p>第二点，在构造方法中，有允许默认线程构造方式，以及默认拒绝方案等。默认拒绝方案是接受任务时，不做处理，直接抛出异常。拒绝方案总共：CallerRunsPolicy、AbortPolicy、DiscardPolicy、DiscardOldestPolicy。</p>
+<blockquote>
+<p>CallerRunsPolicy：默认创建线程执行任务，除非执行器关闭<br>AbortPolicy：默认执行方案；不执行任务，直接抛出异常<br>DiscardPolicy：什么也不做。Does nothing<br>DiscardOldestPolicy：将任务队列的队头任务丢弃，再执行尝试加入队列。除非执行器关闭</p>
+</blockquote>
+<h3 id="execute"><a href="#execute" class="headerlink" title="execute"></a>execute</h3><p><strong>execute方法为线程池接收任务的方式。</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (command == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="keyword">int</span> c = ctl.get();</span><br><span class="line">    <span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">        <span class="keyword">if</span> (addWorker(command, <span class="keyword">true</span>))</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        c = ctl.get();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">        <span class="keyword">int</span> recheck = ctl.get();</span><br><span class="line">        <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">            reject(command);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)</span><br><span class="line">            addWorker(<span class="keyword">null</span>, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="keyword">false</span>))</span><br><span class="line">        reject(command);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中整体思路也是比较简单的明了的。</p>
+<blockquote>
+<p>1、首先，校验运行线程数小于核心数，尝试增加新的核心线程直接运行任务，结束；<br>2、如果线程池在运行状态，尝试加入等待队列；加入成功后再次校验运行状态：非运行状态则移除任务并拒绝任务（拒绝任务时会执行拒绝方式）；如果线程池没有运行的线程，则加入一个新的非核心线程（运行任务将从队列中去获取）；<br>3、对于上一点开始的判断不满足，则再次尝试加入一个非核心线程运行当前任务，失败则拒绝任务。</p>
+</blockquote>
+<p>在第2点中为什么需要再次校验线程池中没有线程，并加入线程呢？其中在于并发情况下，当我在加入任务到等待队列时，刚好前面运行的线程都执行完任务，并队列为空，如果没有等待时间或者等待时间很短，那么这些线程都会消亡，那么在加入任务到线程池等待队列后，线程池没有消费任务的线程。</p>
+<p><strong>为什么添加“非核心”线程呢？</strong>如果添加的是核心线程会有什么不一样吗？其实换个角度想就明白了。核心线程与非核心线程在线程池中有明显的区分吗？并没有。只是有表示核心线程数上限与总线程数上限。加入线程时判断是否加入核心线程，只是判断当前线程总数是否到达核心线程数的限制。而这儿，线程总数是空的，因此加入一个新的线程，不管核心与否都行，但是必须要传这个参数。</p>
+<p>当然有一种情况，如果在此处加入非核心线程的前，其他允许核心数的线程加入线程，那么当前线程的加入没有达到最大线程数限制则不会失败，在我看来这儿传true/false本质上是相同的，ThreadPoolExecutor本身具有一定的自适应调节能力。重点是必须要传一个参数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">int</span> wc = workerCountOf(c);</span><br><span class="line"><span class="keyword">if</span> (wc &gt;= CAPACITY ||</span><br><span class="line">      wc &gt;= (core ? corePoolSize : maximumPoolSize))</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>在第3点中，如果任务加入队列失败且创建了一个新的非核心线程。这种情况代表着当前情况下，目前的生产者的生产数量大于消费者数量，需要增加消费者的数量，等到不需要时，再释放临时工。</p>
+<p>其中addWorker函数，参数firstTask代表初始化任务，core代表创建的线程是否核心线程，而返回结果true/false分别代表新建线程加入并启动成功/失败。</p>
+<p><img src="/2018/11/18/ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/addWorker%E5%87%BD%E6%95%B0%E6%B5%81%E7%A8%8B.jpg" alt="addWorker()函数流程"></p>
+<h3 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown"></a>shutdown</h3><p>shutdown函数逻辑如下：</p>
+<p>1、先获得自旋锁，并加锁<br>2、对每个worker检查是否有修改线程权限（需要加锁）<br>3、循环尝试修改执行状态为SHUTDOWN<br>4、尝试阻塞每个线程（修改阻塞标志）<br>5、关闭锁后并调用<code>tryTerminate()</code>函数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">this</span>.mainLock;</span><br><span class="line">    mainLock.lock();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        checkShutdownAccess();</span><br><span class="line">        advanceRunState(SHUTDOWN);</span><br><span class="line">        interruptIdleWorkers();</span><br><span class="line">        onShutdown(); <span class="comment">// hook for ScheduledThreadPoolExecutor</span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        mainLock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">    tryTerminate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>tryTerminate方法将在循环中执行下叙流程：</p>
+<p>1、判断线程池状态，运行中，TIDYING，或者SHUTDOWN同时等待队列不为空则结束；<br>2、判断当前线程执行数不为0，阻塞一个线程，结束（只是标识为阻塞）；<br>3、获取锁并加锁；<br>4、尝试状态位设置为按位或上TIDYING；<br>5、执行terminated，预留可被重载；<br>6、状态位设置为按位或上TERMINATED；<br>7、signalAll，唤醒此lock上等待的所有线程；<br>8、关闭锁；</p>
+<h3 id="shutdownNow"><a href="#shutdownNow" class="headerlink" title="shutdownNow"></a>shutdownNow</h3><p>shutdownNow()函数与shutdown()函数的主要区别是，shutdownNow会马上停止线程池，而shutdown不会马上停止线程池，会待目前线程池中的任务执行完成后再停止线程池。</p>
+<p>在代码上体现为三点区别：</p>
+<ul>
+<li>shutdownNow修改线程池的状态为STOP状态；</li>
+<li>shutdownNow调用阻塞线程是调用的是interruptWorkers()方法，而shutdown调用的是interruptIdleWorkers()方法。<br>这两个线程方法具有本质的区别，interruptWorkers会直接将循环所有的线程进行阻塞线程，而interruptIdleWorkers会阻塞没有运行的任务的线程，其中在于后者会拿到Worker的的锁后再调用阻塞；</li>
+<li>shutdownNow会直接清空任务队列里没有运行的任务，并返回。</li>
+</ul>
+<h3 id="Worker-run"><a href="#Worker-run" class="headerlink" title="Worker::run"></a>Worker::run</h3><p>首先，Worker是对于线程的一个封装，其中有当前线程，初始化任务，完成任务数等信息。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">runWorker</span><span class="params">(Worker w)</span> </span>&#123;</span><br><span class="line">    Thread wt = Thread.currentThread();</span><br><span class="line">    Runnable task = w.firstTask;</span><br><span class="line">    w.firstTask = <span class="keyword">null</span>;</span><br><span class="line">    w.unlock(); <span class="comment">// allow interrupts</span></span><br><span class="line">    <span class="keyword">boolean</span> completedAbruptly = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (task != <span class="keyword">null</span> || (task = getTask()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            w.lock();</span><br><span class="line">            <span class="keyword">if</span> ((runStateAtLeast(ctl.get(), STOP) || </span><br><span class="line">                    (Thread.interrupted() &amp;&amp; runStateAtLeast(ctl.get(), STOP))) </span><br><span class="line">                    &amp;&amp; !wt.isInterrupted())</span><br><span class="line">                wt.interrupt();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                beforeExecute(wt, task);</span><br><span class="line">                Throwable thrown = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    task.run();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (RuntimeException x) &#123;</span><br><span class="line">                    thrown = x; <span class="keyword">throw</span> x;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Error x) &#123;</span><br><span class="line">                    thrown = x; <span class="keyword">throw</span> x;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Throwable x) &#123;</span><br><span class="line">                    thrown = x; <span class="keyword">throw</span> <span class="keyword">new</span> Error(x);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    afterExecute(task, thrown);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                task = <span class="keyword">null</span>;</span><br><span class="line">                w.completedTasks++;</span><br><span class="line">                w.unlock();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        completedAbruptly = <span class="keyword">false</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        processWorkerExit(w, completedAbruptly);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中逻辑如下：</p>
+<p>1、尝试从队列中拿出一个任务；（初始化时任务可能为空，后续将在此不断循环）<br>2、加锁；<br>3、判断线程池是否停止，如果停止则中断线程；<br>4、执行任务；<br>5、task置空，并将当前线程完成任务数自增，并关闭锁；<br>6、清理。<br>在清理中，会判断当前执行任务异常而导致线程结束，则将worker数减1，并执行一些清理性的工作。</p>
+<p>getTask在本处也是一个很有趣的方法。其实也很简单，就是循环尝试从任务队列中拿出一个新的任务，如果拿出了就返回，这是一个消费者。</p>
+<p>1、如果当前线程池的状态是STOP或者将STOP，则将worker数减1并结束；<br>2、计算是否有存活时间，以及线程数是否大于允许核心数；<br>3、根据2的计算结果判断线程是够需要结束，尝试将线程数减1；<br>4、尝试从队列中拿出任务，poll方法可以超时，并返回（会阻塞等待）；<br>5、没有拿出任务则把timeOut置为true；</p>
+<p>其实在这儿就可以明白，keepAliveTime所代表的当线程为空时，线程死亡前的等待时间，其实是设置为线程等待任务队列中拿到任务的超时时间。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在ThreadPoolExecutor通过充分的利用锁以及CAS操作，保证了线程安全性，并且也不会有性能上的限制。并且使用一个变量来直接代表两个意义的使用方式挺惊艳。以及在核心线程与非核心线程上的区分都设计得恰到好处。整体设计方案值得学习。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Thread</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>“欲穷千里目，更上一层楼”，现在几楼？</title>
+    <url>/2021/05/22/%E2%80%9C%E6%AC%B2%E7%A9%B7%E5%8D%83%E9%87%8C%E7%9B%AE%EF%BC%8C%E6%9B%B4%E4%B8%8A%E4%B8%80%E5%B1%82%E6%A5%BC%E2%80%9D%EF%BC%8C%E7%8E%B0%E5%9C%A8%E5%87%A0%E6%A5%BC%EF%BC%9F/</url>
+    <content><![CDATA[<blockquote>
+<p>白日依山尽，黄河入海流；</p>
+<p>欲穷千里目，更上一层楼。</p>
+</blockquote>
+<p>王之涣的《登鹳雀楼》只有二十个字，却表达出磅礴万里之气势。该诗写于鹳雀楼，在今山西永济市境内。</p>
+<p><strong>那么问题来了，“欲穷千里目，更上一层楼”，诗人现在在几楼，才能够做到上一层楼就看到那么遥远的距离呢？</strong></p>
+<p><strong>先抛出答案：不存在这么高的楼，因此诗人看不到这么远。</strong>那么接下来，我们证明一下这个问题。</p>
+<p>首先我们要提出几个假设：</p>
+<ul>
+<li>假设地球是一个标准的球体，不是非规则的椭球</li>
+<li>假设光线在在地球上呈现直线传播，忽略由于地球引力导致的光偏折问题</li>
+<li>假设光线可达的具体为可见距离，实际的可视距离远远小于该距离</li>
+</ul>
+<p>我们设当时作者的所在高度离地心的距离为<code>R</code>（<code>R</code>大于海平线到地心的距离）；设<code>x</code>为能看到千里目的位置的高度。1千里等于500km。</p>
+<p><img src="/2021/05/22/%E2%80%9C%E6%AC%B2%E7%A9%B7%E5%8D%83%E9%87%8C%E7%9B%AE%EF%BC%8C%E6%9B%B4%E4%B8%8A%E4%B8%80%E5%B1%82%E6%A5%BC%E2%80%9D%EF%BC%8C%E7%8E%B0%E5%9C%A8%E5%87%A0%E6%A5%BC%EF%BC%9F/%E5%85%AC%E5%BC%8F.png" alt="公式"></p>
+<p>其中 <code>R = 地球海平线半径 + 海拔</code>，其中地球海平线半径约为6371.393千米，山西永济平均海拔在400米左右，因此<code>R</code>约为6372千米。</p>
+<p>那么根据上述公式进行计算，<code>x</code>约为19千米，而世界上最高的楼为828米（<a href="https://baike.baidu.com/item/%E5%93%88%E5%88%A9%E6%B3%95%E5%A1%94/6307669?fr=aladdin">哈利法塔，原名迪拜塔</a>），喜马拉雅高度为8844.43米，而民航一般不会超过12600千米。</p>
+<p><strong>因此我们平常人无法穷千里目。</strong>当然，上火星看地球是可以的当然是可以的。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>【File Storage 学习系列】对象存储、文件存储、块存储的区别</title>
+    <url>/2023/07/16/%E3%80%90File-Storage-%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E3%80%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E3%80%81%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E3%80%81%E5%9D%97%E5%AD%98%E5%82%A8%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h3 id="认识存储"><a href="#认识存储" class="headerlink" title="认识存储"></a>认识存储</h3><p>像我一样的童鞋，认知最多的是对象存储，认知的点是可以通过 HTTP 等 Restful 接口进行使用，指定 key 查到对应的内容，类似键值对的方式使用。这便是最开始的认知。</p>
+<p>还记得我最开始在比特大陆时，做过一个事情，是将 HDFS 的图片，都转存到 AWS 的 S3 上，但当时并没有认知到，为什么需要转存上去，为什么要用 S3，只是人云亦云的说 S3 能够更快等。</p>
+<p>后来在字节，我知道图片、文章、视频等，都是存储在对象存储上的。这个时候，我知道对象存储的使用场景便是如此了。写少读多，为互联网而生。当时也接触了 HDFS，在数据开发中常用，也没有更深入的了解。</p>
+<p>再来了阿里云，才真正开始了解存储。</p>
+<p>存储：存下内容提供各种写方式、读方式。并根据读写方式、时延的不同，出现了各个场景的划分。分化出了对象存储、文件存储、快存储、数据库存储等各种存储方式。所以学习存储，先需要了解他们的区别与特点，场景具体有什么不同。</p>
+<h3 id="对象存储"><a href="#对象存储" class="headerlink" title="对象存储"></a>对象存储</h3><ol>
+<li>Restful API：支持通过 Restful API 的方式进行上传、查看、管理数据</li>
+<li>对象：数据以对象的形式存储在Bucket 中，表明数据是以非结构化的方式进行存储</li>
+<li>不支持增量修改：只支持重新完全覆盖写操作</li>
+</ol>
+<h3 id="文件存储"><a href="#文件存储" class="headerlink" title="文件存储"></a>文件存储</h3><ol>
+<li>提供给计算节点使用</li>
+<li>Posix 接口、NFS / SMB 协议，适配操作系统</li>
+<li>多计算节点共享存储</li>
+<li>以文件系统层次化结构，提供完整文件系统语意</li>
+</ol>
+<h3 id="块存储"><a href="#块存储" class="headerlink" title="块存储"></a>块存储</h3><ol>
+<li>块级别存储</li>
+<li>提供块设备，类似 PC 中的磁盘</li>
+<li>标准虚拟块设备协议接口或 NVMe 协议接口</li>
+<li>共享性较差：NVMe 支持一定程度的多计算节点共享</li>
+<li>很多时候无法直接使用，需要进行格式化建立文件系统使用</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>对象存储：在互联网提供在在线读取业务场景有着很强的优势，针对写少读多场景，比如图片、短视频等</li>
+<li>文件存储：在吞吐、共享上有很强的优势，主打高性能计算、容器场景以及传统使用 NAS 业务上云</li>
+<li>块存储：在时延上有很强优势，主打通用业务场景</li>
+</ol>
+<blockquote>
+<p>块存储的用户是可以读写块设备的软件系统，例如传统的文件系统、数据库；文件存储的用户是自然人；对象存储的用户则是其它计算机软件。</p>
+</blockquote>
+<p>摘录自 <a href="https://www.zhihu.com/question/21536660">https://www.zhihu.com/question/21536660</a>。这段是从组织形式来阐述的，但根据其各自的特点衍生出了不同的用法形式。</p>
+]]></content>
+      <categories>
+        <category>product read</category>
+      </categories>
+      <tags>
+        <tag>File Storage</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【File Storage 学习系列】文件存储的各种场景</title>
+    <url>/2023/09/04/%E3%80%90File-Storage-%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E3%80%91%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E7%9A%84%E5%90%84%E7%A7%8D%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<ol>
+<li>企业应用上云<ul>
+<li>作为部分企业应用上公共云的替代品</li>
+</ul>
+</li>
+<li>容器存储<ul>
+<li>主要是用的是共享的能力，解决容器服务可能在短时间内读取 Docker File 拉起多个容器的场景</li>
+</ul>
+</li>
+<li>内容管理和 Web 服务<ul>
+<li>作为文件系统所提供的一定程度上的基本能力，类似 HDFS</li>
+</ul>
+</li>
+<li>AI 训练、基因计算、工业仿真等高性能计算<ul>
+<li>高 IOPS，高带宽，低延迟要求</li>
+<li>海量小文件</li>
+</ul>
+</li>
+<li>媒体和娱乐工作流<ul>
+<li>共享，以及扩容方便性，降低视频等处理成本</li>
+</ul>
+</li>
+</ol>
+<p>可以看出对文件存储的需求是有递进性的，最开始要求作为文件系统的能力。而后支持共享，以及作为云上的弹性的能力。然后支持高性能高带宽，海量小文件的极端需求场景。也是随着对于需求的变化而不断发展的过程。缓存类型的文件存储以及数据流动的产生，也是随着需求的演进而来的。</p>
+<p>从历史到目前都是一个趋势：数据量越来越大，因此要求更低的成本以及更高的读写能力，对单机读写能力的不满足，所以要支持数据共享的能力，能够支持切片进行并行计算。</p>
+<p>那么下一个需求是什么呢？又会提出什么更高的需求呢？</p>
+<p>但需求越极端则需求数量越少，成本可能就越高。用一套文件存储解决所有的场景终究是不可能的，本也是一个平衡，怎么用最优的成本，解决更多的场景的需求。然后扩充产品线解决更多的场景，更好的支撑用户的需求场景。</p>
+]]></content>
+      <categories>
+        <category>product read</category>
+      </categories>
+      <tags>
+        <tag>File Storage</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【笔记】分布式理论 &amp; 算法</title>
+    <url>/2023/10/29/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA-%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><h3 id="CAP-理论"><a href="#CAP-理论" class="headerlink" title="CAP 理论"></a>CAP 理论</h3><p>一致性（Consistency)、可用性（Availability）、分区容错性（Partition Tolerance）。实现一致性只能在 CP 和 AP 中进行选择。（理论上无法选择 CA 架构，在分区情况下，C 与 A 产生了冲突）。</p>
+<h3 id="BASE-理论"><a href="#BASE-理论" class="headerlink" title="BASE 理论"></a>BASE 理论</h3><p><strong>可以理解为对 AP 方案的一个补充。</strong></p>
+<p>即使无法做到强一致，但每个应用可以根据自身业务特点，采用适当的方式来使系统达到最终一致性。（也就是牺牲数据的一致性来满足系统的高可用性，系统中一部分数据不可用或者不一致时，仍需要保持系统整体“主要可用”）。</p>
+<ol>
+<li>基本可用：分布式系统在出现不可预知故障时，允许损失部分可用性。但不等价于系统不可用。<ol>
+<li>响应时间上的损失</li>
+<li>系统功能上的损失</li>
+</ol>
+</li>
+<li>软状态：允许系统中的数据存在中间状态，并认为该中间状态存在不会影响系统的整体可用性，即允许系统在不同节点的数据副本之间进行数据同步的过程存在延时。</li>
+<li>最终一致性：在经过一段时间的同步后，最终能够达到一个一致的状态。最终一致性的本质是需要系统保证最终数据能够达到一致，而不需要实时保证系统数据的强一致。</li>
+</ol>
+<ul>
+<li>强一致：写入后马上读出来新值</li>
+<li>弱一致：写入后不一定可以读到最新写入的值，也不保证多少时间之后读取到的数据是最新的，只是会尽量保证某个时刻达到数据一致的状态。</li>
+<li>最终一致：弱一致的升级，系统会保证在一定时间内达到数据一致的状态。</li>
+</ul>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h3><ul>
+<li>Basic Paxos： 多个节点之间如何就某个值（提案 Value）达成共识。</li>
+<li>Multi Paxos：执行多个 Basic Paxos 实例，就一系列值达成共识。</li>
+</ul>
+<p><img src="/2023/10/29/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA-%E7%AE%97%E6%B3%95/Paxos.png" alt="Paxos"></p>
+<ol>
+<li><strong>提议者（Proposer）：</strong>也叫做协调者（coordinator），提议者负责接受客户端的请求并发起‘提案。提案信息通常包括提案编号和提议值。</li>
+<li><strong>接受者（Acceptor）：</strong>也叫做投票员（voter），负责对提议者的提案进行投票，同时需要记住自己的投票历史。</li>
+<li><strong>学习者（Learner）：</strong>如果有超过半数的接受者就某个提议达成了共识，那么学习者就需要接受这个提议，并就该提议作出运算，然后将运算结果返回给客户端。</li>
+</ol>
+<p>Multi Paxos 是一种思想，核心是通过多个 Basic Paxos 实例就一系列值达成共识。</p>
+<h3 id="Raft"><a href="#Raft" class="headerlink" title="Raft"></a>Raft</h3><p>Raft 集群包括若干服务器，在任意的时间，每个服务器都处于下面三个状态中的一个：</p>
+<ul>
+<li><strong>Leader：</strong>负责发起心跳，响应客户端，创建日志，同步日志</li>
+<li><strong>Candidate：</strong>Leader 选举过程中的临时角色，由 Follower 转化而来，发起投票参与竞选</li>
+<li><strong>Follower：</strong>接受 Leader 的心跳和日志同步数据，投票给 Candidate</li>
+</ul>
+<p>￼<img src="/2023/10/29/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA-%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB.png" alt="状态转移"></p>
+<p><strong>任期：</strong>raft 算法将时间划分为任意长度的任期（term），任意用连续的数字表示，看作当前 term 号。每一个任期的开始都是一次选举。</p>
+<p>￼<strong>日志：</strong></p>
+<ul>
+<li>Entry：每一个事件成为 entry，只有 Leader 可以创建 entry，entry 的内容为 &lt;term,index,cmd&gt; 其中 cmd 是可以应用到状态机的操作。</li>
+<li>Log： 由 entry 构建的数组，每个 entry 都有一个表明自己在 log 中的 index。只有 Leader 才可以改变其他节点的 log。entry 总是先被 Leader 添加到自己的 log 数组中，然后再发起共识请求，获得同意后才会被 Leader 提交给状态机。Follower 只能从 Leader 获取新日志和当前的 commitIndex，然后把对应的 entry 应用到自己的状态机中。</li>
+</ul>
+<p><strong>Leader 选举：</strong></p>
+<p>采用心跳机制来触发 Leader 的选举。</p>
+<p>Leader 会向所有的 Follower 周期性的发送心跳来保证自己的 Leader 地位。如果 Follower 在一个周期内没有收到心跳信息，会认为此时没有可用的 Leader，并开始进行一次选举。</p>
+<p>选举时，会先自增自己的 term 号，转换状态为 Candidate，向所有节点发起投票。当获得 N/2 + 1 的选票时，可以成为 Leader。</p>
+<p>当选举过程中如果收到了 Leader 的心跳，则根据 term 号判断是否接受。</p>
+<ol>
+<li>该 Leader 的 term 号大于等于自己的 term 号，则自己退回 follower</li>
+<li>该 Leader 的 term 号小于自己的 term 号，那么会拒绝该请求并让该节点更新 term</li>
+</ol>
+<p>同一时间可能存在多个 Candidate。raft 使用随机的选举超时避免永远没有选出 Leader 的情况。</p>
+<p><strong>日志复制：</strong></p>
+<p>当选出 Leader 后，Leader 将接受客户端的请求，每一个客户端的请求都包含一条需要被复制状态机星星的命令。收到客户端请求后，产生一条 entry，添加到自己的日志末尾后，向所有节点广播该 entry，要求其他服务器复制这条 entry。</p>
+<p>Follower 收到 entry 后，添加 entry 到 log，然后返回成功。</p>
+<p>Leader 收到多数成功响应，Leader 将这条 entry 应用到自己的状态机中，返回客户端执行结果。</p>
+<p>Raft 保证两个性质：</p>
+<ul>
+<li>在两个日志里，有两个 entry 拥有相同的 index 和 term，那么一定有相同的 cmd （仅 Leader 可以生成 entry 保证）</li>
+<li>在两个日志里，有两个 entry 拥有相同的 index 和 term，那它们之前的 entry 也一定相同 （一致性检查保证）</li>
+</ul>
+<p>Leader 会在强制 Follower 复制自己的日志 来处理日志不一致。Leader 给每一个 Follower 维护了一个 nextIndex，记录下一个需要发送给该 Follower 的日志条目索引。当成为 Leader 时，nextIndex + 1，开始一轮检查，如果不一致，则 nextIndex -1，直到 appendEntries 成功。</p>
+<p><strong>安全性：</strong></p>
+<ol>
+<li>选举限制<ol>
+<li>Follower 接受选举投票前提是要求发起投票的最后一个 entry 大于自己的 entry</li>
+<li>如果两个日志 term 不同，term 大为更新；term 相同，更长的 index 为更新</li>
+</ol>
+</li>
+<li>节点崩溃<ol>
+<li>Leader 崩溃，则进行选举</li>
+<li>Follower 和 Candidate 崩溃，则 Leader 进行不断重试</li>
+</ol>
+</li>
+<li>时间与可用性<ol>
+<li>向其他节点并发发送消息的平均响应时间 &lt;&lt; 选举超市时间 &lt;&lt; 单台机器的平均健康时间</li>
+</ol>
+</li>
+</ol>
+<h3 id="Gossip"><a href="#Gossip" class="headerlink" title="Gossip"></a>Gossip</h3><p>集中式发散消息，一个主节点同时共享最新信息给其他所有节点，比较适合中心化系统。缺点是节点多时同步消息效率低，过于依赖中心节点，存在单点风险。</p>
+<p>Gossip 协议是一种允许在分布式系统中共享状态的去中心化通信协议，通过这种通信协议，可以将信息传播给网络或集群中的所有成员。</p>
+<p>两种可能的消息传播模式：</p>
+<ul>
+<li><strong>反熵（Anti-entropy）：</strong>消除节点中的差异，提升相似度<ul>
+<li>推方式：将自己的所有副本数据推给对方，修复对方副本中的熵</li>
+<li>拉方式：拉取对方的所有副本数据，修复自己副本中的熵</li>
+<li>推拉：同时修复自己副本和对方副本中的熵</li>
+<li>一般会给反熵设计一个闭环。</li>
+</ul>
+</li>
+<li><strong>传谣（Rumor-Mongering）：</strong>一个节点一旦有了新数据之后，会变为活跃姐弟呐，周期性地联系其他节点，向其发送新数据，直到所有节点都存储了该新数据。<ul>
+<li>适合节点数量比较多或者节点动态变化的场景</li>
+</ul>
+</li>
+</ul>
+<p>优势：</p>
+<ul>
+<li>相比较其他分布式协议 / 算法，理解简单</li>
+<li>能够容忍网络上节点随意地增加或减少、宕机或重启，因为 Gossip 协议下这些节点都是平等的，去中心化的。新增加的或者重启的节点在理想情况下最终是一定会和其他节点的状态达成一致。</li>
+<li>速度相对较快。节点数量比较多的情况下，扩散速度比一个节点向其他节点传播信息要快</li>
+</ul>
+<p>缺陷：</p>
+<ul>
+<li>消息需要通过多个传播的轮次才能传播到整个网络中，因此必然会出现各个节点状态不一致的情况。并且各个节点的状态一致需要多长时间也不确定。</li>
+<li>由于拜占庭将军问题，不允许存在恶意节点</li>
+<li>可能出现消息冗余的问题。由于消息传播的随机性，同一个节点可能会重复收到相同的消息。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://zhuanlan.zhihu.com/p/107439021">拜占庭将军问题： 多个将军使用信使者如何达成一致。</a></li>
+<li><a href="https://javaguide.cn/distributed-system/protocol/cap-and-base-theorem.html#%E7%AE%80%E4%BB%8B">分布式协议讲解</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Distribution</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【笔记】数据库系统概念</title>
+    <url>/2020/11/25/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<p><img src="/2020/11/25/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5.png" alt="数据库系统概念"></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>数据库管理系统（DBMS）由一个互相关联的数据的集合（数据库）和一组用以访问这些数据的程序组成。</p>
+<p>数据库系统的一个主要目的是为用户提供数据的抽象视图，系统隐藏数据存储和维护的细节。</p>
+<p>数据库结构的基础是数据模型：一个用于描述数据、数据之间的联系、数据语义和数据约束的概念工具的集合。</p>
+<p>关系数据模型是最广泛使用的将数据存储到数据库中的模型。其他的数据模型有面向对象模型、对象-关系模型和半结构化数据模型。</p>
+<p>数据操纵语言（DML）是使得用户可以访问和操纵数据的语言。数据定义语言（DDL）是说明数据库模式和数据的其他特征的语言。</p>
+<p>数据库设计主要包括数据库模式的设计。实体-联系（E-R）数据模型是广泛用于数据库设计的数据模型，提供一种方便的图形化的方式来观察数据、联系和约束。</p>
+<p>数据库设计流程：</p>
+<ul>
+<li>制定出用户需求的规格文档</li>
+<li>在概念设计阶段开发出来的模式提供企业的详细概述：描述数据以及它们之间的联系，而不是指定无力的存储细节</li>
+<li>逻辑设计阶段：设计者将高层的概念模式映射到要使用的数据库系统的设计数据模式上</li>
+<li>物理设计阶段：指定数据库中的物理特性，这些特性包括文件组织的形式以及内部的存储结构</li>
+</ul>
+<p>数据库系统由几个子系统构成：1、存储管理器子系统在数据库中存储的低层数据与应用程序和向系统提交的查询之间提供借口。2、查询处理器子系统编译和执行DDL和DML语句。</p>
+<p>事务是数据库应用中完成单一逻辑功能的操作结合。<strong>每个事务是一个既具有原子性又具有一致性的单元。原子性和持久性的保证是数据库系统自身的职责。</strong>事务管理负责保证不管是否有故障发生，数据库都要处于一致的（正确的）状态。事务管理器还保证并发事务的执行互不冲突。</p>
+<p>数据库系统的体系结构受支持其运行的计算机系统的影响很大。数据库系统可以是集中式的。或是客户-服务器方式的，即一个服务器及其为多个客户机执行工作。数据库系统还可以设计成具有能充分利用并行计算系统结构的能力。分布式数据库跨越多个地理上分布的互相分离的计算机。</p>
+<p>典型地，数据库应用可被分为运行在客户机上的前端和运行在后端的部分。在两层的系统结构中，前端直接和后端运行的数据库进行通信。在三层结构上，后端又被分为应用服务器和数据库服务器。</p>
+<p>知识发现技术试图自动地从数据中发现统计规律和模式。数据挖掘领域将人工智能和统计分析研究人员创造的知识发现技术，与使得知识发现技术能够在极大地数据库上高效实现的技术结合起来。数据挖掘指半自动地分析大型数据库并从中找出有用的模式的过程。</p>
+<h2 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h2><h3 id="关系模型介绍"><a href="#关系模型介绍" class="headerlink" title="关系模型介绍"></a>关系模型介绍</h3><p><strong>数据模型是描述数据、数据联系、数据语义以及一致性约束的概念工具的集合。</strong>数据库模式是指数据库的逻辑设计，数据库实例是指给定时刻数据库中数据的一个快照。</p>
+<p>关系数据模型建立在表的集合的基础上。数据库系统的用户可以对这些表进行查询，可以插入新元组、删除元组以及更新（修改）元组。表达这些操作的语言又几种。</p>
+<p>关系的模式是指它的逻辑设计。而关系的实例是指它的特定时刻的内容。数据库的模式和实例的定义的类似的。关系的模式包括它的属性，还可能包括属性类型和关系上的约束，比如主码和外码约束。</p>
+<p>关系的超码是一个或多个属性的集合，这些属性上的取值保证可以唯一识别出关系中的元组。候选码是一个最小的超码，也就是说，它是一组构成超码的属性集，但这组属性的任意子集都不是超码。关系的一个候选码被选作主码。</p>
+<p>在参照关系中的外码是这样的一个属性集合：对于参照关系中的每个元组来说，它在外码属性上的取值肯定等于被参照关系中某个元组在主码上的取值。</p>
+<p>模式图是数据库中模式的图形化表示，它显示了数据库中的关系，关系的属性、主码和外码。</p>
+<p>关系查询语言定义了一组运算集，这些运算可以作用于表上，并输出表作用结构。这些运算可以组合成表达式，表达所需的查询。</p>
+<p>关系代数提供了一组运算，它们以一个或多个关系为输入，返回一个关系作为输出。诸如SQL这样的实际查询语言的基于关系代数的，但增加了一些有用的句法特征。</p>
+<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><p>SQL是最有影响力的商用市场化的关系查询语言。包括以下几个部分：1、数据定义语言（DDL），提供了定义关系模式、删除关系以及修改关系模式的命令；2、数据操作语言（DML），提供查询语言，以及往数据库中插入元组、从数据库中删除元组修改数据库中元组的命令。</p>
+<p>SQL的数据定义语言用于创建具有特定模式的关系。除了声明关系属性的名称和类型之外，SQL还允许声明完整性的约束，例如主码约束和外码约束。</p>
+<p>SQL提供多种用于查询数据库的语言结构，其中包括select、form和where子句。SQL支持自然连接操作。</p>
+<p>SQL还提供了对属性的关系重命名，以及对查询结果按特定属性进行排序的机制。</p>
+<p>SQL支持关系上的基本集合运算，包括并、交和差运算。</p>
+<p>SQL通过在通用真值true和false外增加增值“unknown”，来处理对包含空值进行排序的机制。</p>
+<p>SQL支持在外层查询的where和from子句中嵌套子查询。它还在一个表达式返回的单个值所允许出现的任何地方支持标量子查询。</p>
+<p>SQL提供了用于更新、插入、删除信息的结构。</p>
+<h3 id="中级SQL"><a href="#中级SQL" class="headerlink" title="中级SQL"></a>中级SQL</h3><p>SQL支持包括内连接、外连接在内的几种连接类型，以及几种形式的连接条件。</p>
+<p>视图关系可以定义为包含查询查询结果的关系。视图可以隐藏不需要的信息，可以把信息从多个关系收集到一个单一的视图中。</p>
+<p>事务是一个查询的更新的序列，它们共同执行某项任务。事务可以被提交或回滚。当一个事务被回滚，该事务执行的所有更新所带来的影响将被撤销。</p>
+<p>完整性约束保证授权用户对数据库所做的改变不会导致数据一致性的破坏。</p>
+<p>参照完整性约束保证出现在一个关系的给定属性集上的值同样出现在另一个关系的特定属性集上。</p>
+<p>域约束指定了在一个属性上可能取值的集合。这种约束也可以禁止在特定属性上使用空值。</p>
+<p>断言是描述性表达式，它指定了我们要求总是为真的谓词。</p>
+<p>SQL数据定义语言提供对定义诸如date和time那样的固有域类型以及用户定义域类型的支持。</p>
+<p>通过SQL授权机制，可以按照在数据库中不同数据值上数据库用户所允许的访问类型对他们进行区分。</p>
+<p>获得了某种形式授权的用户可能允许将此授权传递给其他用户。但是，对于权限怎样在用户间传递我们必须很小心，以保证这样的权限在将来的某个时候可以被收回。</p>
+<p>角色有助于根据用户在组织机构中扮演的角色，把一组权限分配给用户。</p>
+<h3 id="高级SQL"><a href="#高级SQL" class="headerlink" title="高级SQL"></a>高级SQL</h3><p>SQL查询可以从宿住语言通过嵌入和动态SQL激发。ODBC和JDBC标准给C、Java等语言的应用程序定义接入SQL数据库的应用程序接口。</p>
+<p>函数和过程可以用SQL提供的过程来定义，它允许迭代和条件语句。</p>
+<p>触发器定义了当某个事件发生而且满足相应条件时自动执行的动作。触发器有很多用处，例如实现业务规则、审计日志，甚至执行数据库系统外的操作。</p>
+<p>联机分析处理（OLAP）工具帮助分析人员用不同的方式查看汇总数据。</p>
+<ul>
+<li>OLAP工具工作在以维属性和度量属性为特性的多维数据之上。</li>
+<li>数据立方体由以不同方式汇总的多维度数据构成。预先计算数据立方体有助于提高汇总数据的查询数据。</li>
+<li>交叉表的显示允许用户一次查看多维数据的两个维及其汇总数据。</li>
+<li>下钻、上卷、切片和切块是用户使用OLAP工具时执行的一些操作。</li>
+</ul>
+<h3 id="形式化关系查询语言"><a href="#形式化关系查询语言" class="headerlink" title="形式化关系查询语言"></a>形式化关系查询语言</h3><p>关系代数定义了一套在表上运算且输出结果也是表的代数运算。这些运算可以凝合使用来得到表达所希望查询的表达式。关系代数定义了关系查询语言中使用的基本运算。</p>
+<p>关系代数运算可以分为：</p>
+<p><strong>1、基本运算；</strong></p>
+<p>关系代数基本运算有：选择、投影、并、集合差、笛卡尔积和更名。选择、投影和更名运算是一元运算符。选择：选出满足给定谓词的元组。</p>
+<p>二元运算自然连接使得我们可以将某些选择和笛卡尔积运算合并为一个运算。自然连接运算首先形成它的两个参数的笛卡尔积，然后基于两个关系模式中都出现的属性上相等性进行选择，最后还要去除重复属性。</p>
+<p><strong>2、附加的运算，可以用基本运算的表达；</strong></p>
+<p>包括集合交、自然连接和赋值。</p>
+<p><strong>3、扩展的运算，其中的一些扩展了关系代数的表达能力。</strong></p>
+<p>广义投影：允许在投影列表中使用算术运算和字符串函数等来对投影进行扩展。</p>
+<p>以下三种等价：</p>
+<ul>
+<li>基本关系代数（不包含扩展关系代数运算）</li>
+<li>限制在安全表达式范围内的元组关系演算</li>
+<li>限制在安全表达式范围内的域关系演算</li>
+</ul>
+<p>没有任何一个域关系演算等价于聚集运算，但是它可以扩展支持聚集。</p>
+<p>关系代数式一中简洁的、形式化的语言，不适合于那些偶尔使用数据库系统的用户。因此，商用数据库系统采用有更多“语言修饰”的语言。</p>
+<p>元组关系演算和域关系演算使非过程化语言，代表了关系查询语言所需的基本能力。基本关系代数式一种过程化语言，在能力上等价于被限制在安全表达式范围内的关系演算的这两种形式。</p>
+<p>关系演算的简洁的、形式化的语言，并不适合于那些偶尔使用数据库系统的用户。</p>
+<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><h3 id="数据库设计与E-R模型"><a href="#数据库设计与E-R模型" class="headerlink" title="数据库设计与E-R模型"></a>数据库设计与E-R模型</h3><ul>
+<li>数据库设计的最初阶段需要完整地刻画未来数据库用户的数据需求</li>
+<li>设计者选择数据模型，并采用所选数据模型的概念将这些需求转化为数据库的概念模式。在概念设计阶段所产生的模式提供了一个对企业的详细综述。</li>
+<li>完善的该你那模式还指明企业的功能需求。</li>
+<li>从抽象数据模型到数据库的实现的转化在最后两个设计阶段中进行<ul>
+<li>逻辑设计阶段：将高层概念模式映射到将使用的数据库系统的实现数据模式上。</li>
+<li>物理设计简单：指明数据库的物理特征。 </li>
+</ul>
+</li>
+</ul>
+<p>在设计一个数据库模式时，需要确保避免两个主要缺陷：冗余、不完整。</p>
+<p>数据库设计主要涉及数据库模式的设计。实体-联系（E-R）数据库模型是一个广泛用于数据库设计的数据模型。提供了一个方便的图形化表示方法以查看数据、联系和约束。</p>
+<p>E-R模型主要用于数据库设计过程。它的发展是为了帮助数据库设计，这是通过允许定义企业模式实现的。这种企业模式代表数据库的全局逻辑结构，可以用E-R图形化表示。</p>
+<p>实体是在现实世界中存在并且区别于其他对象的对象。通过把每个实体同描述该实体的一组属性相关联来表示区别。</p>
+<p>联系是多个实体间的关联。相同类型的联系的集合为联系集，相同类型的实体的集合为实体集。</p>
+<p>每个属性都有一个可取值的集合，称为该属性的域，或者值集。</p>
+<p>术语超码、候选码以及主码同适用于关系模式一样适用于实体和联系集。</p>
+<p>映射的基数表示通过联系集可以和另一实体相关联的实体的个数。</p>
+<p>不具有足够属性构成的主码的实体集称为弱实体集。具有主码的实体集称为强实体集。</p>
+<p>E-R模型的各种性质为数据库设计者提供了大量的选择，使设计人员可以最好地表示被建模的企业。在某些情况下，概念和对象可以用实体、联系或属性来表示。企业总体结构的各方面可以用弱实体集、概化、特化或聚集很好地描述。设计者通常需要在简单的、紧凑的模型与更精确但也更复杂的模型之间进行权衡。</p>
+<p>用E-R图定义的数据库设计可以用关系模式的集合来表示。数据库的每个实体集和联系集都有唯一的关系模式与之对应，其名称即为相应的实体集或联系集的名称。这是从E-R图转换为关系数据库设计的基础。</p>
+<p>特化和概化定义了一个高层实体集和一个或多个低层实体集之间的包含关系。特花是取出高层实体集的一个子集来形成一个低层实体集。概化湿用两个或者多个不相交的（低层）实体集的并集形成一个高层实体集。高层实体集的属性被低层实体集继承。</p>
+<p>聚集是一种抽象，其中联系集（和它们相关的实体集一起）被看作高层实体集，并且可以参与联系。</p>
+<p>UML是一种常见的建模语言。UML类图广泛用于对类建模以及一般的数据建模。</p>
+<h3 id="关系数据库设计"><a href="#关系数据库设计" class="headerlink" title="关系数据库设计"></a>关系数据库设计</h3><p>冗余存储则存在不一致的风险。</p>
+<p>如果该域的元素被认为是不可分的单元，这个域是原子的。<strong>如果关系模式R的所有属性的域都是原子的，那么称R属于第一范式（1NF）。</strong></p>
+<p>在许多含有复杂结构的实体域中，强制使用第一范式会给应用程序员造成不必要的负担。设计与开发时需要从当前业务考虑。</p>
+<p>一个关系的满足所有现实世界的约束的实例，称为关系的合法实例（满足业务要求的实例）。</p>
+<p>使用F+符号表示F集合的闭包，能够从给定F集合推导出所有函数依赖的集合。F+包含了F的所有函数依赖。</p>
+<p><strong>具有函数依赖集F的关系模式R属于BCNF的条件是，对于F+中所有形如a-&gt;b的函数依赖（其中a与b都包含于R），下面至少一项成立：1、a-&gt;b是平凡的函数依赖（即b包含于a）；2、a是模式R的一个超码。一个数据库设计属于BCNF的条件是，构成该设计的关系模式集中的每种模式都属于BCNF。</strong></p>
+<p><strong>第三范式：对于F+中所有形如a-&gt;b的函数依赖（其中a，b都包含于R）以下至少一项成立：1、a-&gt;b是一个平凡的函数依赖；2、a是R的一个超码；3、b-a中的每个属性A都包含于R的一个候选码中（候选码是最小的超码，且任意子集都不是超码）。</strong></p>
+<p>给定关系模式r(R)，如果r(R)的每一个满足F的实例都满足f，则R上的函数依赖f被r上的函数依赖F逻辑蕴涵。F的闭包是被F逻辑蕴涵的所有函数依赖的集合（F+）。</p>
+<p>函数依赖和多值依赖集为D的关系模式r(R)属于第四范式的条件是，对于D+中所有形如a–&gt;b的多值依赖（其中a和b都包含于R），以下至少一项成立：1、a–&gt;b是一个平凡的多值依赖；2、a是R的一个超码。</p>
+<h3 id="应用设计和开发"><a href="#应用设计和开发" class="headerlink" title="应用设计和开发"></a>应用设计和开发</h3><h2 id="数据存储和查询"><a href="#数据存储和查询" class="headerlink" title="数据存储和查询"></a>数据存储和查询</h2><h3 id="存储和文件结构"><a href="#存储和文件结构" class="headerlink" title="存储和文件结构"></a>存储和文件结构</h3><p>最快的存储介质（如高速缓冲存储器和主存储器）称为基本存储。层次结构中的基本存储介质的下一层介质（如磁盘）称为辅助存储或联机存储。层次结构中最底层的介质（如磁带机和自动光盘机）称为三级存储或脱机存储。</p>
+<p>易失性存储在设备断电后将丢失所有的内容。</p>
+<p>存储介质的可靠性由两个因素决定：1、电源故障或系统崩溃是否导致数据丢失；2、存储设备发生物理故障的可能性有多大。</p>
+<p>通过保留数据的多个拷贝，可以减少物理故障的可能性。对磁盘来说可以使用镜像技术。或者可以使用更复杂的基于独立磁盘冗余阵列（RAID）的方法。通过将数据拆分到多张磁盘上，可以提高大数据量访问的吞吐率；通过引入多张磁盘上的冗余存储，可以显著提高可靠性。</p>
+<p>可以把一个文件从逻辑上组织成映射到磁盘块上的一个记录序列。把数据库映射到文件的一种方法是使用多个文件，每个文件只存储固定长度的记录。另一种方法是构造文件。使之能适应多种长度的记录。分槽的页方法广泛应用于在磁盘块中处理变长记录。</p>
+<p>通过在多张磁盘上进行数据拆分来提高传速率。数据拆分最简单的形式是将每个字节按比特分开，存储到多个磁盘上。这种拆分称为比特级拆分。块级拆分是将块拆分到多张磁盘。</p>
+<p>磁盘系统并行有两个主要目的：1、负载平衡多个小的访问操作（块访问），以提高这种访问操作的吞吐量；2、并行执行大的访问操作，以减少大访问的响应时间。</p>
+<p>大对象常常存储到一个特殊的文件（或文件的集合）中而不是与记录的其他（短）属性存储在一起。然后一个指向该对象的（逻辑）指针存储到包含该大对象的记录中。</p>
+<p><strong>顺序文件是为了高效处理按某个搜索码的顺序排序的记录而设计的。搜索码是任何的一个属性或者属性的集合。</strong></p>
+<p><strong>多表聚簇文件组织是一种在每一块中存储两个或者更多个关系的相关记录的文件结构。</strong></p>
+<p>数据库系统的一个主要目的就是尽量减少磁盘和存储器之间传输的块数目。负责缓冲区空间分配的子系统称为缓冲区管理器。缓冲的是块而非数据。</p>
+<h3 id="索引与散列"><a href="#索引与散列" class="headerlink" title="索引与散列"></a>索引与散列</h3><p>数据库系统首先查找索引，找到相应记录所做的磁盘块，然后取出该磁盘块，得到所需的记录。</p>
+<p>如果包含记录的文件按照某个搜索码指定的顺序排序，那么该搜索码碎影的索引称为聚集索引。</p>
+<p>索引顺序文件是数据库系统中最古老的索引模式之一。为了允许按搜索码顺序快速检索记录，记录按顺序存储，而无序记录链接在一起。为了允许快速的随机访问，使用了索引结构。</p>
+<p>可以使用的索引类型有两种：稠密索引和稀疏索引。稠密索引对每个搜索码值都有索引项，而稀疏索引只对某些搜索码值包含索引项。利用稠密索引通常可以比稀疏索引更快地定位一条记录。但是，稀疏索引所占空间较小，并且插入和删除时所需的维护开销也较小。（折中方案：为每个块建一个索引项的稀疏索引）</p>
+<p>利用多级索引搜索记录与用二分法搜索记录相比需要的I/O操作要少得多。</p>
+<p>如果搜索码的排序序列和关系的排序序列相匹配，则该搜索码上的索引称为聚集索引，其他索引称为非聚集缩影或辅助索引。辅助索引可以提高不以聚集索引的搜索码作为搜索码的查询的性能。但是，辅助索引增加了修改数据库的开销（辅助索引必须是稠密索引，对每个搜索码值都有一个索引项，而且对文件中的每条记录都有一个指针）。</p>
+<p>候选码上的辅助索引看起来和稠密聚集索引没有太大区别，只不过索引中一系列的连续值执行的记录不是连续存放的。</p>
+<p>索引顺序文件组织的主要缺点是随着文件的增大，性能会下降。为了克服这个缺点，可以使用B+树索引。</p>
+<p>B+树索引采用平衡树的形式，即从树根到树叶的所有路径长度相等。B+树的高度与以关系中的记录数N为底的对数成正比，其中每个非叶子结点存储N个指针，N值通常约为50～100。因此，B+树比其他的平衡二叉树（比如AVL树）要矮喝多，故定位记录所需的磁盘访问次数也较少。</p>
+<p>B+树上的查询是直接而且高效的。然而插入和删除要更复杂一些，但是仍然很有效。在B+树中，查询、插入和删除所需的操作数与以关系中的记录数N为底的对数成正比，其中每个非叶子结点存储N个指针。</p>
+<p>可以用B+树去索引包含记录的文件，也可以用它组织文件中的记录。</p>
+<p>B树索引和B+树索引类型。B树的主要优点在于它去除了搜索码值存储中的冗余（当搜索码值唯一的情况下，只允许搜索码值出现一次）。主要缺点在于整体的复杂性以及节点大小给定时减小了扇出（直接连接下级个数，节点大导致扇出小，深度增加）。在实际应用中，系统设计者几乎无一例外的倾向于使用B+树索引。</p>
+<p>R树是B+树的扩展，用于处理在多个维度上的索引。</p>
+<p>覆盖索引存储一些属性（但不是搜索码属性）的值以及指向记录的职责。存储附加的属性值对于辅助索引是非常有用的，仅仅使用索引就能够回答一些查询，甚至不需要找到实际的记录。</p>
+<p>顺序文件组织需要一个索引结构来定位数据。相比之下，基于散列的文件组织允许我们通过计算所需记录搜索码值上的一个函数直接找出一个数据项的地址。由于设计时我们不能精确知道哪些搜索码值将存储在文件中，因此一个好的散列函数应该能均匀且随机地将搜索码值分散到各个桶中。</p>
+<p>静态散列所用散列函数和桶地址集合是固定的。这样的散列函数不容易适应数据库随时间的显著增长。有几种允许修改散列函数的动态散列技术。可扩充散列是其中之一，它可以在数据库增长或缩减时通过分裂或合并桶来应付数据库大小的变化。</p>
+<p>也可以用散列技术创建辅助索引：这样的索引称为散列索引。为使记法简便，假定散列文件组织中用户散列的搜索码上有一个隐式的散列索引。</p>
+<p>可扩充散列可以通过桶的分裂或合并来适应数据库的大小的变化。由于重组每次仅作用于一个桶，因此所带来的性能开销较低，可以接受。可扩充散列的最主要优点是其性能不随文件的增长而降低，其空间开销是最小的。缺点在于查找涉及一个附加的间接层。</p>
+<p>像B+树和散列索引这样的有序索引可以用作涉及单个属性且基于相等条件的选择操作。当一个选择条件中涉及多个属性时，可以取多个索引中检索到的记录标示符的交。</p>
+<p>对于索引属性只有少数几个不同值的情况，位图索引提供了一种非常紧凑的表达方式。位图索引的交操作相当得快，使得它成为一种支持多属性上的查询的理想方式（属性有限变量下）。</p>
+<h3 id="查询处理"><a href="#查询处理" class="headerlink" title="查询处理"></a>查询处理</h3><p>对于一个查询，系统首先要做的事就是将之翻译成系统内部的表示形式。对于关系数据库系统而言，内部形式通常是基于关系代数的。在产生查询的内部形式的过程中，语法分析器检查用户查询语句的语法，验证出现在查询语句中的关系名是数据库中的关系名等。如果查询语句是用视图表达的，语法分析器把所有对视图名的引用替换成计算该视图的关系代数表达式。</p>
+<p>查询处理步骤：1、语法分析与翻译；2、优化；3、执行。</p>
+<p>加了“如何执行”注释的关系代数运算称为计算原语。用于执行一个查询的原语操作序列称为查询执行计划或者查询计算计划。查询执行引擎接受一个查询执行计划，执行该计划并把结果返回给查询。</p>
+<p>给定一个查询，通常有许多计算它的方法。将用户输入的查询语句转化成等价的、执行效率更高的查询语句，这是优化器的责任。优化器通常努力去尽可能降低查询计划总的资源消耗，而不是尽可能缩低响应时间。</p>
+<p>辅助索引存储的是B+树文件组织中作为码值的属性值。通过这种辅助索引存取一条记录的代价将更大：首先必须搜索辅助索引以找到主索引的搜索码值，然后查找主索引来找到记录。</p>
+<p>对于包含简单选择的查询语句，可以通过线性扫描或者利用索引来处理。通过计算简单选择结果的并和交，可以处理复杂选择操作。</p>
+<p>数据排序：1、SQL查询会指明对结果进行排序；2、当输入的关系已排序时，关系运算中的一些运算（如连接运算）能够得到高效实现。</p>
+<p>可以用外部归并排序算法对大内存的关系进行排序。</p>
+<p>设计自然连接的查询语句可以有多种处理方法，如果处理取决于是否有索引可用以及关系的物理存储形式。</p>
+<ul>
+<li>若连接的结果大小几乎和两个关系的笛卡尔积相当，可以采用嵌套循环连接策略较好。</li>
+<li>若存在索引，则可用索引嵌套循环连接。</li>
+<li>若关系已排序，则归并连接比较可取。在连接计算前对关系排序是有利的（为了能使用归并连接算法）。</li>
+<li>散列连接算法把关系划分成多个部分，使每个部分都能被内存所容纳。划分过程是通过连接属性上的散列函数来进行的，这样相应的划分对可以独立地进行连接。</li>
+</ul>
+<p>嵌套循环连接算法不要求有索引，并且不管连接的条件是什么，该算法均可以使用。块嵌套循环连接是以块的方式而不是以元组的方式处理关系，可以减少不少块读写次数。索引嵌套循环连接，可以在已有索引或者为了计算该连接而专门建立临时索引的情况下使用。归并连接算法（排序-归并-连接算法）可用于计算自然连接和等值连接。混合归并-连接算法把已排序关系与B+树辅助索引叶结点进行归并。散列连接算法可用于实现自然连接和等值连接，基本思想是把这两个关系的元组划分成连接属性值上具有相同散列值的元组集合。</p>
+<p>去除重复、投影、集合操作（并、交、差）、聚集操作都可以用排序和散列实现。</p>
+<p>外连接操作可以通过对连接算法的简单扩展来实现。</p>
+<p>散列与排序在某种意义下是对偶的。因为任何能用散列实现的操作（如去除重复、投影、聚集、连接、外连接）也可用排序来实现，反之亦然；即任何能用排序来实现的操作也能用散列实现。</p>
+<p>可以采用物化方法进行表达式的计算。系统计算每个子表达式的结果并将其存在磁盘上，然后用它进行父表达式的计算。</p>
+<p>流水线方法在子表达式产生输出的同时就在父表达式的计算中使用其输出结果，帮助我们避免了将许多子查询的结果写到磁盘的操作。</p>
+<p>由于去除重复的代价相对较大，因此SQL查询语言要求用户显示指明需要去除重复，若不指明则保留重复。</p>
+<p>每次计算的结果都被物化到一个临时关系中已备后用。这个方法的缺点是需要构造临时关系，这些临时关系必须写到磁盘上（除非很小）。</p>
+<p>减少临时文件数是通过将多个关系操作组合成一个操作的流水线来实现的，其中一个操作结果将传送到下一个操作。</p>
+<h3 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h3><p>给定一个查询，一般有多种方法可以计算结果。系统负责将用户输入的查询转换成能够更有效执行的等价查询。为处理查询找出一个好的策略的过程称为查询优化。</p>
+<p>复杂查询的执行涉及多次存取磁盘的操作。由于从磁盘中传输数据相对于主存速度和计算机系统的CPU速度要慢，因此进行一定量的处理以选择一个能够从最小化磁盘存取的方法是完全值得的。</p>
+<p>查询执行计划的产生有三步：1、产生逻辑上与给定表达式等价的表达式；2、对所产生的表达式以不同方式作注释，产生不同的查询计划；3、估计每个执行计划的代价，选择估计代价最小的一个。</p>
+<p>有很多等价规则供我们用于将一个表达式转化成等价表达式。我们使用这些规则系统地产生与所给查询等价的所有表达式。（如果两个关系表达式在每一个有效数据库实例中都会产生相同的元组集，则我们称它们是等价的。）</p>
+<p>若一组等价规则中任意一条规则都不能由其他规则联合起来导出，称这组等价规则集为最小等价规则集。</p>
+<p>优化器采用两种关键思想可以极大地减少空间和时间上的开销：</p>
+<ul>
+<li>如果在子表达式e(i)上使用等价规则把表达式E1转化成E‘，则除了e(i)及其转换，E1与E‘有相同的子表达式。而且e(i)及其转换通常也有许多相同的子表达式。可以采用一些表达式表示技术，使两个表达式指向共享的子表达式，这样可以明显减少对空间的需求。</li>
+<li>不必总是用等价规则产生所有可以产生的表达式。如果考虑估计的执行代价，优化器可以避免检查某些表达式。</li>
+</ul>
+<p>每个关系代数表达式都表示某个特定的操作序列。选择查询处理策略的第一步就是找到一个关系代数表达式，使它与所给的表达式等价并且据估计有更小的执行代价。</p>
+<p>基于代价的优化器从给定查询等价的所有查询执行计划空间中进行搜索，并选择估计代价最小的一个。</p>
+<p>数据库系统为执行一个操作所选择的策略依赖于每个关系的大小和列值的分布情况。数据库系统可以为每个关系r存储统计信息，从而能够基于这些可靠信息选择适合的策略。这些统计信息包括：</p>
+<ul>
+<li>关系r中的元组数</li>
+<li>关系r中的一个记录（元组）的大小（按字节计数）</li>
+<li>关系r中的某个特定属性中出现的不同取值的数目</li>
+</ul>
+<p>许多数据库系统使用直方图来存储一个属性在每个区间上的取值个数。直方图通常采用取样来计算。</p>
+<p>这些统计信息使得我们可以估计各种操作的结果集的大小和执行操作的代价。当处理一个查询的过程中有多个索引可用于辅助的时候，关系的统计信息特别有用，这些信息对查询处理策略的选择有很大影响。</p>
+<p>物理等价规则允许将例如连接这样的逻辑操作转换成像散列连接或嵌套循环连接这样的物理操作。通过将这类规则添加到原来的等价规则中，程序可以产生所有可能的执行计划。</p>
+<p>对每个表达式，我们可以用一些等价规则产生多个可选的执行计划，然后从中选择代价最小的执行计划。不少优化技术可以减少需要产生的可选表达式和执行计划的数量。</p>
+<p>我们使用启发式方法来减少需要考虑的执行计划的数量，从而减少优化的代价。用于关系代数查询转换的启发式规则包括“尽早执行选择操作”、“尽早执行投影操作”、和“避免笛卡尔积操作”。</p>
+<p>用一个具有连接的查询（可能使用临时关系）去替代嵌套查询的过程称为去除相关。</p>
+<p>物化视图可以用来加速查询处理。当原关系发生修改时，需要用增量的视图维护来高效地更新物化视图。利用包含一个操作的输入的变化量的代数表达式，能够完成对该操作的变化量的计算。其他与物化视图相关的问题还包括如何借用物化视图进行查询优化和如何选择需要待物化的视图。查询优化器的工作应该包括知道何时可利用物化视图来提高查询处理速度。</p>
+<p>一些优化技术，包括top-K优化、连接极小化、更新优化、多查询优化和参数化查询优化。</p>
+<p>共享式扫描优化的工作方式如下：不是对于需要扫描一个关系的每一个查询，都从磁盘上重复地读取该关系，而是从磁盘上读取一次数据，然后流水线地传递给每一个查询。（一次读取，多次使用）</p>
+<p>如果最优计划受查询中的常数值影响不大，则通过计划缓存重用计划是合理的。然而如果计划受常数的影响，则可以使用参数化查询优化作为替代。</p>
+<h2 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h2><p>事务指的是构建单一逻辑工作单元的操作的集合。</p>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>事务时一个程序执行单位，它访问且可能更新不同的数据项。理解事物这个概念对于理解与实现数据库中的数据更新是很关键的，只有这样才能保证并发执行与各种故障不会导致数据库处于不一致状态。</p>
+<p>事务具有ACID特性：原子性、一致性、隔离性、持久性。</p>
+<ul>
+<li>原子性保证事务的所有影响在数据库中要么全部反映出来，要么根本不反应；一个故障不能让数据库处于事务部分执行后的状态。</li>
+<li>一致性保证若数据库一开始是一致的，则事务（单独）执行后数据库仍处于一致状态。</li>
+<li>隔离性保证并发执行提高了事务吞吐量和系统利用率，也减少了事务等待时间。</li>
+<li>持久性保证一旦一个事务提高后，它对数据库的改变不会丢失，即使系统可能出现故障。</li>
+</ul>
+<p>事务的并发执行提高了事务吞吐量和系统利用率，也减少了事务等待时间。</p>
+<p>计算机中不同存储介质包括异失性存储器、非易失性存储器和稳定性存储器。易失性存储器（例如RAM）中数据当计算机崩溃时丢失。非易失性存储器（如磁盘）中的数据在计算机崩溃时不会丢失，但是可能会由于磁盘崩溃而丢失。稳定性存储器中的数据永远不会丢失。</p>
+<p>为了一个事务能够持久，它的修改应该写入稳定性存储器。为了一个事务是原子的，日志记录需要在对磁盘上的数据库做任何改变之前写入稳定性存储器。</p>
+<p>必须支持在线访问的稳定性存储器与磁盘镜像或者其他形式的提供冗余数据存储的RAID接近。对于离线或归档的情况，稳定性存储器可以由存储在物理安全位置的数据的多个磁带备份所构成。</p>
+<p>撤销已提交事务所造成的影响的唯一方法是执行一个补偿事务。</p>
+<p>多个事务在数据库中并发执行时，数据的一致性可能不再维持。因此系统必须控制各并发事务之间的相互作用。</p>
+<ul>
+<li>由于事务时保持一致性的单元，所以事务的串行执行能保持一致性。</li>
+<li>调度捕获影响事务并发执行的关键操作，如read和write操作，而忽略事务执行的内部细节。</li>
+<li>我们要求事务集的并发执行所产生的任何调度的执行效果等价于由这些事务按某种串行顺序执行的效果。</li>
+<li>保证这个特性的系统称为保证可串行化。</li>
+<li>存在几种不同的概念，从而引出了冲突可串行化与视图可串行化的概念。</li>
+</ul>
+<p>事务并发执行所产生的调度的可串行化可以通过多种并发控制机制中的一种来加以保证。</p>
+<p>给定一个调度，我们可以通过为该调度构造优先图几搜索是否无环来判定它是否冲突可串行化。然而，有更好的并发控制机制可用来保证可串行化。</p>
+<p>调度必须时可恢复的，以确保：若事务a看到事务b的影响，当b中止时，a也要中止。（一个可恢复调度应该满足：对于每个事务T(i)和T(j)，如果T(j)读取了之前由T(i)所写的数据项，则T(i)先于T(j)提交。）</p>
+<p>调度最好是无级联的，这样不会由于一个事务的中止引起其他事务的级联中止。无级联性是通过只允许事务读取已提交数据来保证的。（因单个事务故障导致一系列事务回滚的现象称为级联回滚。（无级联调度=可恢复调度）</p>
+<ul>
+<li><strong>可串行化</strong>：通常保证可串行化调度。</li>
+<li><strong>可重复读</strong>：只允许读取已提交的数据，而且在一个事务两次读取一个数据项期间，其他事务不得更新该数据项。</li>
+<li><strong>已提交读</strong>：只允许读取已提交数据，但不要求可重复读。</li>
+<li><strong>未提交读</strong>：允许读取未提交数据。（脏读）</li>
+</ul>
+<p>所有隔离性级别都不允许<strong>脏写</strong>，即如果一个数据项已经被另一个尚未提交或者中止的事务写入，则不允许对该数据项执行写操作。</p>
+<p>数据库的并发控制管理部件复杂处理并发控制机制。</p>
+<p>快照隔离可以保证读数据的尝试永远无须等待，但带来的问题是提供了太多的隔离。如果事务多次运用之间数据库发生改变，那么即使是同一个事务，在多次不同运行中也可能会使用不同的数据项。</p>
+<h3 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h3><p>当多个事务在数据库中并发执行时，数据的一致性可能不再维持。系统有必要控制各事务之间的相互作用，这是通过称为并发控制机制的多种机制中的一种来实现的。</p>
+<p>为保证可串行性，我们可以使用多种并发控制机制。所以这些机制要么延迟一个操作，要么中止发出该操作的事务。最常用的机制是多种封锁协议、时间戳排序机制、有效性检查技术与多版本机制。</p>
+<p>封锁协议是一组规则，这些规则阐明了事务何时对数据库中的数据项进行加速和解锁。</p>
+<p>两阶段封锁协议仅在一个事务未曾释放任何数据项上的锁时才允许该书屋封锁新数据项。该协议保证可串行化，但不能避免死锁。在没有关于数据项访问方式信息的情况下，两阶段封锁协议对于保证可串行性既是必要的又是充分的。</p>
+<p><strong>两阶段封锁协议</strong>：要求每个事务分两个阶段提出加锁和解锁申请。</p>
+<ul>
+<li>增长阶段：事务可以获得锁，但不能释放锁。</li>
+<li>缩减阶段：事务可以释放锁，但不能获得新锁。</li>
+</ul>
+<p>严格两阶段封锁协议要求事务持有的所有排他锁必须在事务结束时方可释放，其目的是保证结果调度的可恢复性和无级联性，强两阶段封锁协议要求事务持有的所有锁必须在事务结束时方可释放。</p>
+<p>锁转换：提供一种将共享锁升级为排他锁，以及将排他锁降级为共享锁的机制。</p>
+<p>锁管理器可以实现一个过程，从事务接受消息并反馈消息。数据结构：为目前已加锁的每个数据项维护一个链表，每一个请求为链表中一条记录，按请求到达的顺序排序。</p>
+<ul>
+<li>当一个锁请求消息到达时，如果相应的数据项的链表存在，在该链表末尾增加一个记录；否则新建一个仅包含该请求记录的链表。<ul>
+<li>在当前没有加锁的数据项上总是授予第一次加锁请求，但当事务向已被加锁的数据项申请加锁时，只有当该请求与当前持有的锁相容，并且所有先前的请求都已授予锁的条件下，锁管理器才为该请求授予锁，否则该请求只好等待。</li>
+</ul>
+</li>
+<li>当锁管理器收到一个事务的解锁消息时，它将与该事务相对应的数据项列表中的记录删除，然后检查随后的记录，如果有，如前所述，就看该请求能否被授权，如果能，锁管理器授权该请求并处理气候记录，如果还有，类似地一个接一个处理。</li>
+<li>如果一个事务中止，锁管理器删除该事务产生的正在等待加锁的所有请求。一旦数据库系统采取适当动作撤销该事务，该中止事务持有的所有锁将被释放。</li>
+</ul>
+<p>基于图的封锁协议对访问数据项的顺序加以限制，从而不需要使用两阶段封锁还能够保证可串行性，而且又能够保证不会产生死锁。</p>
+<p>许多种封锁协议都不能防止死锁。一种可以防止死锁的方法是使用数据项的一种顺序，并且按与该顺序一致的次序申请加锁。另一种防止死锁的方法是使用抢占的事务回滚。为控制抢占，我们给每个事务赋予一个唯一时间戳，这些时间戳用于决定事务是等待还是回滚。如果一个事务回滚，它在重启时保持原有时间戳。wound-wait机制是一个抢占机制。</p>
+<p>如果没有预防死锁，系统必须用死锁检测与恢复机制来处理它们。为此，系统构造了一个等待图。当且仅当等待图包含环时，系统处于死锁状态。当一个检测算法判断死锁存在，系统必须从死锁种恢复。系统通过回滚一个或多个事务来解除死锁。</p>
+<p>某些情况下把多个数据项聚为一组，将它们作为聚集数据项来处理，其效果可能更好，这就导致了粒度的多个级别。我们允许各种大小的数据项，并定义数据项的层次，其中小数据项嵌套于大数据项之中。这种层次结构可以图形化地表示为树。封锁按从根结点到叶结点的顺序进行；解锁则按从叶结点到根结点的讯息进行。该协议保证可串行性，但不能避免死锁。</p>
+<p>时间戳排序机制通过事先对每对事务之间选择一个顺序来保证可串行性。系统中的每个事务对应一个唯一的固定时间戳。事务的时间戳决定了事务的可串行化顺序。这样，如果事务T(i)的时间戳小于事务T(j)的时间戳，则该机制保证产生的调度等价于事务T(i)出现在事务T(j)之前的一个串行调度。该机制通过回滚违反该次序的事务来保证这一点。</p>
+<p>在大部分事务时只读的情形下，冲突频率很低，这种情况下有效性检查机制是一个适当的并发控制机制。系统中的每个事务对应一个唯一的固定时间戳。串行性次序是由事务的时间戳决定的。在该机制中，事务不会延迟。不过，事务要完成必须通过有效性检查。如果事务未通过有效性检查，则该事务回滚到初始状态。</p>
+<p>有效性检查协议要求每个事务T(i)在其生命周期中按两个或三个阶段执行，这取决于该事务时一个只读事务还是一个更新事务。</p>
+<ul>
+<li>读阶段：系统执行事务T(i)。各数据项值被读取并保存在事务T(i)的局部变量中。所有的write操作都是对局部临时变量进行的，并不对数据库进行真正的更新。</li>
+<li>有效性检查阶段：对事务T(i)进行有效性测试。判断是否可以执行write操作而不违反可串行性。如果事务有效性测试失败，则系统终止这个事务。</li>
+<li>写阶段：若事务T(i)已通过有效性检查，则保存T(i)任何写操作结果的临时局部变量值被复制到数据库中。只读事务忽略这个阶段。</li>
+</ul>
+<p>多版本并发控制机制基于在每个事务写数据项时为该数据项创建一个新版本。读操作发出时，系统选择其中的一个版本进行读取。利用时间戳，并发控制机制保证按确保可串行性的方式选取要读取的版本。读操作总能成功。</p>
+<ul>
+<li>在多版本时间戳排序中，写操作可能引起事务的回滚。</li>
+<li>在多版本的两阶段封锁中，写操作可能导致封锁等待或者死锁。</li>
+</ul>
+<p>快照隔离时一种基于有效性检验的多版本并发控制协议，与多版本两阶段封锁协议不同，它不需要将事务声明为只读或更新的。快照隔离不保证可串行化，但是许多数据库系统仍然支持它。</p>
+<p>仅当要删除元组的事务在该元组上具有排他锁时，delete操作才能够进行。数据库中插入新元组的事务在该元组上被授予排他锁。</p>
+<p>插入操作可能导致幻象现象，这是插入操作与查询操作发生逻辑冲突，尽管两个事务可能没有存取共同的元组。如果封锁仅加在事务访问元组上，这种冲突就检测不到。关系中用于查找元组的数据需要加锁，索引封锁技术要求对某些索引结点加锁来解决这个问题。所加的锁保证所有事务在实际的数据项上发生冲突，而不是在幻象上。索引封锁协议运作如下：</p>
+<ul>
+<li>每个关系至少有一个索引。</li>
+<li>只有首先在关系的一个或多个索引上找到元组后，事务T(i)才能访问关系上的这些元组。为了达到索引封锁协议的目的，全表扫描看作一个索引上所有叶结点的扫描。</li>
+<li>进行查找（不管区间查找还是点查找）的事务T(i)必须在它要访问的所有索引叶结点上获得共享锁。</li>
+<li>在没有更新关系r上的所有索引之前，事务T(i)不能插入、删除或更新关系r中的元组t(i)。该事务必须获得插入、删除或更新所影响的所有索引叶结点上的排他锁。对于插入和删除，受影响的叶结点时那些（插入后）包含或（删除前）包含元组搜索码值的叶结点。对于更新，受影响的叶结点时那些（修改前）包含搜索码旧值的叶结点，以及（修改后）包含搜索码新值的叶结点。</li>
+<li>元组照常获得锁。</li>
+<li>必须遵循两阶段封锁协议规则。</li>
+</ul>
+<p>弱级别的一致性用于一些应用中，在这些应用中，查询结果的一致性不是至关重要的，而使用可串行性会使查询对事务的处理起反作用。二级一致性是这种弱级别的一致性之一，游标稳定性是二级一致性的一个特例，而且已被广泛应用。</p>
+<p>游标稳定性保证：</p>
+<ul>
+<li>正被迭代处理的元组被加上共享锁。</li>
+<li>任何被更改的元组被加上排他锁，直至事务提交。</li>
+</ul>
+<p>跨越用户交互的事务并发控制是一个有挑战性的任务。应用程序通常实现一种基于采用元组中存储的版本号来验证写操作的机制。这种机制提供了弱可串行化水平，而且可以实现在应用层，而无需修改数据库。</p>
+<p>可以为特殊的数据结构开发特色的并发控制技术。通常，特色的技术用到B+树上，以允许较大的并发性。这些技术允许对B+树进行非可串行化访问，但它们保证B+树结构是正确的，并保证对数据库本身的存取是可串行化的。</p>
+<h3 id="恢复系统"><a href="#恢复系统" class="headerlink" title="恢复系统"></a>恢复系统</h3><p>数据库系统的一个重要组成部分就是恢复机制，它负责检测故障以及将数据库恢复至故障发生前的某一状态。恢复机制必须提供高可用性，必须将数据库崩溃后不能使用的时间缩减到最短。</p>
+<p>计算机中的各种存储器类型有易失存储器、非易失存储器和稳定存储器。易失存储器（如RAM）中的数据在计算机发生故障时会丢失。非易失性存储器（如磁盘）中的数据在计算机发生故障时一般不丢失，只是偶尔由于某些故障如磁盘故障才会丢失。稳定存储器中的数据从不丢失。</p>
+<p>必须能联机访问的稳定存储器用镜像磁盘或RAID的其他形式模拟，它提供冗余数据存储。脱机或归档稳定存储器可能是数据的多个磁带备份，并存放在物理安全的地方。</p>
+<p>一旦故障发生，数据库系统的状态可能不再一致，即它不能反映数据库试图保存的显示世界的状态。为保持一致性，我们要求每个事务都必须是原子的。恢复机制的责任就是要保证原子性和持久性。</p>
+<p>在基于日志的机制中，所有的更新都记入日志，并存放在稳定存储器中。当事务的最后一个日志记录，即该事务的commit的日志记录。输出到稳定存储器时，就认为这个事务已提交。</p>
+<p>日志记录包括所有更新过的数据项项的旧值和新值。当系统崩溃后需要对更新进行重做时，就使用新值。如果在正常操作中事务中止，回滚事务所做的更新时需要用到旧值；在事务提交之前发生系统崩溃的情况下，回滚事务所做的更新也需要用到旧值。</p>
+<p>在演出修改机制下，事务执行时所有write操作都要延迟到事务提交时才执行，那时，系统在执行延迟写中会用到日志中与该事务有关的信息。在延迟修改机制中，日志记录不需要包含已更新的数据项的旧值。</p>
+<p>为减少搜索日志和重做事务的开销，我们可以使用检查点技术。（a）在执行检查点操作的过程中不允许执行任何更新，（b）在执行检查点的过程中将所有更新过的缓冲块都输出到磁盘中。检查点执行过程如下：1、将当前位于主存的所有日志记录输出到稳定存储器；2、将所有修改的缓冲块输出到磁盘；3、将一个日志记录<checkpoint L>输出到稳定存储器，其中L是执行检查点时正活跃的事务的列表。</p>
+<p>当前恢复算法基于重复历史的概念，在恢复的重做简单重演（自最后一个已完成的检查点以来）正常操作中所做的所有动作。重复历史的做法将系统状态恢复到系统崩溃之前的最后一个日志记录输出到稳定存储器时的系统状态。然后从这个状态开始执行一个撤销阶段，反向处理未完成事务的日志记录。</p>
+<p>不完全事务的撤销写出特殊的redo-only日志记录和一个abort日志记录。然后就认为该事务已完成，不必再对它进行撤销。</p>
+<p>在事务处理所基于的存储模型中，主存储器中有一个日志缓冲区，一个数据库缓冲区和一个系统缓冲区。系统缓冲区中有系统目标码页面和事务的局部工作区域。</p>
+<p>恢复机制的高效实现需要尽可能减少向数据库和稳定存储器写出的数目。日志记录在开始时可以保存在易失性的日志缓冲区中，但是当下述情况之一发生时必须写到稳定性存储器中：</p>
+<ul>
+<li>在&lt;T(i), commit&gt;日志记录可以输出到稳定存储器之前，在事务T(i)相关的所有日志记录必须已经输出到稳定存储器中。</li>
+<li>在主存中的一个数据库输出到（非易失性存储器中的）数据库之前，与该块中的数据相关的所有日志记录必须已经输出到稳定存储器中。</li>
+</ul>
+<p>当前的恢复技术支持高并发性封锁技术，例如用户B+树并发控制的封锁记录。这些技术允许提前释放通过插入或删除这样的操作获得的低级别的锁，低级别的锁允许别的事务其他的这些操作可以执行。低级别的锁被释放之后，不能进行物理undo，而需要进行逻辑undo，例如，用删除来对一个插入操作undo。事务保持高级别的锁以确保并发的事务不会执行这样的动作，它可能导致一个操作的逻辑undo是不可能的。</p>
+<p>为从造成非易失性存储器中数据丢失的故障中恢复，我们必须周期性地将整个数据库的内容转储到稳定存储器中–例如每天一次。如果发生了导致物理数据库块丢失的故障，我们使用最近一次转储将数据库恢复至前面的某个一致状态。一旦完成该恢复，我们再用日志将数据库系统恢复至最当前的一致状态。</p>
+<p>ARIES恢复机制支持一些提供更大并发性，削减日志开销和最小化恢复时间的特性。它也是基于重复历史的，并允许逻辑undo操作。该机制连续不断地清洗页，从而不需要检查点时清洗所有页。它使用日志顺序号（LSN）来实现各种优化从而减少恢复所花的时间。从系统崩溃中恢复的过程经历三个阶段：1、分析阶段：决定哪些事务要撤销，哪些页在崩溃时时脏的，以及重做阶段应从哪个LSN开始；2、redo阶段：从分析阶段决定的位置开始，执行重做，重复历史，将数据库恢复到发生崩溃前的状态；3、undo阶段：回滚在发生崩溃时那些不完全的事务。</p>
+<p>远程备份系统提供了很高程度的可用性，允许事务处理即使在主站点遭受火灾、洪水或地震的破坏时也能继续。主站点上的数据和日志记录连续不断地备份到远程备份站点。如果主站点发生故障，远程备份站点就执行一定的恢复动作，然后接管事务处理。</p>
+<h2 id="系统体系结构"><a href="#系统体系结构" class="headerlink" title="系统体系结构"></a>系统体系结构</h2><h3 id="数据库系统体系结构"><a href="#数据库系统体系结构" class="headerlink" title="数据库系统体系结构"></a>数据库系统体系结构</h3><p>集中式数据库系统完全运行在单台计算机上。随着个人计算机和局域网的发展，数据库前端功能不断移向客户机，而后端功能由服务器系统提供。客户-服务器接口协议推动了客户-服务器数据库系统的发展。</p>
+<p>服务器可以是事务服务器，也可以是数据服务器。尽管在提供数据库服务方面，事务服务器的使用大大超过数据服务器的使用。</p>
+<ul>
+<li>事务服务器有多个进程，可能运行在多个处理器上。所以这些进程要访问公共数据，比如数据库缓冲区，系统将这些数据存放在共享内存中。除了处理查询的进程，还有执行诸如锁和日志管理以及检查点等任务的系统进程。</li>
+<li>数据服务器系统提供给用户的是为加工的数据。这样的系统通过把数据和锁高速缓存在客户端，来努力使客户端和服务器之间的通信最小化。并行数据库系统使用类似的优化。</li>
+</ul>
+<p>并行数据库系统由通过高数互联网连接在一起的多台处理器和多张硬盘构成。加速比衡量通过增加并行性可以得到的对单个事务的处理数据的增长。扩展比衡量通过增加并行性可以的带的处理大量事务的能力。干扰、偏斜和启动代价是得到理想的加速比和扩展比的障碍。</p>
+<p>并行数据库系统结构包括共享内存、共享硬盘、无共享以及层次的体系结构。这些体系结构在可扩展性以及通信速度方面各有千秋。</p>
+<ul>
+<li>共享内存的优点在于处理器之间的通信效率极高，存放在共享内存中的数据可以被任何处理器访问，而不需要由软件来移动。共享内存机器的缺点是这种体系结构的规模不能超过32个或64个处理器。因为总线或互联网络会变成瓶颈（因为它是所有处理器共享的）。</li>
+<li>共享硬盘体系结构有两个优点：1、由于每个处理器都有自己的主存储器，因此存储器总线不再是瓶颈了；2、这种体系结构给出了一个经济的方法来提供一定程度的容错性（如果一个处理器或者它的主存储器发生故障，其他处理器可以代替它的工作，这是因为数据库驻留在磁盘上，而磁盘是所有处理器都可以访问的）。虽然存储器总线不再是瓶颈，但与磁盘子系统互连现在成为了瓶颈。</li>
+<li>无共享提供的主要缺点是通信的代价和非本地磁盘访问的代价，这些代价比共享内存或共享硬盘体系结构中的代价要高，因为数据传送涉及两端的软件交互。</li>
+<li>层次的体系结构综合了共享内存、共享硬盘和无共享体系结构的特点。</li>
+</ul>
+<p>分布式数据库系统是部分独立的一组数据库系统，它们共享一个公共模式（理想情况下），并且协调地处理访问非本地数据库的事务。系统之间通过通信网络来相互通信。</p>
+<p>局域网连接分布在小的地理范围内的结点，比如连接单个建筑或几个相邻建筑。广域网连接分布在大的地理范围内的结点。现在Internet是使用最广泛的广域网。</p>
+<p>存储区域网是一种特殊形式的局域网，是为大型存储设备和多台计算机之间提供快速互连而设计的。</p>
+<h3 id="并行数据库"><a href="#并行数据库" class="headerlink" title="并行数据库"></a>并行数据库</h3><p>在I/O并行中，把关系划分到多张可用的磁盘中，从而使检索速度更快。三种常用的划分技术使轮转法划分，散列划分和范围划分。（一般而言，更倾向于使用散列划分和范围划分，而不是轮转法划分）</p>
+<ul>
+<li>轮转法：适合于希望对每个查询顺序地读取整个关系的应用。</li>
+<li>散列划分：适合于机遇划分属性的点查询。</li>
+<li>范围划分：适合于在划分属性上的点查询和范围查询。</li>
+</ul>
+<p>偏斜是一个主要的问题，特别是当并行度增高时。平衡的划分向量、使用直方图以及虚处理器划分是用于减少偏斜的技术。属性值偏斜指的是某些值出现在许多元组的划分属性中。划分偏斜指的是，即使不存在属性值偏斜，划分也可能会出现负载不均衡。</p>
+<ul>
+<li>通过为每个关系的每个属性创建和存储该属性值的频率表或直方图，可以降低由于构建平衡的范围划分向量而产生的I/O开销。</li>
+<li>使用虚处理器，特别是针对范围划分带来的偏斜，可以使偏斜的影响达到最小。核心思想是：即使由于偏斜使得在一个范围内有比其他范围更多的元组，这些元组也将划分到多个虚处理器的范围上。</li>
+</ul>
+<p>在查询间并行中，并发地运行不同的查询以提高吞吐量。共享磁盘系统中协议保证，当事务对页面设置共享锁或排查锁时，能够得到该页面的正确版本：1、事务对一个页面进行任何读或写访问之前，先用相应的共享或排他模式封锁该页面。一旦事务获得了页面的共享锁或排他锁后，它立刻从共享磁盘中读取该页面的最新版本；2、在事务释放一个页面的排他锁之前，它将该页面刷新到共享磁盘中，然后释放锁。</p>
+<p>查询内并行指的是单个查询在多个处理器和磁盘上并行执行，试图减少运行查询的代价。两类查询内并行：1、操作内并行，通过并行地执行每一个运算来加快一个查询的处理速度；2、操作间并行，通过并行地执行一个查询表达式中的多个不同的运算，来加快一个查询的处理速度。</p>
+<p>采用操作内并行来并行地执行关系运算，例如排序和连接。因为关系运算是面向集合的，所以操作内并行对关系运算是很自然的。</p>
+<p>对于像连接这样的二元运算，有两种基本的并行化的方法（这两种并行技术都可以与任何一种连接技术结合使用）：</p>
+<ul>
+<li>在基于划分的并行中，两个关系分成几个部分，而且r(i)中的元组仅与s(i)中的元组进行连接。基于划分的并行仅适用于自然连接和等值连接。</li>
+<li>在分片和复制中，两个关系都被划分，并且每个划分都被复制。在非对称的分片和复制中，一个关系被复制，而另一个关系被划分。与机遇划分的并行不同，分片和复制以及非对称的分片和复制对于任何连接条件都是用。</li>
+</ul>
+<p>在独立的并行中，互不依赖的多个不同的操作按并行方式执行。</p>
+<p>在流水线并行中，处理器在计算一个操作结果的同时将结果发送给另一个操作，无须等待整个操作的完成。</p>
+<p>两个常用启发式方法来减少需要考虑的并行执行计划的数目：</p>
+<ul>
+<li>仅考虑那些利用所有的处理器，对每个运算都并行化，并且不采用任何流水线的执行计划。</li>
+<li>选择最搞笑的串行执行计划，然后将该执行计划中的运算并行化。</li>
+</ul>
+<h3 id="分布式数据库"><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h3><p>分布式数据库系统由站点的集合构成，每个站点维护一个本地数据库系统。各个站点能够处理局部事务：这些事务访问的数据仅位于该单个站点上。此外，站点可以参与到全局事务的执行中：这些全局事务访问多个站点上的数据。全局事务的执行需要在站点之间进行通信。</p>
+<p>分布式数据库可能是同构的，其中所有站点拥有共同的模式和数据库系统代码，或者是异构的，其中模式和系统代码可能不同。</p>
+<p>关于在分布式数据库中存储关系涉及几个问题，包括复制和分片。系统应尽量减小用户需要了解关系如何存储的程度。</p>
+<ul>
+<li>水平分片：通过将r的每个元组分给一个或多个分片来划分关系</li>
+<li>垂直分片：通过对关系r的模式R进行分解来划分关系</li>
+</ul>
+<p>数据透明性：</p>
+<ul>
+<li>分片透明性：用户不要求知道关系是如何分片的</li>
+<li>复制透明性：在用户看来，每个数据对象逻辑上都是唯一的。分布式系统可能为了提高系统性能或者数据可用性而复制对象，用户不必关系什么数据对象被复制了，也不必关系副本存放在何处。</li>
+<li>位置透明性：用户无须知道数据的物理位置。只要用户事务提供数据标示符，分布式数据库系统应能够找到任何数据。</li>
+</ul>
+<p>局部事务是那些只在一个局部数据库中访问和更新数据的事务；全局事务是那些多个局部数据库中访问和更新数据的事务。</p>
+<p>每个站点都有其自身的局部事务管理器，其功能是保证在该站点上执行的那些事务的ACID特性。各个事务管理器相互协作以执行全局事务。</p>
+<ul>
+<li>事务管理器：管理那些访问存储在一个局部站点中的数据的事务（或子事务）的执行。注意每个这样的事务既可以是局部事务也可以是全局事务的一部分。<ul>
+<li>维护一个用于恢复目的的日志</li>
+<li>参与到一个合适的并发控制方案，以协调在该站点上执行的事务的并发执行 </li>
+</ul>
+</li>
+<li>事务协调器：协调在该站点上发起的各个事务的执行。<ul>
+<li>启动事务的执行</li>
+<li>将事务分成一些子事务，并将这些子事务分派给合适的站点去执行</li>
+<li>协调事务的中止，这可能导致事务在所有站点上都提交或者所有站点上都中止</li>
+</ul>
+</li>
+</ul>
+<p>分布式系统可能遭受与集中式系统相同类型的故障。但是，分布式环境中还有另外一些需要处理的故障，包括站点故障、链路故障、消息丢失以及网络划分。在分布式故障恢复模式的设计中需要考虑每个这样的问题。</p>
+<p>为了保证原子性，执行事务T的所有站点必须在执行的最终结果上取得一致。T要么在所有站点上提交，要么在所有站点上中止。为了保证这一特性，T的事务协调器必须执行一种提交协议。使用最广泛的提交协议是两阶段提交协议。</p>
+<p>两阶段提交协议可能导致阻塞，在这种情况下，事务的命运必须等到故障站点（协调器）恢复后才能确定。为了减少阻塞的可能性，可以使用三阶段提交协议。</p>
+<p>持久消息为分布式事务处理提供了一种可选模式。该模式将单个事务拆分成在不同数据库执行的多个部分。持久消息（无论是否发生故障。都保证正好只传送一次）被传送到需要采取动作的远程站点。虽然需要持久消息避免阻塞问题，但是应用程序开发者必须编写代码来处理各种类型的故障。</p>
+<p>在集中式系统中使用各种并发控制方案修改后可用于分布式环境。</p>
+<ul>
+<li>就封锁协议而言，须做的唯一改变是锁管理器的实现方式。可以采用一个或多个中央协调器。如果拆用分布式锁管理器，复制数据就必须特殊对待。</li>
+<li>处理已复制数据的协议包括主副本协议、多数协议、有偏协议和法定人数同意协议。它们在开销方面和发生故障时工作的能力方面各有不同的取舍权衡。</li>
+<li>就时间戳和有效性演奏方案而言，所需的唯一修改是开发一种产生全局唯一性时间戳的机制。</li>
+<li>许多数据库系统支持延迟复制，其中更新被传播到执行更新的事务的范围之外的副本。这样的工具必须小心使用，因为他们可能导致不可串行化的执行。</li>
+</ul>
+<p>分布式锁管理器环境中的死锁检测需要多个站点之间的合作，因为甚至在没有局部死锁的情况下也可能有全局死锁。</p>
+<p>为了提高可用性，分布式诗句哭必须检测故障，重构系统以使计算机能够继续进行，并在处理器或链路修复之后能够恢复。由于要在网络划分和站点股掌之间进行区分是很困难的，因此这个任务就变得非常复杂。通过使用版本号，可以对多数协议进行扩展使其即使存在故障的情况下仍允许进行事务处理。虽然该协议代价昂贵，但它无论在何种类型的故障下都能工作。可以使用较小代价的协议来处理站点故障，但是它们艰涩不会发生网络划分。</p>
+<p>一些分布式算法需要使用协调器。为了提供高可用性，系统必须维护一个准备好的在协调器故障时能继续其支者的备份副本。另一种方法是在协调器发生故障后选出新的协调器。确定哪个站点应该作为协调器的算法称为选举算法。</p>
+<p>分布式数据库上的查询可能需要访问多个站点。可以使用集中优化技术来识别需要访问的最佳站点集。查询可以依据关系的分片来自动重写没然后可以在每个分片的副本之间做出选择。可以应用半连接技术减少跨不同站点的关系（或相应的分片或副本）连接中所涉及的数据传输。</p>
+<p>异构分布式数据库允许站点有它们自己的模式和数据库系统代码。多数数据库系统提供了一种环境，在其中新的数据库应用可以访问位于多重易购软硬件环境的各个先前存在数据库中的数据。局部数据库系统可以采用不同的逻辑模型以及数据定义和数据操纵语言，并且可以在它们的并发控制和事务管理机制上存在差别。多数据库系统虚拟了逻辑上的数据库集成，不需要物理上的数据库集成。</p>
+<p>为了响应超大规模Web应用对数据存储的需求，近年来在云上构建了大量数据存储系统。这些数据存储系统允许扩展到地里上分布的数千个结点上，而且具有高可用性。然而，它们并不支持通常的ACID特性，而且在划分时以副本一致性为代价来获得可用性。</p>
+<p>目录系统可视为一何总特殊形式的数据库，其中信息按照一种分层的方式组织，类似于文件系统中文件的组织方式。目录通过标准化目录访问协议（例如LDAP）来访问。目录可以分布到多个站点上来提供各个站点的自治。目录可以包含对其他目录的引用，这有助于建立集成视图，借此查询被发送给单个目录，并且在所有相关的目录上透明地执行。</p>
+<h2 id="数据仓库、数据挖掘和信息检索"><a href="#数据仓库、数据挖掘和信息检索" class="headerlink" title="数据仓库、数据挖掘和信息检索"></a>数据仓库、数据挖掘和信息检索</h2><h3 id="数据仓库与数据挖掘"><a href="#数据仓库与数据挖掘" class="headerlink" title="数据仓库与数据挖掘"></a>数据仓库与数据挖掘</h3><p>数据仓库是从多个数据源种进行数据采集，并以一种共同的、统一的数据库模式进行存储的数据仓储。存放在数据仓库中的数据将用于各种复杂聚集和统计分析。</p>
+<p>决策支持系统分析由事务处理系统收集的在线数据，以帮助人们做出商业决策。由于现在大多数组织结构都进行了广泛的计算机化，因此有非常大量的信息可用于决策支持。决策支持系统有不同的形式，包括OLAP系统和数据挖掘系统。</p>
+<p>数据仓库有助于收集和归档重要的操作数据。数据仓库用于基于历史数据的决策支持和分析，例如趋势预测。对来自输入数据源的数据进行清理通常是数据仓库中的一项重要任务。数据仓库的模式一般是多维的，包括一个或一些非常大的事实表以及几个小得多的维表。</p>
+<p>在很多数据仓库应用程序中，面向列的存储系统能提供良好的性能。</p>
+<p><strong>数据挖掘是一个能半自动地分析大型数据库以找出有用的模式的过程。</strong>数据挖掘的引用有许多，比如基于以往示例的数值预测，购买行为关联的发现，以及人和电影的自动聚类。</p>
+<p>分类处理的事：基于训练用例的属性和训练用例实际所属的类，通过利用测试用例的属性来预测测试用例所属类。分类器类型有很多种：</p>
+<ul>
+<li>决策树分类器。这种分类器通过基于训练用例所构造的一棵树来执行分裂，该树的叶节点具有类别标签。对每个测试用例遍历这棵树以找到一个叶节点，该叶节点所属的类即是预测的类。有几种技术可用于构造决策树，其中大部分是基于贪心的启发式方法。</li>
+<li>贝叶斯分类器放入构造比决策树分类器更简单，并且在属性值缺失或为空的情况下工作得更好。</li>
+<li>支持向量机是另一种广泛应用的分类技术。</li>
+</ul>
+<p>关联规则识别经常同时出现的项，比如同一位孤苦可能购买的一些商品。相互关联找出与期望关联等级的偏离。</p>
+<p>其他类型的数据挖掘包括聚类、文本挖掘和数据可视化。</p>
+<h3 id="信息检索"><a href="#信息检索" class="headerlink" title="信息检索"></a>信息检索</h3><p>信息检索系统用于存储和查询如文档那样的文本数据。与数据库系统相比，它们使用更将蛋的数据模型，但能够在首先的模型里提供更强大的查询能力。</p>
+<p>查询试图通过指定关键字集合来定位用户感兴趣的文档。用户心里所想的查询往往不能精确的表述，因此，信息检索系统基于潜在的相关性对答案的排名。</p>
+<p>相关性排名利用多种类型的信息。1、术语频率：每个术语对美分文档的重要性；2、逆文档频率；3、流行度排名。</p>
+<p>文档相似性用于检索与一个示例文档相似的文档。余弦度量值用于定义相似度，它基于向量空间模型。</p>
+<p>PageRank和链接中心/权威页排名是基于指向页面的链接对页面威望度赋值的两种方法。PageRank度量可以用随机游走模型来直观地理解。锚文本信息也可以用来计算单个关键字意义上的流行度。信息检索系统需要整合多种因素（包括TF-IDF和PageRank）来获得对页面的全局评分。</p>
+<p>搜索引擎作弊试图使一个页面得到高的（但不是应得的）排名。</p>
+<p>同义词和多义词使信息检索的任务复杂化。基于概念的查询旨在找到含有指定概念的文档，而与指定该概念所使用的确切的词（以及语言）无关。本体利用诸如is-a或者part-of这样的关系将概念联系起来。</p>
+<p>倒排索引用来对关键字查询做出应答。</p>
+<p>查准率和查全率是信息检索系统有效性的两种度量。</p>
+<p>Web搜索引擎使用爬虫搜索Web找到网页，然后分析它们以计算其威望度度量，并为它们建立索引。</p>
+<p>目录结构和分类用来将文档和其他相似的文档归类到一起。</p>
+<h2 id="特种数据库"><a href="#特种数据库" class="headerlink" title="特种数据库"></a>特种数据库</h2><h3 id="基于对象的数据库"><a href="#基于对象的数据库" class="headerlink" title="基于对象的数据库"></a>基于对象的数据库</h3><h3 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h3><h2 id="高级主题"><a href="#高级主题" class="headerlink" title="高级主题"></a>高级主题</h2><h3 id="高级应用开发"><a href="#高级应用开发" class="headerlink" title="高级应用开发"></a>高级应用开发</h3><p>调整数据库系统参数和更高级别的数据库设计（如模式、索引和事务）对于实现高性能至关重要。查询可以进行调整以提高集合面向性，而批量加载功能可以大大加快数据导入到数据库中的速度。</p>
+<ul>
+<li>调整的最好方法就是确定瓶颈所在，然后消除瓶颈。数据库系统通常有多种可调参数，如缓冲区大小、内存大小和磁盘数量。可以选择适当的缩影和物化试图集合，以使总体代价达到最小。可以调整事务使锁竞争达到最小。快照隔离和支持早起锁释放的序号编号功能是减少读写和写写竞争的有用工具。</li>
+</ul>
+<p>性能基准程序在对数据库系统进行比较方面扮演了重要的角色，尤其在数据库系统变得越来越与标准兼容时。TPC基准程序集使用广泛，不同的TPC基准程序可以用于不同的工作负载下的数据库系统性能比较。</p>
+<p>应用程序在开发时和部署前需要进行大量大测试。测试用来捕获错误的，以及确保到达性能目标。</p>
+<p>遗产系统是基于老一代技术（如非关系数据库或甚至直接基于文件系统）的系统。当运行关键人物系统时，遗产系统与新一代系统之间的连接通常是很重要的。从遗产系统到新一代系统的移植必须非常小心以避免破坏，这种移植是非常昂贵的。</p>
+<p>由于数据库系统的复杂性和互操作的需要，标准对数据库系统来说很重要。SQL有其正式标准。事实标准（如ODBC和JDBC）和被行业组织所采纳的标准（如CORBA），在客户-服务器数据库系统的发展中发挥了重要作用。</p>
+<h3 id="时空数据和移动性"><a href="#时空数据和移动性" class="headerlink" title="时空数据和移动性"></a>时空数据和移动性</h3><p>存储关于真实世界的时间经历状态的信息的数据库叫做时态数据库。</p>
+<p>时态关系中的事实与当它们有效时的时间相关联，而时间可以用时段的并来表示。时态查询语言简化了时间建模以及与时间相关的查询。</p>
+<p>设计数据主要以矢量数据的形式存储；地理数据包含矢量数据和光栅数据的结合。空间完整性约束对于设计数据库十分重要。光栅数据由二维或更高维的位图或像素图组成。矢量数据由基本集合对象构成，如点、线段、折线、三角形和其他二维多边形，以及圆柱体、球体、立方体和其他三维多面体。</p>
+<p>矢量数据库可以编码成第一范式，或者用非第一范式结构来存储，如列表。专用索引结构对于访问空间数据和处理空间查询尤为重要。</p>
+<p>R树是B树的多维扩展；它和它的变体（如R+树和R*树）在空间数据库中得到了广泛的应用。将空间以某种固定方式进行划分和索引结构（如四叉树）有助于处理空间连接查询。</p>
+<h3 id="高级事务处理"><a href="#高级事务处理" class="headerlink" title="高级事务处理"></a>高级事务处理</h3><h2 id="实例研究"><a href="#实例研究" class="headerlink" title="实例研究"></a>实例研究</h2><h3 id="PostgreSQL"><a href="#PostgreSQL" class="headerlink" title="PostgreSQL"></a>PostgreSQL</h3><h3 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h3><h3 id="IBM-DB2-Universal-Database"><a href="#IBM-DB2-Universal-Database" class="headerlink" title="IBM DB2 Universal Database"></a>IBM DB2 Universal Database</h3><h3 id="Microsoft-SQL-Server"><a href="#Microsoft-SQL-Server" class="headerlink" title="Microsoft SQL Server"></a>Microsoft SQL Server</h3>]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>DB</tag>
       </tags>
   </entry>
   <entry>
@@ -2448,59 +3008,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SCC算法初解</title>
-    <url>/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/</url>
-    <content><![CDATA[<p>在算法学习之路上漂泊，遇见了图，而分无向与有向。在本文中主要讲解关于有向图中的求极大连通分量的算法，主要是Kasaraju算法、Tarjan算法以及Gabow算法。</p>
-<p>三种算法都是基于深度优先搜索算法（DFS）而实现的，实际上后两种算法是对于Kasaraju算法的改进，减少了一次深度优先搜索（DFS），因此在性能上相比较而言要好一些。</p>
-<h3 id="初识强连通分量"><a href="#初识强连通分量" class="headerlink" title="初识强连通分量"></a>初识强连通分量</h3><p>首先，连通分量是无向图G的一个极大连通子图称为G的一个连通分量（或连通分支）。连通图只有一个连通分量，即其自身；非连通的无向图有多个连通分量。</p>
-<p>强连通图指每一个顶点皆可以经由该图上的边抵达其他的每一个点的有向图。意即对于此图上每一个点对(Va,Vb)，皆存在路径Va→Vb以及Vb→Va。强连通分量则是指一张有向图G的极大强连通子图G’。如果将每一个强连通分量缩成一个点，则原图G将会变成一张有向无环图。一张图被称为有向无环图当且仅当此图不具有点集合数量大于一的强连通分量，因为有向环即是一个强连通分量，而且任何的强连通分量皆具有至少一个有向环。（摘自维基百科）</p>
-<p>对于无向图，求连通分量的问题就等价于求是否连通的问题，使用深度优先、广度优先搜索的算法的到的树都能求出最大连通分量。</p>
-<h3 id="Kasaraju算法"><a href="#Kasaraju算法" class="headerlink" title="Kasaraju算法"></a>Kasaraju算法</h3><p>Kasaraju算法在我第一次接触时，感觉确实有点难理解，虽然现在也还是有点难理解。本文中不会去证明算法，只是讲解算法的一些实现等。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KosarajuSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    List&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    KosarajuSCC(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.adj = <span class="keyword">new</span> ArrayList[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.adj[i] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adj[v].add(w);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//正向遍历，以后根序压栈，保证根先出栈</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fillorder</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited, Stack&lt;Integer&gt; s)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer i : <span class="keyword">this</span>.adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//reverse 得到反向图</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KosarajuSCC <span class="title">getTranspose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        KosarajuSCC gv = <span class="keyword">new</span> KosarajuSCC(<span class="keyword">this</span>.n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer j : <span class="keyword">this</span>.adj[i]) &#123;</span><br><span class="line">                gv.adj[j].add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> gv;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//DFS打印连通分支</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DFSUtil</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line">        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">        System.out.print(v + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer i : adj[v]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                DFSUtil(i, visited);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按照Kosaraju算法的步骤执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printSCCs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="keyword">this</span>.n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//逆后序压栈</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                fillorder(i, visited, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//得到反向图</span></span><br><span class="line">        KosarajuSCC gr = <span class="keyword">this</span>.getTranspose();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            visited[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//依据反向图算可达性</span></span><br><span class="line">        <span class="keyword">while</span> (!s.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = s.pop();</span><br><span class="line">            <span class="keyword">if</span> (visited[v] == <span class="keyword">false</span>) &#123;</span><br><span class="line">                gr.DFSUtil(v, visited);</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>先理解一下Karasaju算法的思路。</p>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Kasaraju%E7%AE%97%E6%B3%95.png" alt="Kasaraju算法"></p>
-<ul>
-<li>对图G求其逆后序，即在深度优先遍历（DFS）中在递归调用之后压入栈中；</li>
-<li>对G进行转置，在代码中即得到反图；</li>
-<li>按照第一步中得到的栈的出栈的顶点顺序，对于G<sup>R</sup>图进行DFS可以得到若干搜索树。每棵搜索树都代表一个强连通分量。</li>
-</ul>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/%E7%A4%BA%E4%BE%8B%E5%9B%BEG.png" alt="示例图G"></p>
-<p>如上图示例的有向图，先求逆后序排序，得到<code>&#123;7, 8, 6, 9, 11, 10, 12, 0, 5, 4, 2, 3, 1&#125;</code>，然后按照这个图的转置图G<sup>R</sup>进行DFS，最终可以得到极大强连通分量5个：<code>&#123;7, 8&#125;, &#123;6&#125;, &#123;9, 11, 10, 12&#125;, &#123;0, 5, 4, 2, 3&#125;, &#123;1&#125;</code>。</p>
-<p>在Karasaju算法中使用了两次DFS，第一次是得到节点的逆后序排序（有的算法书将逆后序排序合并在拓扑排序里面）；第二次是对于转置图DFS得到最终的强连通分量。我们当然想要对于算法进行优化，减少DFS的次数也是一种极好的优化方式，想想如果一次DFS就可以得出强连通分量岂不是很好。</p>
-<h3 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h3><p>Tarjan算法是对于Kasaraju算法的改进。其基本代码实现思维如下：</p>
-<ul>
-<li>遍历一个点，指定唯一时间戳<code>DFN[i]</code>；指定改点向前追溯可追溯到最老时间戳<code>LOW[i]</code>；</li>
-<li>枚举当前点的所有边，若<code>DFN[j]=0</code>表明未被搜索过（这儿0、-1等都是可以的，只要是自我约定好的，正常不使用的就可以，如下面算法中使用的<code>NO_VISIT</code>），递归搜索；</li>
-<li>当<code>DFN[i]</code>不为0，则j被搜索过，这时判断是否在我们存储新建的栈中，且j的时间戳<code>DFN[j]</code>小于当前时间戳<code>DFN[i]</code>，可判定成环，将<code>LOW[i]</code>设定为<code>DFN[j]</code>；</li>
-<li>若这个点<code>LOW[i]</code>和<code>DFN[i]</code>相等，则这个点是目前强连通分量的元素中在栈中的最早的节点；</li>
-<li>出栈，将这个强连通分量全部弹出，保存。</li>
-</ul>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Tarjan%E7%AE%97%E6%B3%95.png" alt="Tarjan算法"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TarjanSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] inStack;<span class="comment">//标记节点是否在栈内</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dfn;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] low;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TarjanSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.inStack = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfNode];</span><br><span class="line">        <span class="keyword">this</span>.stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        dfn = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        low = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(dfn, NO_VISIT);<span class="comment">//将dfn所有元素都置为0，代表i还有没被访问过。</span></span><br><span class="line">        Arrays.fill(low, NO_VISIT);</span><br><span class="line">        result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取强连通分量</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;ArrayList&lt;Integer&gt;&gt; tarjanResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dfn[i] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//算法核心</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> current)</span> </span>&#123;</span><br><span class="line">        dfn[current] = low[current] = time++;</span><br><span class="line">        inStack[current] = <span class="keyword">true</span>;</span><br><span class="line">        stack.push(current);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(current).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(current).get(i);</span><br><span class="line">            <span class="keyword">if</span> (dfn[next] == NO_VISIT) &#123;</span><br><span class="line">                tarjan(next);</span><br><span class="line">                low[current] = Math.min(low[current], low[next]);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inStack[next]) &#123;</span><br><span class="line">                low[current] = Math.min(low[current], dfn[next]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (low[current] == dfn[current]) &#123;</span><br><span class="line">            ArrayList&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            <span class="keyword">int</span> j = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (current != j) &#123;</span><br><span class="line">                j = stack.pop();</span><br><span class="line">                inStack[j] = <span class="keyword">false</span>;</span><br><span class="line">                temp.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是在算法中的时间戳这个标记，并不是代表真正的时间戳，而是对于每个节点不同的一种标记，在本文算法中都是用一个递增数组来表示，即访问每个节点时，将该时间戳变量自增赋值给该节点的时间戳<code>DFN[i]</code>。</p>
-<h3 id="Gabow算法"><a href="#Gabow算法" class="headerlink" title="Gabow算法"></a>Gabow算法</h3><p>Gabow算法在基础上与Tarjan算法相似，都是利用一次DFS算法实现。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GabowSCC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfNode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; graph;<span class="comment">//二维数组表示图</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;ArrayList&lt;Integer&gt;&gt; result;<span class="comment">//保存极大强连通图</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; path;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; root;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] order;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> time;<span class="comment">//当前时间戳（实际是一个int的数，标记当前访问的节点）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NO_VISIT = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] part; <span class="comment">// 连通变量的标号；</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> partNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GabowSCC</span><span class="params">(List&lt;ArrayList&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> numOfNode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.graph = graph;</span><br><span class="line">        <span class="keyword">this</span>.numOfNode = numOfNode;</span><br><span class="line">        <span class="keyword">this</span>.path = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        order = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line">        part = <span class="keyword">new</span> <span class="keyword">int</span>[numOfNode];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(order, NO_VISIT);</span><br><span class="line">        Arrays.fill(part, NO_VISIT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] gabowResult() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numOfNode; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (order[i] == NO_VISIT) &#123;</span><br><span class="line">                gabow(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> part;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gabow</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        order[v] = ++time;</span><br><span class="line">        path.push(v);</span><br><span class="line">        root.push(v);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.get(v).size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> next = graph.get(v).get(i);</span><br><span class="line">            <span class="keyword">if</span> (order[next] == NO_VISIT) &#123;</span><br><span class="line">                gabow(next);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (part[next] == NO_VISIT) &#123;</span><br><span class="line">                <span class="keyword">while</span> (order[root.peek()] &gt; order[next]) &#123;</span><br><span class="line">                    root.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (v == root.peek()) &#123;</span><br><span class="line">            root.pop();</span><br><span class="line">            partNum++;</span><br><span class="line">            <span class="keyword">int</span> top;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                top = path.peek();</span><br><span class="line">                part[top] = partNum;</span><br><span class="line">                path.pop();</span><br><span class="line">            &#125; <span class="keyword">while</span> (top != v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其算法基本思路是：</p>
-<p><img src="/2017/05/19/SCC%E7%AE%97%E6%B3%95%E5%88%9D%E8%A7%A3/Gabow%E7%AE%97%E6%B3%95.png" alt="Gabow算法"></p>
-<ul>
-<li>在所有顶点中，找一个没有被访问的节点v，如果没有则完成；</li>
-<li>记录v的访问顺序；<br>将v压入堆栈path和root；<br>如果v指向的邻接点，对应每个邻接点next：<br>1、如果没有访问过，则以next为参数，递归到第二步；<br>2、如果访问过，且没有确定它属于哪个强连通分量，弹出root栈中next之后（即之上）的所有顶点；<br>3、如果root栈中的元素等于v，那么在part中记录顶点对应的强连通分量</li>
-<li>递归返回</li>
-</ul>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>本文只涉及算法的实现，没有设计算法的证明等，如有想法，请分享。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Algo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>北上征程之巧合版</title>
     <url>/2019/02/11/%E5%8C%97%E4%B8%8A%E5%BE%81%E7%A8%8B%E4%B9%8B%E5%B7%A7%E5%90%88%E7%89%88/</url>
     <content><![CDATA[<p>北上征程有很多，对我而言，每次从家到北京都是一次征程，往往我的选择方式也有很多，比如提前一天到成都第二天坐高铁到北京，或者直接飞机到北京，或者当天动车从家里到成都再转车等。我没有试过坐上两天的绿皮车，一直不是很喜欢坐很长时间的车。</p>
@@ -2615,445 +3122,6 @@
       <categories>
         <category>read</category>
       </categories>
-  </entry>
-  <entry>
-    <title>【笔记】数据库系统概念</title>
-    <url>/2020/11/25/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5/</url>
-    <content><![CDATA[<p><img src="/2020/11/25/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5.png" alt="数据库系统概念"></p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>数据库管理系统（DBMS）由一个互相关联的数据的集合（数据库）和一组用以访问这些数据的程序组成。</p>
-<p>数据库系统的一个主要目的是为用户提供数据的抽象视图，系统隐藏数据存储和维护的细节。</p>
-<p>数据库结构的基础是数据模型：一个用于描述数据、数据之间的联系、数据语义和数据约束的概念工具的集合。</p>
-<p>关系数据模型是最广泛使用的将数据存储到数据库中的模型。其他的数据模型有面向对象模型、对象-关系模型和半结构化数据模型。</p>
-<p>数据操纵语言（DML）是使得用户可以访问和操纵数据的语言。数据定义语言（DDL）是说明数据库模式和数据的其他特征的语言。</p>
-<p>数据库设计主要包括数据库模式的设计。实体-联系（E-R）数据模型是广泛用于数据库设计的数据模型，提供一种方便的图形化的方式来观察数据、联系和约束。</p>
-<p>数据库设计流程：</p>
-<ul>
-<li>制定出用户需求的规格文档</li>
-<li>在概念设计阶段开发出来的模式提供企业的详细概述：描述数据以及它们之间的联系，而不是指定无力的存储细节</li>
-<li>逻辑设计阶段：设计者将高层的概念模式映射到要使用的数据库系统的设计数据模式上</li>
-<li>物理设计阶段：指定数据库中的物理特性，这些特性包括文件组织的形式以及内部的存储结构</li>
-</ul>
-<p>数据库系统由几个子系统构成：1、存储管理器子系统在数据库中存储的低层数据与应用程序和向系统提交的查询之间提供借口。2、查询处理器子系统编译和执行DDL和DML语句。</p>
-<p>事务是数据库应用中完成单一逻辑功能的操作结合。<strong>每个事务是一个既具有原子性又具有一致性的单元。原子性和持久性的保证是数据库系统自身的职责。</strong>事务管理负责保证不管是否有故障发生，数据库都要处于一致的（正确的）状态。事务管理器还保证并发事务的执行互不冲突。</p>
-<p>数据库系统的体系结构受支持其运行的计算机系统的影响很大。数据库系统可以是集中式的。或是客户-服务器方式的，即一个服务器及其为多个客户机执行工作。数据库系统还可以设计成具有能充分利用并行计算系统结构的能力。分布式数据库跨越多个地理上分布的互相分离的计算机。</p>
-<p>典型地，数据库应用可被分为运行在客户机上的前端和运行在后端的部分。在两层的系统结构中，前端直接和后端运行的数据库进行通信。在三层结构上，后端又被分为应用服务器和数据库服务器。</p>
-<p>知识发现技术试图自动地从数据中发现统计规律和模式。数据挖掘领域将人工智能和统计分析研究人员创造的知识发现技术，与使得知识发现技术能够在极大地数据库上高效实现的技术结合起来。数据挖掘指半自动地分析大型数据库并从中找出有用的模式的过程。</p>
-<h2 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h2><h3 id="关系模型介绍"><a href="#关系模型介绍" class="headerlink" title="关系模型介绍"></a>关系模型介绍</h3><p><strong>数据模型是描述数据、数据联系、数据语义以及一致性约束的概念工具的集合。</strong>数据库模式是指数据库的逻辑设计，数据库实例是指给定时刻数据库中数据的一个快照。</p>
-<p>关系数据模型建立在表的集合的基础上。数据库系统的用户可以对这些表进行查询，可以插入新元组、删除元组以及更新（修改）元组。表达这些操作的语言又几种。</p>
-<p>关系的模式是指它的逻辑设计。而关系的实例是指它的特定时刻的内容。数据库的模式和实例的定义的类似的。关系的模式包括它的属性，还可能包括属性类型和关系上的约束，比如主码和外码约束。</p>
-<p>关系的超码是一个或多个属性的集合，这些属性上的取值保证可以唯一识别出关系中的元组。候选码是一个最小的超码，也就是说，它是一组构成超码的属性集，但这组属性的任意子集都不是超码。关系的一个候选码被选作主码。</p>
-<p>在参照关系中的外码是这样的一个属性集合：对于参照关系中的每个元组来说，它在外码属性上的取值肯定等于被参照关系中某个元组在主码上的取值。</p>
-<p>模式图是数据库中模式的图形化表示，它显示了数据库中的关系，关系的属性、主码和外码。</p>
-<p>关系查询语言定义了一组运算集，这些运算可以作用于表上，并输出表作用结构。这些运算可以组合成表达式，表达所需的查询。</p>
-<p>关系代数提供了一组运算，它们以一个或多个关系为输入，返回一个关系作为输出。诸如SQL这样的实际查询语言的基于关系代数的，但增加了一些有用的句法特征。</p>
-<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><p>SQL是最有影响力的商用市场化的关系查询语言。包括以下几个部分：1、数据定义语言（DDL），提供了定义关系模式、删除关系以及修改关系模式的命令；2、数据操作语言（DML），提供查询语言，以及往数据库中插入元组、从数据库中删除元组修改数据库中元组的命令。</p>
-<p>SQL的数据定义语言用于创建具有特定模式的关系。除了声明关系属性的名称和类型之外，SQL还允许声明完整性的约束，例如主码约束和外码约束。</p>
-<p>SQL提供多种用于查询数据库的语言结构，其中包括select、form和where子句。SQL支持自然连接操作。</p>
-<p>SQL还提供了对属性的关系重命名，以及对查询结果按特定属性进行排序的机制。</p>
-<p>SQL支持关系上的基本集合运算，包括并、交和差运算。</p>
-<p>SQL通过在通用真值true和false外增加增值“unknown”，来处理对包含空值进行排序的机制。</p>
-<p>SQL支持在外层查询的where和from子句中嵌套子查询。它还在一个表达式返回的单个值所允许出现的任何地方支持标量子查询。</p>
-<p>SQL提供了用于更新、插入、删除信息的结构。</p>
-<h3 id="中级SQL"><a href="#中级SQL" class="headerlink" title="中级SQL"></a>中级SQL</h3><p>SQL支持包括内连接、外连接在内的几种连接类型，以及几种形式的连接条件。</p>
-<p>视图关系可以定义为包含查询查询结果的关系。视图可以隐藏不需要的信息，可以把信息从多个关系收集到一个单一的视图中。</p>
-<p>事务是一个查询的更新的序列，它们共同执行某项任务。事务可以被提交或回滚。当一个事务被回滚，该事务执行的所有更新所带来的影响将被撤销。</p>
-<p>完整性约束保证授权用户对数据库所做的改变不会导致数据一致性的破坏。</p>
-<p>参照完整性约束保证出现在一个关系的给定属性集上的值同样出现在另一个关系的特定属性集上。</p>
-<p>域约束指定了在一个属性上可能取值的集合。这种约束也可以禁止在特定属性上使用空值。</p>
-<p>断言是描述性表达式，它指定了我们要求总是为真的谓词。</p>
-<p>SQL数据定义语言提供对定义诸如date和time那样的固有域类型以及用户定义域类型的支持。</p>
-<p>通过SQL授权机制，可以按照在数据库中不同数据值上数据库用户所允许的访问类型对他们进行区分。</p>
-<p>获得了某种形式授权的用户可能允许将此授权传递给其他用户。但是，对于权限怎样在用户间传递我们必须很小心，以保证这样的权限在将来的某个时候可以被收回。</p>
-<p>角色有助于根据用户在组织机构中扮演的角色，把一组权限分配给用户。</p>
-<h3 id="高级SQL"><a href="#高级SQL" class="headerlink" title="高级SQL"></a>高级SQL</h3><p>SQL查询可以从宿住语言通过嵌入和动态SQL激发。ODBC和JDBC标准给C、Java等语言的应用程序定义接入SQL数据库的应用程序接口。</p>
-<p>函数和过程可以用SQL提供的过程来定义，它允许迭代和条件语句。</p>
-<p>触发器定义了当某个事件发生而且满足相应条件时自动执行的动作。触发器有很多用处，例如实现业务规则、审计日志，甚至执行数据库系统外的操作。</p>
-<p>联机分析处理（OLAP）工具帮助分析人员用不同的方式查看汇总数据。</p>
-<ul>
-<li>OLAP工具工作在以维属性和度量属性为特性的多维数据之上。</li>
-<li>数据立方体由以不同方式汇总的多维度数据构成。预先计算数据立方体有助于提高汇总数据的查询数据。</li>
-<li>交叉表的显示允许用户一次查看多维数据的两个维及其汇总数据。</li>
-<li>下钻、上卷、切片和切块是用户使用OLAP工具时执行的一些操作。</li>
-</ul>
-<h3 id="形式化关系查询语言"><a href="#形式化关系查询语言" class="headerlink" title="形式化关系查询语言"></a>形式化关系查询语言</h3><p>关系代数定义了一套在表上运算且输出结果也是表的代数运算。这些运算可以凝合使用来得到表达所希望查询的表达式。关系代数定义了关系查询语言中使用的基本运算。</p>
-<p>关系代数运算可以分为：</p>
-<p><strong>1、基本运算；</strong></p>
-<p>关系代数基本运算有：选择、投影、并、集合差、笛卡尔积和更名。选择、投影和更名运算是一元运算符。选择：选出满足给定谓词的元组。</p>
-<p>二元运算自然连接使得我们可以将某些选择和笛卡尔积运算合并为一个运算。自然连接运算首先形成它的两个参数的笛卡尔积，然后基于两个关系模式中都出现的属性上相等性进行选择，最后还要去除重复属性。</p>
-<p><strong>2、附加的运算，可以用基本运算的表达；</strong></p>
-<p>包括集合交、自然连接和赋值。</p>
-<p><strong>3、扩展的运算，其中的一些扩展了关系代数的表达能力。</strong></p>
-<p>广义投影：允许在投影列表中使用算术运算和字符串函数等来对投影进行扩展。</p>
-<p>以下三种等价：</p>
-<ul>
-<li>基本关系代数（不包含扩展关系代数运算）</li>
-<li>限制在安全表达式范围内的元组关系演算</li>
-<li>限制在安全表达式范围内的域关系演算</li>
-</ul>
-<p>没有任何一个域关系演算等价于聚集运算，但是它可以扩展支持聚集。</p>
-<p>关系代数式一中简洁的、形式化的语言，不适合于那些偶尔使用数据库系统的用户。因此，商用数据库系统采用有更多“语言修饰”的语言。</p>
-<p>元组关系演算和域关系演算使非过程化语言，代表了关系查询语言所需的基本能力。基本关系代数式一种过程化语言，在能力上等价于被限制在安全表达式范围内的关系演算的这两种形式。</p>
-<p>关系演算的简洁的、形式化的语言，并不适合于那些偶尔使用数据库系统的用户。</p>
-<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><h3 id="数据库设计与E-R模型"><a href="#数据库设计与E-R模型" class="headerlink" title="数据库设计与E-R模型"></a>数据库设计与E-R模型</h3><ul>
-<li>数据库设计的最初阶段需要完整地刻画未来数据库用户的数据需求</li>
-<li>设计者选择数据模型，并采用所选数据模型的概念将这些需求转化为数据库的概念模式。在概念设计阶段所产生的模式提供了一个对企业的详细综述。</li>
-<li>完善的该你那模式还指明企业的功能需求。</li>
-<li>从抽象数据模型到数据库的实现的转化在最后两个设计阶段中进行<ul>
-<li>逻辑设计阶段：将高层概念模式映射到将使用的数据库系统的实现数据模式上。</li>
-<li>物理设计简单：指明数据库的物理特征。 </li>
-</ul>
-</li>
-</ul>
-<p>在设计一个数据库模式时，需要确保避免两个主要缺陷：冗余、不完整。</p>
-<p>数据库设计主要涉及数据库模式的设计。实体-联系（E-R）数据库模型是一个广泛用于数据库设计的数据模型。提供了一个方便的图形化表示方法以查看数据、联系和约束。</p>
-<p>E-R模型主要用于数据库设计过程。它的发展是为了帮助数据库设计，这是通过允许定义企业模式实现的。这种企业模式代表数据库的全局逻辑结构，可以用E-R图形化表示。</p>
-<p>实体是在现实世界中存在并且区别于其他对象的对象。通过把每个实体同描述该实体的一组属性相关联来表示区别。</p>
-<p>联系是多个实体间的关联。相同类型的联系的集合为联系集，相同类型的实体的集合为实体集。</p>
-<p>每个属性都有一个可取值的集合，称为该属性的域，或者值集。</p>
-<p>术语超码、候选码以及主码同适用于关系模式一样适用于实体和联系集。</p>
-<p>映射的基数表示通过联系集可以和另一实体相关联的实体的个数。</p>
-<p>不具有足够属性构成的主码的实体集称为弱实体集。具有主码的实体集称为强实体集。</p>
-<p>E-R模型的各种性质为数据库设计者提供了大量的选择，使设计人员可以最好地表示被建模的企业。在某些情况下，概念和对象可以用实体、联系或属性来表示。企业总体结构的各方面可以用弱实体集、概化、特化或聚集很好地描述。设计者通常需要在简单的、紧凑的模型与更精确但也更复杂的模型之间进行权衡。</p>
-<p>用E-R图定义的数据库设计可以用关系模式的集合来表示。数据库的每个实体集和联系集都有唯一的关系模式与之对应，其名称即为相应的实体集或联系集的名称。这是从E-R图转换为关系数据库设计的基础。</p>
-<p>特化和概化定义了一个高层实体集和一个或多个低层实体集之间的包含关系。特花是取出高层实体集的一个子集来形成一个低层实体集。概化湿用两个或者多个不相交的（低层）实体集的并集形成一个高层实体集。高层实体集的属性被低层实体集继承。</p>
-<p>聚集是一种抽象，其中联系集（和它们相关的实体集一起）被看作高层实体集，并且可以参与联系。</p>
-<p>UML是一种常见的建模语言。UML类图广泛用于对类建模以及一般的数据建模。</p>
-<h3 id="关系数据库设计"><a href="#关系数据库设计" class="headerlink" title="关系数据库设计"></a>关系数据库设计</h3><p>冗余存储则存在不一致的风险。</p>
-<p>如果该域的元素被认为是不可分的单元，这个域是原子的。<strong>如果关系模式R的所有属性的域都是原子的，那么称R属于第一范式（1NF）。</strong></p>
-<p>在许多含有复杂结构的实体域中，强制使用第一范式会给应用程序员造成不必要的负担。设计与开发时需要从当前业务考虑。</p>
-<p>一个关系的满足所有现实世界的约束的实例，称为关系的合法实例（满足业务要求的实例）。</p>
-<p>使用F+符号表示F集合的闭包，能够从给定F集合推导出所有函数依赖的集合。F+包含了F的所有函数依赖。</p>
-<p><strong>具有函数依赖集F的关系模式R属于BCNF的条件是，对于F+中所有形如a-&gt;b的函数依赖（其中a与b都包含于R），下面至少一项成立：1、a-&gt;b是平凡的函数依赖（即b包含于a）；2、a是模式R的一个超码。一个数据库设计属于BCNF的条件是，构成该设计的关系模式集中的每种模式都属于BCNF。</strong></p>
-<p><strong>第三范式：对于F+中所有形如a-&gt;b的函数依赖（其中a，b都包含于R）以下至少一项成立：1、a-&gt;b是一个平凡的函数依赖；2、a是R的一个超码；3、b-a中的每个属性A都包含于R的一个候选码中（候选码是最小的超码，且任意子集都不是超码）。</strong></p>
-<p>给定关系模式r(R)，如果r(R)的每一个满足F的实例都满足f，则R上的函数依赖f被r上的函数依赖F逻辑蕴涵。F的闭包是被F逻辑蕴涵的所有函数依赖的集合（F+）。</p>
-<p>函数依赖和多值依赖集为D的关系模式r(R)属于第四范式的条件是，对于D+中所有形如a–&gt;b的多值依赖（其中a和b都包含于R），以下至少一项成立：1、a–&gt;b是一个平凡的多值依赖；2、a是R的一个超码。</p>
-<h3 id="应用设计和开发"><a href="#应用设计和开发" class="headerlink" title="应用设计和开发"></a>应用设计和开发</h3><h2 id="数据存储和查询"><a href="#数据存储和查询" class="headerlink" title="数据存储和查询"></a>数据存储和查询</h2><h3 id="存储和文件结构"><a href="#存储和文件结构" class="headerlink" title="存储和文件结构"></a>存储和文件结构</h3><p>最快的存储介质（如高速缓冲存储器和主存储器）称为基本存储。层次结构中的基本存储介质的下一层介质（如磁盘）称为辅助存储或联机存储。层次结构中最底层的介质（如磁带机和自动光盘机）称为三级存储或脱机存储。</p>
-<p>易失性存储在设备断电后将丢失所有的内容。</p>
-<p>存储介质的可靠性由两个因素决定：1、电源故障或系统崩溃是否导致数据丢失；2、存储设备发生物理故障的可能性有多大。</p>
-<p>通过保留数据的多个拷贝，可以减少物理故障的可能性。对磁盘来说可以使用镜像技术。或者可以使用更复杂的基于独立磁盘冗余阵列（RAID）的方法。通过将数据拆分到多张磁盘上，可以提高大数据量访问的吞吐率；通过引入多张磁盘上的冗余存储，可以显著提高可靠性。</p>
-<p>可以把一个文件从逻辑上组织成映射到磁盘块上的一个记录序列。把数据库映射到文件的一种方法是使用多个文件，每个文件只存储固定长度的记录。另一种方法是构造文件。使之能适应多种长度的记录。分槽的页方法广泛应用于在磁盘块中处理变长记录。</p>
-<p>通过在多张磁盘上进行数据拆分来提高传速率。数据拆分最简单的形式是将每个字节按比特分开，存储到多个磁盘上。这种拆分称为比特级拆分。块级拆分是将块拆分到多张磁盘。</p>
-<p>磁盘系统并行有两个主要目的：1、负载平衡多个小的访问操作（块访问），以提高这种访问操作的吞吐量；2、并行执行大的访问操作，以减少大访问的响应时间。</p>
-<p>大对象常常存储到一个特殊的文件（或文件的集合）中而不是与记录的其他（短）属性存储在一起。然后一个指向该对象的（逻辑）指针存储到包含该大对象的记录中。</p>
-<p><strong>顺序文件是为了高效处理按某个搜索码的顺序排序的记录而设计的。搜索码是任何的一个属性或者属性的集合。</strong></p>
-<p><strong>多表聚簇文件组织是一种在每一块中存储两个或者更多个关系的相关记录的文件结构。</strong></p>
-<p>数据库系统的一个主要目的就是尽量减少磁盘和存储器之间传输的块数目。负责缓冲区空间分配的子系统称为缓冲区管理器。缓冲的是块而非数据。</p>
-<h3 id="索引与散列"><a href="#索引与散列" class="headerlink" title="索引与散列"></a>索引与散列</h3><p>数据库系统首先查找索引，找到相应记录所做的磁盘块，然后取出该磁盘块，得到所需的记录。</p>
-<p>如果包含记录的文件按照某个搜索码指定的顺序排序，那么该搜索码碎影的索引称为聚集索引。</p>
-<p>索引顺序文件是数据库系统中最古老的索引模式之一。为了允许按搜索码顺序快速检索记录，记录按顺序存储，而无序记录链接在一起。为了允许快速的随机访问，使用了索引结构。</p>
-<p>可以使用的索引类型有两种：稠密索引和稀疏索引。稠密索引对每个搜索码值都有索引项，而稀疏索引只对某些搜索码值包含索引项。利用稠密索引通常可以比稀疏索引更快地定位一条记录。但是，稀疏索引所占空间较小，并且插入和删除时所需的维护开销也较小。（折中方案：为每个块建一个索引项的稀疏索引）</p>
-<p>利用多级索引搜索记录与用二分法搜索记录相比需要的I/O操作要少得多。</p>
-<p>如果搜索码的排序序列和关系的排序序列相匹配，则该搜索码上的索引称为聚集索引，其他索引称为非聚集缩影或辅助索引。辅助索引可以提高不以聚集索引的搜索码作为搜索码的查询的性能。但是，辅助索引增加了修改数据库的开销（辅助索引必须是稠密索引，对每个搜索码值都有一个索引项，而且对文件中的每条记录都有一个指针）。</p>
-<p>候选码上的辅助索引看起来和稠密聚集索引没有太大区别，只不过索引中一系列的连续值执行的记录不是连续存放的。</p>
-<p>索引顺序文件组织的主要缺点是随着文件的增大，性能会下降。为了克服这个缺点，可以使用B+树索引。</p>
-<p>B+树索引采用平衡树的形式，即从树根到树叶的所有路径长度相等。B+树的高度与以关系中的记录数N为底的对数成正比，其中每个非叶子结点存储N个指针，N值通常约为50～100。因此，B+树比其他的平衡二叉树（比如AVL树）要矮喝多，故定位记录所需的磁盘访问次数也较少。</p>
-<p>B+树上的查询是直接而且高效的。然而插入和删除要更复杂一些，但是仍然很有效。在B+树中，查询、插入和删除所需的操作数与以关系中的记录数N为底的对数成正比，其中每个非叶子结点存储N个指针。</p>
-<p>可以用B+树去索引包含记录的文件，也可以用它组织文件中的记录。</p>
-<p>B树索引和B+树索引类型。B树的主要优点在于它去除了搜索码值存储中的冗余（当搜索码值唯一的情况下，只允许搜索码值出现一次）。主要缺点在于整体的复杂性以及节点大小给定时减小了扇出（直接连接下级个数，节点大导致扇出小，深度增加）。在实际应用中，系统设计者几乎无一例外的倾向于使用B+树索引。</p>
-<p>R树是B+树的扩展，用于处理在多个维度上的索引。</p>
-<p>覆盖索引存储一些属性（但不是搜索码属性）的值以及指向记录的职责。存储附加的属性值对于辅助索引是非常有用的，仅仅使用索引就能够回答一些查询，甚至不需要找到实际的记录。</p>
-<p>顺序文件组织需要一个索引结构来定位数据。相比之下，基于散列的文件组织允许我们通过计算所需记录搜索码值上的一个函数直接找出一个数据项的地址。由于设计时我们不能精确知道哪些搜索码值将存储在文件中，因此一个好的散列函数应该能均匀且随机地将搜索码值分散到各个桶中。</p>
-<p>静态散列所用散列函数和桶地址集合是固定的。这样的散列函数不容易适应数据库随时间的显著增长。有几种允许修改散列函数的动态散列技术。可扩充散列是其中之一，它可以在数据库增长或缩减时通过分裂或合并桶来应付数据库大小的变化。</p>
-<p>也可以用散列技术创建辅助索引：这样的索引称为散列索引。为使记法简便，假定散列文件组织中用户散列的搜索码上有一个隐式的散列索引。</p>
-<p>可扩充散列可以通过桶的分裂或合并来适应数据库的大小的变化。由于重组每次仅作用于一个桶，因此所带来的性能开销较低，可以接受。可扩充散列的最主要优点是其性能不随文件的增长而降低，其空间开销是最小的。缺点在于查找涉及一个附加的间接层。</p>
-<p>像B+树和散列索引这样的有序索引可以用作涉及单个属性且基于相等条件的选择操作。当一个选择条件中涉及多个属性时，可以取多个索引中检索到的记录标示符的交。</p>
-<p>对于索引属性只有少数几个不同值的情况，位图索引提供了一种非常紧凑的表达方式。位图索引的交操作相当得快，使得它成为一种支持多属性上的查询的理想方式（属性有限变量下）。</p>
-<h3 id="查询处理"><a href="#查询处理" class="headerlink" title="查询处理"></a>查询处理</h3><p>对于一个查询，系统首先要做的事就是将之翻译成系统内部的表示形式。对于关系数据库系统而言，内部形式通常是基于关系代数的。在产生查询的内部形式的过程中，语法分析器检查用户查询语句的语法，验证出现在查询语句中的关系名是数据库中的关系名等。如果查询语句是用视图表达的，语法分析器把所有对视图名的引用替换成计算该视图的关系代数表达式。</p>
-<p>查询处理步骤：1、语法分析与翻译；2、优化；3、执行。</p>
-<p>加了“如何执行”注释的关系代数运算称为计算原语。用于执行一个查询的原语操作序列称为查询执行计划或者查询计算计划。查询执行引擎接受一个查询执行计划，执行该计划并把结果返回给查询。</p>
-<p>给定一个查询，通常有许多计算它的方法。将用户输入的查询语句转化成等价的、执行效率更高的查询语句，这是优化器的责任。优化器通常努力去尽可能降低查询计划总的资源消耗，而不是尽可能缩低响应时间。</p>
-<p>辅助索引存储的是B+树文件组织中作为码值的属性值。通过这种辅助索引存取一条记录的代价将更大：首先必须搜索辅助索引以找到主索引的搜索码值，然后查找主索引来找到记录。</p>
-<p>对于包含简单选择的查询语句，可以通过线性扫描或者利用索引来处理。通过计算简单选择结果的并和交，可以处理复杂选择操作。</p>
-<p>数据排序：1、SQL查询会指明对结果进行排序；2、当输入的关系已排序时，关系运算中的一些运算（如连接运算）能够得到高效实现。</p>
-<p>可以用外部归并排序算法对大内存的关系进行排序。</p>
-<p>设计自然连接的查询语句可以有多种处理方法，如果处理取决于是否有索引可用以及关系的物理存储形式。</p>
-<ul>
-<li>若连接的结果大小几乎和两个关系的笛卡尔积相当，可以采用嵌套循环连接策略较好。</li>
-<li>若存在索引，则可用索引嵌套循环连接。</li>
-<li>若关系已排序，则归并连接比较可取。在连接计算前对关系排序是有利的（为了能使用归并连接算法）。</li>
-<li>散列连接算法把关系划分成多个部分，使每个部分都能被内存所容纳。划分过程是通过连接属性上的散列函数来进行的，这样相应的划分对可以独立地进行连接。</li>
-</ul>
-<p>嵌套循环连接算法不要求有索引，并且不管连接的条件是什么，该算法均可以使用。块嵌套循环连接是以块的方式而不是以元组的方式处理关系，可以减少不少块读写次数。索引嵌套循环连接，可以在已有索引或者为了计算该连接而专门建立临时索引的情况下使用。归并连接算法（排序-归并-连接算法）可用于计算自然连接和等值连接。混合归并-连接算法把已排序关系与B+树辅助索引叶结点进行归并。散列连接算法可用于实现自然连接和等值连接，基本思想是把这两个关系的元组划分成连接属性值上具有相同散列值的元组集合。</p>
-<p>去除重复、投影、集合操作（并、交、差）、聚集操作都可以用排序和散列实现。</p>
-<p>外连接操作可以通过对连接算法的简单扩展来实现。</p>
-<p>散列与排序在某种意义下是对偶的。因为任何能用散列实现的操作（如去除重复、投影、聚集、连接、外连接）也可用排序来实现，反之亦然；即任何能用排序来实现的操作也能用散列实现。</p>
-<p>可以采用物化方法进行表达式的计算。系统计算每个子表达式的结果并将其存在磁盘上，然后用它进行父表达式的计算。</p>
-<p>流水线方法在子表达式产生输出的同时就在父表达式的计算中使用其输出结果，帮助我们避免了将许多子查询的结果写到磁盘的操作。</p>
-<p>由于去除重复的代价相对较大，因此SQL查询语言要求用户显示指明需要去除重复，若不指明则保留重复。</p>
-<p>每次计算的结果都被物化到一个临时关系中已备后用。这个方法的缺点是需要构造临时关系，这些临时关系必须写到磁盘上（除非很小）。</p>
-<p>减少临时文件数是通过将多个关系操作组合成一个操作的流水线来实现的，其中一个操作结果将传送到下一个操作。</p>
-<h3 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h3><p>给定一个查询，一般有多种方法可以计算结果。系统负责将用户输入的查询转换成能够更有效执行的等价查询。为处理查询找出一个好的策略的过程称为查询优化。</p>
-<p>复杂查询的执行涉及多次存取磁盘的操作。由于从磁盘中传输数据相对于主存速度和计算机系统的CPU速度要慢，因此进行一定量的处理以选择一个能够从最小化磁盘存取的方法是完全值得的。</p>
-<p>查询执行计划的产生有三步：1、产生逻辑上与给定表达式等价的表达式；2、对所产生的表达式以不同方式作注释，产生不同的查询计划；3、估计每个执行计划的代价，选择估计代价最小的一个。</p>
-<p>有很多等价规则供我们用于将一个表达式转化成等价表达式。我们使用这些规则系统地产生与所给查询等价的所有表达式。（如果两个关系表达式在每一个有效数据库实例中都会产生相同的元组集，则我们称它们是等价的。）</p>
-<p>若一组等价规则中任意一条规则都不能由其他规则联合起来导出，称这组等价规则集为最小等价规则集。</p>
-<p>优化器采用两种关键思想可以极大地减少空间和时间上的开销：</p>
-<ul>
-<li>如果在子表达式e(i)上使用等价规则把表达式E1转化成E‘，则除了e(i)及其转换，E1与E‘有相同的子表达式。而且e(i)及其转换通常也有许多相同的子表达式。可以采用一些表达式表示技术，使两个表达式指向共享的子表达式，这样可以明显减少对空间的需求。</li>
-<li>不必总是用等价规则产生所有可以产生的表达式。如果考虑估计的执行代价，优化器可以避免检查某些表达式。</li>
-</ul>
-<p>每个关系代数表达式都表示某个特定的操作序列。选择查询处理策略的第一步就是找到一个关系代数表达式，使它与所给的表达式等价并且据估计有更小的执行代价。</p>
-<p>基于代价的优化器从给定查询等价的所有查询执行计划空间中进行搜索，并选择估计代价最小的一个。</p>
-<p>数据库系统为执行一个操作所选择的策略依赖于每个关系的大小和列值的分布情况。数据库系统可以为每个关系r存储统计信息，从而能够基于这些可靠信息选择适合的策略。这些统计信息包括：</p>
-<ul>
-<li>关系r中的元组数</li>
-<li>关系r中的一个记录（元组）的大小（按字节计数）</li>
-<li>关系r中的某个特定属性中出现的不同取值的数目</li>
-</ul>
-<p>许多数据库系统使用直方图来存储一个属性在每个区间上的取值个数。直方图通常采用取样来计算。</p>
-<p>这些统计信息使得我们可以估计各种操作的结果集的大小和执行操作的代价。当处理一个查询的过程中有多个索引可用于辅助的时候，关系的统计信息特别有用，这些信息对查询处理策略的选择有很大影响。</p>
-<p>物理等价规则允许将例如连接这样的逻辑操作转换成像散列连接或嵌套循环连接这样的物理操作。通过将这类规则添加到原来的等价规则中，程序可以产生所有可能的执行计划。</p>
-<p>对每个表达式，我们可以用一些等价规则产生多个可选的执行计划，然后从中选择代价最小的执行计划。不少优化技术可以减少需要产生的可选表达式和执行计划的数量。</p>
-<p>我们使用启发式方法来减少需要考虑的执行计划的数量，从而减少优化的代价。用于关系代数查询转换的启发式规则包括“尽早执行选择操作”、“尽早执行投影操作”、和“避免笛卡尔积操作”。</p>
-<p>用一个具有连接的查询（可能使用临时关系）去替代嵌套查询的过程称为去除相关。</p>
-<p>物化视图可以用来加速查询处理。当原关系发生修改时，需要用增量的视图维护来高效地更新物化视图。利用包含一个操作的输入的变化量的代数表达式，能够完成对该操作的变化量的计算。其他与物化视图相关的问题还包括如何借用物化视图进行查询优化和如何选择需要待物化的视图。查询优化器的工作应该包括知道何时可利用物化视图来提高查询处理速度。</p>
-<p>一些优化技术，包括top-K优化、连接极小化、更新优化、多查询优化和参数化查询优化。</p>
-<p>共享式扫描优化的工作方式如下：不是对于需要扫描一个关系的每一个查询，都从磁盘上重复地读取该关系，而是从磁盘上读取一次数据，然后流水线地传递给每一个查询。（一次读取，多次使用）</p>
-<p>如果最优计划受查询中的常数值影响不大，则通过计划缓存重用计划是合理的。然而如果计划受常数的影响，则可以使用参数化查询优化作为替代。</p>
-<h2 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h2><p>事务指的是构建单一逻辑工作单元的操作的集合。</p>
-<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>事务时一个程序执行单位，它访问且可能更新不同的数据项。理解事物这个概念对于理解与实现数据库中的数据更新是很关键的，只有这样才能保证并发执行与各种故障不会导致数据库处于不一致状态。</p>
-<p>事务具有ACID特性：原子性、一致性、隔离性、持久性。</p>
-<ul>
-<li>原子性保证事务的所有影响在数据库中要么全部反映出来，要么根本不反应；一个故障不能让数据库处于事务部分执行后的状态。</li>
-<li>一致性保证若数据库一开始是一致的，则事务（单独）执行后数据库仍处于一致状态。</li>
-<li>隔离性保证并发执行提高了事务吞吐量和系统利用率，也减少了事务等待时间。</li>
-<li>持久性保证一旦一个事务提高后，它对数据库的改变不会丢失，即使系统可能出现故障。</li>
-</ul>
-<p>事务的并发执行提高了事务吞吐量和系统利用率，也减少了事务等待时间。</p>
-<p>计算机中不同存储介质包括异失性存储器、非易失性存储器和稳定性存储器。易失性存储器（例如RAM）中数据当计算机崩溃时丢失。非易失性存储器（如磁盘）中的数据在计算机崩溃时不会丢失，但是可能会由于磁盘崩溃而丢失。稳定性存储器中的数据永远不会丢失。</p>
-<p>为了一个事务能够持久，它的修改应该写入稳定性存储器。为了一个事务是原子的，日志记录需要在对磁盘上的数据库做任何改变之前写入稳定性存储器。</p>
-<p>必须支持在线访问的稳定性存储器与磁盘镜像或者其他形式的提供冗余数据存储的RAID接近。对于离线或归档的情况，稳定性存储器可以由存储在物理安全位置的数据的多个磁带备份所构成。</p>
-<p>撤销已提交事务所造成的影响的唯一方法是执行一个补偿事务。</p>
-<p>多个事务在数据库中并发执行时，数据的一致性可能不再维持。因此系统必须控制各并发事务之间的相互作用。</p>
-<ul>
-<li>由于事务时保持一致性的单元，所以事务的串行执行能保持一致性。</li>
-<li>调度捕获影响事务并发执行的关键操作，如read和write操作，而忽略事务执行的内部细节。</li>
-<li>我们要求事务集的并发执行所产生的任何调度的执行效果等价于由这些事务按某种串行顺序执行的效果。</li>
-<li>保证这个特性的系统称为保证可串行化。</li>
-<li>存在几种不同的概念，从而引出了冲突可串行化与视图可串行化的概念。</li>
-</ul>
-<p>事务并发执行所产生的调度的可串行化可以通过多种并发控制机制中的一种来加以保证。</p>
-<p>给定一个调度，我们可以通过为该调度构造优先图几搜索是否无环来判定它是否冲突可串行化。然而，有更好的并发控制机制可用来保证可串行化。</p>
-<p>调度必须时可恢复的，以确保：若事务a看到事务b的影响，当b中止时，a也要中止。（一个可恢复调度应该满足：对于每个事务T(i)和T(j)，如果T(j)读取了之前由T(i)所写的数据项，则T(i)先于T(j)提交。）</p>
-<p>调度最好是无级联的，这样不会由于一个事务的中止引起其他事务的级联中止。无级联性是通过只允许事务读取已提交数据来保证的。（因单个事务故障导致一系列事务回滚的现象称为级联回滚。（无级联调度=可恢复调度）</p>
-<ul>
-<li><strong>可串行化</strong>：通常保证可串行化调度。</li>
-<li><strong>可重复读</strong>：只允许读取已提交的数据，而且在一个事务两次读取一个数据项期间，其他事务不得更新该数据项。</li>
-<li><strong>已提交读</strong>：只允许读取已提交数据，但不要求可重复读。</li>
-<li><strong>未提交读</strong>：允许读取未提交数据。（脏读）</li>
-</ul>
-<p>所有隔离性级别都不允许<strong>脏写</strong>，即如果一个数据项已经被另一个尚未提交或者中止的事务写入，则不允许对该数据项执行写操作。</p>
-<p>数据库的并发控制管理部件复杂处理并发控制机制。</p>
-<p>快照隔离可以保证读数据的尝试永远无须等待，但带来的问题是提供了太多的隔离。如果事务多次运用之间数据库发生改变，那么即使是同一个事务，在多次不同运行中也可能会使用不同的数据项。</p>
-<h3 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h3><p>当多个事务在数据库中并发执行时，数据的一致性可能不再维持。系统有必要控制各事务之间的相互作用，这是通过称为并发控制机制的多种机制中的一种来实现的。</p>
-<p>为保证可串行性，我们可以使用多种并发控制机制。所以这些机制要么延迟一个操作，要么中止发出该操作的事务。最常用的机制是多种封锁协议、时间戳排序机制、有效性检查技术与多版本机制。</p>
-<p>封锁协议是一组规则，这些规则阐明了事务何时对数据库中的数据项进行加速和解锁。</p>
-<p>两阶段封锁协议仅在一个事务未曾释放任何数据项上的锁时才允许该书屋封锁新数据项。该协议保证可串行化，但不能避免死锁。在没有关于数据项访问方式信息的情况下，两阶段封锁协议对于保证可串行性既是必要的又是充分的。</p>
-<p><strong>两阶段封锁协议</strong>：要求每个事务分两个阶段提出加锁和解锁申请。</p>
-<ul>
-<li>增长阶段：事务可以获得锁，但不能释放锁。</li>
-<li>缩减阶段：事务可以释放锁，但不能获得新锁。</li>
-</ul>
-<p>严格两阶段封锁协议要求事务持有的所有排他锁必须在事务结束时方可释放，其目的是保证结果调度的可恢复性和无级联性，强两阶段封锁协议要求事务持有的所有锁必须在事务结束时方可释放。</p>
-<p>锁转换：提供一种将共享锁升级为排他锁，以及将排他锁降级为共享锁的机制。</p>
-<p>锁管理器可以实现一个过程，从事务接受消息并反馈消息。数据结构：为目前已加锁的每个数据项维护一个链表，每一个请求为链表中一条记录，按请求到达的顺序排序。</p>
-<ul>
-<li>当一个锁请求消息到达时，如果相应的数据项的链表存在，在该链表末尾增加一个记录；否则新建一个仅包含该请求记录的链表。<ul>
-<li>在当前没有加锁的数据项上总是授予第一次加锁请求，但当事务向已被加锁的数据项申请加锁时，只有当该请求与当前持有的锁相容，并且所有先前的请求都已授予锁的条件下，锁管理器才为该请求授予锁，否则该请求只好等待。</li>
-</ul>
-</li>
-<li>当锁管理器收到一个事务的解锁消息时，它将与该事务相对应的数据项列表中的记录删除，然后检查随后的记录，如果有，如前所述，就看该请求能否被授权，如果能，锁管理器授权该请求并处理气候记录，如果还有，类似地一个接一个处理。</li>
-<li>如果一个事务中止，锁管理器删除该事务产生的正在等待加锁的所有请求。一旦数据库系统采取适当动作撤销该事务，该中止事务持有的所有锁将被释放。</li>
-</ul>
-<p>基于图的封锁协议对访问数据项的顺序加以限制，从而不需要使用两阶段封锁还能够保证可串行性，而且又能够保证不会产生死锁。</p>
-<p>许多种封锁协议都不能防止死锁。一种可以防止死锁的方法是使用数据项的一种顺序，并且按与该顺序一致的次序申请加锁。另一种防止死锁的方法是使用抢占的事务回滚。为控制抢占，我们给每个事务赋予一个唯一时间戳，这些时间戳用于决定事务是等待还是回滚。如果一个事务回滚，它在重启时保持原有时间戳。wound-wait机制是一个抢占机制。</p>
-<p>如果没有预防死锁，系统必须用死锁检测与恢复机制来处理它们。为此，系统构造了一个等待图。当且仅当等待图包含环时，系统处于死锁状态。当一个检测算法判断死锁存在，系统必须从死锁种恢复。系统通过回滚一个或多个事务来解除死锁。</p>
-<p>某些情况下把多个数据项聚为一组，将它们作为聚集数据项来处理，其效果可能更好，这就导致了粒度的多个级别。我们允许各种大小的数据项，并定义数据项的层次，其中小数据项嵌套于大数据项之中。这种层次结构可以图形化地表示为树。封锁按从根结点到叶结点的顺序进行；解锁则按从叶结点到根结点的讯息进行。该协议保证可串行性，但不能避免死锁。</p>
-<p>时间戳排序机制通过事先对每对事务之间选择一个顺序来保证可串行性。系统中的每个事务对应一个唯一的固定时间戳。事务的时间戳决定了事务的可串行化顺序。这样，如果事务T(i)的时间戳小于事务T(j)的时间戳，则该机制保证产生的调度等价于事务T(i)出现在事务T(j)之前的一个串行调度。该机制通过回滚违反该次序的事务来保证这一点。</p>
-<p>在大部分事务时只读的情形下，冲突频率很低，这种情况下有效性检查机制是一个适当的并发控制机制。系统中的每个事务对应一个唯一的固定时间戳。串行性次序是由事务的时间戳决定的。在该机制中，事务不会延迟。不过，事务要完成必须通过有效性检查。如果事务未通过有效性检查，则该事务回滚到初始状态。</p>
-<p>有效性检查协议要求每个事务T(i)在其生命周期中按两个或三个阶段执行，这取决于该事务时一个只读事务还是一个更新事务。</p>
-<ul>
-<li>读阶段：系统执行事务T(i)。各数据项值被读取并保存在事务T(i)的局部变量中。所有的write操作都是对局部临时变量进行的，并不对数据库进行真正的更新。</li>
-<li>有效性检查阶段：对事务T(i)进行有效性测试。判断是否可以执行write操作而不违反可串行性。如果事务有效性测试失败，则系统终止这个事务。</li>
-<li>写阶段：若事务T(i)已通过有效性检查，则保存T(i)任何写操作结果的临时局部变量值被复制到数据库中。只读事务忽略这个阶段。</li>
-</ul>
-<p>多版本并发控制机制基于在每个事务写数据项时为该数据项创建一个新版本。读操作发出时，系统选择其中的一个版本进行读取。利用时间戳，并发控制机制保证按确保可串行性的方式选取要读取的版本。读操作总能成功。</p>
-<ul>
-<li>在多版本时间戳排序中，写操作可能引起事务的回滚。</li>
-<li>在多版本的两阶段封锁中，写操作可能导致封锁等待或者死锁。</li>
-</ul>
-<p>快照隔离时一种基于有效性检验的多版本并发控制协议，与多版本两阶段封锁协议不同，它不需要将事务声明为只读或更新的。快照隔离不保证可串行化，但是许多数据库系统仍然支持它。</p>
-<p>仅当要删除元组的事务在该元组上具有排他锁时，delete操作才能够进行。数据库中插入新元组的事务在该元组上被授予排他锁。</p>
-<p>插入操作可能导致幻象现象，这是插入操作与查询操作发生逻辑冲突，尽管两个事务可能没有存取共同的元组。如果封锁仅加在事务访问元组上，这种冲突就检测不到。关系中用于查找元组的数据需要加锁，索引封锁技术要求对某些索引结点加锁来解决这个问题。所加的锁保证所有事务在实际的数据项上发生冲突，而不是在幻象上。索引封锁协议运作如下：</p>
-<ul>
-<li>每个关系至少有一个索引。</li>
-<li>只有首先在关系的一个或多个索引上找到元组后，事务T(i)才能访问关系上的这些元组。为了达到索引封锁协议的目的，全表扫描看作一个索引上所有叶结点的扫描。</li>
-<li>进行查找（不管区间查找还是点查找）的事务T(i)必须在它要访问的所有索引叶结点上获得共享锁。</li>
-<li>在没有更新关系r上的所有索引之前，事务T(i)不能插入、删除或更新关系r中的元组t(i)。该事务必须获得插入、删除或更新所影响的所有索引叶结点上的排他锁。对于插入和删除，受影响的叶结点时那些（插入后）包含或（删除前）包含元组搜索码值的叶结点。对于更新，受影响的叶结点时那些（修改前）包含搜索码旧值的叶结点，以及（修改后）包含搜索码新值的叶结点。</li>
-<li>元组照常获得锁。</li>
-<li>必须遵循两阶段封锁协议规则。</li>
-</ul>
-<p>弱级别的一致性用于一些应用中，在这些应用中，查询结果的一致性不是至关重要的，而使用可串行性会使查询对事务的处理起反作用。二级一致性是这种弱级别的一致性之一，游标稳定性是二级一致性的一个特例，而且已被广泛应用。</p>
-<p>游标稳定性保证：</p>
-<ul>
-<li>正被迭代处理的元组被加上共享锁。</li>
-<li>任何被更改的元组被加上排他锁，直至事务提交。</li>
-</ul>
-<p>跨越用户交互的事务并发控制是一个有挑战性的任务。应用程序通常实现一种基于采用元组中存储的版本号来验证写操作的机制。这种机制提供了弱可串行化水平，而且可以实现在应用层，而无需修改数据库。</p>
-<p>可以为特殊的数据结构开发特色的并发控制技术。通常，特色的技术用到B+树上，以允许较大的并发性。这些技术允许对B+树进行非可串行化访问，但它们保证B+树结构是正确的，并保证对数据库本身的存取是可串行化的。</p>
-<h3 id="恢复系统"><a href="#恢复系统" class="headerlink" title="恢复系统"></a>恢复系统</h3><p>数据库系统的一个重要组成部分就是恢复机制，它负责检测故障以及将数据库恢复至故障发生前的某一状态。恢复机制必须提供高可用性，必须将数据库崩溃后不能使用的时间缩减到最短。</p>
-<p>计算机中的各种存储器类型有易失存储器、非易失存储器和稳定存储器。易失存储器（如RAM）中的数据在计算机发生故障时会丢失。非易失性存储器（如磁盘）中的数据在计算机发生故障时一般不丢失，只是偶尔由于某些故障如磁盘故障才会丢失。稳定存储器中的数据从不丢失。</p>
-<p>必须能联机访问的稳定存储器用镜像磁盘或RAID的其他形式模拟，它提供冗余数据存储。脱机或归档稳定存储器可能是数据的多个磁带备份，并存放在物理安全的地方。</p>
-<p>一旦故障发生，数据库系统的状态可能不再一致，即它不能反映数据库试图保存的显示世界的状态。为保持一致性，我们要求每个事务都必须是原子的。恢复机制的责任就是要保证原子性和持久性。</p>
-<p>在基于日志的机制中，所有的更新都记入日志，并存放在稳定存储器中。当事务的最后一个日志记录，即该事务的commit的日志记录。输出到稳定存储器时，就认为这个事务已提交。</p>
-<p>日志记录包括所有更新过的数据项项的旧值和新值。当系统崩溃后需要对更新进行重做时，就使用新值。如果在正常操作中事务中止，回滚事务所做的更新时需要用到旧值；在事务提交之前发生系统崩溃的情况下，回滚事务所做的更新也需要用到旧值。</p>
-<p>在演出修改机制下，事务执行时所有write操作都要延迟到事务提交时才执行，那时，系统在执行延迟写中会用到日志中与该事务有关的信息。在延迟修改机制中，日志记录不需要包含已更新的数据项的旧值。</p>
-<p>为减少搜索日志和重做事务的开销，我们可以使用检查点技术。（a）在执行检查点操作的过程中不允许执行任何更新，（b）在执行检查点的过程中将所有更新过的缓冲块都输出到磁盘中。检查点执行过程如下：1、将当前位于主存的所有日志记录输出到稳定存储器；2、将所有修改的缓冲块输出到磁盘；3、将一个日志记录<checkpoint L>输出到稳定存储器，其中L是执行检查点时正活跃的事务的列表。</p>
-<p>当前恢复算法基于重复历史的概念，在恢复的重做简单重演（自最后一个已完成的检查点以来）正常操作中所做的所有动作。重复历史的做法将系统状态恢复到系统崩溃之前的最后一个日志记录输出到稳定存储器时的系统状态。然后从这个状态开始执行一个撤销阶段，反向处理未完成事务的日志记录。</p>
-<p>不完全事务的撤销写出特殊的redo-only日志记录和一个abort日志记录。然后就认为该事务已完成，不必再对它进行撤销。</p>
-<p>在事务处理所基于的存储模型中，主存储器中有一个日志缓冲区，一个数据库缓冲区和一个系统缓冲区。系统缓冲区中有系统目标码页面和事务的局部工作区域。</p>
-<p>恢复机制的高效实现需要尽可能减少向数据库和稳定存储器写出的数目。日志记录在开始时可以保存在易失性的日志缓冲区中，但是当下述情况之一发生时必须写到稳定性存储器中：</p>
-<ul>
-<li>在&lt;T(i), commit&gt;日志记录可以输出到稳定存储器之前，在事务T(i)相关的所有日志记录必须已经输出到稳定存储器中。</li>
-<li>在主存中的一个数据库输出到（非易失性存储器中的）数据库之前，与该块中的数据相关的所有日志记录必须已经输出到稳定存储器中。</li>
-</ul>
-<p>当前的恢复技术支持高并发性封锁技术，例如用户B+树并发控制的封锁记录。这些技术允许提前释放通过插入或删除这样的操作获得的低级别的锁，低级别的锁允许别的事务其他的这些操作可以执行。低级别的锁被释放之后，不能进行物理undo，而需要进行逻辑undo，例如，用删除来对一个插入操作undo。事务保持高级别的锁以确保并发的事务不会执行这样的动作，它可能导致一个操作的逻辑undo是不可能的。</p>
-<p>为从造成非易失性存储器中数据丢失的故障中恢复，我们必须周期性地将整个数据库的内容转储到稳定存储器中–例如每天一次。如果发生了导致物理数据库块丢失的故障，我们使用最近一次转储将数据库恢复至前面的某个一致状态。一旦完成该恢复，我们再用日志将数据库系统恢复至最当前的一致状态。</p>
-<p>ARIES恢复机制支持一些提供更大并发性，削减日志开销和最小化恢复时间的特性。它也是基于重复历史的，并允许逻辑undo操作。该机制连续不断地清洗页，从而不需要检查点时清洗所有页。它使用日志顺序号（LSN）来实现各种优化从而减少恢复所花的时间。从系统崩溃中恢复的过程经历三个阶段：1、分析阶段：决定哪些事务要撤销，哪些页在崩溃时时脏的，以及重做阶段应从哪个LSN开始；2、redo阶段：从分析阶段决定的位置开始，执行重做，重复历史，将数据库恢复到发生崩溃前的状态；3、undo阶段：回滚在发生崩溃时那些不完全的事务。</p>
-<p>远程备份系统提供了很高程度的可用性，允许事务处理即使在主站点遭受火灾、洪水或地震的破坏时也能继续。主站点上的数据和日志记录连续不断地备份到远程备份站点。如果主站点发生故障，远程备份站点就执行一定的恢复动作，然后接管事务处理。</p>
-<h2 id="系统体系结构"><a href="#系统体系结构" class="headerlink" title="系统体系结构"></a>系统体系结构</h2><h3 id="数据库系统体系结构"><a href="#数据库系统体系结构" class="headerlink" title="数据库系统体系结构"></a>数据库系统体系结构</h3><p>集中式数据库系统完全运行在单台计算机上。随着个人计算机和局域网的发展，数据库前端功能不断移向客户机，而后端功能由服务器系统提供。客户-服务器接口协议推动了客户-服务器数据库系统的发展。</p>
-<p>服务器可以是事务服务器，也可以是数据服务器。尽管在提供数据库服务方面，事务服务器的使用大大超过数据服务器的使用。</p>
-<ul>
-<li>事务服务器有多个进程，可能运行在多个处理器上。所以这些进程要访问公共数据，比如数据库缓冲区，系统将这些数据存放在共享内存中。除了处理查询的进程，还有执行诸如锁和日志管理以及检查点等任务的系统进程。</li>
-<li>数据服务器系统提供给用户的是为加工的数据。这样的系统通过把数据和锁高速缓存在客户端，来努力使客户端和服务器之间的通信最小化。并行数据库系统使用类似的优化。</li>
-</ul>
-<p>并行数据库系统由通过高数互联网连接在一起的多台处理器和多张硬盘构成。加速比衡量通过增加并行性可以得到的对单个事务的处理数据的增长。扩展比衡量通过增加并行性可以的带的处理大量事务的能力。干扰、偏斜和启动代价是得到理想的加速比和扩展比的障碍。</p>
-<p>并行数据库系统结构包括共享内存、共享硬盘、无共享以及层次的体系结构。这些体系结构在可扩展性以及通信速度方面各有千秋。</p>
-<ul>
-<li>共享内存的优点在于处理器之间的通信效率极高，存放在共享内存中的数据可以被任何处理器访问，而不需要由软件来移动。共享内存机器的缺点是这种体系结构的规模不能超过32个或64个处理器。因为总线或互联网络会变成瓶颈（因为它是所有处理器共享的）。</li>
-<li>共享硬盘体系结构有两个优点：1、由于每个处理器都有自己的主存储器，因此存储器总线不再是瓶颈了；2、这种体系结构给出了一个经济的方法来提供一定程度的容错性（如果一个处理器或者它的主存储器发生故障，其他处理器可以代替它的工作，这是因为数据库驻留在磁盘上，而磁盘是所有处理器都可以访问的）。虽然存储器总线不再是瓶颈，但与磁盘子系统互连现在成为了瓶颈。</li>
-<li>无共享提供的主要缺点是通信的代价和非本地磁盘访问的代价，这些代价比共享内存或共享硬盘体系结构中的代价要高，因为数据传送涉及两端的软件交互。</li>
-<li>层次的体系结构综合了共享内存、共享硬盘和无共享体系结构的特点。</li>
-</ul>
-<p>分布式数据库系统是部分独立的一组数据库系统，它们共享一个公共模式（理想情况下），并且协调地处理访问非本地数据库的事务。系统之间通过通信网络来相互通信。</p>
-<p>局域网连接分布在小的地理范围内的结点，比如连接单个建筑或几个相邻建筑。广域网连接分布在大的地理范围内的结点。现在Internet是使用最广泛的广域网。</p>
-<p>存储区域网是一种特殊形式的局域网，是为大型存储设备和多台计算机之间提供快速互连而设计的。</p>
-<h3 id="并行数据库"><a href="#并行数据库" class="headerlink" title="并行数据库"></a>并行数据库</h3><p>在I/O并行中，把关系划分到多张可用的磁盘中，从而使检索速度更快。三种常用的划分技术使轮转法划分，散列划分和范围划分。（一般而言，更倾向于使用散列划分和范围划分，而不是轮转法划分）</p>
-<ul>
-<li>轮转法：适合于希望对每个查询顺序地读取整个关系的应用。</li>
-<li>散列划分：适合于机遇划分属性的点查询。</li>
-<li>范围划分：适合于在划分属性上的点查询和范围查询。</li>
-</ul>
-<p>偏斜是一个主要的问题，特别是当并行度增高时。平衡的划分向量、使用直方图以及虚处理器划分是用于减少偏斜的技术。属性值偏斜指的是某些值出现在许多元组的划分属性中。划分偏斜指的是，即使不存在属性值偏斜，划分也可能会出现负载不均衡。</p>
-<ul>
-<li>通过为每个关系的每个属性创建和存储该属性值的频率表或直方图，可以降低由于构建平衡的范围划分向量而产生的I/O开销。</li>
-<li>使用虚处理器，特别是针对范围划分带来的偏斜，可以使偏斜的影响达到最小。核心思想是：即使由于偏斜使得在一个范围内有比其他范围更多的元组，这些元组也将划分到多个虚处理器的范围上。</li>
-</ul>
-<p>在查询间并行中，并发地运行不同的查询以提高吞吐量。共享磁盘系统中协议保证，当事务对页面设置共享锁或排查锁时，能够得到该页面的正确版本：1、事务对一个页面进行任何读或写访问之前，先用相应的共享或排他模式封锁该页面。一旦事务获得了页面的共享锁或排他锁后，它立刻从共享磁盘中读取该页面的最新版本；2、在事务释放一个页面的排他锁之前，它将该页面刷新到共享磁盘中，然后释放锁。</p>
-<p>查询内并行指的是单个查询在多个处理器和磁盘上并行执行，试图减少运行查询的代价。两类查询内并行：1、操作内并行，通过并行地执行每一个运算来加快一个查询的处理速度；2、操作间并行，通过并行地执行一个查询表达式中的多个不同的运算，来加快一个查询的处理速度。</p>
-<p>采用操作内并行来并行地执行关系运算，例如排序和连接。因为关系运算是面向集合的，所以操作内并行对关系运算是很自然的。</p>
-<p>对于像连接这样的二元运算，有两种基本的并行化的方法（这两种并行技术都可以与任何一种连接技术结合使用）：</p>
-<ul>
-<li>在基于划分的并行中，两个关系分成几个部分，而且r(i)中的元组仅与s(i)中的元组进行连接。基于划分的并行仅适用于自然连接和等值连接。</li>
-<li>在分片和复制中，两个关系都被划分，并且每个划分都被复制。在非对称的分片和复制中，一个关系被复制，而另一个关系被划分。与机遇划分的并行不同，分片和复制以及非对称的分片和复制对于任何连接条件都是用。</li>
-</ul>
-<p>在独立的并行中，互不依赖的多个不同的操作按并行方式执行。</p>
-<p>在流水线并行中，处理器在计算一个操作结果的同时将结果发送给另一个操作，无须等待整个操作的完成。</p>
-<p>两个常用启发式方法来减少需要考虑的并行执行计划的数目：</p>
-<ul>
-<li>仅考虑那些利用所有的处理器，对每个运算都并行化，并且不采用任何流水线的执行计划。</li>
-<li>选择最搞笑的串行执行计划，然后将该执行计划中的运算并行化。</li>
-</ul>
-<h3 id="分布式数据库"><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h3><p>分布式数据库系统由站点的集合构成，每个站点维护一个本地数据库系统。各个站点能够处理局部事务：这些事务访问的数据仅位于该单个站点上。此外，站点可以参与到全局事务的执行中：这些全局事务访问多个站点上的数据。全局事务的执行需要在站点之间进行通信。</p>
-<p>分布式数据库可能是同构的，其中所有站点拥有共同的模式和数据库系统代码，或者是异构的，其中模式和系统代码可能不同。</p>
-<p>关于在分布式数据库中存储关系涉及几个问题，包括复制和分片。系统应尽量减小用户需要了解关系如何存储的程度。</p>
-<ul>
-<li>水平分片：通过将r的每个元组分给一个或多个分片来划分关系</li>
-<li>垂直分片：通过对关系r的模式R进行分解来划分关系</li>
-</ul>
-<p>数据透明性：</p>
-<ul>
-<li>分片透明性：用户不要求知道关系是如何分片的</li>
-<li>复制透明性：在用户看来，每个数据对象逻辑上都是唯一的。分布式系统可能为了提高系统性能或者数据可用性而复制对象，用户不必关系什么数据对象被复制了，也不必关系副本存放在何处。</li>
-<li>位置透明性：用户无须知道数据的物理位置。只要用户事务提供数据标示符，分布式数据库系统应能够找到任何数据。</li>
-</ul>
-<p>局部事务是那些只在一个局部数据库中访问和更新数据的事务；全局事务是那些多个局部数据库中访问和更新数据的事务。</p>
-<p>每个站点都有其自身的局部事务管理器，其功能是保证在该站点上执行的那些事务的ACID特性。各个事务管理器相互协作以执行全局事务。</p>
-<ul>
-<li>事务管理器：管理那些访问存储在一个局部站点中的数据的事务（或子事务）的执行。注意每个这样的事务既可以是局部事务也可以是全局事务的一部分。<ul>
-<li>维护一个用于恢复目的的日志</li>
-<li>参与到一个合适的并发控制方案，以协调在该站点上执行的事务的并发执行 </li>
-</ul>
-</li>
-<li>事务协调器：协调在该站点上发起的各个事务的执行。<ul>
-<li>启动事务的执行</li>
-<li>将事务分成一些子事务，并将这些子事务分派给合适的站点去执行</li>
-<li>协调事务的中止，这可能导致事务在所有站点上都提交或者所有站点上都中止</li>
-</ul>
-</li>
-</ul>
-<p>分布式系统可能遭受与集中式系统相同类型的故障。但是，分布式环境中还有另外一些需要处理的故障，包括站点故障、链路故障、消息丢失以及网络划分。在分布式故障恢复模式的设计中需要考虑每个这样的问题。</p>
-<p>为了保证原子性，执行事务T的所有站点必须在执行的最终结果上取得一致。T要么在所有站点上提交，要么在所有站点上中止。为了保证这一特性，T的事务协调器必须执行一种提交协议。使用最广泛的提交协议是两阶段提交协议。</p>
-<p>两阶段提交协议可能导致阻塞，在这种情况下，事务的命运必须等到故障站点（协调器）恢复后才能确定。为了减少阻塞的可能性，可以使用三阶段提交协议。</p>
-<p>持久消息为分布式事务处理提供了一种可选模式。该模式将单个事务拆分成在不同数据库执行的多个部分。持久消息（无论是否发生故障。都保证正好只传送一次）被传送到需要采取动作的远程站点。虽然需要持久消息避免阻塞问题，但是应用程序开发者必须编写代码来处理各种类型的故障。</p>
-<p>在集中式系统中使用各种并发控制方案修改后可用于分布式环境。</p>
-<ul>
-<li>就封锁协议而言，须做的唯一改变是锁管理器的实现方式。可以采用一个或多个中央协调器。如果拆用分布式锁管理器，复制数据就必须特殊对待。</li>
-<li>处理已复制数据的协议包括主副本协议、多数协议、有偏协议和法定人数同意协议。它们在开销方面和发生故障时工作的能力方面各有不同的取舍权衡。</li>
-<li>就时间戳和有效性演奏方案而言，所需的唯一修改是开发一种产生全局唯一性时间戳的机制。</li>
-<li>许多数据库系统支持延迟复制，其中更新被传播到执行更新的事务的范围之外的副本。这样的工具必须小心使用，因为他们可能导致不可串行化的执行。</li>
-</ul>
-<p>分布式锁管理器环境中的死锁检测需要多个站点之间的合作，因为甚至在没有局部死锁的情况下也可能有全局死锁。</p>
-<p>为了提高可用性，分布式诗句哭必须检测故障，重构系统以使计算机能够继续进行，并在处理器或链路修复之后能够恢复。由于要在网络划分和站点股掌之间进行区分是很困难的，因此这个任务就变得非常复杂。通过使用版本号，可以对多数协议进行扩展使其即使存在故障的情况下仍允许进行事务处理。虽然该协议代价昂贵，但它无论在何种类型的故障下都能工作。可以使用较小代价的协议来处理站点故障，但是它们艰涩不会发生网络划分。</p>
-<p>一些分布式算法需要使用协调器。为了提供高可用性，系统必须维护一个准备好的在协调器故障时能继续其支者的备份副本。另一种方法是在协调器发生故障后选出新的协调器。确定哪个站点应该作为协调器的算法称为选举算法。</p>
-<p>分布式数据库上的查询可能需要访问多个站点。可以使用集中优化技术来识别需要访问的最佳站点集。查询可以依据关系的分片来自动重写没然后可以在每个分片的副本之间做出选择。可以应用半连接技术减少跨不同站点的关系（或相应的分片或副本）连接中所涉及的数据传输。</p>
-<p>异构分布式数据库允许站点有它们自己的模式和数据库系统代码。多数数据库系统提供了一种环境，在其中新的数据库应用可以访问位于多重易购软硬件环境的各个先前存在数据库中的数据。局部数据库系统可以采用不同的逻辑模型以及数据定义和数据操纵语言，并且可以在它们的并发控制和事务管理机制上存在差别。多数据库系统虚拟了逻辑上的数据库集成，不需要物理上的数据库集成。</p>
-<p>为了响应超大规模Web应用对数据存储的需求，近年来在云上构建了大量数据存储系统。这些数据存储系统允许扩展到地里上分布的数千个结点上，而且具有高可用性。然而，它们并不支持通常的ACID特性，而且在划分时以副本一致性为代价来获得可用性。</p>
-<p>目录系统可视为一何总特殊形式的数据库，其中信息按照一种分层的方式组织，类似于文件系统中文件的组织方式。目录通过标准化目录访问协议（例如LDAP）来访问。目录可以分布到多个站点上来提供各个站点的自治。目录可以包含对其他目录的引用，这有助于建立集成视图，借此查询被发送给单个目录，并且在所有相关的目录上透明地执行。</p>
-<h2 id="数据仓库、数据挖掘和信息检索"><a href="#数据仓库、数据挖掘和信息检索" class="headerlink" title="数据仓库、数据挖掘和信息检索"></a>数据仓库、数据挖掘和信息检索</h2><h3 id="数据仓库与数据挖掘"><a href="#数据仓库与数据挖掘" class="headerlink" title="数据仓库与数据挖掘"></a>数据仓库与数据挖掘</h3><p>数据仓库是从多个数据源种进行数据采集，并以一种共同的、统一的数据库模式进行存储的数据仓储。存放在数据仓库中的数据将用于各种复杂聚集和统计分析。</p>
-<p>决策支持系统分析由事务处理系统收集的在线数据，以帮助人们做出商业决策。由于现在大多数组织结构都进行了广泛的计算机化，因此有非常大量的信息可用于决策支持。决策支持系统有不同的形式，包括OLAP系统和数据挖掘系统。</p>
-<p>数据仓库有助于收集和归档重要的操作数据。数据仓库用于基于历史数据的决策支持和分析，例如趋势预测。对来自输入数据源的数据进行清理通常是数据仓库中的一项重要任务。数据仓库的模式一般是多维的，包括一个或一些非常大的事实表以及几个小得多的维表。</p>
-<p>在很多数据仓库应用程序中，面向列的存储系统能提供良好的性能。</p>
-<p><strong>数据挖掘是一个能半自动地分析大型数据库以找出有用的模式的过程。</strong>数据挖掘的引用有许多，比如基于以往示例的数值预测，购买行为关联的发现，以及人和电影的自动聚类。</p>
-<p>分类处理的事：基于训练用例的属性和训练用例实际所属的类，通过利用测试用例的属性来预测测试用例所属类。分类器类型有很多种：</p>
-<ul>
-<li>决策树分类器。这种分类器通过基于训练用例所构造的一棵树来执行分裂，该树的叶节点具有类别标签。对每个测试用例遍历这棵树以找到一个叶节点，该叶节点所属的类即是预测的类。有几种技术可用于构造决策树，其中大部分是基于贪心的启发式方法。</li>
-<li>贝叶斯分类器放入构造比决策树分类器更简单，并且在属性值缺失或为空的情况下工作得更好。</li>
-<li>支持向量机是另一种广泛应用的分类技术。</li>
-</ul>
-<p>关联规则识别经常同时出现的项，比如同一位孤苦可能购买的一些商品。相互关联找出与期望关联等级的偏离。</p>
-<p>其他类型的数据挖掘包括聚类、文本挖掘和数据可视化。</p>
-<h3 id="信息检索"><a href="#信息检索" class="headerlink" title="信息检索"></a>信息检索</h3><p>信息检索系统用于存储和查询如文档那样的文本数据。与数据库系统相比，它们使用更将蛋的数据模型，但能够在首先的模型里提供更强大的查询能力。</p>
-<p>查询试图通过指定关键字集合来定位用户感兴趣的文档。用户心里所想的查询往往不能精确的表述，因此，信息检索系统基于潜在的相关性对答案的排名。</p>
-<p>相关性排名利用多种类型的信息。1、术语频率：每个术语对美分文档的重要性；2、逆文档频率；3、流行度排名。</p>
-<p>文档相似性用于检索与一个示例文档相似的文档。余弦度量值用于定义相似度，它基于向量空间模型。</p>
-<p>PageRank和链接中心/权威页排名是基于指向页面的链接对页面威望度赋值的两种方法。PageRank度量可以用随机游走模型来直观地理解。锚文本信息也可以用来计算单个关键字意义上的流行度。信息检索系统需要整合多种因素（包括TF-IDF和PageRank）来获得对页面的全局评分。</p>
-<p>搜索引擎作弊试图使一个页面得到高的（但不是应得的）排名。</p>
-<p>同义词和多义词使信息检索的任务复杂化。基于概念的查询旨在找到含有指定概念的文档，而与指定该概念所使用的确切的词（以及语言）无关。本体利用诸如is-a或者part-of这样的关系将概念联系起来。</p>
-<p>倒排索引用来对关键字查询做出应答。</p>
-<p>查准率和查全率是信息检索系统有效性的两种度量。</p>
-<p>Web搜索引擎使用爬虫搜索Web找到网页，然后分析它们以计算其威望度度量，并为它们建立索引。</p>
-<p>目录结构和分类用来将文档和其他相似的文档归类到一起。</p>
-<h2 id="特种数据库"><a href="#特种数据库" class="headerlink" title="特种数据库"></a>特种数据库</h2><h3 id="基于对象的数据库"><a href="#基于对象的数据库" class="headerlink" title="基于对象的数据库"></a>基于对象的数据库</h3><h3 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h3><h2 id="高级主题"><a href="#高级主题" class="headerlink" title="高级主题"></a>高级主题</h2><h3 id="高级应用开发"><a href="#高级应用开发" class="headerlink" title="高级应用开发"></a>高级应用开发</h3><p>调整数据库系统参数和更高级别的数据库设计（如模式、索引和事务）对于实现高性能至关重要。查询可以进行调整以提高集合面向性，而批量加载功能可以大大加快数据导入到数据库中的速度。</p>
-<ul>
-<li>调整的最好方法就是确定瓶颈所在，然后消除瓶颈。数据库系统通常有多种可调参数，如缓冲区大小、内存大小和磁盘数量。可以选择适当的缩影和物化试图集合，以使总体代价达到最小。可以调整事务使锁竞争达到最小。快照隔离和支持早起锁释放的序号编号功能是减少读写和写写竞争的有用工具。</li>
-</ul>
-<p>性能基准程序在对数据库系统进行比较方面扮演了重要的角色，尤其在数据库系统变得越来越与标准兼容时。TPC基准程序集使用广泛，不同的TPC基准程序可以用于不同的工作负载下的数据库系统性能比较。</p>
-<p>应用程序在开发时和部署前需要进行大量大测试。测试用来捕获错误的，以及确保到达性能目标。</p>
-<p>遗产系统是基于老一代技术（如非关系数据库或甚至直接基于文件系统）的系统。当运行关键人物系统时，遗产系统与新一代系统之间的连接通常是很重要的。从遗产系统到新一代系统的移植必须非常小心以避免破坏，这种移植是非常昂贵的。</p>
-<p>由于数据库系统的复杂性和互操作的需要，标准对数据库系统来说很重要。SQL有其正式标准。事实标准（如ODBC和JDBC）和被行业组织所采纳的标准（如CORBA），在客户-服务器数据库系统的发展中发挥了重要作用。</p>
-<h3 id="时空数据和移动性"><a href="#时空数据和移动性" class="headerlink" title="时空数据和移动性"></a>时空数据和移动性</h3><p>存储关于真实世界的时间经历状态的信息的数据库叫做时态数据库。</p>
-<p>时态关系中的事实与当它们有效时的时间相关联，而时间可以用时段的并来表示。时态查询语言简化了时间建模以及与时间相关的查询。</p>
-<p>设计数据主要以矢量数据的形式存储；地理数据包含矢量数据和光栅数据的结合。空间完整性约束对于设计数据库十分重要。光栅数据由二维或更高维的位图或像素图组成。矢量数据由基本集合对象构成，如点、线段、折线、三角形和其他二维多边形，以及圆柱体、球体、立方体和其他三维多面体。</p>
-<p>矢量数据库可以编码成第一范式，或者用非第一范式结构来存储，如列表。专用索引结构对于访问空间数据和处理空间查询尤为重要。</p>
-<p>R树是B树的多维扩展；它和它的变体（如R+树和R*树）在空间数据库中得到了广泛的应用。将空间以某种固定方式进行划分和索引结构（如四叉树）有助于处理空间连接查询。</p>
-<h3 id="高级事务处理"><a href="#高级事务处理" class="headerlink" title="高级事务处理"></a>高级事务处理</h3><h2 id="实例研究"><a href="#实例研究" class="headerlink" title="实例研究"></a>实例研究</h2><h3 id="PostgreSQL"><a href="#PostgreSQL" class="headerlink" title="PostgreSQL"></a>PostgreSQL</h3><h3 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h3><h3 id="IBM-DB2-Universal-Database"><a href="#IBM-DB2-Universal-Database" class="headerlink" title="IBM DB2 Universal Database"></a>IBM DB2 Universal Database</h3><h3 id="Microsoft-SQL-Server"><a href="#Microsoft-SQL-Server" class="headerlink" title="Microsoft SQL Server"></a>Microsoft SQL Server</h3>]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>DB</tag>
-      </tags>
   </entry>
   <entry>
     <title>基于github与hexo的博客搭建</title>
@@ -4391,20 +4459,6 @@
       </tags>
   </entry>
   <entry>
-    <title>类图中的关系</title>
-    <url>/2018/06/03/%E7%B1%BB%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
-    <content><![CDATA[<p>在我们使用UML图进行设计时，会涉及类图之间的关系，一般关系为以下的五种关系，理解其中的概要能够对于后续我们的设计有一定的帮助。</p>
-<p>1、一般化关系，或者称为继承关系</p>
-<p>2、关联关系<br>关联关系中一个类知道另一个类的属性和方法。通常通过类里引用另一个类的实例变量实现。</p>
-<p>3、聚合关系<br>聚合关系与下面的合成关系都是属于关联关系的一种。在聚合关系中，主要表现的是整体与个体的关系。由于本属于关联关系，因此也是通过实例变量的方式实现。<br>聚合关系与关联关系的区别是，关联关系主要是两个类都是在同一个层次的。</p>
-<p>4、合成关系<br>合成关系是指普通聚合关系的同时，代表整体的对象负责代表部分的对象的生命周期。<br>合成关系是不能够共享的。代表部分的对象每个时刻只能与一个对象发生合成关系。</p>
-<p>5、依赖关系<br>依赖关系主要指类的局部变量、方法参数以及对静态方法的调用，是另一个类的实例对象等。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-  </entry>
-  <entry>
     <title>笔记整理——计算机网络（笔记整理三之二）</title>
     <url>/2019/11/23/%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%89%E4%B9%8B%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<p>计算机网络的功能：1、数据交换与通信；2、资源共享；3、提高系统的可靠性和可用性；4、分布式网络处理。计算机网络中可以共享的资源包括：硬件、软件、数据、通信信道。</p>
@@ -4491,6 +4545,20 @@
       <tags>
         <tag>network</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>类图中的关系</title>
+    <url>/2018/06/03/%E7%B1%BB%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
+    <content><![CDATA[<p>在我们使用UML图进行设计时，会涉及类图之间的关系，一般关系为以下的五种关系，理解其中的概要能够对于后续我们的设计有一定的帮助。</p>
+<p>1、一般化关系，或者称为继承关系</p>
+<p>2、关联关系<br>关联关系中一个类知道另一个类的属性和方法。通常通过类里引用另一个类的实例变量实现。</p>
+<p>3、聚合关系<br>聚合关系与下面的合成关系都是属于关联关系的一种。在聚合关系中，主要表现的是整体与个体的关系。由于本属于关联关系，因此也是通过实例变量的方式实现。<br>聚合关系与关联关系的区别是，关联关系主要是两个类都是在同一个层次的。</p>
+<p>4、合成关系<br>合成关系是指普通聚合关系的同时，代表整体的对象负责代表部分的对象的生命周期。<br>合成关系是不能够共享的。代表部分的对象每个时刻只能与一个对象发生合成关系。</p>
+<p>5、依赖关系<br>依赖关系主要指类的局部变量、方法参数以及对静态方法的调用，是另一个类的实例对象等。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
   </entry>
   <entry>
     <title>[翻译]When nil Isn&#39;t Equal to nil</title>
@@ -4855,6 +4923,20 @@
       </tags>
   </entry>
   <entry>
+    <title>读《傲慢与偏见》</title>
+    <url>/2019/01/31/%E8%AF%BB%E3%80%8A%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81%E3%80%8B/</url>
+    <content><![CDATA[<p>很喜欢《傲慢与偏见》这种故事，和《简·爱》的故事一样，都是美满的结局，全程没有一点压抑，或许有一些人物出现的不完美，但是都终归走向那个人的向往的结局。或许我本身开始对悲剧的胆怯而导致对喜剧的期待了，人终究是期待美满的。</p>
+<p>书里一直持续着两条大的线，一条是班纳特姐妹的爱情到婚姻的故事，另一条是达西的傲慢与伊丽莎白的偏见。或者说在班纳特小姐们的爱情中着重叙述了伊丽莎白的故事。</p>
+<p>书中有两点非常有趣。</p>
+<p>第一点是彬格莱与吉英的恋爱中的一段。当彬格莱刚开始在尼日斐花园时，对吉英表现了自己对于其的倾慕。但吉英虽然也喜欢彬格莱，却没有表现出喜欢，以至于后来的懊悔。对于自己的喜欢，不要刻意去压抑，喜欢的本身是很美的东西。</p>
+<p>第二点就是本书中的中心。达西的傲慢的形象，导致了伊丽莎白对于其的偏见。其中有两点很重要，一是我们也需要像达西后来一样，不能有那种十分傲慢、自以为是的态度；二是不能因为自己对于别人的偏见而否定别人。</p>
+<p>人非圣人，傲慢与偏见是或多或少都有些的。养好自己的心智才是最重要的。</p>
+]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+  </entry>
+  <entry>
     <title>读《机器崛起》</title>
     <url>/2018/05/30/%E8%AF%BB%E3%80%8A%E6%9C%BA%E5%99%A8%E5%B4%9B%E8%B5%B7%E3%80%8B/</url>
     <content><![CDATA[<p><img src="/2018/05/30/%E8%AF%BB%E3%80%8A%E6%9C%BA%E5%99%A8%E5%B4%9B%E8%B5%B7%E3%80%8B/1.jpg"></p>
@@ -4916,20 +4998,6 @@
       </categories>
   </entry>
   <entry>
-    <title>读《傲慢与偏见》</title>
-    <url>/2019/01/31/%E8%AF%BB%E3%80%8A%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81%E3%80%8B/</url>
-    <content><![CDATA[<p>很喜欢《傲慢与偏见》这种故事，和《简·爱》的故事一样，都是美满的结局，全程没有一点压抑，或许有一些人物出现的不完美，但是都终归走向那个人的向往的结局。或许我本身开始对悲剧的胆怯而导致对喜剧的期待了，人终究是期待美满的。</p>
-<p>书里一直持续着两条大的线，一条是班纳特姐妹的爱情到婚姻的故事，另一条是达西的傲慢与伊丽莎白的偏见。或者说在班纳特小姐们的爱情中着重叙述了伊丽莎白的故事。</p>
-<p>书中有两点非常有趣。</p>
-<p>第一点是彬格莱与吉英的恋爱中的一段。当彬格莱刚开始在尼日斐花园时，对吉英表现了自己对于其的倾慕。但吉英虽然也喜欢彬格莱，却没有表现出喜欢，以至于后来的懊悔。对于自己的喜欢，不要刻意去压抑，喜欢的本身是很美的东西。</p>
-<p>第二点就是本书中的中心。达西的傲慢的形象，导致了伊丽莎白对于其的偏见。其中有两点很重要，一是我们也需要像达西后来一样，不能有那种十分傲慢、自以为是的态度；二是不能因为自己对于别人的偏见而否定别人。</p>
-<p>人非圣人，傲慢与偏见是或多或少都有些的。养好自己的心智才是最重要的。</p>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
-  </entry>
-  <entry>
     <title>读《黄鹤楼》</title>
     <url>/2020/02/23/%E8%AF%BB%E3%80%8A%E9%BB%84%E9%B9%A4%E6%A5%BC%E3%80%8B/</url>
     <content><![CDATA[<p>黄鹤楼前《黄鹤楼》，</p>
@@ -4939,6 +5007,48 @@
 ]]></content>
       <categories>
         <category>read</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>读罢此书</title>
+    <url>/2018/03/19/%E8%AF%BB%E7%BD%A2%E6%AD%A4%E4%B9%A6/</url>
+    <content><![CDATA[<p>读罢此书，《自在 独行》。</p>
+<p><img src="/2018/03/19/%E8%AF%BB%E7%BD%A2%E6%AD%A4%E4%B9%A6/1.jpg"></p>
+<p>带着寻找心灵解药的本心，开始追寻着文学上、心理上的解脱，想要去追寻出我所期望的高度是什么，想去让自己幸福，想渡自己。</p>
+<p>读罢此书，一篇篇散文，有的朴素，有的却有深意。我明白这是一个自在的贾先生写的自在。但是我终究没有理解独行，或许是我所理解的独行不对。</p>
+<p>这书里万事万物，都以一种自由的美好角度所展示，我能看出作者所热爱的生活。当然，我明白，文字能够表现出的，是作者所想的意，或者人的细节。我明白贾先生有大男子主义，是我所不喜好的。</p>
+<p>从生活的美好里，追求生活的意义。不敢停止思考，我一直都在害怕，害怕着当有某一天，我看透了这个人生，选择离去。我害怕我会思考出自己生命的意义是没有意义。从来，对于每个人的选择都是敬畏的。当海子选择卧轨时，是抱着多大的勇气，我想，他们定是明白了这个人生了。</p>
+<p>“写给每一个孤独的行路人”，或许我明白了这书来的意义。写给孤寂的人，看到这个世间的美好，便更加有了走下去的意义。</p>
+<p>或许人生的意义，从来都是不需要去追寻的，或许它最终只是对于个人，来过这个世间的积累。看尽世间百态，或许是人生。也或许人活着，就是为了寻求人生的意义。道家里讲究死后乘鹤西去，佛家里追寻生命轮回，而唯物里，死后就什么也没有了，“化作春泥更护花”或许是唯物的追寻。</p>
+<p>我有时在想，人生的意义，是否就是追求人在死亡来临那刻的高度，精神的卓越。我始终不解，但我知道，《自在 独行》里描写的世界就是这个世界，所写出的美好，便是一个普通人理解的美好。</p>
+<p>我一直在寻找，生命的意义是什么。或许该问，寻找生命的意义的意义又是什么？有人说，生命的意义在于寻找意义的过程。或许该是如此。</p>
+<p>这书，从没有讲过生命，只是讲着这个世间的美好，而我从来喜欢“随想”，不局限思维。或许我在向一个怪人的路上渐行渐近。也是有趣。</p>
+]]></content>
+      <categories>
+        <category>read</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>走着，走着——19年过了</title>
+    <url>/2019/12/31/%E8%B5%B0%E7%9D%80%EF%BC%8C%E8%B5%B0%E7%9D%80/</url>
+    <content><![CDATA[<p>前言，18年好像过去没多久，<a href="https://feiybox.com/2018/12/30/%E4%BE%8B%E8%A1%8C%E6%80%BB%E7%BB%93%E2%80%94%E2%80%942018%E7%89%88/">《例行总结——2018版》</a>。</p>
+<p>2019年，这个是平凡的一年，也是有趣的一年。</p>
+<p>平凡，这一年，还是往常一样。工作，加班，读书……依然还是北漂，生活一层不变的过下去。</p>
+<p>有趣，这一年，也发生了许多事。加入了新公司，博客也迁移到github上，开始习惯了“10105.5”的生活，也开始被父母催促“我一个人”。</p>
+<p>2月13日，我年后再来了北京，也加入了新公司。</p>
+<p>今年，总的算下来，我读了13本书，其中十分推荐《人类简史》等。当然，这一年里，总共更新了20篇博客等。也开始学习课程，内部课程完成22个；也在MOOC上开始学习「唐诗经典」。</p>
+<p><img src="/2019/12/31/%E8%B5%B0%E7%9D%80%EF%BC%8C%E8%B5%B0%E7%9D%80/2019.png" alt="2019"></p>
+<p>这一年，更宅了，只不过也稍微动一点。夏天骑了辆摩拜从望京到中关村，算是我的巅峰了。</p>
+<p>今年也放弃了一些，放弃了使用网易云音乐，也放弃了看NBA。</p>
+<p><img src="/2019/12/31/%E8%B5%B0%E7%9D%80%EF%BC%8C%E8%B5%B0%E7%9D%80/yundong.jpg" alt="运动"></p>
+<p>工作就不多说了，应该也算有成长吧。</p>
+<p><img src="/2019/12/31/%E8%B5%B0%E7%9D%80%EF%BC%8C%E8%B5%B0%E7%9D%80/work.jpg" alt="工作"></p>
+<p>2020年，有点想回成都了。至少要读《数据库系统概念》、《追风筝的人》（英文版）、《经济学原理》（宏观经济学分册）。</p>
+<p>19年，就这样了吧。</p>
+<p>我的关键词：走着，走着。</p>
+]]></content>
+      <categories>
+        <category>other</category>
       </categories>
   </entry>
   <entry>
@@ -4991,48 +5101,6 @@
       <tags>
         <tag>Java</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>读罢此书</title>
-    <url>/2018/03/19/%E8%AF%BB%E7%BD%A2%E6%AD%A4%E4%B9%A6/</url>
-    <content><![CDATA[<p>读罢此书，《自在 独行》。</p>
-<p><img src="/2018/03/19/%E8%AF%BB%E7%BD%A2%E6%AD%A4%E4%B9%A6/1.jpg"></p>
-<p>带着寻找心灵解药的本心，开始追寻着文学上、心理上的解脱，想要去追寻出我所期望的高度是什么，想去让自己幸福，想渡自己。</p>
-<p>读罢此书，一篇篇散文，有的朴素，有的却有深意。我明白这是一个自在的贾先生写的自在。但是我终究没有理解独行，或许是我所理解的独行不对。</p>
-<p>这书里万事万物，都以一种自由的美好角度所展示，我能看出作者所热爱的生活。当然，我明白，文字能够表现出的，是作者所想的意，或者人的细节。我明白贾先生有大男子主义，是我所不喜好的。</p>
-<p>从生活的美好里，追求生活的意义。不敢停止思考，我一直都在害怕，害怕着当有某一天，我看透了这个人生，选择离去。我害怕我会思考出自己生命的意义是没有意义。从来，对于每个人的选择都是敬畏的。当海子选择卧轨时，是抱着多大的勇气，我想，他们定是明白了这个人生了。</p>
-<p>“写给每一个孤独的行路人”，或许我明白了这书来的意义。写给孤寂的人，看到这个世间的美好，便更加有了走下去的意义。</p>
-<p>或许人生的意义，从来都是不需要去追寻的，或许它最终只是对于个人，来过这个世间的积累。看尽世间百态，或许是人生。也或许人活着，就是为了寻求人生的意义。道家里讲究死后乘鹤西去，佛家里追寻生命轮回，而唯物里，死后就什么也没有了，“化作春泥更护花”或许是唯物的追寻。</p>
-<p>我有时在想，人生的意义，是否就是追求人在死亡来临那刻的高度，精神的卓越。我始终不解，但我知道，《自在 独行》里描写的世界就是这个世界，所写出的美好，便是一个普通人理解的美好。</p>
-<p>我一直在寻找，生命的意义是什么。或许该问，寻找生命的意义的意义又是什么？有人说，生命的意义在于寻找意义的过程。或许该是如此。</p>
-<p>这书，从没有讲过生命，只是讲着这个世间的美好，而我从来喜欢“随想”，不局限思维。或许我在向一个怪人的路上渐行渐近。也是有趣。</p>
-]]></content>
-      <categories>
-        <category>read</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>走着，走着——19年过了</title>
-    <url>/2019/12/31/%E8%B5%B0%E7%9D%80%EF%BC%8C%E8%B5%B0%E7%9D%80/</url>
-    <content><![CDATA[<p>前言，18年好像过去没多久，<a href="https://feiybox.com/2018/12/30/%E4%BE%8B%E8%A1%8C%E6%80%BB%E7%BB%93%E2%80%94%E2%80%942018%E7%89%88/">《例行总结——2018版》</a>。</p>
-<p>2019年，这个是平凡的一年，也是有趣的一年。</p>
-<p>平凡，这一年，还是往常一样。工作，加班，读书……依然还是北漂，生活一层不变的过下去。</p>
-<p>有趣，这一年，也发生了许多事。加入了新公司，博客也迁移到github上，开始习惯了“10105.5”的生活，也开始被父母催促“我一个人”。</p>
-<p>2月13日，我年后再来了北京，也加入了新公司。</p>
-<p>今年，总的算下来，我读了13本书，其中十分推荐《人类简史》等。当然，这一年里，总共更新了20篇博客等。也开始学习课程，内部课程完成22个；也在MOOC上开始学习「唐诗经典」。</p>
-<p><img src="/2019/12/31/%E8%B5%B0%E7%9D%80%EF%BC%8C%E8%B5%B0%E7%9D%80/2019.png" alt="2019"></p>
-<p>这一年，更宅了，只不过也稍微动一点。夏天骑了辆摩拜从望京到中关村，算是我的巅峰了。</p>
-<p>今年也放弃了一些，放弃了使用网易云音乐，也放弃了看NBA。</p>
-<p><img src="/2019/12/31/%E8%B5%B0%E7%9D%80%EF%BC%8C%E8%B5%B0%E7%9D%80/yundong.jpg" alt="运动"></p>
-<p>工作就不多说了，应该也算有成长吧。</p>
-<p><img src="/2019/12/31/%E8%B5%B0%E7%9D%80%EF%BC%8C%E8%B5%B0%E7%9D%80/work.jpg" alt="工作"></p>
-<p>2020年，有点想回成都了。至少要读《数据库系统概念》、《追风筝的人》（英文版）、《经济学原理》（宏观经济学分册）。</p>
-<p>19年，就这样了吧。</p>
-<p>我的关键词：走着，走着。</p>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
   </entry>
   <entry>
     <title>边城：性格使然的悲剧</title>
@@ -5168,5 +5236,58 @@
       <categories>
         <category>other</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Linux env 与 export 等</title>
+    <url>/2023/07/13/Linux-env-%E4%B8%8E-export-%E7%AD%89/</url>
+    <content><![CDATA[<h3 id="故事提要"><a href="#故事提要" class="headerlink" title="故事提要"></a>故事提要</h3><p>项目开发中，我在 docker file 中，将需要执行的命令写入到 <code>/etc/rc.d/rc.local</code> 文件中，目的是为了容器启动时，将自动执行此命令。命令等价如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">env abc=abc java -jar test.jar $&#123;abc&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但实际运行时，我们发现没有获取到 <code>abc</code> 此变量。</p>
+<p>首先，分析，如果环境变量中已经有了 <code>abc</code> 此变量，那么是否有 <code>env abc=abc</code> 这段，后面都将获取到其变量值。至于为什么不会生效，则会在接下来的章节中说明。</p>
+<p>然后我们查看了 <code>env</code> <code>export</code> 的作用。因此将命令进行了修改。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">env abc=abc sh test.sh</span><br></pre></td></tr></table></figure>
+
+<p>test.sh :</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">java -jar test.jar $&#123;abc&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样执行时，即可读取到对应的变量值。</p>
+<h3 id="Linux-多文件执行顺序"><a href="#Linux-多文件执行顺序" class="headerlink" title="Linux 多文件执行顺序"></a>Linux 多文件执行顺序</h3><ol>
+<li>通过 /boot/vm 进行启动 vmlinuz</li>
+<li>init /etc/inittab</li>
+<li>启动相应的脚本，并且打开终端<ul>
+<li>rc.sysinit</li>
+<li>rc.d (里面的脚本）</li>
+<li>rc.local</li>
+</ul>
+</li>
+<li>登陆 login</li>
+<li>profile 等<ul>
+<li>/etc/profile.d/file</li>
+<li>/etc/profile</li>
+<li>/etc/bashrc</li>
+<li>/root/.bashrc</li>
+<li>/root/.bash_profile</li>
+</ul>
+</li>
+</ol>
+<p>从这儿可以看出 rc.local 文件是在 profile 之前执行的，而环境变量的设置通常是在 profile 中进行设置的，因此一般读取环境变量无法生效。（一种解决办法是将环境变量从 proc/1/env 读取出来拼接成命令，在执行需要环境的命令一起执行，类似上述 env 命令）</p>
+<h3 id="env-export-等命令的区别"><a href="#env-export-等命令的区别" class="headerlink" title="env export 等命令的区别"></a>env export 等命令的区别</h3><h4 id="env"><a href="#env" class="headerlink" title="env"></a>env</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">env</span><br></pre></td></tr></table></figure>
+<p>显示当前用户的环境变量。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">env abc=abc</span><br></pre></td></tr></table></figure>
+<p>仅为将要执行的子进程设置环境变量，临时启用指定的环境变量执行子进程，不影响之后的其他进程与当前进程。</p>
+<h4 id="export"><a href="#export" class="headerlink" title="export"></a>export</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export</span><br></pre></td></tr></table></figure>
+<p>查看已存在的环境变量。按照名称排序。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export abc=abc</span><br></pre></td></tr></table></figure>
+<p>通过调用 putenv 将一个本地变量输出为当前 shell 的环境变量，从而被子进程自动继承，但子进程 export 的变量无法改变父进程的环境变量。</p>
+<p>和 env 的最大区别点事，export 在当前 shell 中生效，而 env 只有子进程生效。</p>
+<h4 id="set-declare"><a href="#set-declare" class="headerlink" title="set / declare"></a>set / declare</h4><p>显示当前 shell 中的所有变量，包括环境变量和自定义变量。declare 会按照名称进行排序。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
   </entry>
 </search>
