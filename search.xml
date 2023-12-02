@@ -5290,4 +5290,24 @@
         <tag>Linux</tag>
       </tags>
   </entry>
+  <entry>
+    <title>分布式锁实现</title>
+    <url>/2023/12/02/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<p><img src="/2023/12/02/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E7%8E%B0/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E7%8E%B0.png" alt="分布式锁实现"></p>
+<p>参考：</p>
+<ul>
+<li><a href="http://feiybox.com/2023/10/29/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA-%E7%AE%97%E6%B3%95/">http://feiybox.com/2023/10/29/【笔记】分布式理论-算法/</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/413567720">https://zhuanlan.zhihu.com/p/413567720</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/662066246">https://zhuanlan.zhihu.com/p/662066246</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/577169524">https://zhuanlan.zhihu.com/p/577169524</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>Distribution</tag>
+        <tag>Lock</tag>
+      </tags>
+  </entry>
 </search>
