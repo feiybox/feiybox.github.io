@@ -5323,6 +5323,13 @@
     <title>Spring 组件 &amp; 功能梳理</title>
     <url>/2023/12/10/Spring-%E7%BB%84%E4%BB%B6-%E5%8A%9F%E8%83%BD%E6%A2%B3%E7%90%86/</url>
     <content><![CDATA[<p><img src="/2023/12/10/Spring-%E7%BB%84%E4%BB%B6-%E5%8A%9F%E8%83%BD%E6%A2%B3%E7%90%86/Spring.png" alt="Spring"></p>
+<p>事务：<br><img src="/2023/12/10/Spring-%E7%BB%84%E4%BB%B6-%E5%8A%9F%E8%83%BD%E6%A2%B3%E7%90%86/tx.png" alt="tx"></p>
+<p>参考：</p>
+<ul>
+<li><a href="https://docs.spring.io/">https://docs.spring.io</a></li>
+<li><a href="https://springdoc.cn/docs/">https://springdoc.cn/docs/</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/559158740">https://zhuanlan.zhihu.com/p/559158740</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>tech</category>
